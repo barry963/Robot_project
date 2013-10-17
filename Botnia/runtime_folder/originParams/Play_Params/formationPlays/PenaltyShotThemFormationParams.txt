@@ -1,0 +1,23 @@
+###############################################
+#Penalty Shot Them Formation Parameters 
+###############################################
+BLOCKER_X                0.0
+BLOCKER_Y                0.0
+BLOCKER_ROTATION         0.0
+#----------------------------------------------
+DEFENDER_X               0.3
+DEFENDER_Y               0.45
+DEFENDER_ROTATION        0.0
+#----------------------------------------------
+AGGRESSOR_X              0.3
+AGGRESSOR_Y              0.0
+AGGRESSOR_ROTATION       0.0
+#----------------------------------------------
+CREATOR_X                0.2
+CREATOR_Y                0.0
+CREATOR_ROTATION         0.0
+#----------------------------------------------
+SPECIAL_OP_X             0.3
+SPECIAL_OP_Y             -0.45
+SPECIAL_OP_ROTATION      0.0
+#----------------------------------------------

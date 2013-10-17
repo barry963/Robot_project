@@ -1,0 +1,116 @@
+range() and xrange()
+
+"""
+A word should be said here about large ranges. range() works by forming the range list when it is called. The full value of that list is then passed around the program whenever the range is needed. This consumes memory and CPU cycles, especially when range() is given a large number of items to amass. Therefore, Python has another range function called xrange(). The syntax of xrange() is exactly the same as range(), but xrange() populates its range list whenever it is accessed, allowing the memory to be freed when the list is not actively used.
+"""
+
+1.0 can be 1. in python
+
+we may use len() to get list
+
+sum of the list is sum(list)
+
+using flag = (Z == 'something') can be a good trick
+
+-5%6 = 1
+
+[0] * 5 to fast initialize [0,0,0,0,0]
+
+abs(n - int(n)) < 0.00001 can test whether n is integer or not
+
+it is better to pass float into function
+
+"""
+Building on 'xrange([start], stop[, step])', you can define a generator that accepts and produces any type you choose (stick to types supporting + and <)
+ def drange(start, stop, step):
+...     r = start
+...     while r < stop:
+...             yield r
+...             r += step
+"""
+
+Python装饰器与面向切面编程 http://www.cnblogs.com/huxi/archive/2011/03/01/1967600.html
+
+"""
+class Reverse:
+	" iterator for looping reversely"
+	def __init__(self,data):
+		self.data = data
+	def __iter__(self):
+		return self
+	def next(self):
+		if self.index == 0:
+		raise StopIteration
+		self.index = self.index -1
+		return self.data[self.index]
+Python’s generators provide a convenient way to implement the iterator protocol. If a container object’s __iter__() method is implemented as a generator, it will automatically return an iterator object (technically, a generator object) supplying the __iter__() and next() methods. 
+"""
+
+"""
+python generator
+def reverse(data):
+	for index in range(len(data)-1,-1,-1):
+		yield data[index]
+# the __iter__ and next are automatically created  #for created iterator and yield return iterated value
+# the yield return iterated value and make the rule for iteration with the loop it is in.
+"""
+
+"""
+Metaprogramming of python's
+http://python.mirocommunity.org/video/1535/pycon-2010-python-metaprogramm
+"""
+
+
+"""
+Lambda, filter, reduce and map
+basic operations of list
+"""
+
+a treak of +256 can add zeros to the binary values and then get rid of the first 1. e.g bin(int(x)+256)[3:] # 0,1,2 are dropped
+
+python can use ;
+
+for define a function. if there is not new line the content can be after :
+
+"""
+>>> import numpy
+>>> numpy.average([1,2,3])
+2.0
+>>> numpy.sum([1,2,3])
+6
+>>> numpy.std([1,2,3])
+"""
+
+# for range function this is the expression range([start], stop[, step]) # The second argument(stop) will be in the range
+
+from collections import Counter # this is the clause for Counter()
+
+for landmark  in reversed(landmarks):  # this kind of calling can reverse the list
+
+[alpha, distance] = motion # if motion is a list, it is a better way
+
+"""
+it is highly possible when assign an array to another, you actually assigned a pointer
+>>>a = [1,2]
+>>> b= a
+>>> b[0] = 5
+>>> print a
+[5, 2]
+"""
+
+round can only round, it cannot reduce digits
+
+"""
+float("{0:.2f}".format(round(min(5.7676232),3))) # way of reducing digits of float 
+"""
+
+"""
+Previous method may not work when append the number into some list
+however following is better:
+myList = [0.30000000000000004, 0.5, 0.20000000000000001]
+myFormattedList = [ '%.2f' % elem for elem in myList ]
+returns:
+['0.30', '0.50', '0.20']
+"""
+
+difference between shallow copy and deepcopy

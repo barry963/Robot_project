@@ -1,0 +1,18 @@
+message SSL_RobotCmd {
+  required uint32 team                  = 1;
+  required uint32 id    				        = 2;
+  required bool   drib_dir              = 3;
+  required bool   is_chip	              = 4;
+  required bool   send_back             = 5;
+  required bool   forcekick             = 6;
+  required uint32 drib_speed            = 7;
+  required float  vx   								  = 8;		// Velocity x
+  required float  vy   								  = 9;		// Velocity y
+  required float  va   								  = 10;		// Velocity angle ?
+  required uint32 kick_time   	        = 11;
+}
+
+message SSL_RadioFrame {
+  required double             time_stamp    = 1;
+  repeated SSL_QString::fromStdString       cmds          = 2;
+}

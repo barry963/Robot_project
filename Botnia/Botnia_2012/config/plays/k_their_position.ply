@@ -1,0 +1,19 @@
+PLAY Their Kickoff Positioning
+
+APPLICABLE their_kickoff
+TIMEOUT 0
+
+ROLE 1
+	position_for_start {-300, 0}
+	none
+ROLE 2
+	position_for_start {-300 200}
+	none
+ROLE 3
+	position_for_start {-300 -200}
+	none
+ROLE 4
+	position_for_start {-800 0}
+	none
+
+

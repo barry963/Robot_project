@@ -1,0 +1,18 @@
+PLAY Middle Defense 1
+
+APPLICABLE defense {!ball_x_lt -900} {ball_absy_lt 350}
+DONE completed offense
+DONE aborted {ball_x_lt -900}
+
+ROLE 1
+	active_def 
+	none
+ROLE 2
+	block 320 500 1
+	none
+ROLE 3
+	block 320 500 -1
+	none
+ROLE 4
+	position_for_loose_ball {R {BBd -300 -500} {BBd 300 -500} 200}
+	none

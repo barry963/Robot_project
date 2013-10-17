@@ -1,0 +1,20 @@
+#############################################
+# Parameters for the PenaltyShotUsAimAndShoot Skill
+#############################################
+
+#after amount of time, pick one side or the other and kick
+TIMEOUT_AND_STOP_CHOOSING_SIDES   0.4
+
+#after amount of time, just kick, forget rotating
+TIMEOUT_AND_KICK   0.5
+
+#offset from post to shoot towards
+POST_OFFSET 0.02
+
+#tolerance before kick set to true
+ANGLE_TOLERANCE 0.02
+
+#time kick lasts before skill finished, helps ensure robots actually kicks the ball
+KICK_TIME 0.5
+
+

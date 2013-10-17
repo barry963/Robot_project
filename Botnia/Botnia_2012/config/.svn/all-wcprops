@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/config
+END
+strategy.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/strategy.cfg
+END
+gui.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/gui.cfg
+END
+motion.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/config/motion.cfg
+END
+robot.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/robot.cfg
+END
+tactic.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/tactic.cfg
+END
+config2.xml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/config2.xml
+END
+xclients.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/xclients.cfg
+END
+parameter_settiings.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/parameter_settiings.xml
+END
+tracker.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/tracker.cfg
+END
+simulator.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/simulator.cfg
+END
+test.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/config/test.cfg
+END

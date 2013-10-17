@@ -1,0 +1,23 @@
+PLAY Two Attackers, Corner Spin 1
+
+APPLICABLE offense in_their_corner
+DONE aborted !offense
+
+TIMEOUT 15
+
+ROLE 1
+	spin_to_region { R { B 1100 800 } { B 700 800 } 300}
+	position_for_pass { R { 1000 0 } { 700 0 } 500 }
+	none
+ROLE 2
+	block 320 900 -1
+	none
+ROLE 3
+	position_for_loose_ball { R { B 1100 800 } { B 700 800 } 300}
+	shoot A
+	none
+ROLE 4
+	defend_line { -1400 1150} {-1400 -1150} 1000 1400
+	none
+
+

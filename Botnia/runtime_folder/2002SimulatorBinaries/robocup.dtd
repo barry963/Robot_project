@@ -1,0 +1,73 @@
+<!ELEMENT parameter_file (sim_world+,COMMENT*)>	
+<!ELEMENT COMMENT (#PCDATA)>	
+<!ELEMENT sim_world (COMMENT*, ( field | decoration | ball | wall | robot | goal | geometry)+)>	
+	<!ATTLIST sim_world name CDATA #REQUIRED>		
+	<!ATTLIST sim_world x_size CDATA #REQUIRED>	
+	<!ATTLIST sim_world y_size CDATA #REQUIRED>		
+	<!ATTLIST sim_world z_size CDATA "0">
+        <!ATTLIST sim_world in_latency CDATA #IMPLIED>	
+	<!ATTLIST sim_world out_latency CDATA #IMPLIED>
+	<!ATTLIST sim_world frame_rate CDATA #IMPLIED>
+	<!ATTLIST sim_world max_noise_radius CDATA #REQUIRED>
+	<!ATTLIST sim_world max_noise_theta CDATA #REQUIRED>
+<!ELEMENT geometry (COMMENT*,shape)>		
+    <!ATTLIST geometry start_position CDATA #REQUIRED>
+    <!ATTLIST geometry start_velocity CDATA #REQUIRED>	
+<!ELEMENT appearance (COMMENT*)>		
+    <!ATTLIST appearance fill_color CDATA #REQUIRED>		
+	<!ATTLIST appearance edge_color CDATA #REQUIRED>		
+	<!ATTLIST appearance edge_thickness CDATA #REQUIRED>			
+<!ELEMENT robot (geometry,appearance*,kicker*,dribbler*,COMMENT*)>		
+	<!ATTLIST robot name CDATA #REQUIRED>		
+	<!ATTLIST robot id CDATA #REQUIRED>                
+	<!ATTLIST robot team CDATA #REQUIRED>		
+	<!ATTLIST robot elasticity CDATA #IMPLIED>	
+    <!ATTLIST robot mass CDATA #REQUIRED>	
+	<!ATTLIST robot inherits CDATA #IMPLIED>	
+<!ELEMENT wall (geometry,appearance*,COMMENT*)>		
+	<!ATTLIST wall name CDATA #REQUIRED>	
+	<!ATTLIST wall elasticity CDATA #REQUIRED>		
+	<!ATTLIST wall inherits CDATA #IMPLIED>	
+<!ELEMENT ball (geometry,appearance*,COMMENT*)>		
+	<!ATTLIST ball mass CDATA #REQUIRED>
+        <!ATTLIST ball name CDATA #IMPLIED>
+	<!ATTLIST ball id CDATA #IMPLIED>                
+	<!ATTLIST ball team CDATA #IMPLIED>	
+	<!ATTLIST ball kinetic_friction CDATA #REQUIRED>	
+	<!ATTLIST ball static_friction CDATA #REQUIRED>		
+	<!ATTLIST ball elasticity CDATA #REQUIRED>		
+	<!ATTLIST ball inherits CDATA #IMPLIED>	       
+<!ELEMENT goal (geometry,appearance*,COMMENT*)>	
+	<!ATTLIST goal team CDATA #REQUIRED>	
+	<!ATTLIST goal inherits CDATA #IMPLIED>	
+<!ELEMENT field (geometry,appearance*,COMMENT*)>		
+	<!ATTLIST field kinetic_friction CDATA #REQUIRED>	
+	<!ATTLIST field static_friction CDATA #REQUIRED>		
+	<!ATTLIST field elasticity CDATA #REQUIRED>		
+	<!ATTLIST field inherits CDATA #IMPLIED>                
+<!ELEMENT decoration (geometry,appearance*)>       
+ <!ELEMENT line (COMMENT*)>				
+	<!ATTLIST line length CDATA #REQUIRED>		
+	<!ATTLIST line angle CDATA #REQUIRED>	        
+<!ELEMENT Plane (COMMENT*)>                
+	<!ATTLIST Plane length CDATA #REQUIRED>		
+	<!ATTLIST Plane width CDATA #REQUIRED>	               
+    <!ATTLIST Plane normalangle CDATA #IMPLIED>     
+<!ELEMENT circle (COMMENT*)>               
+	 <!ATTLIST circle radius CDATA #REQUIRED>
+	 <!ATTLIST circle orientation CDATA #REQUIRED>     
+<!ELEMENT arc (COMMENT*)>                
+	<!ATTLIST arc radius CDATA #REQUIRED>		
+	<!ATTLIST arc begin_angle CDATA #REQUIRED>	                
+	<!ATTLIST arc end_angle CDATA #REQUIRED>        
+<!ELEMENT rectangle (COMMENT*)>                
+	<!ATTLIST rectangle length CDATA #REQUIRED>		
+	<!ATTLIST rectangle width CDATA #REQUIRED>
+    <!ATTLIST rectangle orientation CDATA #REQUIRED>	               
+    <!ATTLIST rectangle height CDATA "0">     
+<!ELEMENT kicker (shape,COMMENT*)>               
+    <!ATTLIST kicker kick_impulse CDATA #REQUIRED>	
+	<!ATTLIST kicker reset_time CDATA #REQUIRED>       
+<!ELEMENT dribbler (shape,COMMENT*)> 
+	<!ATTLIST dribbler stickiness CDATA #REQUIRED>       
+<!ELEMENT shape (line | circle | rectangle | Plane | arc)+>	                		                

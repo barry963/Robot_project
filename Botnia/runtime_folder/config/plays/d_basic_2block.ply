@@ -1,0 +1,22 @@
+PLAY Basic Defense, 2 Block
+
+APPLICABLE defense {ball_x_gt -1500}
+DONE completed offense
+DONE aborted {!ball_x_gt -1500}
+
+OROLE 0 best_shot
+
+ROLE 1
+	active_def
+	none
+ROLE 2
+	block 400 650 -1
+	none
+ROLE 3
+	block 700 1400 1
+	none
+ROLE 4
+	mark 0
+	none
+
+

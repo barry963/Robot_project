@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io
+END
+coded_stream.h
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/coded_stream.h
+END
+coded_stream_inl.h
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/coded_stream_inl.h
+END
+zero_copy_stream_impl.cc
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/zero_copy_stream_impl.cc
+END
+zero_copy_stream_impl.h
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/zero_copy_stream_impl.h
+END
+package_info.h
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/package_info.h
+END
+gzip_stream_unittest.sh
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/gzip_stream_unittest.sh
+END
+tokenizer_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/tokenizer_unittest.cc
+END
+tokenizer.cc
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/tokenizer.cc
+END
+tokenizer.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/tokenizer.h
+END
+printer_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/printer_unittest.cc
+END
+zero_copy_stream_impl_lite.cc
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/zero_copy_stream_impl_lite.cc
+END
+printer.cc
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/printer.cc
+END
+zero_copy_stream_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/zero_copy_stream_unittest.cc
+END
+zero_copy_stream.cc
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/zero_copy_stream.cc
+END
+gzip_stream.cc
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/gzip_stream.cc
+END
+zero_copy_stream_impl_lite.h
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/zero_copy_stream_impl_lite.h
+END
+printer.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/printer.h
+END
+zero_copy_stream.h
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/zero_copy_stream.h
+END
+gzip_stream.h
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/gzip_stream.h
+END
+coded_stream_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/coded_stream_unittest.cc
+END
+coded_stream.cc
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/io/coded_stream.cc
+END

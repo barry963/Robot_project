@@ -1,0 +1,11 @@
+prefix=/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_
+exec_prefix=${prefix}
+libdir=/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib
+includedir=/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/include
+
+Name: QJson
+Description: QJson is a qt-based library that maps JSON data to QVariant objects
+Version: 0.8.1
+Requires: QtCore
+Libs: -L${libdir} -lqjson
+Cflags: -I${includedir}

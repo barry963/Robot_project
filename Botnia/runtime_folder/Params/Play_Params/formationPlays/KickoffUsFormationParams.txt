@@ -1,0 +1,23 @@
+###############################################
+#Kickoff Us Formation Parameters 
+###############################################
+BLOCKER_X                -1.0
+BLOCKER_Y                0.1
+BLOCKER_ROTATION         0.0
+#----------------------------------------------
+DEFENDER_X               -0.5
+DEFENDER_Y               -0.1
+DEFENDER_ROTATION        0.0
+#----------------------------------------------
+AGGRESSOR_X              -0.200
+AGGRESSOR_Y              0.0
+AGGRESSOR_ROTATION       0.4
+#----------------------------------------------
+CREATOR_X                -0.200
+CREATOR_Y                -1.500
+CREATOR_ROTATION         0.0
+#----------------------------------------------
+SPECIAL_OP_X             -0.200
+SPECIAL_OP_Y             1.500
+SPECIAL_OP_ROTATION      0.0
+#----------------------------------------------

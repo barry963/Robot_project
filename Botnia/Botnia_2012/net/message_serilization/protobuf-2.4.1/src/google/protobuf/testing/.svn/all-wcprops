@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testing
+END
+googletest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testing/googletest.cc
+END
+googletest.h
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testing/googletest.h
+END
+file.cc
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testing/file.cc
+END
+file.h
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testing/file.h
+END
+zcgzip.cc
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testing/zcgzip.cc
+END
+zcgunzip.cc
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testing/zcgunzip.cc
+END

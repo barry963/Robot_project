@@ -1,0 +1,40 @@
+###############################################
+# Parameters for the PullBallOffWall Skill 
+###############################################
+
+###ball should be LESS than this from side for skill to be valid
+WALL_THRESH 0.10					
+
+###success when we have possession and the ball 
+###is GREATER than this from side wall
+SUCCESS_WALL_THRESH 0.12			
+
+###max velocity of ball at which this skill should be valid
+BALL_SPEED_THRESH 0.4				
+
+###max dist from ball at which to turn on dribbler
+DRIBBLE_DIST 0.45					
+
+###distance to ball that we switch to corner speed
+CORNER_SPEED_DIST   .05
+
+###distance we head near ball when we're not facing the right way
+FAR_DIST    3.0
+
+###distance we head near ball when we are facing the right way
+NEAR_DIST   0.2
+
+###angle that constitutes facing the right way.
+FACING_ANGLE .4
+
+###Frames after we have possession that we start pulling back.
+POS_FRAMES    10
+
+###While pulling on the ball, we push forward by this amount
+PUSH_THROUGH_DIST    0.10
+
+##keep this much to the side of the ball (X offset for side)
+SIDE_OFFSET       0.02
+
+##max angle allowed to kick
+MAX_KICK_ANGLE    0.95

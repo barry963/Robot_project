@@ -1,0 +1,15 @@
+1.000000	o2_shoot1
+1.000000	o2_shoot2
+1.000000	o2_corner_dribble1
+1.000000	o2_corner_dribble2
+1.000000	o2_screen1
+1.000000	d_cross1
+1.777778	d_lowmiddle1
+1.000000	d_corner1
+1.000000	d_corner2
+1.000000	d_high1
+1.000000	k_position
+1.000000	K_position
+1.000000	F_position
+1.000000	P_position
+1.000000	p_position

@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf
+END
+ServiceTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/ServiceTest.java
+END
+nested_extension.proto
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/nested_extension.proto
+END
+LazyStringArrayListTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/LazyStringArrayListTest.java
+END
+DescriptorsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/DescriptorsTest.java
+END
+GeneratedMessageTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/GeneratedMessageTest.java
+END
+RepeatedFieldBuilderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 176
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/RepeatedFieldBuilderTest.java
+END
+DeprecatedFieldTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/DeprecatedFieldTest.java
+END
+AbstractMessageTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/AbstractMessageTest.java
+END
+CodedInputStreamTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/CodedInputStreamTest.java
+END
+non_nested_extension.proto
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/non_nested_extension.proto
+END
+CodedOutputStreamTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/CodedOutputStreamTest.java
+END
+TestBadIdentifiers.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/TestBadIdentifiers.java
+END
+NestedBuildersTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/NestedBuildersTest.java
+END
+TestUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/TestUtil.java
+END
+nested_extension_lite.proto
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/nested_extension_lite.proto
+END
+UnknownFieldSetTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 171
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/UnknownFieldSetTest.java
+END
+WireFormatTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/WireFormatTest.java
+END
+UnmodifiableLazyStringListTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 182
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/UnmodifiableLazyStringListTest.java
+END
+MessageTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/MessageTest.java
+END
+LazyStringEndToEndTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/LazyStringEndToEndTest.java
+END
+SmallSortedMapTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/SmallSortedMapTest.java
+END
+non_nested_extension_lite.proto
+K 25
+svn:wc:ra_dav:version-url
+V 178
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/non_nested_extension_lite.proto
+END
+ForceFieldBuildersPreRun.java
+K 25
+svn:wc:ra_dav:version-url
+V 176
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/ForceFieldBuildersPreRun.java
+END
+DynamicMessageTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/DynamicMessageTest.java
+END
+nested_builders_test.proto
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/nested_builders_test.proto
+END
+test_bad_identifiers.proto
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/test_bad_identifiers.proto
+END
+SingleFieldBuilderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 174
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/SingleFieldBuilderTest.java
+END
+TextFormatTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/TextFormatTest.java
+END
+LiteTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/LiteTest.java
+END
+multiple_files_test.proto
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/java/src/test/java/com/google/protobuf/multiple_files_test.proto
+END

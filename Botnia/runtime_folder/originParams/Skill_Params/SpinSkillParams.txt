@@ -1,0 +1,28 @@
+###############################################
+# Parameters for the Spin Skill 
+###############################################
+
+#spin speed = ROTATION_RATE * PI   (radians/sec)
+ROTATION_GAIN	2.5
+ROTATION_BIAS	.2
+
+#Offset radius that would keep ball exactly in front
+RADIUS_OFFSET -0.01
+
+#angle at which we switch to using traj gen instead of direct drive
+SPIN_AROUND_BALL_THRESHHOLD .01
+
+#angle we offset from facing the pivot point while spinning.
+ANGLE_OFFSET 0.0
+
+#this looks at the distance the ball is from the center of the dribbler,
+# and adjusts the radius by that distance * this factor.
+# Sign of adjustment determined by the side of the dribbler and the direction
+# of the spin
+RADIUS_ADJUST_FACTOR 0.0
+
+#how much to push on the ball
+PUSH_FACTOR .0
+
+#Whether we should use RotateAroundBall instead of SpinAroundBall
+USE_ROTATE 1

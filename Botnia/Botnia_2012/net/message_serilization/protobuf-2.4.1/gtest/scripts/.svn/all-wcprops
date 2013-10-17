@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/scripts
+END
+fuse_gtest_files.py
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/scripts/fuse_gtest_files.py
+END
+gen_gtest_pred_impl.py
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/scripts/gen_gtest_pred_impl.py
+END
+gtest-config
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/scripts/gtest-config
+END
+gtest-config.in
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/scripts/gtest-config.in
+END

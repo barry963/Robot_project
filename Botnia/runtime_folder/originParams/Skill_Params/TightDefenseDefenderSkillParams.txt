@@ -1,0 +1,12 @@
+#############################################
+# Parameters for the TightDefenseDefender Skill
+#############################################
+
+#direction to face
+FACE_ANGLE			.8
+
+#distance and angle thresholds at which we arm the kicker
+KICK_DIST       .1
+KICK_ANGLE      .5
+
+MORE_OFFSET     0.01

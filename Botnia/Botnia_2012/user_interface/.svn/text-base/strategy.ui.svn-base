@@ -1,0 +1,1700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1098</width>
+    <height>849</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+
+
+
+
+/*****************************************************************************************/
+/* The tab widget frame */
+
+ QTabBar::tab {
+    background: gray;
+    border: 10px solid gray; 
+    color: white;
+
+ }
+
+ QTabBar::tab:selected {
+    background: lightgray;
+    border-color: #9B9B9B;
+
+    border-bottom-color: lightgrey; 
+    border-right-color: lightgrey;
+    /*
+    border-top-color: lightgrey; 
+    border-left-color: lightgrey; 
+    */
+ }
+
+/* make non-selected tabs look smaller */
+ QTabBar::tab:!selected {
+     margin-top: 6px; 
+ }
+
+/*****************************************************************************************/
+QGroupBox::title { 
+    background: gray;
+    color: white;
+    padding: 10px;
+ }
+
+QGroupBox
+{
+    background-color: gray;
+    margin-bottom: 2ex; /* leave space at the top for the title */
+    border: 10px solid lightgray; 
+}
+/*****************************************************************************************/
+QPushButton
+{
+    color: white;
+    background: gray;
+    border-color: #9B9B9B;
+    border-top:transparent;
+    border-bottom:  transparent;
+    border-right: transparent;
+    border-left:  transparent;
+    padding: 10px;
+
+}
+
+ QPushButton::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+QPushButton:focus:active
+{
+    background: lightgray;
+    color: white;
+    padding: 10px;
+}
+
+
+
+/*****************************************************************************************/
+
+QRadioButton {
+    color: white;
+    background: gray;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    padding: 10px;
+}
+ QRadioButton::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+
+QRadioButton:checked
+{
+    background: lightgray;
+    color: white;
+    padding: 10px;
+}
+/*****************************************************************************************/
+QCheckBox
+{
+    color: white;
+    background: gray;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    padding: 10px;
+
+}
+ QCheckBox::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+
+
+/*****************************************************************************************/
+QTableWidget
+{
+    color: white;
+    background: lightgray;
+    padding: 10px;
+
+}
+ QTableWidget::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+QHeaderView::section {
+    color: white;
+    background: grey;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-right: transparent;
+    border-left: transparent;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="strategy_central_widget"/>
+  <widget class="QMenuBar" name="menu_bar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1098</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="file">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="open"/>
+    <addaction name="save"/>
+    <addaction name="save_as"/>
+    <addaction name="exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Edit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="preferences"/>
+   </widget>
+   <addaction name="file"/>
+   <addaction name="menu_Edit"/>
+  </widget>
+  <widget class="QStatusBar" name="status_bar"/>
+  <widget class="QDockWidget" name="control_dockwidget">
+   <property name="minimumSize">
+    <size>
+     <width>500</width>
+     <height>100</height>
+    </size>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="control_widget">
+    <widget class="QTabWidget" name="control_panel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>481</width>
+       <height>761</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="movable">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="general_tab">
+      <attribute name="title">
+       <string>General</string>
+      </attribute>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>461</width>
+         <height>651</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="general_layout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <item row="2" column="0">
+         <widget class="QGroupBox" name="yrobot_group_box">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="title">
+           <string>Yellow Team</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_8">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>101</width>
+             <height>208</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>cmr10</family>
+            </font>
+           </property>
+           <layout class="QVBoxLayout" name="yrobot_layout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="sizeConstraint">
+             <enum>QLayout::SetDefaultConstraint</enum>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="yrobot1_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
+              <property name="text">
+               <string>Robot0</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="yrobot2_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot1</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="yrobot3_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
+              <property name="text">
+               <string>Robot2</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="yrobot4_button">
+              <property name="focusPolicy">
+               <enum>Qt::TabFocus</enum>
+              </property>
+              <property name="text">
+               <string>Robot3</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="yrobot5_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot4</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QGroupBox" name="brobot_group_box">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="font">
+           <font>
+            <family>Ubuntu</family>
+           </font>
+          </property>
+          <property name="title">
+           <string>Blue Team</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_7">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>101</width>
+             <height>208</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="brobot_layout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QCheckBox" name="brobot1_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot0</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="brobot2_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot1</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="brobot3_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot2</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="brobot4_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot3</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="brobot5_button">
+              <property name="font">
+               <font>
+                <family>Ubuntu</family>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot4</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="control_group_box">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Control</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>91</width>
+             <height>125</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="control_layout" stretch="0,0,0">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="sizeConstraint">
+             <enum>QLayout::SetDefaultConstraint</enum>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="start_button">
+              <property name="text">
+               <string>Start</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pause_button">
+              <property name="text">
+               <string>Pause</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="stop_button">
+              <property name="text">
+               <string>Stop</string>
+              </property>
+              <property name="default">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="source_group_box">
+          <property name="title">
+           <string>Control source</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>131</width>
+             <height>131</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="control_source_layout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="sizeConstraint">
+             <enum>QLayout::SetDefaultConstraint</enum>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QRadioButton" name="computer_button">
+              <property name="text">
+               <string>Computer</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="keyboard_button">
+              <property name="text">
+               <string>Keyboard</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="joystick_button">
+              <property name="text">
+               <string>Joystick</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="side_selection_box">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Side Selection</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_10">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>201</width>
+             <height>88</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="side_selection_layout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QRadioButton" name="select_up_side">
+              <property name="text">
+               <string>Up Side</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="select_down_side">
+              <property name="text">
+               <string>Down Side</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="color_group_box">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>125</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="title">
+           <string>Color Selection</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_6">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>95</width>
+             <height>88</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="color_layout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item>
+             <widget class="QRadioButton" name="blue_color_button">
+              <property name="text">
+               <string>Blue</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="yellow_color_button">
+              <property name="text">
+               <string>Yellow</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="human_control_tab">
+      <attribute name="title">
+       <string>Human</string>
+      </attribute>
+      <widget class="QWidget" name="horizontalLayoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>461</width>
+         <height>581</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="human_control_layout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="robot_selection_group_box">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Control robot</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_4">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>431</width>
+             <height>92</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="robot_selection_layout">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="human_robot0_button">
+              <property name="text">
+               <string>Robot0</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QRadioButton" name="human_robot1_button">
+              <property name="text">
+               <string>Robot1</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QRadioButton" name="human_robot2_button">
+              <property name="text">
+               <string>Robot2</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="human_robot3_button">
+              <property name="text">
+               <string>Robot3</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QRadioButton" name="human_robot4_button">
+              <property name="text">
+               <string>Robot4</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QRadioButton" name="human_robot5_button">
+              <property name="text">
+               <string>Robot5</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <spacer name="human_control_spacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="strategy_tab">
+      <attribute name="title">
+       <string>Computer</string>
+      </attribute>
+      <widget class="QWidget" name="verticalLayoutWidget_11">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>451</width>
+         <height>691</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="strategy_layout">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="mode_box">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>120</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>1500</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Mode</string>
+          </property>
+          <widget class="QWidget" name="gridLayoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>411</width>
+             <height>51</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="mode_layout">
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="run_mode">
+              <property name="text">
+               <string>Run Strategy</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QRadioButton" name="test_mode">
+              <property name="text">
+               <string>Test Strategy</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="strategy_type_tab">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>260</height>
+           </size>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="movable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="strategy_position_tab">
+           <attribute name="title">
+            <string>Position</string>
+           </attribute>
+           <widget class="QWidget" name="verticalLayoutWidget_13">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>10</y>
+              <width>441</width>
+              <height>210</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="strategy_position_layout" stretch="0">
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <property name="margin">
+              <number>5</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="strategy_position_box">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>290</height>
+                </size>
+               </property>
+               <property name="title">
+                <string/>
+               </property>
+               <widget class="QWidget" name="verticalLayoutWidget_3">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>412</width>
+                  <height>168</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="strategy_selection_layout">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetDefaultConstraint</enum>
+                 </property>
+                 <property name="margin">
+                  <number>5</number>
+                 </property>
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QRadioButton" name="position_start_button">
+                   <property name="text">
+                    <string>position_for_start</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QRadioButton" name="position_penalty_button">
+                   <property name="text">
+                    <string>position_for_penalty</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="position_kick_button">
+                   <property name="text">
+                    <string>position_for_kick</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QRadioButton" name="position_pass_button">
+                   <property name="text">
+                    <string>position_for_pass</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="position_rebound_button">
+                   <property name="text">
+                    <string>position_for_rebound</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="position_deflection_button">
+                   <property name="text">
+                    <string>position_for_deflection</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QRadioButton" name="position_loose_ball_button">
+                   <property name="text">
+                    <string>position_for_loose_ball</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="strategy_move_tab">
+           <attribute name="title">
+            <string>Move</string>
+           </attribute>
+           <widget class="QWidget" name="verticalLayoutWidget_14">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>10</y>
+              <width>441</width>
+              <height>210</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="strategy_move_layout" stretch="0">
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <property name="margin">
+              <number>5</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="strategy_move_box">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>290</height>
+                </size>
+               </property>
+               <property name="title">
+                <string/>
+               </property>
+               <widget class="QWidget" name="verticalLayoutWidget_15">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>411</width>
+                  <height>168</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="strategy_selection_layout_2">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetDefaultConstraint</enum>
+                 </property>
+                 <property name="margin">
+                  <number>5</number>
+                 </property>
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QRadioButton" name="move_middle_button">
+                   <property name="text">
+                    <string>move_to_middle</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QRadioButton" name="move_straight_button">
+                   <property name="text">
+                    <string>move_as_straight</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="move_sin_button">
+                   <property name="text">
+                    <string>move_as_sin</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QRadioButton" name="strategy5_radio_button_2">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="strategy3_radio_button_2">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="strategy6_radio_button_2">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QRadioButton" name="dd">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="strategy_shoot_tab">
+           <attribute name="title">
+            <string>Shoot</string>
+           </attribute>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_11">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>230</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>240</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <widget class="QTableWidget" name="generalTableWidget">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>40</y>
+             <width>251</width>
+             <height>151</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::NoSelection</enum>
+           </property>
+           <property name="showGrid">
+            <bool>true</bool>
+           </property>
+           <property name="gridStyle">
+            <enum>Qt::CustomDashLine</enum>
+           </property>
+           <property name="sortingEnabled">
+            <bool>false</bool>
+           </property>
+           <property name="cornerButtonEnabled">
+            <bool>true</bool>
+           </property>
+           <attribute name="horizontalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="horizontalHeaderHighlightSections">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderCascadingSectionResizes">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderHighlightSections">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <row>
+            <property name="text">
+             <string>System Status</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Current Strategy</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Control Source</string>
+            </property>
+           </row>
+           <row>
+            <property name="text">
+             <string>Match Speed</string>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string/>
+            </property>
+           </column>
+          </widget>
+          <zorder>generalTableWidget</zorder>
+          <zorder>groupBox</zorder>
+         </widget>
+        </item>
+        <item>
+         <spacer name="strategy_spacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="log_tab">
+      <attribute name="title">
+       <string>Log</string>
+      </attribute>
+      <widget class="QWidget" name="verticalLayoutWidget_9">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>451</width>
+         <height>681</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="log_layout">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="field_record_layout">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Field Measure</string>
+          </property>
+          <widget class="QTableWidget" name="time_table_widget">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>40</y>
+             <width>111</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <row>
+            <property name="text">
+             <string/>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>Time Left</string>
+            </property>
+           </column>
+          </widget>
+          <widget class="QTableWidget" name="score_table_widget">
+           <property name="geometry">
+            <rect>
+             <x>160</x>
+             <y>40</y>
+             <width>161</width>
+             <height>71</height>
+            </rect>
+           </property>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>70</number>
+           </attribute>
+           <attribute name="horizontalHeaderMinimumSectionSize">
+            <number>15</number>
+           </attribute>
+           <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="horizontalHeaderStretchLastSection">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
+           <attribute name="verticalHeaderDefaultSectionSize">
+            <number>30</number>
+           </attribute>
+           <attribute name="verticalHeaderHighlightSections">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="verticalHeaderMinimumSectionSize">
+            <number>15</number>
+           </attribute>
+           <row>
+            <property name="text">
+             <string/>
+            </property>
+           </row>
+           <column>
+            <property name="text">
+             <string>Blue</string>
+            </property>
+            <property name="font">
+             <font>
+              <family>Andale Mono</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="background">
+             <color>
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Yellow</string>
+            </property>
+            <property name="font">
+             <font>
+              <family>Andale Mono</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+           </column>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="log_group_box">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>280</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>280</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>System Log</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_5">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>40</y>
+             <width>281</width>
+             <height>191</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="log_text_layout">
+            <item row="0" column="0">
+             <widget class="QTextEdit" name="log_text_area"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <spacer name="log_spacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="referee_tab">
+      <attribute name="title">
+       <string>Referee</string>
+      </attribute>
+      <widget class="QWidget" name="verticalLayoutWidget_12">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>451</width>
+         <height>581</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="referee_layout">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="ref_control_box">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>150</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Refbox Control</string>
+          </property>
+          <widget class="QWidget" name="gridLayoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>331</width>
+             <height>88</height>
+            </rect>
+           </property>
+           <layout class="QGridLayout" name="ref_control_layout">
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QRadioButton" name="ref_disable_button">
+              <property name="text">
+               <string>Disabled</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QRadioButton" name="ref_stop_button">
+              <property name="text">
+               <string>Stop</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QRadioButton" name="ref_start_button">
+              <property name="text">
+               <string>Start</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QRadioButton" name="ref_auto_button">
+              <property name="text">
+               <string>Auto</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="ref_score_control_panel">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>175</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>300</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Score control</string>
+          </property>
+          <widget class="QWidget" name="horizontalLayoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>40</y>
+             <width>331</width>
+             <height>101</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="ref_score_control_layout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QRadioButton" name="score_yellow_radio_button">
+                <property name="text">
+                 <string>Yellow</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="score_blue_radio_button">
+                <property name="text">
+                 <string>Blue</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="score_button_layout">
+              <property name="spacing">
+               <number>5</number>
+              </property>
+              <property name="margin">
+               <number>5</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="reset_score_button">
+                <property name="text">
+                 <string>0</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="minus_score_button">
+                <property name="text">
+                 <string>-</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="add_score_button">
+                <property name="text">
+                 <string>+</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <spacer name="referee_spacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="strategy_graphics_dockwidget">
+   <property name="minimumSize">
+    <size>
+     <width>620</width>
+     <height>100</height>
+    </size>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="strategy_graphics_widget">
+    <widget class="FieldView" name="strategy_graphics_view">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>571</width>
+       <height>771</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <action name="open">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="whatsThis">
+    <string>Open config files to set the UI</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="save">
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="save_as">
+   <property name="text">
+    <string>Save &amp;as</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="exit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="preferences">
+   <property name="text">
+    <string>&amp;Preferences</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FieldView</class>
+   <extends>QGraphicsView</extends>
+   <header>user_interface/field_related/field_view.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+ <slots>
+  <slot>excute_strategy()</slot>
+ </slots>
+</ui>

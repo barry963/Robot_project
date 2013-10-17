@@ -1,0 +1,42 @@
+###############################################
+# Parameters for the JukeAroundOpponent Skill 
+###############################################
+
+###===================================
+###Innate bias for each method, this allows us
+###to instigate the AI to prefer a certain technique
+###positive values are preferred, a zero value means neutral bias
+###===================================
+PUSH_THROUGH_BIAS             0.0             #mg of pixydust
+MOVE_AROUND_BIAS              5.0             #mg of pixydust
+FAKE_AROUND_BIAS              0.0             #mg of pixydust
+
+###===================================
+###Delta factor to modify a bias by
+DELTA_BIAS                    0.0             #mg of pixydust
+MAX_TIME_PER_TECHNIQUE        50000               #seconds
+###===================================
+
+###===================================
+###Specific params for each technique:
+###===================================
+
+###-----------------------------------
+###Push_Through
+###-----------------------------------
+PUSH_THROUGH_AVOID_DISTANCE   0.10            #meters
+PUSH_THROUGH_DISTANCE         0.4             #meters
+PUSH_THROUGH_ANGLE_THRESHHOLD 0.10            #radians
+###-----------------------------------
+###Move_Around
+###-----------------------------------
+MOVE_AROUND_AVOID_DISTANCE   0.05             #meters
+MOVE_AROUND_ANGLE_THRESHHOLD 0.10             #radians
+MOVE_AROUND_DELTA            0.01             #radians
+MOVE_AROUND_ROTATION_RATE    1.0
+###-----------------------------------
+###Fake_Around
+###-----------------------------------
+FAKE_AROUND_AVOID_DISTANCE   0.13             #meters
+FAKE_AROUND_DISTANCE         0.4              #meters
+FAKE_AROUND_ANGLE_THRESHHOLD 0.10             #radians

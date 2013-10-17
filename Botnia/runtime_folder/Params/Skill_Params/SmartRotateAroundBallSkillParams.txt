@@ -1,0 +1,13 @@
+###############################################
+# Parameters for the SmartRotateAroundBall Skill 
+###############################################
+
+ROTATION_STEP 0.4
+
+FINISHED_ROTATION_THRESHOLD 0.03
+
+PUSH_FACTOR 0.025
+
+USE_BALL_FOR_PIVOT 1
+
+SAFE_LINE_HALF_LINE_OFFSET 0.0

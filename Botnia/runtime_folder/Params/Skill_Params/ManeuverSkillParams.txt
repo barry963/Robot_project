@@ -1,0 +1,16 @@
+#############################################
+# Parameters for the ManeuverWithBall Skill
+#############################################
+
+###The largest angle you can be offset 
+###from your direction of motion without losing the ball
+BALL_DRIBBLE_ANGLE	0.15 
+
+###angle (per frame), the the maneuver code turns by
+ROT_RATE 0.3  
+
+###"looping" amount for choosing target point
+OFFSET_RATIO 0.20 
+
+### when you get this close to target point, switch to specialized handling code
+CLOSENESS_THRESHOLD .05

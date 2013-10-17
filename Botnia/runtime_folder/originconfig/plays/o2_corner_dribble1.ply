@@ -1,0 +1,22 @@
+PLAY Two Attackers, Corner Dribble 1
+
+APPLICABLE offense in_their_corner
+DONE aborted !offense
+
+TIMEOUT 15
+
+ROLE 1
+	dribble_to_shoot { R { B 1100 800 } { B 700 800 } 300}
+	shoot A
+	none
+ROLE 2
+	block 320 900 -1
+	none
+ROLE 3
+	position_for_pass { R { B 1000 0 } { B 700 0 } 500 }
+	none
+ROLE 4
+	defend_line { -1400 1150 } { -1400 -1150 } 1100 1400
+	none
+
+

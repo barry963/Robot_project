@@ -1,0 +1,52 @@
+###############################################
+#Parameters for Timing Test Play
+###############################################
+
+
+
+###Start at this point:
+
+START_X	1.0
+
+START_Y .5
+
+
+
+###begin moving to this point:
+
+MID_X -2.0
+
+MID_Y .5
+
+
+
+###But, switch to go to this point:
+
+END_X 1.0
+
+END_Y .2
+
+
+
+###After having gone
+
+DISTANCE_FRACTION 0.0
+
+#of the distance between the start and mid points.
+
+
+
+###While moving, turn at a rate of
+
+ROTATION_CHANGE 0.0
+
+#per frame
+
+
+
+
+
+###The test tests the trajectory from the switch point to the end point.
+
+###To test starting from rest, set the distance fraction to 0, and ignore the mid point.
+

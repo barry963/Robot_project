@@ -1,0 +1,24 @@
+PLAY Corner Defense 2
+
+APPLICABLE defense in_our_corner
+DONE completed offense
+DONE aborted !in_our_corner their_ball
+DONE completed !in_our_corner
+
+OROLE 0 closest_to_ball
+OROLE 1 closest_to_ball
+
+ROLE 1
+	active_def
+	none
+ROLE 2
+	defend_lane {B -1075 350} {B -700 350}
+	none
+ROLE 3
+	position_for_loose_ball { R { B -700 750 } { B -200 750 } 200 }
+	none
+ROLE 4
+	mark 1 from_ball
+	none
+
+

@@ -1,0 +1,27 @@
+#############################################
+# Parameters for the RemoveBallSetup Skill
+#############################################
+
+#Distance from Goal Line
+OFFSET_GOAL_LINE 0.0
+
+#Distance from Goal Box
+OFFSET_GOAL_WALL 0.3
+
+#Scaling Factor
+FACE_ANGLE    .6
+
+
+#When should the kicker be turned ON?
+ANGLE_DIFF 0.05
+
+#When should the kicker be turned ON?
+CLOSE_DIST 0.05
+
+#Historisis Factor
+SWITCH_THRESH 0.1
+
+#BIAS
+BIAS          0.3
+
+KICK_RATIO    0.8

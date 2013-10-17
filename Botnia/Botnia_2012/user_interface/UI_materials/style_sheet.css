@@ -1,0 +1,136 @@
+
+
+
+
+
+/*****************************************************************************************/
+/* The tab widget frame */
+
+ QTabBar::tab {
+    background: gray;
+    border: 10px solid gray; 
+    color: white;
+
+ }
+
+ QTabBar::tab:selected {
+    background: lightgray;
+    border-color: #9B9B9B;
+
+    border-bottom-color: lightgrey; 
+    border-right-color: lightgrey;
+    /*
+    border-top-color: lightgrey; 
+    border-left-color: lightgrey; 
+    */
+ }
+
+/* make non-selected tabs look smaller */
+ QTabBar::tab:!selected {
+     margin-top: 6px; 
+ }
+
+/*****************************************************************************************/
+QGroupBox::title { 
+    background: gray;
+    color: white;
+    padding: 10px;
+ }
+
+QGroupBox
+{
+    background-color: gray;
+    margin-bottom: 2ex; /* leave space at the top for the title */
+    border: 10px solid lightgray; 
+}
+/*****************************************************************************************/
+QPushButton
+{
+    color: white;
+    background: gray;
+    border-color: #9B9B9B;
+    border-top:transparent;
+    border-bottom:  transparent;
+    border-right: transparent;
+    border-left:  transparent;
+    padding: 10px;
+
+}
+
+ QPushButton::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+QPushButton:focus:active
+{
+    background: lightgray;
+    color: white;
+    padding: 10px;
+}
+
+
+
+/*****************************************************************************************/
+
+QRadioButton {
+    color: white;
+    background: gray;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    padding: 10px;
+}
+ QRadioButton::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+
+QRadioButton:checked
+{
+    background: lightgray;
+    color: white;
+    padding: 10px;
+}
+/*****************************************************************************************/
+QCheckBox
+{
+    color: white;
+    background: gray;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    padding: 10px;
+
+}
+ QCheckBox::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+
+
+/*****************************************************************************************/
+QTableWidget
+{
+    color: white;
+    background: lightgray;
+    padding: 10px;
+
+}
+ QTableWidget::hover { 
+    background: lightgray;
+    color: white;
+    padding: 10px;
+ }
+QHeaderView::section {
+    color: white;
+    background: grey;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-right: transparent;
+    border-left: transparent;
+}

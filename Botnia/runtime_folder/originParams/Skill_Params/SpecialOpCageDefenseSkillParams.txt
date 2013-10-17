@@ -1,0 +1,17 @@
+#############################################
+# Parameters for the SpecialOpCageDefense Skill
+#############################################
+
+
+###Params to define the default position to go to when not covering an
+###opponent.  The position is defined by:
+### (OUR_GOAL_LINE + GOAL_LINE_OFFSET, sideline +- SIDELINE_OFFSET) depending on 
+###which sideline is closest
+GOAL_LINE_OFFSET	0.60	#meters	
+SIDELINE_OFFSET		0.60	#meters	
+
+###Distance the ball has to be over the split line for us to switch sides.  This
+###way if the ball wavers across the split line, we won't constantly be 
+###switching sides.
+###NOTE: Making this larger makes the robot switch sides less often
+#SWITCH_THRESH		0.15	#meters

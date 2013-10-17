@@ -1,0 +1,6 @@
+###############################################
+# Dive Parameters for the Tandem Defense Skills
+###############################################
+DIVE_SPEED  0.15
+
+GOAL_POST_TOLERANCE 0.10

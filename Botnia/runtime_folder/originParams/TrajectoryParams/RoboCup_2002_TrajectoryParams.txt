@@ -1,0 +1,104 @@
+###################################
+# 2002 Omni Trajectory Parameters #
+###################################
+
+#-------------------------------------------
+# Values which determine when to use:      -
+# 1.) bang bang                            -
+# 2.) proportional gains                   -
+# 3.) stop robot                           -
+#-------------------------------------------
+PROP_GAIN_DISTANCE                  0.06 #0.03
+STOP_DISTANCE                       0.005 
+
+PROP_GAIN_THETA_DISTANCE            0.10
+STOP_THETA_DISTANCE                 0.007  
+
+#---------------------------------------------
+#- Default Values                            -
+#---------------------------------------------
+DEFAULT.MAX_ACCELERATION            4.5
+DEFAULT.MAX_VELOCITY                1.75
+DEFAULT.LATERAL_GAIN                8.0 #4.0
+
+DEFAULT.MAX_THETA_ACCELERATION      10.0
+DEFAULT.MAX_THETA_VELOCITY          5.0
+DEFAULT.ANGULAR_GAIN                4.0
+
+#---------------------------------------------
+#- Slow Rotate                               -
+#---------------------------------------------
+SLOW_ROTATE.MAX_ACCELERATION            4.5
+SLOW_ROTATE.MAX_VELOCITY                1.75
+SLOW_ROTATE.LATERAL_GAIN                4.0
+
+SLOW_ROTATE.MAX_THETA_ACCELERATION      5.0
+SLOW_ROTATE.MAX_THETA_VELOCITY          5.0
+SLOW_ROTATE.ANGULAR_GAIN                4.0
+
+#---------------------------------------------
+#- Goalie Values                             -
+#---------------------------------------------
+GOALIE.MAX_ACCELERATION             4.5
+GOALIE.MAX_VELOCITY                 1.75
+GOALIE.LATERAL_GAIN                 4.0
+
+GOALIE.MAX_THETA_ACCELERATION       5.0
+GOALIE.MAX_THETA_VELOCITY           5.0
+GOALIE.ANGULAR_GAIN                 4.0
+
+#---------------------------------------------
+#- Spin To Kick Values (slower acceleration) -
+#---------------------------------------------
+SPIN_TO_KICK.MAX_ACCELERATION       2.5 
+SPIN_TO_KICK.MAX_VELOCITY           0.5
+SPIN_TO_KICK.LATERAL_GAIN           4.5
+
+SPIN_TO_KICK.MAX_THETA_ACCELERATION      5.0
+SPIN_TO_KICK.MAX_THETA_VELOCITY          5.0
+SPIN_TO_KICK.ANGULAR_GAIN                4.0
+
+#---------------------------------------------
+#- Careful Values (slower vel and accel)      -
+#---------------------------------------------
+CAREFUL_SPEED.MAX_ACCELERATION       0.5
+CAREFUL_SPEED.MAX_VELOCITY           0.5
+CAREFUL_SPEED.LATERAL_GAIN           4.5
+
+CAREFUL_SPEED.MAX_THETA_ACCELERATION 6.0
+CAREFUL_SPEED.MAX_THETA_VELOCITY     2.0
+CAREFUL_SPEED.ANGULAR_GAIN           1.5
+  
+#---------------------------------------------
+#- Ball Possesion                            -
+#---------------------------------------------
+BALL_POSSESSION_SPEED.MAX_ACCELERATION    4.0
+BALL_POSSESSION_SPEED.MAX_VELOCITY        1.75
+BALL_POSSESSION_SPEED.LATERAL_GAIN        4.0
+
+BALL_POSSESSION_SPEED.MAX_THETA_ACCELERATION      5.0
+BALL_POSSESSION_SPEED.MAX_THETA_VELOCITY          5.0
+BALL_POSSESSION_SPEED.ANGULAR_GAIN                4.0
+
+#---------------------------------------------
+#- Ball Approach                             -
+#---------------------------------------------
+BALL_APPROACH_SPEED.MAX_ACCELERATION    4.5
+BALL_APPROACH_SPEED.MAX_VELOCITY        1.0
+BALL_APPROACH_SPEED.LATERAL_GAIN        4.5
+
+BALL_APPROACH_SPEED.MAX_THETA_ACCELERATION      5.0
+BALL_APPROACH_SPEED.MAX_THETA_VELOCITY          5.0
+BALL_APPROACH_SPEED.ANGULAR_GAIN                4.0
+  
+#---------------------------------------------
+#- Formation                                 -
+#---------------------------------------------
+FORMATION_SPEED.MAX_ACCELERATION    1.0
+FORMATION_SPEED.MAX_VELOCITY        1.0
+FORMATION_SPEED.LATERAL_GAIN        4.0
+
+FORMATION_SPEED.MAX_THETA_ACCELERATION      5.0
+FORMATION_SPEED.MAX_THETA_VELOCITY          5.0
+FORMATION_SPEED.ANGULAR_GAIN                4.0
+  

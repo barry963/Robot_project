@@ -1,0 +1,188 @@
+#ifndef FIELD_ANALYSOR_H
+#define FIELD_ANALYSOR_H
+#include "control_hub/computer_control/intelligence/world_analysor/analizing_tools/field_geometry.h"
+
+
+#include <QObject>
+#include <QMutex>
+#include <QSemaphore>
+
+#include "control_hub/computer_control/intelligence/world_analysor/analizing_tools/field_vqueue.h"
+#include "field_analysor_robot.h"
+#include "control_hub/computer_control/intelligence/item_property_excutor/field_tracker.h"
+#include "net/net_radio_client.h"
+#include "user_interface/field_related/field_item.h"
+
+/**************************** TYPES *********************************/
+
+
+/* maximum number of edges on a robot */
+#define MAX_RPOINTS	 10
+
+
+/* running states for the simulator */
+#define RUNSTATE_PAUSE         0
+#define RUNSTATE_STEPFORWARD   1
+#define RUNSTATE_PLAY          2
+
+/* struct to encapsulate the simulated robot information */
+typedef struct
+{
+    int   id;
+    bool  yellow;
+    bool  opponent;
+    int   rtype;
+    bool  collision;
+    int  nr_points;
+    RPosition pos, oldpos;
+    RVelocity  vcmd, vel;
+    VelocityQueue	vqueue;
+    double conf;
+    bool kick, drib;
+} SimRobot;
+
+/* struct to capture the simulated ball data */
+typedef struct
+{
+    MyVector2d vel, pos, oldpos;
+    double conf;
+} SimBall;
+
+/**************************** CLASSES *******************************/
+
+/*
+ * RobotSimulator -
+ *
+ * this class contains the simulator.
+ */
+class FieldView;
+class Simulator:public QObject
+{
+    Q_OBJECT
+public:
+    int Tick();
+private:
+    ObjectTracker tracker;
+
+    //采样频率
+    unsigned long int rthread;
+    QMutex commands_mutex;
+    QMutex runstate_mutex;
+    QMutex sim_mutex;
+
+public:
+    int num_yellow, num_blue;
+
+    SimBall  ball;
+    SimRobot blue_robots[MAX_TEAM_ROBOTS];
+    SimRobot yellow_robots[MAX_TEAM_ROBOTS];
+private:
+    int frameCount;
+    bool usegoals;
+    bool usenoise;
+    MyVector2d field_max;
+
+    int goalscored;
+
+public:
+    void do_radio_recv(SSL_RadioFrame& frame);
+
+    Simulator();
+    ~Simulator();
+    void LoadConfig();
+
+    void lock(){sim_mutex.lock();}
+    void unlock(){sim_mutex.unlock();}
+    // Initializer
+    bool Initialize(bool _usegoals = false, bool _usenoise = false);
+    // Add Robot/Opponents
+    bool AddRobot(bool yellow, int rtype, double x = 0, double y = 0, double a = 0);
+    bool AddRobot(bool yellow, int rtype, MyVector2d pos, double a = 0)
+    {
+        return (AddRobot(yellow, rtype, pos.x, pos.y, a));
+    }
+
+    bool SetNumRobots(bool yellow, int n);
+
+    // Retrieve state.
+    double Time(void);
+    int Frame(void);
+    int GetNumRobots(bool yellow)
+    {
+        return (IS_YELLOW(yellow, num_yellow, num_blue));
+    }
+    MyVector2d GetRobotPosition(bool yellow, int robot);
+    double GetRobotDirection(bool yellow, int robot);
+    MyVector2d GetRobotVelocity(bool yellow, int robot);
+    double GetRobotAngularVelocity(bool yellow, int robot);
+    int GetRobotType(bool yellow, int robot);
+    double GetRobotConfidence(bool yellow, int robot);
+    MyVector2d GetBallPosition(void);
+    MyVector2d GetBallVelocity(void);
+    double GetBallConfidence(void);
+
+    int IsGoal(void)
+    {
+        return (goalscored);
+    }
+
+    // Set state.
+    void SetBall(MyVector2d p, MyVector2d v);
+    void SetBallPosition(MyVector2d p);
+    void SetBallVelocity(MyVector2d v);
+    void StopBall(void);
+
+    void SetRobot(bool yellow, int robot, MyVector2d p, double a, MyVector2d v, double va);
+    void SetRobot(bool yellow, int robot, MyVector2d p, double a)
+    {
+        SetRobot(yellow, robot, p, a, MyVector2d(0,0), 0.0);
+    }
+    void SetRobotRandom(bool yellow, int robot);
+
+    // Set actions by robots.
+    void SetRobotCommand(bool yellow, int robot, double vx, double vy, double va,
+                         int kick_power = 0, int dribble_power = 0,bool bchipkick=false);
+    void SetRobotCommand(bool yellow, int robot, MyVector2d v, double va,
+                         int kick_power = 0, int dribble_power = 0,bool bchipkick=false)
+    {
+        SetRobotCommand(yellow, robot, v.x, v.y, va,kick_power,dribble_power,bchipkick);
+    }
+
+    // stop everything dead
+    void StopAll(void);
+public:
+
+    // Running State
+    char running_state;
+
+    void SetRunState(char s)
+    {
+        running_state = s;
+    }
+
+    void Pause(void)
+    {
+        SetRunState(RUNSTATE_PAUSE);
+    }
+    void Step(void)
+    {
+        SetRunState(RUNSTATE_STEPFORWARD);
+    }
+    void Play(void)
+    {
+        SetRunState(RUNSTATE_PLAY);
+    }
+private:
+    MyVector2d rand_posvector(void);
+    double rand_heading(void);
+    void AccelerationLimit(SimRobot &sr, double maxdv);
+    void SpeedLimit(SimRobot &sr, double maxv);
+    bool CheckWallCollision(SimRobot &r, double minx, double maxx, double miny, double maxy);
+    void UpdateRobot(SimRobot& r, double dt);
+    //bool RobotBallCollisionPolygon(SimRobot &r, SimBall &b, double dt);
+    bool RobotBallCollisionRadius(SimRobot &r, SimBall &b, double dt);
+};
+
+extern Simulator m_Simulator;
+
+#endif // FIELD_ANALYSOR_H

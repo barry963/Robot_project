@@ -1,0 +1,33 @@
+###############################################
+# Parameters for the ReceiveCreasePass Skill 
+###############################################
+
+## Constraints for the creator's motion
+DEFAULT_MINIMUM_DISTANCE  0.36
+
+## Offset to the angle so that robot's rotation is good to shoot
+BIAS 0.4
+
+## Threshold of the speed of ball
+THRESHOLD_SPEED 0.25
+
+## Distance between the Goalie and the creator
+GAP 0.36
+
+## Offset to how much far you want the location from the boundary to be.
+OFFSET_BOUNDARY 0.00
+
+## Valid angle for using splitangle and kicking
+VALID_KICK_ANGLE  1.2
+
+#factor of pi/2 that we use to decide whether we can kick right away,
+# or if we should catch it with the dribbler.
+KICK_RATIO 0.95
+
+#The ball's velocity vector must pass withing this much of the player's
+#   radius for us to decide to charge it.
+CHARGE_RADIUS   .2
+
+#don't charge the ball if it's this close.
+MIN_CHARGE_DIST  0.30
+

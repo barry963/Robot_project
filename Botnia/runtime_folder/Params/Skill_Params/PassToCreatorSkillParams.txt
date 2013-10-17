@@ -1,0 +1,9 @@
+#############################################
+# Parameters for the PassToCreator Skill
+#############################################
+
+#Required lane width for passing to creator
+PASS_LANE_FACTOR     1.0
+
+#Angle at which we stop using SpinAroundBall and wait
+HAPPY_ANGLE         .08

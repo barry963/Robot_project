@@ -1,0 +1,7 @@
+#############################################
+# Parameters for the ShotBlock Skill
+#############################################
+
+#amount of space to give opponent when blocking.
+# (in addition to radii).
+GRACE_FACTOR  .05

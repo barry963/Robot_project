@@ -1,0 +1,7 @@
+#############################################
+# Parameters for the Penalty Shot Them Smart Rush 2002 Transition
+#############################################
+
+TIMEOUT 3.0
+
+BALL_THRESH 0.02

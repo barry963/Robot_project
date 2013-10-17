@@ -1,0 +1,33 @@
+###############################################
+# Parameters for the Strip Ball Skill 
+###############################################
+
+LEFT_VS_RIGHT_HISTORISIS      0.6
+
+INCOMING_ANGLE_OFFSET         0.4
+
+ANGLE_THRESHOLD               0.4
+
+APPROACH_TO_ATTACK_THRESHOLD  0.09
+
+START_TURNING_DISTANCE        0.02
+
+STOP_AVOIDANCE_DISTANCE       0.05
+
+STRIPPING_DISTANCE            0.18   
+
+STOP_SCOOP_DISTANCE           0.25
+
+SUCCESS_DISTANCE              0.25
+
+SIDE_SHIFT                    0.08
+
+HEAD_ON_THRESHOLD             0.7
+
+HEAD_ON_THRESHOLD_HISTORISIS  0.1
+
+WORST_KICK_ANGLE              0.4
+
+THREE_MAN_TOLERANCE_DISTNACE  0.09
+
+ATTACK_TO_SCOOP_DELAY         2.0

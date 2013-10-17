@@ -1,0 +1,8 @@
+###############################################
+# Parameters for the Pick Skill 
+###############################################
+
+
+### DON'T LET BUFFER_DIST GO BELOW 3 cm!!!  Otherwise picker will NOT
+### stand its ground while picking, but will move with the opponent.
+BUFFER_DIST   0.3   # Dont put below 3 cm! (

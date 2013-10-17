@@ -1,0 +1,14 @@
+#############################################
+# Parameters for the Penalty Spin Skill
+#############################################
+
+ACCEL 40.0
+
+THETA_THRESH  6.0 #2.0
+
+MAX_ROT_VEL 10.0
+
+# 1 = counterclockwise,
+# -1 = clockwise, 
+# 0 = random
+PENALTY_SPIN_DIRECTION 1

@@ -1,0 +1,57 @@
+###############################################
+# Parameters for the AggressiveJamAndShoot Skill
+###############################################
+
+#Max time to wait before kicking the ball (in seconds)
+WAIT_TIME       7.0
+
+#Amount to drift by if there's no shot.
+DRIFT_DIST     .6
+
+#Aiming angle within which we drift.  outside of it we use spinskill to face the right way
+AIM_ANGLE       .3
+
+#Angle to goal within which it will randomly choose a direction to drift
+RANDOM_ANGLE	.1
+
+#angle outside of which it will decide to drift inwards
+EDGE_ANGLE	.7
+
+#distance from the posts to aim fro when drifting to outside
+AIM_DISTANCE	.0
+
+#time after we kick that we consider ourselves done
+FINISHED_TIME	1.0
+
+#angle that we must be at to consider ourselves valid
+VALID_ANGLE		1.5
+
+#Angle at which we bounce and start drifting the other way.
+BOUNCE_ANGLE	1.4
+
+#distance from goalie at which we won't be afraid to enter the goalie box
+ENTERBOX_CAUTION_DIST	.05
+
+#when checking for a nearpost drift shot, look this far out from the edge of the goal.
+SIDE_DIST       .6
+
+#require this much of a lane for a side drift (times shoot_lane_thresh)
+SIDE_LANE_FACTOR      2.0
+
+#Angle we adjust ourselves by while drifting so as not to lose the ball.
+DRIFT_ADJUST_ANGLE    .4
+
+
+#number of frames to pause before shooting while drifting to keep us from shooting too early.
+PAUSE_FRAMES    5
+PAUSE_RANDOM    5
+
+#Ideal radius params
+IDEAL_RADIUS_LOW	.4
+IDEAL_RADIUS_HIGH	.7
+
+#the amount past our current radius that we're allowed to back up
+MAXIMUM_BACKUP	.09
+
+#size of lane to destination as a factor of player radius
+DRIFT_LANE_FACTOR	1.5

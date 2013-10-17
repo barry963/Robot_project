@@ -1,0 +1,122 @@
+1. 
+
+add file libqjson.so.0.7.1 to /usr/local/lib/libqjson.so 20130126
+source: https://github.com/mbv/ThreadHack/blob/master/qjson/lib/libqjson.so.0.7.1
+
+2.
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/net/web_data_model/webdatamodel.cpp:33: error: qjson/parser.h: No such file or directory
+
+download http://sourceforge.net/projects/qjson/?source=dlp
+move to /Botnia_2012
+create new folder named qjson and put the /qjson-0.8.1/src
+
+3.
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./control_hub/human_control/kinect_module/ncurses_for_kinect.h:60: error: ncurses_dll.h: No such file or directory
+
+http://www.opensource.apple.com/source/ncurses/ncurses-31/ncurses/include/ncurses_dll.h         /Botnia_2012
+
+==========
+
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./control_hub/human_control/kinect_module/ncurses_for_kinect.h:1657: error: unctrl.h: No such file or directory
+
+http://www.opensource.apple.com/source/ncurses/ncurses-31/include/unctrl.h
+
+=========
+
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./control_hub/human_control/kinect_module/libfreenect.h:143: error: libusb-1.0/libusb.h: No such file or directory
+
+http://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.9/libusb-1.0.9.tar.bz2/download?utm_expid=65835818-0&utm_referrer=http%3A%2F%2Fsourceforge.net%2Fprojects%2Flibusb%2Ffiles%2Flibusb-1.0%2Flibusb-1.0.9%2F
+
+move libusb-1.0.9/libusb to /usr/include/libusb-1.0
+
+=========
+
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./control_hub/human_control/kinect_module/kinect_module.h:16: error: X11/extensions/XTest.h: No such file or directory
+
+sudo apt-get install libXtst-dev
+=========
+
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./control_hub/human_control/kinect_module/kinect_module.h:18: error: GL/glut.h: No such file or directory
+
+sudo apt-get install glutg3-dev
+=========
+
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./unctrl.h:54: error: curses.h: No such file or directory
+
+sudo apt-get install libncurses-dev
+4.
+/media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/control_hub/human_control/kinect_module/kinect_module.c:2: error: graphics.h: No such file or directory
+
+download www.cs.colorado.edu/~main/bgi/dev-c++/graphics.h
+move to Botnia_2012/graphics.h
+
+
+5. the file above is wrong, change to TurboC-source.zip/graphics.h
+move to /media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./control_hub/human_control/kinect_module/
+
+
+
+
+
+
+2013.9.2
+
+1. install libprot... 
+PASS: protobuf-lazy-descriptor-test
+PASS
+PASS: protobuf-lite-test
+/bin/bash: line 9: ./google/protobuf/compiler/zip_output_unittest.sh: Permission denied
+FAIL: google/protobuf/compiler/zip_output_unittest.sh
+/bin/bash: line 9: ./google/protobuf/io/gzip_stream_unittest.sh: Permission denied
+FAIL: google/protobuf/io/gzip_stream_unittest.sh
+==========================================
+2 of 5 tests failed
+Please report to protobuf@googlegroups.com
+==========================================
+make[3]: *** [check-TESTS] Error 1
+make[3]: Leaving directory `/home/barry963/Botnia/Botnia_2012/net/message_serilization/protobuf-2.4.1/src'
+make[2]: *** [check-am] Error 2
+make[2]: Leaving directory `/home/barry963/Botnia/Botnia_2012/net/message_serilization/protobuf-2.4.1/src'
+make[1]: *** [check] Error 2
+make[1]: Leaving directory `/home/barry963/Botnia/Botnia_2012/net/message_serilization/protobuf-2.4.1/src'
+make: *** [check-recursive] Error 1
+
+2. install qjson in download_file folder
+
+error: No rule to make target `/usr/local/lib/libqjson.so', needed by `Botnia_2012'.  Stop.
+
+add file build/lib/libqjson.so.0.8.1 to /usr/local/lib/libqjson.so 
+
+move /home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/qjson include to /Botnia_2012/qjson
+
+3.
+/home/barry963/Botnia/Botnia_2012/unctrl.h:54: error: curses.h: No such file or directory
+
+sudo apt-get install libncurses-dev
+
+4.
+/home/barry963/Botnia/Botnia_2012/control_hub/human_control/kinect_module/kinect_module.h:16: error: X11/extensions/XTest.h: No such file or directory
+
+sudo apt-get install libXtst-dev
+
+5.
+/home/barry963/Botnia/Botnia_2012/control_hub/human_control/kinect_module/kinect_module.c:2: error: graphics.h: No such file or directory
+
+sudo apt-get install dosbox
+
+TurboC-source.zip/graphics.h
+move to /media/5AC3215EB28974C4/ForUbuntu/Botnia_2012/./control_hub/human_control/kinect_module/
+
+remove kinect part
+comment .pro
+
+6.
+/usr/include/qt4/QtCore/qglobal.h:2154: error: call of overloaded 'swap(QByteArray::Data*&, QByteArray::Data*&)' is ambiguous
+field_util.h
+comment inline void swap
+
+numeric_operation_template.h
+comment inline void swap
+
+7. comment -lgraph because it doesn't need kinect at all.
+

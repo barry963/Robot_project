@@ -1,0 +1,19 @@
+PLAY Our FreeKick Positioning
+
+APPLICABLE our_freekick
+TIMEOUT 0
+
+ROLE 1
+	position_for_kick
+	none
+ROLE 2
+	stop
+	none
+ROLE 3
+	stop
+	none
+ROLE 4
+	stop
+	none
+
+

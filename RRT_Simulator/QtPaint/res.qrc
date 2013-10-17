@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/circle.png</file>
+        <file>res/line.png</file>
+        <file>res/rect.png</file>
+        <file>res/save.png</file>
+        <file>res/load.png</file>
+        <file>res/start.png</file>
+        <file>res/stop.png</file>
+        <file>res/reset.png</file>
+        <file>res/goalcircle.png</file>
+        <file>res/startcircle.png</file>
+    </qresource>
+</RCC>

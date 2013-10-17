@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal
+END
+type_checkers.py
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/type_checkers.py
+END
+message_listener.py
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/message_listener.py
+END
+reflection_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/reflection_test.py
+END
+text_format_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/text_format_test.py
+END
+more_extensions.proto
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/more_extensions.proto
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/__init__.py
+END
+more_messages.proto
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/more_messages.proto
+END
+containers.py
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/containers.py
+END
+decoder.py
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/decoder.py
+END
+service_reflection_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/service_reflection_test.py
+END
+test_util.py
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/test_util.py
+END
+descriptor_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/descriptor_test.py
+END
+wire_format_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/wire_format_test.py
+END
+api_implementation.py
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/api_implementation.py
+END
+wire_format.py
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/wire_format.py
+END
+encoder.py
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/encoder.py
+END
+message_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/message_test.py
+END
+python_message.py
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/python_message.py
+END
+generator_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/generator_test.py
+END
+cpp_message.py
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/python/google/protobuf/internal/cpp_message.py
+END

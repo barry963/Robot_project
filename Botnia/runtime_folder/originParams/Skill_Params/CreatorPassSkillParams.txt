@@ -1,0 +1,34 @@
+#############################################
+# Parameters for the CreatorPass Skill
+#############################################
+
+##The Offset from the line
+OFFSET 0.0
+
+##Pass boundary (from their goal box - 2 player radii)
+MIN_WIDTH 0.5
+
+## Pi divided by how much ?
+MAXIMUM_ANGLE 3.0
+
+## Factor for passing lane
+FACTOR 0.5
+
+##How far their goalie should be from creator
+GOALIE_DISTANCE_THRESHOLD 0.36
+
+## How much the pass boundary changes with the aggressor's X
+BOUND_FACTOR    .1
+
+## how close the creator must be to its pass dest to be valid.
+PASS_DIST       .4
+
+##How close around the creator to look for a pass
+CLOSE_BOUND     .2
+
+##Minimum distance between A and C required for pass
+MIN_DIST		.6
+
+#if the angle from aggressor to creator is more than this, don't pass.
+ANGLE_LIMIT       .8
+

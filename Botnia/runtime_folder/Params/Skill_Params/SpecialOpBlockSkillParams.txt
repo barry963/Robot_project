@@ -1,0 +1,22 @@
+#############################################
+# Parameters for the SpecialOpBlock Skill
+#############################################
+
+### ALL DISTANCES IN METERS
+
+
+#MAX_SCREEN_DISTANCE
+
+#MIN_SCREEN_DISTANCE
+
+#MIN_MAX_THRESH
+
+# distance between us and the opponent we pick (from sides of robots)
+PICK_DIST		0.03
+
+# max distance between us and the opponent we pick (from sides of robots)
+# before we move closer to opponent
+MOVE_THRESH		0.06
+
+# Mad dist opponent can be from creator before we choose a new opponent to pick
+MAX_OPP_DIST	0.45

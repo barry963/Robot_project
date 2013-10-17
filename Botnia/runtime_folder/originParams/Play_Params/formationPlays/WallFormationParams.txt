@@ -1,0 +1,23 @@
+###############################################
+#Wall Formation Formation Parameters 
+###############################################
+BLOCKER_X                -2.0
+BLOCKER_Y                3.0
+BLOCKER_ROTATION         0.0
+#----------------------------------------------
+DEFENDER_X               -1.0
+DEFENDER_Y               3.0
+DEFENDER_ROTATION        0.0
+#----------------------------------------------
+AGGRESSOR_X              0.0
+AGGRESSOR_Y              3.0
+AGGRESSOR_ROTATION       0.0
+#----------------------------------------------
+CREATOR_X                2.0
+CREATOR_Y                3.0
+CREATOR_ROTATION         0.0
+#----------------------------------------------
+SPECIAL_OP_X             1.0
+SPECIAL_OP_Y             3.0
+SPECIAL_OP_ROTATION      0.0
+#----------------------------------------------

@@ -1,0 +1,16 @@
+#############################################
+# Parameters for the CageDefense Skill
+#############################################
+
+
+###The offset_X for side man in CageDefense
+OFFSET_X    0.09     #meters
+###The offset_Y for side man in CageDefense
+OFFSET_Y    0.15     #meters
+###The offset_angle to adjust the face of the robot
+OFFSET_ANGLE 0.80    #radians
+
+POS_FRAMES    20
+
+#As a fix for the lack of robot turning, do not try to turn until we get this close to our dest.
+TURN_DIST     .15

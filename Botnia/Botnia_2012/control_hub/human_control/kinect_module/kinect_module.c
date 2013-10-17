@@ -1,0 +1,570 @@
+#include "kinect_module.h"
+//#include "graphics.h"// it has global so it can only be placed here
+
+#define SCREEN_X 1920
+#define SCREEN_Y 1080
+
+// screen size for graph window
+int screen_x = 0;
+int screen_y = 0;
+
+
+int depth;
+char *display_name;
+
+Display *display;
+Window main_window;
+Window root_window;
+
+pthread_t freenect_thread;
+volatile int die = 0;
+
+int g_argc;
+char **g_argv;
+
+int window;
+
+float tmprot = 1;
+
+pthread_mutex_t gl_backbuf_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+uint8_t gl_depth_front[640*480*4];
+uint8_t gl_depth_back[640*480*4];
+
+uint8_t gl_rgb_front[640*480*4];
+uint8_t gl_rgb_back[640*480*4];
+
+GLuint gl_depth_tex;
+GLuint gl_rgb_tex;
+
+freenect_context *f_ctx;
+freenect_device *f_dev;
+
+int freenect_angle = 17;
+int freenect_led;
+
+
+float pointerx = 0, pointery = 0;
+float mousex = 0, mousey = 0;
+float tmousex = 0, tmousey = 0;
+int screenw = 0, screenh = 0;
+int snstvty;
+
+int pause_ = 0;
+int pusx = 0, pusy = 0;
+
+
+pthread_cond_t gl_frame_cond = PTHREAD_COND_INITIALIZER;
+int got_frames = 0;
+uint16_t t_gamma[2048];
+
+// screen related
+bool refreshed = FALSE;
+
+// port related
+int port = 0;
+unsigned char stop_pattern[8] = {0x7e,0x00,0x00,0x00,0x00,0x00,0x00,0x15};
+unsigned char forward_pattern[8] = {0x7e,0x00,0x02,0x00,0x0a,0x00,0x00,0x21};
+unsigned char backward_pattern[8] = {0x7e,0x00,0x00,0x00,0x0a,0x00,0x00,0x1e};
+unsigned char left_pattern[8] = {0x7e,0x00,0x00,0x0a,0x00,0x00,0x00,0x20};
+unsigned char right_pattern[8] = {0x7e,0x00,0x01,0x0a,0x00,0x00,0x00,0x21};
+
+int getRootWindowSize(int *w, int *h)
+{
+    Display* pdsp = NULL;
+    Window wid = 0;
+    XWindowAttributes xwAttr;
+
+    pdsp = XOpenDisplay( NULL );
+    if ( !pdsp ) {
+        fprintf(stderr, "Failed to open default display.\n");
+        return -1;
+    }
+
+    wid = DefaultRootWindow( pdsp );
+    if ( 0 > wid ) {
+        fprintf(stderr, "Failed to obtain the root windows Id "
+                "of the default screen of given display.\n");
+        return -2;
+    }
+
+    Status ret = XGetWindowAttributes( pdsp, wid, &xwAttr );
+    *w = xwAttr.width;
+    *h = xwAttr.height;
+
+    XCloseDisplay( pdsp );
+    return 0;
+}
+
+void DrawGLScene()
+{
+    pthread_mutex_lock(&gl_backbuf_mutex);
+
+    while (got_frames < 2) {
+        pthread_cond_wait(&gl_frame_cond, &gl_backbuf_mutex);
+    }
+
+    memcpy(gl_depth_front, gl_depth_back, sizeof(gl_depth_back));
+    memcpy(gl_rgb_front, gl_rgb_back, sizeof(gl_rgb_back));
+    got_frames = 0;
+    pthread_mutex_unlock(&gl_backbuf_mutex);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+
+    glEnable(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, gl_depth_tex);
+    glTexImage2D(GL_TEXTURE_2D, 0, 3, 640, 480, 0, GL_RGB, GL_UNSIGNED_BYTE, gl_depth_front);
+
+    glTranslated(1280, 0, 0);
+    glScalef(-1, 1, 1);
+
+    glBegin(GL_TRIANGLE_FAN);
+    glColor4f(255.0f, 255.0f, 255.0f, 255.0f);
+    glTexCoord2f(0, 0); glVertex3f(0,0,0);
+    glTexCoord2f(1, 0); glVertex3f(640,0,0);
+    glTexCoord2f(1, 1); glVertex3f(640,480,0);
+    glTexCoord2f(0, 1); glVertex3f(0,480,0);
+    glEnd();
+
+    glBindTexture(GL_TEXTURE_2D, gl_rgb_tex);
+    glTexImage2D(GL_TEXTURE_2D, 0, 3, 640, 480, 0, GL_RGB, GL_UNSIGNED_BYTE, gl_rgb_front);
+
+    glBegin(GL_TRIANGLE_FAN);
+    glColor4f(255.0f, 255.0f, 255.0f, 255.0f);
+    glTexCoord2f(0, 0); glVertex3f(640,0,0);
+    glTexCoord2f(1, 0); glVertex3f(1280,0,0);
+    glTexCoord2f(1, 1); glVertex3f(1280,480,0);
+    glTexCoord2f(0, 1); glVertex3f(640,480,0);
+    glEnd();
+
+    glutSwapBuffers();
+}
+
+void keyPressed(unsigned char key, int x, int y)
+{
+    switch(key) {
+    case 27:
+        die = 1;
+        pthread_join(freenect_thread, NULL);
+        glutDestroyWindow(window);
+        pthread_exit(NULL);
+        break;
+    case 'w':
+        if (freenect_angle < 29) freenect_angle++;
+        freenect_set_tilt_degs(f_dev,freenect_angle);
+        printf("\nAngle: %d degrees\n", freenect_angle);
+        break;
+    case 's':
+        freenect_angle = 0;
+        freenect_set_tilt_degs(f_dev,freenect_angle);
+        printf("\nAngle: %d degrees\n", freenect_angle);
+        break;
+    case 'x':
+        if (freenect_angle > -30) freenect_angle--;
+        freenect_set_tilt_degs(f_dev,freenect_angle);
+        printf("\nAngle: %d degrees\n", freenect_angle);
+        break;
+    case '1':
+        freenect_set_led(f_dev,LED_GREEN);
+        break;
+    case '2':
+        freenect_set_led(f_dev,LED_RED);
+        break;
+    case '3':
+        freenect_set_led(f_dev,LED_YELLOW);
+        break;
+    case '4':
+        freenect_set_led(f_dev,LED_BLINK_GREEN);
+        break;
+    case '5':
+        freenect_set_led(f_dev,LED_BLINK_GREEN);
+        break;
+    case '6':
+        freenect_set_led(f_dev,LED_BLINK_RED_YELLOW);
+        break;
+    case '0':
+        freenect_set_led(f_dev,LED_OFF);
+        break;
+    case 'o':
+        tmprot+=0.1;
+        printf("\n %f \n", tmprot);
+        break;
+    case 'p':
+        tmprot-=0.1;
+        printf("\n %f \n", tmprot);
+        break;
+    }
+
+}
+
+void ReSizeGLScene(int Width, int Height)
+{
+    glViewport(0,0,Width,Height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho (0, 1280, 480, 0, -1.0f, 1.0f);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+void InitGL(int Width, int Height)
+{
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearDepth(1.0);
+    glDepthFunc(GL_LESS);
+    glDisable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glShadeModel(GL_SMOOTH);
+    glGenTextures(1, &gl_depth_tex);
+    glBindTexture(GL_TEXTURE_2D, gl_depth_tex);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glGenTextures(1, &gl_rgb_tex);
+    glBindTexture(GL_TEXTURE_2D, gl_rgb_tex);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    ReSizeGLScene(Width, Height);
+}
+
+void *gl_threadfunc(void *arg)
+{
+    printf("GL thread\n");
+
+    glutInit(&g_argc, g_argv);
+
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
+    glutInitWindowSize(1280, 480);
+    glutInitWindowPosition(0, 0);
+
+    window = glutCreateWindow("Kinect Control");
+
+    glutDisplayFunc(&DrawGLScene);
+    glutIdleFunc(&DrawGLScene);
+    glutReshapeFunc(&ReSizeGLScene);
+    glutKeyboardFunc(&keyPressed);
+
+    InitGL(1280, 480);
+
+    glutMainLoop();
+
+    return NULL;
+}
+
+
+
+void depth_cb(freenect_device *dev, void *v_depth, uint32_t timestamp)
+{
+    int i;
+    int first = 0;
+    int px = 0 , py = 0;
+    int tx = 0 , ty = 0;
+    int alert = 0;
+    uint16_t *depth = v_depth;
+
+
+
+    pthread_mutex_lock(&gl_backbuf_mutex);
+    for (i=0; i<640*480; i++) {
+        int pval = t_gamma[depth[i]];
+        int lb = pval & 0xff;
+
+        tx++;
+        if(tx >= 640) {
+            tx = 0;
+            ty++;
+        }
+        /*case 0-5*/
+        switch (pval>>8) {
+        case 0:
+            gl_depth_back[3*i+0] = 255;
+            gl_depth_back[3*i+1] = 0;
+            gl_depth_back[3*i+2] = 0;
+            alert++;
+            if (!first) {
+                first = i;
+                px = tx;
+                py = ty;
+            }
+            break;
+        case 1:
+            gl_depth_back[3*i+0] = 255;
+            gl_depth_back[3*i+1] = 255;
+            gl_depth_back[3*i+2] = 255;
+            break;
+        default:
+            gl_depth_back[3*i+0] = 0;
+            gl_depth_back[3*i+1] = 0;
+            gl_depth_back[3*i+2] = 0;
+            break;
+        }
+    }
+
+    if(alert > snstvty) {
+        //printf("\n!!!TOO CLOSE!!!\n");
+
+    } else {
+        if(first) {
+
+            pointerx = ((px-640.0f) / -1);
+            pointery = (py);
+            mousex = ((pointerx / 630.0f) * screenw);
+            mousey = ((pointery / 470.0f) * screenh);
+            int mx , my;
+            mx = mousex;
+            my = mousey;
+
+            if(mx > tmousex) tmousex+= (mx - tmousex) / 7;
+            if(mx < tmousex) tmousex-= (tmousex - mx) / 7;
+            if(my > tmousey) tmousey+= (my - tmousey) / 7;
+            if(my < tmousey) tmousey-= (tmousey - my) / 7;
+
+            if((pusx <= (mx + 15))  && (pusx >= (mx - 15)) && (pusy <= (my + 15))  && (pusy >= (my - 15))) {
+                pause_++;
+                //printf("\n%d\n", pause_);
+            } else {
+                pusx = mx;
+                pusy = my;
+                pause_ = 0;
+            }
+#ifdef MOUSE_CONTROL
+            if(pause_ > 15) {
+                pause_ = -30;
+                XTestFakeButtonEvent(display, 1, TRUE, CurrentTime);
+                XTestFakeButtonEvent(display, 1, FALSE, CurrentTime);
+            }
+
+            //printf("-- %d x %d -- \n", mx, my);
+
+            XTestFakeMotionEvent(display, -1, tmousex-200, tmousey-200, CurrentTime);
+#endif
+
+            //////// refresh on graph then show it /////////////////
+            // TODO: change the resolution parameter to screen_x and screen_y
+            if (!refreshed)
+            {
+
+                if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*2,2)+pow(round((tmousey)/1080.0*480)-480/4*1,2)) <=60)
+                {
+                    cleardevice();
+                    refreshed = TRUE;
+
+                    circle(640/4*2,480/4*1,60);
+                    outtextxy(640/4*2, 480/4, "Froward");
+
+
+                }
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*2,2)+pow(round((tmousey)/1080.0*480)-480/4*2,2)) <=60)
+                {
+                    cleardevice();
+                    refreshed = TRUE;
+
+
+                    circle(640/4*2,480/2,60);
+                    outtextxy(640/4*2,480/2, "Stop");
+
+
+                }
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*2,2)+pow(round((tmousey)/1080.0*480)-480/4*3,2)) <=60)
+                {
+                    cleardevice();
+                    refreshed = TRUE;
+
+                    circle(640/4*2,480/4*3,60);
+                    outtextxy(640/4*2,480/4*3, "Backward");
+
+
+
+                }
+
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*1,2)+pow(round((tmousey)/1080.0*480)-480/4*2,2)) <=60)
+                {
+                    cleardevice();
+                    refreshed = TRUE;
+
+                    circle(640/4*1,480/2,60);
+                    outtextxy(640/4*1,480/2, "Left");
+
+                }
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*3,2)+pow(round((tmousey)/1080.0*480)-480/4*2,2)) <=60)
+                {
+                    cleardevice();
+                    refreshed = TRUE;
+                    circle(640/4*3,480/2,60);
+                    outtextxy(640/4*3,480/2, "Right");
+
+
+                }
+            }
+            else
+            {
+                if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*2,2)+pow(round((tmousey)/1080.0*480)-480/4*1,2)) <=60)
+                {
+                    SendPackage(forward_pattern,8+1,port);
+                }
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*2,2)+pow(round((tmousey)/1080.0*480)-480/4*2,2)) <=60)
+                {
+                    SendPackage(stop_pattern,8,port);
+                }
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*2,2)+pow(round((tmousey)/1080.0*480)-480/4*3,2)) <=60)
+                {
+                    SendPackage(backward_pattern,8,port);
+                }
+
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*1,2)+pow(round((tmousey)/1080.0*480)-480/4*2,2)) <=60)
+                {
+                    SendPackage(left_pattern,8,port);
+                }
+                else if(sqrt(pow(round((tmousex)/1920.0*640)-640/4*3,2)+pow(round((tmousey)/1080.0*480)-480/4*2,2)) <=60)
+                {
+                    SendPackage(right_pattern,8,port);
+                }
+                else
+                {
+                    cleardevice();
+                    refreshed = FALSE;
+                }
+
+            }
+            circle(round((tmousex)/1920.0*640),round((tmousey)/1080.0*480),10);
+
+
+            ///////////////////////////////////////////////////
+            XSync(display, 0);
+
+            //printf("\n\n %d  -  %d \n\n", mx, my);
+
+
+        }
+    }
+
+
+    got_frames++;
+    pthread_cond_signal(&gl_frame_cond);
+    pthread_mutex_unlock(&gl_backbuf_mutex);
+}
+
+void rgb_cb(freenect_device *dev, void *rgb, uint32_t timestamp)
+{
+    pthread_mutex_lock(&gl_backbuf_mutex);
+    got_frames++;
+    //	memcpy(gl_rgb_back, rgb, FREENECT_VIDEO_RGB_SIZE);
+    memcpy(gl_rgb_back, rgb, 640*480*3);
+    pthread_cond_signal(&gl_frame_cond);
+    pthread_mutex_unlock(&gl_backbuf_mutex);
+}
+
+void *freenect_threadfunc(void *arg)
+{
+
+    /////////// graph representation /////////////////////////
+    int gd=DETECT, gm=VGAHI; //  640 x 480    16 color    1
+    initgraph(&gd,&gm, 0);
+    setbkcolor(BLACK);
+    setcolor(YELLOW);
+    circle(640/4*2,480/4*1,60);
+    outtextxy(640/4*2, 480/4*1, "Froward");
+    circle(640/4*2,480/4*3,60);
+    outtextxy(640/4*2,480/4*3, "Backward");
+    circle(640/4*2,480/2,60);
+    outtextxy(640/4*2,480/2, "Stop");
+    circle(640/4*1,480/2,60);
+    outtextxy(640/4*1,480/2, "Left");
+    circle(640/4*3,480/2,60);
+    outtextxy(640/4*3,480/2, "Right");
+    getRootWindowSize(&screen_x,&screen_y);
+    ////////////////////////////////////////////////////////
+
+    ////////////////// open port //////////////////////////
+    port = OpenPort();
+    ////////////////////////////////////////////////////////
+    freenect_set_tilt_degs(f_dev,freenect_angle);
+    freenect_set_led(f_dev,LED_GREEN);
+    freenect_set_depth_callback(f_dev, depth_cb);
+    freenect_set_video_callback(f_dev, rgb_cb);
+    //	freenect_set_video_format(f_dev, FREENECT_VIDEO_RGB);
+    //	freenect_set_depth_format(f_dev, FREENECT_DEPTH_11BIT);
+
+    freenect_set_video_mode(f_dev, freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_VIDEO_RGB));
+    freenect_set_depth_mode(f_dev, freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, FREENECT_DEPTH_11BIT));
+
+
+    freenect_start_depth(f_dev);
+    freenect_start_video(f_dev);
+
+    printf("'W'-Tilt Up, 'S'-Level, 'X'-Tilt Down, '0'-'6'-LED Mode\n");
+
+    while(!die && freenect_process_events(f_ctx) >= 0 )
+    {
+        freenect_raw_tilt_state* state;
+        freenect_update_tilt_state(f_dev);
+        state = freenect_get_tilt_state(f_dev);;
+        double dx,dy,dz;
+        freenect_get_mks_accel(state, &dx, &dy, &dz);
+        fflush(stdout);
+    }
+    ////////////close graph representation //////////////////
+    closegraph();
+    ////////////////////////////////////////////////////////
+    printf("\nShutting Down Streams...\n");
+
+    freenect_stop_depth(f_dev);
+    freenect_stop_video(f_dev);
+
+    freenect_close_device(f_dev);
+    freenect_shutdown(f_ctx);
+
+    printf("-- done!\n");
+    return NULL;
+}
+
+
+int OpenPort()
+{
+    int termios_state = 0;
+    int port_ = open("/dev/ttyUSB1", O_RDWR | O_NOCTTY | O_NDELAY);
+    if(port_ == -1) // if open is unsucessful
+    {
+        //perror("open_port: Unable to open /dev/ttyS0 - ");
+    }
+    else
+    {
+        fcntl(port_, F_SETFL, 0);
+    }
+    struct termios port_settings;      // structure to store the port_ settings in
+
+    termios_state = tcgetattr(port_,&port_settings);
+    if (termios_state < 0) {
+        // SOMETHING TO FILL
+    }
+
+    cfsetispeed(&port_settings, B115200);    // set baud rates
+    cfsetospeed(&port_settings, B115200);
+
+    //    port_settings.c_cflag &= ~PARENB;    // set no parity, one stop bits, 8 data bits
+    //    port_settings.c_cflag &= ~CSTOPB;
+    //    port_settings.c_cflag &= ~CSIZE;
+    //    port_settings.c_cflag |= CS8;
+    port_settings.c_iflag |= IGNPAR;
+
+    port_settings.c_cflag &= ~(CSIZE | PARENB | CSTOPB | CREAD | CLOCAL);
+    port_settings.c_cflag |= CS8;
+    port_settings.c_cflag |= CREAD;
+    port_settings.c_cflag |= CLOCAL;
+
+    port_settings.c_lflag &= ~(ICANON | ECHO);
+    port_settings.c_cc[VMIN] = 1;
+    port_settings.c_cc[VTIME] = 0;
+
+    termios_state = tcsetattr(port_, TCSANOW, &port_settings);    // apply the settings to the port_
+    if (termios_state < 0) {
+        // SOMETHING TO FILL
+    }
+    return port_;
+}
+
+void SendPackage(unsigned char* buffer, int length,int port_)
+{
+    write(port_,buffer, length+1);
+}

@@ -1,0 +1,26 @@
+#speed barrier, below which MoveToBall is used
+BALL_SPEED_THRESHOLD  .35
+BALL_SPEED_THRESHOLD_HISTORISIS_FACTOR 0.05
+
+#Size of step for testing spots along the ball's path
+PRECISION             5
+
+#time we want to beat the ball by to the intersection
+LEAD_TIME         .2
+
+#Distance from destination and ball at which to turn on dribbler
+DRIBBLE_DISTANCE      2.0
+
+#Amout of robot that we want in the path of the ball (as a fraction of the robot's radius)
+#decreasing this will make the robot catch it more in the center, but it will fall back farther
+# in order to make the catch.
+CATCH_RADIUS         .7
+
+#Like catch radius, but within this radius, we charge the ball.
+INNER_CATCH          0.4 #0.2
+
+#If the ball is going away from us (within this angle), we do different stuff
+FLEEING_ANGLE         1.0 #.8
+
+#face upfield more by this amount
+BIAS_ANGLE            .3

@@ -1,0 +1,323 @@
+<?xml version="1.0"?> <!DOCTYPE parameter_file SYSTEM "robocup.dtd"> 
+<!-- RoboCup Simulator Sample XML Parameter File --><!-- Written on: December 9, 2001 -->
+<!-- This file describe the existing robocup system in XML -->
+<!-- It has 5 Team A robots and 5 Team B robots, a field and 2 goals-->
+
+<parameter_file>
+	<sim_world name="5X5System2002" x_size="4.0" y_size="2.0" z_size="0" out_latency="6" in_latency="5" frame_rate="60" max_noise_radius="0.5" max_noise_theta="2.5">
+
+<!--Robots for our team --> 		
+
+		<robot name="Team A-0" team="1" id="0" mass="2.2" elasticity=".5">
+			<geometry start_position="5.15,0,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="3.14159"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+		<robot name="Team A-1" team="1" id="1" mass="2.2" elasticity=".5">
+			<geometry start_position="5.3,0.2,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="3.14159"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+
+		</robot>
+		<robot name="Team A-2" team="1" id="2" mass="2.2" elasticity=".5">
+			<geometry start_position="5.3,-0.2,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="3.14159"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+		<robot name="Team A-3" team="1" id="3" mass="2.2" elasticity=".5">
+			<geometry start_position="5,0,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="3.14159"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+		<robot name="Team A-4" team="1" id="4" mass="2.2" elasticity=".5">
+			<geometry start_position="5.2,0,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="3.14159"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+
+
+
+<!--Robots of opposite team -->
+
+            <robot name="Team B-0" team="0" id="0" mass="2.2" elasticity=".5">
+			<geometry start_position="-0.15,0,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="0"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+		<robot name="Team B-1" team="0" id="1" mass="2.2" elasticity=".5">
+			<geometry start_position="-5.2,0.2,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="0"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+		<robot name="Team B-2" team="0" id="2" mass="2.2" elasticity=".5">
+			<geometry start_position="-5.2,-0.2,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="0"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+		<robot name="Team B-3" team="0" id="3" mass="2.2" elasticity=".5">
+			<geometry start_position="-5,0,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="0"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+		<robot name="Team B-4" team="0" id="4" mass="2.2" elasticity=".5">
+			<geometry start_position="-5.2,0,0" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.09" orientation="0"/>
+				</shape>
+			</geometry>
+			<kicker kick_impulse="5" reset_time="0.1">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</kicker>
+			<dribbler stickiness="100">
+				<shape>
+					<arc radius="0.09" begin_angle="-90" end_angle="90"/>
+				</shape>
+			</dribbler>
+		</robot>
+
+<!--Our field -->
+		<field static_friction="0.34" kinetic_friction="0.3" elasticity="0">
+			<geometry start_position="0,0,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="2.8" width="2.3" orientation="0"/>
+				</shape>
+			</geometry>
+		</field>
+
+<!--Goals-->
+		<goal team="0">
+			<geometry start_position="-1.49,0,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.7" width="0.18" orientation="2"/>
+				</shape>
+			</geometry>
+		</goal>
+		<goal team="1">
+			<geometry start_position="1.49,0,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.7" width="0.18" orientation="2"/>
+				</shape>
+			</geometry>
+		</goal>
+<!--Walls-->
+		<wall name="Top" elasticity=".8">
+			<geometry start_position="0,1.175,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="2.9" width="0.05" orientation="0"/>
+				</shape>
+			</geometry>
+		</wall>
+            
+		<wall name="bottom" elasticity=".8">
+			<geometry start_position="0,-1.175,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="2.9" width="0.05" orientation="0"/>
+				</shape>
+			</geometry>
+		</wall>
+
+
+		
+		<wall name="upper_left_side" elasticity=".8">
+			<geometry start_position="-1.425,0.75,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.8" width="0.05" orientation="2"/>
+				</shape>
+			</geometry>
+		</wall>
+		<wall name="upper_right_side" elasticity=".8">
+			<geometry start_position="1.425,0.75,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.8" width="0.05" orientation="2"/>
+				</shape>
+			</geometry>
+		</wall>
+		<wall name="lower_left_side" elasticity=".8">
+			<geometry start_position="-1.425,-0.75,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.8" width="0.05" orientation="2"/>
+				</shape>
+			</geometry>
+		</wall>
+            <wall name="lower_right_side" elasticity=".8">
+			<geometry start_position="1.425,-0.75,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.8" width="0.05" orientation="2"/>
+				</shape>
+			</geometry>
+		</wall>
+
+		<wall name="left_goal_backside" elasticity=".8">
+			<geometry start_position="-1.585,0,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.7" width="0.01" orientation="2"/>
+				</shape>
+			</geometry>
+		</wall>
+               <wall name="right_goal_backside" elasticity=".8">
+			<geometry start_position="1.585,0,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.7" width="0.01" orientation="2"/>
+				</shape>
+			</geometry>
+		</wall>
+
+		<wall name="left_goal_upside" elasticity=".8">
+			<geometry start_position="-1.49,0.355,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.18" width="0.01" orientation="0"/>
+				</shape>
+			</geometry>
+		</wall>
+                <wall name="right_goal_upside" elasticity=".8">
+			<geometry start_position="1.49,0.355,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.18" width="0.01" orientation="0"/>
+				</shape>
+			</geometry>
+		</wall>
+		<wall name="left_goal_downside" elasticity=".8">
+			<geometry start_position="-1.49,-0.355,0" start_velocity="0,0,0">
+				<shape>
+				<rectangle length="0.18" width="0.01" orientation="0"/>
+				</shape>
+			</geometry>
+		</wall>
+                <wall name="right_goal_downside" elasticity=".8">
+			<geometry start_position="1.49,-0.355,0" start_velocity="1,0,0">
+				<shape>
+				<rectangle length="0.18" width="0.01" orientation="0"/>
+				</shape>
+			</geometry>
+		</wall>
+
+
+
+<!---Balls-->
+            
+            <ball mass="0.0483" static_friction="0.1" kinetic_friction="0.75" elasticity="0.83">
+			<geometry start_position="[0,0,0]" start_velocity="0,0,0">
+				<shape>
+				<circle radius="0.0427" orientation="0"/>
+				</shape>
+			</geometry>
+		</ball>
+
+
+
+	</sim_world>
+</parameter_file>
+
+
+
+

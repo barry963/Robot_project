@@ -1,0 +1,23 @@
+###############################################
+#Kickoff Them Formation Parameters 
+###############################################
+BLOCKER_X                -1.0
+BLOCKER_Y                0.1
+BLOCKER_ROTATION         0.0
+#----------------------------------------------
+DEFENDER_X               -0.7
+DEFENDER_Y               -0.1
+DEFENDER_ROTATION        0.0
+#----------------------------------------------
+AGGRESSOR_X              -0.590
+AGGRESSOR_Y              0.0
+AGGRESSOR_ROTATION       0.0
+#----------------------------------------------
+CREATOR_X                -0.550
+CREATOR_Y                -0.187
+CREATOR_ROTATION         0.0
+#----------------------------------------------
+SPECIAL_OP_X             -0.550
+SPECIAL_OP_Y             0.187
+SPECIAL_OP_ROTATION      0.0
+#----------------------------------------------

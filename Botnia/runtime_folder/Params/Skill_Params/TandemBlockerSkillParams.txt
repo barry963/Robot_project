@@ -1,0 +1,10 @@
+###############################################
+# Parameters for the TandemBlocker Skill 
+###############################################
+
+###Default grace distance from point A
+LOW_X    .09     #meters
+
+###Distance to dive along ( 0.0 = 1 radius from goal line)
+DIVE_OFFSET   0.0
+

@@ -1,0 +1,26 @@
+# Motion Control config file
+
+DIFF_USE_GOTOPOINT_SPEED =         1 # false
+
+# The *_MAX_* parameters are vectors of doubles.  Listing one
+# parameter for each type of motion.
+#
+#                          MOVE     SHOOT    DRIBBLE PASS
+#
+OMNI_MAX_ACCEL = 	   3500     3500     3500    3500 # mm/s^2
+OMNI_MAX_SPEED = 	   1500     900      900     900  # mm/s
+OMNI_MAX_ANG_ACCEL = 	   18       12       12      12   # radians/s^2
+OMNI_MAX_ANG_VEL = 	   6        4        4       4    # radians/s
+
+DIFF_MAX_ACCEL = 	   2000     2000     2000    2000 # mm/s^2
+DIFF_MAX_SPEED =           2000     2000     2000    2000 # mm/s
+DIFF_MAX_ANG_ACCEL =       12       12       12      12   # radians/s^2
+DIFF_MAX_ANG_VEL_MOVING =  6        6        6       6    # radians/s
+DIFF_MAX_ANG_VEL_TURNING = 18       18       18      18   # radians/s
+
+OMNI_ACCEL_FACTOR =	 1.1 # >= 1.0
+OMNI_ANG_ACCEL_FACTOR =  1.1 # >= 1.0
+
+DIFF_ACCEL_FACTOR =	 1.1 # >= 1.0
+
+DIFF_POSITION_TOLERANCE =     15 # mm

@@ -1,0 +1,24 @@
+#############################################
+# Parameters for the RemoveBall Skill
+#############################################
+
+#distance to goal post we travel to
+EDGE_DIST   .00
+
+#angle we face
+FACE_ANGLE  .4
+
+#angle to FACE_ANGLE that we are happy and start moving to the side.
+SET_ANGLE   .20
+
+#distance we must be within at the edge
+THERE_DIST  .05
+
+#angle threshold before we kick
+THERE_ANGLE  .15
+
+#Amount in front of the aggressor to kick to.
+KICK_X_OFFSET	.1
+
+#angle within which we must be facing to the side in order to kick
+SIDE_ANGLE		.3

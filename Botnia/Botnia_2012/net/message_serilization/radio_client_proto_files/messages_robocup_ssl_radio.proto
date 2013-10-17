@@ -1,0 +1,5 @@
+import "messages_robocup_ssl_cmd.proto";
+
+message SSL_RadioPacket {
+  optional SSL_RadioFrame RadioFrame = 1;
+}

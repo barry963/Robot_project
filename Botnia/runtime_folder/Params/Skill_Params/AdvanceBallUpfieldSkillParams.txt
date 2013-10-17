@@ -1,0 +1,29 @@
+#############################################
+# Parameters for the AdvanceBallUpfield Skill
+#############################################
+#How far we want to stay from the sideline when choosing destinations.
+WALL_BUFFER     .18
+
+#How close an opponent can get before they are considered a threat
+THREAT_DIST     .5
+#cone in front of us that the opponent must be within to be a threat
+THREAT_ANGLE    .5
+
+#How close an opponent must be to be considered blocking us
+BLOCKING_DIST   .05
+
+#Destination to go to based from their goal line and split line
+DEST_X          .3
+DEST_Y          .0
+
+#hysteresis amount
+HYST_DIST       .05
+
+#If the robot is facing more than this, use spin
+BACKWARDS_ANGLE 1.0
+
+#If the robot is facing more than this, use spin
+BACKWARDS_ANGLE_THREATENED 1.5
+
+#Distance to out destination when we consider ourselves "there"
+THERE_DIST      .03

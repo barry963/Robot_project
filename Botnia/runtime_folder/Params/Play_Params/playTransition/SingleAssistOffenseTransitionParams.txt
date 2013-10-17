@@ -1,0 +1,42 @@
+#############################################
+# Parameters for the SingleAssistOffense Transition
+#############################################
+
+
+###The max time allowed for play
+MAX_ELAPSED_TIME	10.0
+
+###Line above which we transition to creator assist offense,
+###cross crease pass, or jam and shoot
+PASSING_LINE_THEIR_GOALLINE_OFFSET -.7
+
+###Line below which we never run double pick offense (relative to half line)
+DOUBLE_PICK_OFFSET  0.0
+
+############ Kick Upfield params ############
+
+###Line below which we  run kick upfield
+KICK_LINE_OFFSET  0.4
+
+###Distance that the ball that makes us just kick it upfield
+EDGE_DIST			.9
+###Amount we extend upfield looking for a line
+EXTEND_OFFSET			1.0	
+###size the lane must be to kick
+KICK_UPFIELD_LANE_WIDTH	.09
+###angle we must be at to kick
+KICK_UPFIELD_ANGLE	.3
+
+###the ball must be this far from the splitline to go into double pick
+DOUBLE_PICK_DIST    .4
+
+##minimum separation distance between creator and aggressor required for creator assist
+MIN_SEP_DIST       1.0
+
+##max angle (radians)opponent can have with respect to creator and aggressor, this determines
+##if he is blocking hte creator from getting a pass
+MAN_ON_CONE_ANGLE 1.2
+
+##below this line, we'll never pass across the center.
+##above this line, we'll only pass to people in the opponent's half.
+PASSING_DANGER_ZONE   1.2

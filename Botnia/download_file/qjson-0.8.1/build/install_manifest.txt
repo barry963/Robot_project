@@ -1,0 +1,14 @@
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/pkgconfig/QJson.pc
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/cmake/qjson/QJSONTargets.cmake
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/cmake/qjson/QJSONTargets-noconfig.cmake
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/cmake/qjson/QJSONConfig.cmake
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/cmake/qjson/QJSONConfigVersion.cmake
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/libqjson.so.0.8.1
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/libqjson.so.0
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/lib/libqjson.so
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/include/qjson/parser.h
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/include/qjson/parserrunnable.h
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/include/qjson/qobjecthelper.h
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/include/qjson/serializer.h
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/include/qjson/serializerrunnable.h
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/_preferred_path_/include/qjson/qjson_export.h

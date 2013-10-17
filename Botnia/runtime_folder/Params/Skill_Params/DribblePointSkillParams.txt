@@ -1,0 +1,23 @@
+###############################################
+# Parameters for the DribblePoint Skill 
+###############################################
+###Width of search box
+SEARCH_BOX_WIDTH          0.70  #meters
+
+###Height of search box   
+SEARCH_BOX_HEIGHT         0.40 #meteres
+
+###How many meters are represented by each matrix element
+SEARCH_BOX_RESOLUTION     0.01 #meters per matrix element
+
+###How far in front of robot search box is placed. 
+###If this number is zero the search box will start
+###at the center of the dribbling robot.
+SEARCH_BOX_FORWARD_OFFSET 0.15 #meters
+
+###Max angle above which we'll use maneuver with ball
+###to avoid losing posesion
+MAX_TURN_ANGLE 0.2			  #radians
+
+## HISTORISIS FACTOR
+MAX_TURN_ANGLE_THRESHOLD 0.1

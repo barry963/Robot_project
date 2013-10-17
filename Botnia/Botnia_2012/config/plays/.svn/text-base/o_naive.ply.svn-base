@@ -1,0 +1,20 @@
+PLAY Naive Offense
+
+APPLICABLE offense
+DONE aborted !offense
+FIXEDROLES 1 3 4 2
+
+ROLE 1
+	shoot A
+	none
+ROLE 2
+	defend_point {-3025 250} 0 700
+	none
+ROLE 3
+	defend_lane {B 0 -200} {B 1175 -200}
+	none
+ROLE 4
+	defend_point {-1400 -250} 0 1400
+	none
+
+

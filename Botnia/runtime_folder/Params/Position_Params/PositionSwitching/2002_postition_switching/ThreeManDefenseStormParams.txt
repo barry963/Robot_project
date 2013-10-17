@@ -1,0 +1,7 @@
+#########################################################################
+#         Three Man Defense Storm Parameters
+#########################################################################
+
+
+#Time to beat an opponent to the ball required for switch.
+BUFFER_TIME          1.0

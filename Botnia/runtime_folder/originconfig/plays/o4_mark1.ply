@@ -1,0 +1,26 @@
+PLAY Four Attackers, Mark 1
+
+APPLICABLE offense {n_opponents_our_side 2}
+DONE aborted !offense
+DONE aborted {!n_opponents_our_side 1}
+
+TIMEOUT 15
+
+OROLE 0 most_upfield
+OROLE 1 most_upfield
+OROLE 2 most_upfield
+
+ROLE 1
+	shoot A
+	none
+ROLE 2
+	mark 0 from_their_goal
+	none
+ROLE 3
+	mark 1 from_their_goal
+	none
+ROLE 4
+	mark 2 from_their_goal
+	none
+
+

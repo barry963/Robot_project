@@ -1,0 +1,10 @@
+#############################################
+# Parameters for the RemoveBallDefense Transition
+#############################################
+
+
+###The max time allowed after the Blocker triggers the chip kick before transitioning
+MAX_ELAPSED_TIME_SINCE_CHIP_KICK	10.00
+
+###The max distance allowed between the Blocker and the ball before transitioning
+MAX_DISTANCE_BETWEEN_BLOCKER_AND_BALL	0.03		

@@ -1,0 +1,38 @@
+#############################################
+# Parameters for the MoveToBall Skill
+#############################################
+
+###Threshold angle for approaching ball. 
+###If angle to ball is larger than this, slow down.
+APPROACH_ANGLE		0.5233       # PI/6
+
+###Threshold on how long we should have possession of 
+###the ball to count as a success
+SUCCESS_TIME		1000.0          # in milliseconds
+
+###The distance we need to be from ball to start slowing down
+APPROACH_DIST	  0.20          # in meters
+
+###Allows us to change the dist bn picker and ball
+RADIUS_OFFSET   -0.03
+
+###Distance between us and the goalie that will let us enter the box
+###   (does not include radii)
+ENTERBOX_CAUTION_DIST	.05
+				
+###Distance within we force the robot to rotate first
+FORCE_ROTATE 0.15
+
+###if going towards the ball would make us intersect the ball this far outside our goal, swoop
+GOAL_BUFFER   .10
+
+###Swoop by this angle
+ADJUST_ANGLE  .7
+
+###angle to creator's pass dest needed to arm kicker
+PASS_ANGLE    .08
+
+##distance outside of goal we still consider the middle
+MIDDLE_DIST     .05
+
+MIN_GOALIE_DISTANCE 0.02

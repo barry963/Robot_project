@@ -1,0 +1,9 @@
+#############################################
+# Parameters for the DoublePickBlock Skill
+#############################################
+
+###The gap between two robots forming the ball
+GAP    0.1     #meters
+
+###distance to stay behind goalbox for first robot.
+FIRST_GAP .05

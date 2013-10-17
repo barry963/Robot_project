@@ -1,0 +1,6 @@
+#############################################
+# Parameters for the BackPass Transition
+#############################################
+
+###The max time allowed for play
+MAX_ELAPSED_TIME	3.00

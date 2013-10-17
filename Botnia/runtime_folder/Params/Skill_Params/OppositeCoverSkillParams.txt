@@ -1,0 +1,9 @@
+###############################
+# Opposite Cover Skill Params #
+###############################
+
+#from our goalie box
+X_OFFSET 0.10
+
+#from far goal post
+Y_OFFSET 0.20

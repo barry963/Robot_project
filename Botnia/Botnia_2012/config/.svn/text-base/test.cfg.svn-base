@@ -1,0 +1,19 @@
+# test config file
+# these are comments. Must have # on first entry
+
+# can have whitespace anywhere
+
+#Entries look like
+MYDATA = 1 2 3 4
+
+# data labels go on left and may be any usual character not of whitespace variety
+
+	MY_2nd_DATA  = 2, 3, 5 some strings
+
+# equals is required
+
+	SoMe@#$Weird(&^Name = another string
+
+# anything after first string before equals is ignored
+
+string2 this is ignored = yet another string

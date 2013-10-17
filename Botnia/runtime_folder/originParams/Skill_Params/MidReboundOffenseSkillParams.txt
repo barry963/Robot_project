@@ -1,0 +1,17 @@
+#############################################
+# Parameters for the MidReboundOffense Skill
+#############################################
+
+#Distance from their goal line down.  Only consider opponents below that new line
+UPPER_LIMIT		0.35
+
+#Distance from half line down.  Only consider opponents above that new line
+LOWER_LIMIT		0.40
+
+#Distance from right sideline in.  Only consider opponents to left of that new line
+RIGHT_LIMIT		0.40
+
+#Distance from left sideline in.  Only consider opponents to right of that new line
+LEFT_LIMIT		0.40
+
+KICK_RATIO      0.95

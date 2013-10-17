@@ -1,0 +1,26 @@
+PLAY Two Attackers, Pass from Corner
+
+APPLICABLE offense in_their_corner
+DONE aborted !offense
+
+TIMEOUT 15
+
+OROLE 0 closest_to_ball
+
+ROLE 1
+     pass 3
+     mark 0 from_shot
+     none
+
+ROLE 2
+     block 320 900 -1
+     none
+
+ROLE 3
+     position_for_pass { R { B 1000 0 } ...
+     receive_pass
+     shoot A
+     none
+ROLE 4
+     defend_line { -1400 1150 } ...
+     none

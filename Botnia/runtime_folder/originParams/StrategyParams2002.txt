@@ -1,0 +1,196 @@
+###################################
+# Strategy Params 2001            #
+###################################
+
+GOALIE_OCCLUSION_THRESH -1.000000
+
+#in '00, this was PLAYER_RADIUS/sqrt(2)
+GOALIE_FRONT_RADIUS 0.090000
+
+#the goalie chooses a different strategy when the
+#ball is moving faster than this. (should be a negative number)
+BALL_VEL_THRESH_FOR_GOALIE -0.350000
+
+# try to intercept the ball when faster than this
+BALL_VEL_THRESH_FOR_INTERCEPT 0.100000
+
+#in '00, this was LEFT_GOALIE_BOX - PLAYER_RADIUS;
+GOALIE_ROAM_RADIUS 0.600000
+GOALIE_OPTIMAL_PASS_DISTANCE 0.350000
+
+# maximum number of seconds to hold the ball
+GOALIE_MAX_HOLD_TIME 4.000000
+GOALIE_TO_OPPONENT_DIST_THRESH 0.350000
+GOALIE_MIN_LANE_WIDTH 0.090000
+
+#seconds...
+GOALIE_PASS_TIME_LIMIT 4.000000
+
+#radians...
+OUR_PENALTY_ANGLE 0.000000
+
+# FIELD_WIDTH/2.0f
+MIDFIELD_AREA_RADIUS 0.750000
+
+# stay this far away from the ball in both dimensions.
+MIDFIELD_SHIELD_BALL_DISTANCE 0.141400
+
+# don't try to strip the ball unless you are at least this close.
+MIDFIELD_MAX_STRIP_DISTANCE 0.400000
+SPIN_TOL 0.157100
+KICK_TOL 0.060000
+PASS_TOL 0.060000
+
+# speed of the ball after being kicked
+KICK_VELOCITY 1.50
+
+MAX_ACCEL 10.000000
+
+#75 degrees
+PENALTY_SHOT_ANGLE 1.309000
+
+SHOOT_THRESH_LINE 0.060000
+
+CLEAR_UPFIELD_THRESH_LINE -0.500000
+
+CLEAR_UPFIELD_TARGET_LINE 0.100000
+
+#When kicking, set destination to a point this far away
+RUN_PAST_BALL_DISTANCE 1.000000
+
+# m/s
+SLOW_STRIP_VELOCITY 0.050000
+
+##### Offensive dividing lines #####
+CLEAR_UPFIELD_LINE 0.300000
+FAR_FORWARD_LINE 0.950000
+SIDELINE_DIVIDER 0.350000
+SIDELINE_Y_RECEIVE_PASS 0.450000
+
+##### maximum distance to a pass destination #####
+DIST_TO_PASS_DEST 0.150000
+
+##### Width thresholds for passing and shooting lanes #####
+PASS_LANE_THRESH 0.100000
+#about 15 degrees. function laneWidthBetweenPoints() takes enemy radius into account
+PASS_LANE_ANGLE_THRESH 0.261700
+SHOOT_LANE_THRESH 0.070000
+
+##### parameters for directkick #####
+MIN_GOALIE_DIST 0.050000
+
+##### Parameters for pass combinations #####
+PASS_LENGTHS_RATIO 2.000000
+
+##### Parameters for pass combination #####
+PASS_COMBO_MAX_LENGTH 2.000000
+PASS_COMBO_MIN_LENGTH 0.750000
+
+# ~PI/3
+PASS_COMBO_MAX_ANGLE 1.000000
+
+PASS_COMBO_CLEARANCE_THRESH 0.075000
+
+##### Parameters for pass shot #####
+PASS_SHOT_MAX_LENGTH 2.000000
+PASS_SHOT_MIN_LENGTH 0.750000
+
+# ~PI/3
+PASS_SHOT_MAX_ANGLE 1.000000
+PASS_SHOT_CLEARANCE_THRESH 0.075000
+
+##### Parameters for ball interception #####
+INTERCEPTION_SLOW_BALL_SPEED 0.050000
+INTERCEPTION_DELAY_PARAM 1.000000
+INTERCEPTION_DELAY_OFFSET 0.000000
+
+######  Corner kick parameters #######
+CORNER_KICK_TIME_LIMIT 5.000000
+CORNER_DIST 0.000000
+
+### Values for the phone side of the field...
+LEFT_CORNER_POINT_1X 0.335000
+LEFT_CORNER_POINT_1Y 0.290000
+LEFT_CORNER_POINT_2X 0.285000
+LEFT_CORNER_POINT_2Y 0.250000
+LEFT_CORNER_POINT_3X 0.265000
+LEFT_CORNER_POINT_3Y 0.250000
+LEFT_CORNER_POINT_4X 0.190000
+LEFT_CORNER_POINT_4Y 0.110000
+LEFT_CORNER_POINT_5X 0.160000
+LEFT_CORNER_POINT_5Y 0.090000
+LEFT_CORNER_POINT_6X 0.090000
+LEFT_CORNER_POINT_6Y 0.080000
+LEFT_CORNER_POINT_7X 0.080000
+LEFT_CORNER_POINT_7Y 0.110000
+RIGHT_CORNER_POINT_1X 0.335000
+RIGHT_CORNER_POINT_1Y 0.290000
+RIGHT_CORNER_POINT_2X 0.285000
+RIGHT_CORNER_POINT_2Y 0.250000
+RIGHT_CORNER_POINT_3X 0.265000
+RIGHT_CORNER_POINT_3Y 0.250000
+RIGHT_CORNER_POINT_4X 0.190000
+RIGHT_CORNER_POINT_4Y 0.110000
+RIGHT_CORNER_POINT_5X 0.160000
+RIGHT_CORNER_POINT_5Y 0.090000
+RIGHT_CORNER_POINT_6X 0.080000
+RIGHT_CORNER_POINT_6Y 0.100000
+RIGHT_CORNER_POINT_7X 0.095000
+RIGHT_CORNER_POINT_7Y 0.120000
+
+STEP1COUNTER 25
+STEP2COUNTER 50
+STEP3COUNTER 75
+STEP4COUNTER 100
+STEP5COUNTER 125
+STEP6COUNTER 150
+STEP7COUNTER 300
+
+##########  Testing Data  #################
+# integer
+TEST_METHOD 3
+
+# meters/second
+TEST_SPEED 0.500000
+
+# radians
+TEST_ROTATION 0.000000
+
+# radians/second
+TEST_ROT_VEL 0.500000
+
+##########  Play Data  #################
+ENABLE_SIMPLE_OFFENSE 0
+USE_CLEAR_UPFIELD 1
+USE_CORNER_KICK 1
+USE_DIRECT_KICK 1
+USE_UPFIELD_PASSING 1
+
+MIN_PASS_DEST            0.27
+PASS_TO_SHOT_DISTANCE    0.70
+
+#---------------------------------------
+ENABLE_BACK_PASS   0
+ENABLE_CREATOR_ASSIST   0
+
+#used by special op defender in tight defense
+ENABLE_OPPOSITE_COVER_SKILL 1
+
+#used by special op defender in loose defender
+ENABLE_FOLLOW_DEFNDER_SKILL 1
+
+#rotates long way to avoid rotating toward out goal behind a parameterized line
+ENABLE_SMART_ROTATE_AROUND_BALL 1
+
+ENABLE_AGGRESSIVE_PULL_OFF_WALL 0
+
+ENABLE_AGGRESSIVE_PULL_OFF_CORNER 0
+
+#0 = normal, swings wide when beginning with large ABS(y) coord
+#1 = aggresive mode, adjusts radius
+#2 = stupid mode, don't push across much at all
+JAM_AND_SHOOT_MODE 1
+
+#takes extra special care not to push on opponents too hard
+ENABLE_CAREFUL_STRIP_BALL 0
+#---------------------------------------

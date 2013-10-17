@@ -1,0 +1,4 @@
+#############################################
+# Parameters for the TandemReboundOffense Skill
+#############################################
+KICK_RATIO 0.95

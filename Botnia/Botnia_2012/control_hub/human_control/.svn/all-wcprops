@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/botnia_botnia/!svn/ver/21/Botnia_2012/control_hub/human_control
+END
+joystick.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/human_control/joystick.cpp
+END
+keyboard.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/human_control/keyboard.cpp
+END
+kinect.h
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/botnia_botnia/!svn/ver/15/Botnia_2012/control_hub/human_control/kinect.h
+END
+joystick.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/human_control/joystick.h
+END
+joystick_gao.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/botnia_botnia/!svn/ver/21/Botnia_2012/control_hub/human_control/joystick_gao.cpp
+END
+keyboard.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/human_control/keyboard.h
+END
+joystick_gao.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/botnia_botnia/!svn/ver/21/Botnia_2012/control_hub/human_control/joystick_gao.h
+END
+kinect.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/botnia_botnia/!svn/ver/15/Botnia_2012/control_hub/human_control/kinect.cpp
+END

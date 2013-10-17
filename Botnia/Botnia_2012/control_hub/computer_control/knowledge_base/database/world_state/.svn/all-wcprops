@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state
+END
+field_world.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state/field_world.h
+END
+field_world_robot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state/field_world_robot.cpp
+END
+field_world_robot_goto_point.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/botnia_botnia/!svn/ver/36/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state/field_world_robot_goto_point.cpp
+END
+field_world_robot.h
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state/field_world_robot.h
+END
+field_world_obstacle.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state/field_world_obstacle.cpp
+END
+field_world.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state/field_world.cpp
+END
+field_world_obstacle.h
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/knowledge_base/database/world_state/field_world_obstacle.h
+END

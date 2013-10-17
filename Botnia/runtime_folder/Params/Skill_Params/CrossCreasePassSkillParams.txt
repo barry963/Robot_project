@@ -1,0 +1,16 @@
+#############################################
+# Parameters for the CrossCreasePass Skill
+#############################################
+
+#Offsets from corner of goaliebox
+POS_OFFSET_X    .01
+POS_OFFSET_Y    .02
+
+#Timeout before giving up and kicking
+TIME_OUT        3
+
+#The angle when we consider ourselves done.
+HAPPY_ANGLE		.1
+
+#delay before finishing (to let prediction catch up)
+DELAY_FRAMES   5

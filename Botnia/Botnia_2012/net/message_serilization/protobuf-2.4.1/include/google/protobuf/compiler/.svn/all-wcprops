@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler
+END
+plugin.proto
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler/plugin.proto
+END
+parser.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler/parser.h
+END
+plugin.h
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler/plugin.h
+END
+plugin.pb.h
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler/plugin.pb.h
+END
+code_generator.h
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler/code_generator.h
+END
+importer.h
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler/importer.h
+END
+command_line_interface.h
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/include/google/protobuf/compiler/command_line_interface.h
+END

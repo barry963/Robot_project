@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Config
+END
+StaticLibraryTarget.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Config/StaticLibraryTarget.xcconfig
+END
+FrameworkTarget.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Config/FrameworkTarget.xcconfig
+END
+TestTarget.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Config/TestTarget.xcconfig
+END
+ReleaseProject.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Config/ReleaseProject.xcconfig
+END
+DebugProject.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Config/DebugProject.xcconfig
+END
+General.xcconfig
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Config/General.xcconfig
+END

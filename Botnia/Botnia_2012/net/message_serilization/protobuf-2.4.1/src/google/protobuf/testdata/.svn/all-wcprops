@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testdata
+END
+text_format_unittest_extensions_data.txt
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testdata/text_format_unittest_extensions_data.txt
+END
+text_format_unittest_data.txt
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testdata/text_format_unittest_data.txt
+END
+golden_packed_fields_message
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testdata/golden_packed_fields_message
+END
+golden_message
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/src/google/protobuf/testdata/golden_message
+END

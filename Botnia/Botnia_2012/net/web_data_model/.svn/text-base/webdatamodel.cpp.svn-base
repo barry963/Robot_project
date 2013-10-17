@@ -1,0 +1,94 @@
+// ************************************************************************************************
+//     Copyright 2012 Gao Yuan (robotics-computing.tk)
+//     
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// 
+// 
+//     Additional license information:
+// 
+//  **********************************************************************************************/
+
+/**    @file    - %FILENAME%
+  *
+  *    @class   - %CLASS%
+  *
+  *    @brief   -
+  *
+  *    @author  -
+  *
+  *    @date    - 11/2/2012
+  *
+  *    @details -
+  *
+  *    Project  - %PROJECT%
+  */
+
+
+#include "net/web_data_model/webdatamodel.h"
+#include "control_hub/computer_control/knowledge_base/database/world_state/field_world.h"
+
+// TODO: dynamic library, change to static library in the future
+#include "qjson/parser.h"
+#include "qjson/serializer.h"
+
+#include <QString>
+
+WebDataModel::WebDataModel()
+{
+    qsrand(QTime::currentTime().msec());
+}
+
+QString WebDataModel::createWebData(void){
+
+    QVariantMap webDataMap;
+
+    robot_return_info_mutex_.lock();
+    QString number_of_package_temp = "     ";
+    QString number_of_package_real = QString::number(world.number_of_package());
+
+    QString cell_voltage = QString::number(world.cell_voltage(),'f',4);
+    QString capacitor_voltage = QString::number(world.capacitor_voltage(),'f',4);
+    QString kicking_voltage = QString::number(fRand(1.0, 10.0),'f',4);
+    QString current_level = QString::number(fRand(1.0, 10.0),'f',4);
+
+
+    cell_voltage.resize(6);
+    capacitor_voltage.resize(6);
+    kicking_voltage.resize(6);
+    current_level.resize(6);
+
+    webDataMap.insert("cell_voltage", cell_voltage);
+    webDataMap.insert("capacitor_voltage",capacitor_voltage);
+    webDataMap.insert("kicking_voltage", kicking_voltage);
+    webDataMap.insert("current_level", current_level);
+
+
+    webDataMap.insert("number_of_package", number_of_package_temp.remove(5-number_of_package_real.length(),5).append(number_of_package_real));
+    robot_return_info_mutex_.unlock();
+    QJson::Serializer serializer;
+    QByteArray webDataJson = serializer.serialize(webDataMap);
+
+//    QString test = "{ \"capacitor_voltage\" : 6.09369, \"cell_voltage\" : 8.19929, \"current_level\" : 2.07312, \"kicking_voltage\" : 1.80258, \"number_of_package\" : 6 }";
+
+
+
+
+
+    return QString(webDataJson);
+//    return test;
+}
+
+
+double WebDataModel::fRand(double fMin, double fMax)
+{
+    double f = (double)rand() / RAND_MAX;
+    return fMin + f * (fMax - fMin);
+}
+
+
+int WebDataModel::iRand(int iMin, int iMax)
+{
+    return iMin + (int)((double)rand() / (RAND_MAX+1) * (iMax-iMin+1));
+}

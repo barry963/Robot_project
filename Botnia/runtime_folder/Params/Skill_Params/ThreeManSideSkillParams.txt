@@ -1,0 +1,12 @@
+###############################################
+# Parameters for the ThreeManSide
+###############################################
+
+##offset from goalie box + 1 player radius
+LINE_X_OFFSET       0.02
+
+## if we're within this angle, we kick.
+KICK_ANGLE		.6
+
+## if we're within this angle, we kick.
+KICK_DIST 		.15

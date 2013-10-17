@@ -1,0 +1,23 @@
+PLAY Two Attackers, Screen 1
+
+APPLICABLE offense
+DONE aborted !offense
+
+TIMEOUT 10
+
+OROLE 0 closest_to_shot
+
+ROLE 1
+	shoot A
+	none
+ROLE 2
+	block 320 900 -1
+	none
+ROLE 3
+	mark 0 from_shot
+	none
+ROLE 4
+	defend_line { -3025 2025} {-3025 -2025} 1275 3025
+	none
+
+

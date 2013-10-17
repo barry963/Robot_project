@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples
+END
+AddPerson.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/AddPerson.java
+END
+ListPeople.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/ListPeople.java
+END
+add_person.cc
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/add_person.cc
+END
+addressbook.proto
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/addressbook.proto
+END
+list_people.cc
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/list_people.cc
+END
+add_person.py
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/add_person.py
+END
+list_people.py
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/list_people.py
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/README.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/examples/Makefile
+END

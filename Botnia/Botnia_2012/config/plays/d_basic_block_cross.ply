@@ -1,0 +1,23 @@
+PLAY Basic Defense, Block, Cross Defense
+
+APPLICABLE defense !in_our_corner {ball_x_lt -1500}
+DONE completed offense
+DONE completed {!ball_x_lt -1500}
+DONE aborted in_our_corner
+
+OROLE 0 best_shot
+
+ROLE 1
+	active_def
+	none
+ROLE 2
+	block 550 750 1
+	none
+ROLE 3
+	defend_line {B -1100 -250} {B -700 -250} 0 200
+	none
+ROLE 4
+	mark 0
+	none
+
+

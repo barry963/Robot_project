@@ -1,0 +1,20 @@
+PLAY Cross Defense 1
+
+APPLICABLE defense {!ball_x_lt -900} {ball_absy_gt 350}
+DONE completed offense
+DONE aborted {ball_x_lt -900}
+
+OROLE 0 best_shot
+
+ROLE 1
+	active_def
+	none
+ROLE 2
+	block 320 500 1
+	none
+ROLE 3
+	defend_line {B -1075 -175} {B -400 -175} 0 200
+	none
+ROLE 4
+	mark 0 from_ball
+	none

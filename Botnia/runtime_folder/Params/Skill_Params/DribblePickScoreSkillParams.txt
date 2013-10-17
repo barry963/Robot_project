@@ -1,0 +1,16 @@
+#############################################
+# Parameters for the DribblePickScore Skill
+#############################################
+
+#Use SpinAroundBall until our angle is this close to where we're trying to go
+TURN_HAPPY_ANGLE      .5
+
+#Then use maneuver will ball and go this far past and forward of the last robot in the pick wall
+PAST_DIST             .2
+FORWARD_DIST          .2
+
+#but make sure you stay this far behind the pick wall (not including player radii)
+PICK_BUFFER           .05
+
+#This decides when we're close enough to the wall to start driving around it.
+CLOSE_DIST            .1

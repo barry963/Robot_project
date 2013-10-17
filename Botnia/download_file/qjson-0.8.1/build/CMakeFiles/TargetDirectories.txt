@@ -1,0 +1,2 @@
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/src/CMakeFiles/qjson.dir
+/home/barry963/Botnia/download_file/qjson-0.8.1/build/CMakeFiles/uninstall.dir

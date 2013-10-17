@@ -1,0 +1,12 @@
+###############################################
+# Parameters for the ThreeManBlocker
+###############################################
+
+##offset from goalie box - 1 player radius
+LINE_X_OFFSET       0.0
+
+##how far out we can go if defender is being bad
+UPPER_X_OFFSET		0.0			
+
+##how out of position the defender can be before it's marked as bad
+DEFENDER_DIST		.2

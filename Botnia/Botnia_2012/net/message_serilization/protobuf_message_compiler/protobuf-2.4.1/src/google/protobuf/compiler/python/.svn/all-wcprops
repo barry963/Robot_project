@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/compiler/python
+END
+python_plugin_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/compiler/python/python_plugin_unittest.cc
+END
+python_generator.cc
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/compiler/python/python_generator.cc
+END
+python_generator.h
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/compiler/python/python_generator.h
+END

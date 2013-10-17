@@ -1,0 +1,7 @@
+In this folder
+
+control_hub is controller
+user_interface is for user interface
+config is for global settings
+
+the rest folders contain the sensing and the excution channel

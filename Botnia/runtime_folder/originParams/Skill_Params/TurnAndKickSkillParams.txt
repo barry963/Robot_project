@@ -1,0 +1,26 @@
+#############################################
+# Parameters for the TurnAndKick Skill
+#############################################
+
+###The distance the ball travels after being kicked that the skill
+###calculates updates to itself
+UPDATE_DISTANCE	0.10 
+
+###How close it gets to facing the right direction before kicking:
+###   These are the 2 values that get modified in update()
+STILL_KICK_THRESHHOLD 0.10  
+MOVING_KICK_THRESHHOLD 0.20
+
+### Changeover point from SpinAroundBall to ManeuverWithBall, uses ball speed
+SPEED_THRESHHOLD .4
+
+### Time after kicking (in seconds) that the skill may still update itself
+UPDATE_TIMEOUT  .25
+
+### Angle at which we decide something interfered with our kick and we shouldn't update.
+IGNORE_ANGLE .5
+
+### Angle to use if we want a precise kick
+PRECISION_ANGLE .08
+
+ENTERBOX_CAUTION_DIST .2

@@ -1,0 +1,103 @@
+#historisis factor using for play transitions
+PLAY_TRANSITION_HISTORISIS 0.02
+
+##########  Vision Data  ###################
+FRAME_RATE 60.000000
+
+# USED FOR OUR ROBOTS...
+LATENCY_FRAMES 11.000000
+
+# USED FOR OPPONENTS AND THE BALL...
+OTHER_LATENCY_FRAMES 11.000000
+
+#integer
+OUR_LOST_FRAMES 30
+
+#integer
+BALL_LOST_FRAMES 5
+
+#integer
+OPPONENT_LOST_FRAMES 5
+
+#team we are on
+TEAM 1
+
+##########  Sizes  #########################
+#球半径
+BALL_RADIUS 0.0210000
+PLAYER_RADIUS 0.089000
+OPPONENT_RADIUS 0.090000
+WALL_BUFFER 0.150000
+
+#Position marker not being in the center of the robot...
+VISION_OFFSET 0.000000
+
+####### Possession constants ######
+GAIN_POSSESSION_FRAMES 20
+LOSE_POSSESSION_FRAMES 4
+
+#带球点到机器人中心距离,通过调整这两个参数，调整控球点
+DIST_TO_DRIBBLER 0.07500 ##0.075
+#带球杆长度
+DRIBBLER_LENGTH 0.030000 #0.14
+
+# distance from dribbler that we say we have possession
+POSSESSION_GAIN_TOLERANCE    0.06
+POSSESSION_LOSE_TOLERANCE    0.09
+
+#default speed to run the dribbler at.
+# 1 = SLOW,   2 = MID,    3 = FAST
+DEFAULT_DRIBBLER_SPEED  3
+
+####### Robot data ######
+#对机器人的角度偏差进行修正
+ANGLE_OFFSET_ROBOT_ZERO 0.000000
+ANGLE_OFFSET_ROBOT_ONE 0.000000
+ANGLE_OFFSET_ROBOT_TWO 0.000000
+ANGLE_OFFSET_ROBOT_THREE 0.000000
+ANGLE_OFFSET_ROBOT_FOUR 0.000000
+
+##########  Trajectory Data  ###############
+# 2002 Obstacle Avoidance Params
+SLOW_CLEARANCE                   0.01
+FAST_CLEARANCE                   0.08
+FAST_CLEARANCE_VELOCITY          0.7
+MAX_WALL_OFFSET                  0.05
+MAX_WALL_OFFSET_DISTANCE         0.3
+
+# 2001 Obstacle Avoidance Params 
+OBSTACLE_CLEARANCE               0.1
+MAX_AVOIDANCE_ACCEL              2.5
+MAX_AVOIDANCE_VEL                1.5
+  
+##########  Network Ports ##################
+#this is Athena
+SERVER_ADDR 127.0.0.1
+VISION_PORT 4545
+SIMULATOR_PORT 4646
+
+##########  Team Data  #####################
+GOALIE_INDEX 4
+
+########  GUI Parameters #########
+#1-n, else ignore this #
+COLOR_SCHEME 2
+
+#1=on 0=off
+COMPLEX_MODE 1
+
+########  COM port used for wireless #########
+########  Options are COM1 or COM2   #########
+COM_PORT COM1
+
+######## 1 = JinWoo's Board, 2 = Michael Jordan's Board
+WIRLESS_BOARD 1
+
+##### 128 = High Priority, 256 = Realtime Priority
+THREAD_PRIORITY 128
+
+##Opponent Speeds
+OPPONENT_SPEED.MAX_ACCELERATION   5.0
+OPPONENT_SPEED.MAX_VELOCITY       2.0
+
+ENABLE_PREDICTION_AND_FILTERING_OPPONENTS 1

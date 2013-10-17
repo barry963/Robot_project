@@ -1,0 +1,6 @@
+###############################################
+# Parameters for the FacilatePass Skill 
+###############################################
+OFFSET 10
+CONE_SIZE 120
+OFFSET_Y 0.36

@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/wireless
+END
+WirelessSender.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/WirelessSender.cpp
+END
+DECT_operation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/botnia_botnia/!svn/ver/7/Botnia_2012/wireless/DECT_operation.cpp
+END
+joystick.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/joystick.cpp
+END
+wireless_send_thread.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/botnia_botnia/!svn/ver/7/Botnia_2012/wireless/wireless_send_thread.h
+END
+wireless_robot.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/wireless_robot.cpp
+END
+wireless_refbox.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/wireless_refbox.cpp
+END
+WirelessSender.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/WirelessSender.h
+END
+port_operation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/wireless/port_operation.cpp
+END
+joystick.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/joystick.h
+END
+DECT_operation.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/botnia_botnia/!svn/ver/7/Botnia_2012/wireless/DECT_operation.h
+END
+serial_server.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/botnia_botnia/!svn/ver/27/Botnia_2012/wireless/serial_server.cpp
+END
+wireless_robot.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/wireless_robot.h
+END
+wireless_refbox.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/wireless_refbox.h
+END
+port_operation.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/botnia_botnia/!svn/ver/7/Botnia_2012/wireless/port_operation.h
+END
+serial_server.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/botnia_botnia/!svn/ver/27/Botnia_2012/wireless/serial_server.h
+END
+commandsender.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/commandsender.cpp
+END
+serial.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/serial.cpp
+END
+transparent_operation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/botnia_botnia/!svn/ver/7/Botnia_2012/wireless/transparent_operation.cpp
+END
+cnComm.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/cnComm.h
+END
+RCWirelessSender.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/RCWirelessSender.cpp
+END
+commandsender.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/commandsender.h
+END
+serial.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/serial.h
+END
+wireless_parametres.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/botnia_botnia/!svn/ver/27/Botnia_2012/wireless/wireless_parametres.h
+END
+transparent_operation.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/botnia_botnia/!svn/ver/7/Botnia_2012/wireless/transparent_operation.h
+END
+SLIP_operation.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/botnia_botnia/!svn/ver/31/Botnia_2012/wireless/SLIP_operation.cpp
+END
+RCWirelessSender.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/wireless/RCWirelessSender.h
+END
+SLIP_operation.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/botnia_botnia/!svn/ver/27/Botnia_2012/wireless/SLIP_operation.h
+END

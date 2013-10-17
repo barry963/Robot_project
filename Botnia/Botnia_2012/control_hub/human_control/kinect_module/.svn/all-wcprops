@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/botnia_botnia/!svn/ver/16/Botnia_2012/control_hub/human_control/kinect_module
+END
+kinect_module.c
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/botnia_botnia/!svn/ver/16/Botnia_2012/control_hub/human_control/kinect_module/kinect_module.c
+END
+kinect_module.h
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/botnia_botnia/!svn/ver/16/Botnia_2012/control_hub/human_control/kinect_module/kinect_module.h
+END
+libfreenect.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/botnia_botnia/!svn/ver/16/Botnia_2012/control_hub/human_control/kinect_module/libfreenect.h
+END
+ncurses_for_kinect.h
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/botnia_botnia/!svn/ver/16/Botnia_2012/control_hub/human_control/kinect_module/ncurses_for_kinect.h
+END
+libfreenect-master.zip
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/botnia_botnia/!svn/ver/16/Botnia_2012/control_hub/human_control/kinect_module/libfreenect-master.zip
+END

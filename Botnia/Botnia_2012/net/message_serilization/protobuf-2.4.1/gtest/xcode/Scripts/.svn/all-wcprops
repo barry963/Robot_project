@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Scripts
+END
+runtests.sh
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Scripts/runtests.sh
+END
+versiongenerate.py
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf-2.4.1/gtest/xcode/Scripts/versiongenerate.py
+END

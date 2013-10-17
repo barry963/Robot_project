@@ -1,0 +1,17 @@
+###############################################
+# Parameters for the PullBallOffCorner Skill 
+###############################################
+###ball should be LESS than this from side for skill to be valid
+CORNER_THRESH 0.10					
+
+NEAR_DIST 1.03
+
+FAR_DIST  2.00
+
+###Speed at which you will like the robot to rotate
+ROTATION_SPEED 0.8
+
+FAR_TO_NEAR_LOC_TOL 0.09
+FAR_TO_NEAR_ROT_TOL 0.40
+
+NEAR_TO_FAR_TOL 1.0

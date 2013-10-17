@@ -1,0 +1,21 @@
+PLAY Two Attackers, Shoot 2
+
+APPLICABLE offense
+DONE aborted !offense
+
+TIMEOUT 10
+
+ROLE 1
+	shoot N
+	none
+ROLE 2
+	block 320 900 -1
+	none
+ROLE 3
+	position_for_pass { R { 1000 0 } { 700 0 } 500 }
+	none
+ROLE 4
+	defend_line { -3025 2025 } { -3025 -2025 } 1375 3025
+	none
+
+

@@ -1,0 +1,3 @@
+# Parameters for Kicking Challenge
+
+DISTANCE_GOAL 1.2

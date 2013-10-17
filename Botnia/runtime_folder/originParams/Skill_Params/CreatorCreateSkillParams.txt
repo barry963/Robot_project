@@ -1,0 +1,18 @@
+#############################################
+# Parameters for the CreatorCreate Skill
+#############################################
+
+# Angle we would like to add
+ANGLE_BIAS		0.4
+
+#Distance between Special-Op-Creator and Creator
+GAP                 0.15
+
+#Distance between the robot and the pass destination
+PASS_DISTANCE 0.40
+
+#How many parameter radius away from the goalie box?
+DISTANCE_FACTOR 4.5
+
+#The angle should be this times PI/2 for the kicker to be armed
+KICK_RATIO 0.95

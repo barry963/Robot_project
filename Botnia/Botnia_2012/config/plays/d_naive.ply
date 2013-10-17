@@ -1,0 +1,20 @@
+PLAY Naive Defense
+
+APPLICABLE defense
+DONE completed offense
+FIXEDROLES 3 4 1 2
+
+ROLE 1
+	active_def
+	none
+ROLE 2
+	defend_point {-3025 250} 0 500
+	none
+ROLE 3
+	defend_point {-3025 -250} 0 1000
+	none
+ROLE 4
+	defend_lane {BB 0 -300} {BB -500 -300}
+	none
+
+

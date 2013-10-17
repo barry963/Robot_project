@@ -1,0 +1,21 @@
+PLAY Two Attackers, Deflect 1
+
+APPLICABLE offense
+DONE aborted !offense
+
+TIMEOUT 10
+
+ROLE 1
+	shoot D 1
+	none
+ROLE 2
+	defend_lane {B 1100 -350} {B 600 -150}
+	none
+ROLE 3
+	block 320 900 -1
+	none
+ROLE 4
+	defend_line { -1400 1150 } { -1400 -1150 } 1100 1400
+	none
+
+

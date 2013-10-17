@@ -1,0 +1,22 @@
+#TandemDefenderSkillParams
+
+
+#Ball Speed (y-component) at which to hold position and not swap
+BALL_SPEED    .0
+
+#X position when the ball is counted as too close
+LOW_X   0.0
+
+# distance across splitline needed before changeover occurs
+CHANGE_BUFFER     .05
+
+# angle at which we should arm the kicker
+KICK_ANGLE        .9
+# angle at which we should aim
+AIM_ANGLE        .7
+#distance at which we should go after and kick the ball (not inluding radius)
+KICK_DIST         .10
+
+###Distance to dive along ( 0.0 = 1 radius from goal box)
+DIVE_OFFSET   0.0
+

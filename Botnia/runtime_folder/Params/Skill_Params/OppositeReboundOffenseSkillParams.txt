@@ -1,0 +1,15 @@
+#############################################
+# Parameters for the OppositeReboundOffense Skill
+#############################################
+###Starting distance between the Aggressor and Goal Line
+BASE_AG    0.7634     #meters
+###Ratio to get Starting Aggressor- Creater Distance
+RATIO_AC    1.3     
+###Ratio to get Starting Goal Line- Creater Distance
+RATIO_CG    1.0
+###Default X position to go
+DEFAULT_X   0.9
+###Default Y position to go
+DEFAULT_Y    0.8
+
+KICK_RATIO 0.95

@@ -1,0 +1,30 @@
+#############################################
+# Parameters for the BehindScreenOffense Skill
+#############################################
+
+
+###Params to define the default position to go to when not covering an
+###opponent.  The position is defined by:
+### (THEIR_GOAL_LINE + GOAL_LINE_OFFSET, sideline +- SIDELINE_OFFSET) depending on 
+###which sideline is closest
+#GOAL_LINE_OFFSET		0.60	#meters	
+#SIDELINE_OFFSET		0.60	#meters	
+
+
+#Offsets for default location.
+DEF_X_OFFSET		0.20	#meters
+DEF_Y_OFFSET		0.40	#meters
+
+#Dist between our robot and opponent (the sides of the robots, not the centers)
+SCREEN_DIST			0.05	#meters
+
+#Threshold for switching sides, used in historesis
+SWITCH_THRESH		0.15
+
+#Max distance an opponent can be from the aggressor and still get screened
+MAX_SCREEN_DISTANCE 1.20
+
+#Min distance an opponent can be from the aggressor and still get screened
+MIN_SCREEN_DISTANCE 0.64
+
+

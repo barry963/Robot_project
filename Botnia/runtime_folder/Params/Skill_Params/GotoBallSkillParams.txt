@@ -1,0 +1,10 @@
+
+distance         0.200
+
+#angletolmax      0.227			#13*PI/180
+#angletolmax      0.150			#good value
+angletolmax      0.300
+
+#angletolmin      0.175			#10*PI/180
+#angletolmin      0.130			#good value
+angletolmin      0.130

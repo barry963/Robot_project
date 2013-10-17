@@ -1,0 +1,20 @@
+PLAY Our Penalty positioning
+
+APPLICABLE our_penalty
+TIMEOUT 0
+FIXEDROLES 1 2 3 4
+
+ROLE 1
+	position_for_kick
+	none
+ROLE 2
+	position_for_penalty
+	none
+ROLE 3
+	position_for_penalty
+	none
+ROLE 4
+	position_for_penalty
+	none
+
+

@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs
+END
+structurally_valid_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/structurally_valid_unittest.cc
+END
+structurally_valid.cc
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/structurally_valid.cc
+END
+strutil_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/strutil_unittest.cc
+END
+strutil.cc
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/strutil.cc
+END
+strutil.h
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/strutil.h
+END
+substitute.cc
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/substitute.cc
+END
+substitute.h
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/substitute.h
+END
+stl_util-inl.h
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/stl_util-inl.h
+END
+once_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/once_unittest.cc
+END
+once.cc
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/once.cc
+END
+hash.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/hash.h
+END
+once.h
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/once.h
+END
+common_unittest.cc
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/common_unittest.cc
+END
+common.cc
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/common.cc
+END
+map-util.h
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/map-util.h
+END
+common.h
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/net/message_serilization/protobuf_message_compiler/protobuf-2.4.1/src/google/protobuf/stubs/common.h
+END

@@ -1,0 +1,15 @@
+#############################################
+# Parameters for the BlockerGainPosession Skill
+#############################################
+
+BACKUP_DIST   .02 
+BACKUP_SPEED  .05 
+BALL_CUSHION  .05
+DRIBBLE_DIST  .10
+SPIN_ANGLE    .5
+
+BEHIND_DIST   .01
+
+FACING_BALL_ANGLE .8
+
+POS_FRAMES    20

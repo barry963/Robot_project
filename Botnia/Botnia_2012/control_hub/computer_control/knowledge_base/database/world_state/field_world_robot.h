@@ -1,0 +1,334 @@
+#ifndef FIELD_WORLD_ROBOT_H
+#define FIELD_WORLD_ROBOT_H
+
+/* LICENSE:
+  =========================================================================
+    CMDragons'02 RoboCup F180 Source Code Release
+  -------------------------------------------------------------------------
+    Copyright (C) 2002 Manuela Veloso, Brett Browning, Mike Bowling,
+                       James Bruce; {mmv, brettb, mhb, jbruce}@cs.cmu.edu
+    School of Computer Science, Carnegie Mellon University
+  -------------------------------------------------------------------------
+    This software is distributed under the GNU General Public License,
+    version 2.  If you do not have a copy of this licence, visit
+    www.gnu.org, or write: Free Software Foundation, 59 Temple Place,
+    Suite 330 Boston, MA 02111-1307 USA.  This program is distributed
+    in the hope that it will be useful, but WITHOUT ANY WARRANTY,
+    including MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ------------------------------------------------------------------------- */
+
+#include "user_interface/field_related/motion_simulation_tools/field_util.h"
+#include "control_hub/computer_control/intelligence/world_analysor/analizing_tools/field_geometry.h"
+#include "user_interface/field_related/field_constants.h"
+#include "user_interface/field_related/field_global_function.h"
+#include "field_world.h"
+#include "field_world_obstacle.h"
+
+
+class World; // this because these two class include eachother, so that it can not know that comes first and  what comes last
+
+
+// it seems this struct is use for whether some vector is inside or not
+// it also stores infomation from the bounds of the boxes
+struct box
+{
+    MyVector2d min,max;
+
+    MyVector2d bound(MyVector2d p)
+    {
+        return(MyVector2d(::bound(p.x,min.x,max.x),::bound(p.y,min.y,max.y)));
+    }
+    bool inside(MyVector2d p)
+    {
+        return((p.x >= min.x) && (p.x <= max.x) &&
+               (p.y >= min.y) && (p.y <= max.y));
+    }
+};
+
+
+
+//==== Behaviors =====================================================//
+
+class Robot
+{
+public:
+    // interface
+
+    // this enum define the type of going to a point
+    enum GotoPointType
+    {
+        GotoPointMove    = 0,
+        GotoPointShoot   = 1,
+        GotoPointDribble = 2,
+        GotoPointPass    = 3,
+        GotoPointMoveForw= 4
+    };
+
+    // in this stuct, it defines the parameters that will be stored to run the robots
+    struct RobotParam
+    {
+        double maxSpeed;						//最高速度
+        double maxAccSpeed;					//最大加速度
+                                                //射门速度
+        double maxRotateSpeed;			//最高旋转速度
+        double maxRotateAccSpeed;		//最高旋转加速度
+
+    };
+
+    // it seems in this struct, sensors infomation is stored
+    struct Sensors
+    {
+        // class that stores all the obstables
+        obstacles obs;
+
+        MyVector2d r_pos,r_vel,r_fwd;
+
+        double r_ang,r_ang_vel,ball_dist,ball_dist_from_wall;
+        MyVector2d ball_pos,ball_vel,ball_rel;
+
+        MyVector2d own_goal_to_ball;
+        MyVector2d ball_to_opp_goal;
+        MyVector2d good_ball_dir;
+        bool on_goal;
+
+        MyVector2d opp_goal_rel;
+        MyVector2d ball_target,ball_target_rel;
+        MyVector2d robot_ball;
+        bool ball_on_front,ball_in_front;
+
+        float ball_conf;
+        int spin_dir; // 1=CCW, -1=CW
+        bool can_drive;
+        bool ball_in_opp_goal;
+    };
+
+
+
+    // it seems it stores all infomation related to navigaion
+    struct NavTarget
+    {
+        // navigation target
+        MyVector2d pos;
+        MyVector2d vel;
+        double angle;
+        int obs;
+
+        // raw robot velocities
+        MyVector3d vel_xya;
+
+        // flags
+        bool direct;   // raw velocities (not a navigation target)
+        int dribble_power;	//带球能量
+        int kick_power;     //踢球能量
+        bool bchipkick;			//挑球方式 type of ball pick
+
+        bool spin;     // spin to target point
+        GotoPointType type;
+
+        // how much left to do
+        Status status;
+
+        //lu_test add
+        void DataDisplay()
+        {
+            //printf("\n\nNavTarget pos: (%f, %f), vel: (%f, %f), angle: %f, obs: %d, raw_vel: %f, %f, %f \n\n",pos.x,pos.y,vel.x,vel.y,angle,obs,vel_xya.x,vel_xya.y,vel_xya.z);
+            qDebug()<<"\nNavTarget pos:("<<pos.x<<", "<<pos.y<<"), vel: ("<<vel.x<<", "<<vel.y<<"), angle: "<<angle<<", obs:"<<obs<< ", raw_vel:("<<vel_xya.x<<", "<<vel_xya.y<<", "<<vel_xya.z<<")\n";
+        }
+
+    };
+
+
+    // it seems it stores the path of the robot
+    struct Trajectory
+    {
+        bool bValid;
+        double vx, vy, va;
+        int dribble_power;
+        int kick_power;
+        bool bchipkick;
+
+        double eta;
+
+        Trajectory()
+        {
+            ;
+        }
+
+        Trajectory(double _vx, double _vy, double _va,
+                   double _eta = 0.0,
+                   int _kick_power = 0, bool _dribble_power = 0,bool _bchipkick = false)
+        {
+            bValid=true;
+            vx = _vx;
+            vy = _vy;
+            va = _va;
+            kick_power = _kick_power;
+            dribble_power = _dribble_power;
+            bchipkick=_bchipkick;
+            eta = _eta;
+        }
+        void DataDisplay()//lu_test add
+        {
+            qDebug()<<"Trajectory: bVliad: "<<bValid<<" ,speed:"<<vx<<vy<<va<<" ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";
+        }
+    };
+
+    // it seems it stores infomation of the command type
+
+    // TODO(gaoyuankidult@gmail.com): is each command type
+    // related to the one function in skil
+    enum CommandType
+    {
+        CmdError=-1,
+        CmdMoveBall=0,    // target, ball_target, angle_tolerance, ball_speed
+        CmdSteal,       // target
+        CmdDribble,     // target, angle
+        CmdRecieveBall, // (no parameters)
+        CmdPosition,    // target, velocity, angle, obs, goto_point_type
+        CmdSpin         // target, ball_speed, obs
+    };
+
+    // this enum define the type of shooting
+    enum BallShotType
+    {
+        BallShotOnGoal,   // shoot to the goal
+        BallShotClear,    // TODO(gaoyuankidult@gmail.com): what is this?
+        BallShotPass    // shoot pass the ball
+    };
+
+
+    // struct that contains the infomation of the robot command
+    struct RobotCommand
+    {
+        // stores the infomation of the command type
+        CommandType cmd;
+
+        // TODO: what is this obstacle flag
+        // it seems it defines what to observe
+        int observation_type; // obstacle flags
+
+        // stores the infomaion of the posiotion that we want to go and the infomation of
+        // velocity of going there?
+        MyVector2d target,velocity;
+        // the position the ball would like to go ?
+        MyVector2d ball_target; // where we'd like the ball to go if moving ball
+
+        // stores the angle of the robot and the tolerance of the angle
+        double angle,angle_tolerance;
+
+        // stores the type of shoot
+        BallShotType ball_shot_type;
+
+        // stores the infomation of why going to some point
+        GotoPointType goto_point_type;
+        // double ball_speed;
+    };
+
+    // this enum stores the types of strategy that will be displayed on the software
+    enum SMState
+    {
+        SMGotoBall,
+        SMFaceBall,
+        SMApproachBall,
+        SMPullBall,
+        SMFaceTarget,
+        SMDriveToGoal,
+        SMKick,
+        SMSpinAtBall,
+        SMPosition,
+        SMRecieveBall,
+        SMWait
+    };
+
+    // member variables
+public:
+
+    // instance of sensors to store infomation on the environment
+    Sensors sensors;
+
+    // TODO(gaoyuankidut@gmail.com)
+    int my_id;
+
+private:
+    SMState state,last_state;
+    CommandType last_cmd;
+
+    //目标相对机器人的位置差
+    //target location compared to the robot
+    MyVector2d target_rel;
+
+    //target ball location compared to the robot
+    MyVector2d target_ball_rel;
+
+    //进入一个状态的开始时间
+    double state_start_time; // timestamp of when we first got in state
+    double start_dist_from_ball;
+    //在一个状态中保持的时间
+    double time_in_state;
+    double last_dist_from_target;
+    double last_target_da;
+    double initial_ball_dist; // used by approach ball
+    int spin_dir;
+    double last_kick_timestamp;
+    bool omni;
+    bool state_changed;
+
+public:
+    void init(int _my_id);
+    void updateSensors(World &world);
+    SMState gotoBall    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState faceBall    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState approachBall(World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState pullBall    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState faceTarget  (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState driveToGoal (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState kick        (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState spinAtBall  (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState position    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState recieveBall (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState wait        (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+
+    Status run(World &world,RobotCommand &cmd,Trajectory &tcmd);
+    Status run(World &world,RobotCommand &cmd);
+    double time(World &world,RobotCommand &cmd);
+
+    // in goto-point.cc
+    float motion_time_1d(float dx,float vel0,float vel1,
+                         float max_vel,float max_accel,
+                         float &t_accel,float &t_cruise,float &t_decel);
+    double max_speed(double dx,double max_a);
+    void compute_motion_1d(double x0, double v0, double v1,
+                           double a_max, double v_max, double a_factor,
+                           double &traj_accel, double &traj_time);
+    void compute_motion_2d(MyVector2d x0, MyVector2d v0, MyVector2d v1,
+                           double a_max, double v_max, double a_factor,
+                           MyVector2d &traj_accel, double &time);
+    double compute_stop(double v, double max_a);
+    Trajectory goto_point(World &world, int me,
+                          MyVector2d target_pos, MyVector2d target_vel,
+                          double target_ang,
+                          GotoPointType type = GotoPointMove);
+    Trajectory goto_point_omni(World &world, int me,
+                               MyVector2d target_pos, MyVector2d target_vel,
+                               double target_ang,
+                               GotoPointType type = GotoPointMove);
+    Trajectory goto_point_diff(World &world, int me,
+                               MyVector2d target_pos, MyVector2d target_vel,
+                               double target_ang,
+                               GotoPointType type = GotoPointMove);
+    Trajectory nav_to_point(World &world, int me,
+                            MyVector2d target_pos, MyVector2d target_vel,
+                            double target_angle,int obs_flags,
+                            GotoPointType type = GotoPointMove);
+    Trajectory goto_point_speed(World &world, int me,
+                                MyVector2d target_pos,MyVector2d target_vel,
+                                double target_angle,
+                                GotoPointType type = GotoPointMove);
+    Trajectory spin_to_point(World &world, int me,
+                             MyVector2d target_pos,
+                             double target_ang_vel);
+};
+
+
+
+#endif // FIELD_WORLD_ROBOT_H

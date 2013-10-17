@@ -1,0 +1,37 @@
+#############################################
+# Parameters for the CreatorLookForwardPass Skill
+#############################################
+
+#zone1 line
+zone1Line   -0.96
+
+#zone2 line
+zone2Line -0.192
+
+#zone3 line
+zone3Line 0.4352
+
+#Yline is this much distance from tight sector
+yoffset -0.2
+
+#historisis factor
+hyster 0.064
+
+#If this is equal to 1 Passing is turned ON for singleassist otherwiseOFF
+PASSING 0
+
+#chance that we move along a line like normal
+LINE_CHANCE       0.5
+
+#width of zone to find a y line in
+Y_ZONE_WIDTH      0.3
+
+#position to go to to mess up defense (relative to in front of goalie box)
+X_POS             -0.1
+Y_POS              0.0
+
+#size of area to find the above position in.
+SPOT_SIZE         .08
+
+#This time PI/2 should be minimum angle for kicker to be armed.
+FACTOR     0.9

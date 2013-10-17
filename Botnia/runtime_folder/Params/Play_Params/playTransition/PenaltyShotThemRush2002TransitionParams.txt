@@ -1,0 +1,5 @@
+#############################################
+# Parameters for the Penalty Shot Them Rush 2002 Transition
+#############################################
+
+TIMEOUT 0.5

@@ -1,0 +1,15 @@
+#############################################
+# Parameters for the RemoveBallHelp Skill
+#############################################
+
+#How much X away from goalie box
+OFFSET_X 0.0
+
+#How much Y in from blocker's location?
+OFFSET_Y 0.1
+
+#The rotation of defender in ANGLE_OFFSET * PI
+ANGLE_OFFSET 0.6666
+
+#How much should blocker be turned to make a change?
+ANGLE_BOUNDARY 0.05

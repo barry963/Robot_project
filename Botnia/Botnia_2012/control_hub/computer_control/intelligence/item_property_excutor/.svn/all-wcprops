@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/intelligence/item_property_excutor
+END
+field_tracker.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/intelligence/item_property_excutor/field_tracker.cpp
+END
+field_robot_tracker.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/intelligence/item_property_excutor/field_robot_tracker.cpp
+END
+field_tracker.h
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/intelligence/item_property_excutor/field_tracker.h
+END
+field_ball_tracker.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/intelligence/item_property_excutor/field_ball_tracker.cpp
+END
+field_robot_tracker.h
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/intelligence/item_property_excutor/field_robot_tracker.h
+END
+field_ball_tracker.h
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/botnia_botnia/!svn/ver/4/Botnia_2012/control_hub/computer_control/intelligence/item_property_excutor/field_ball_tracker.h
+END

@@ -1,0 +1,23 @@
+#############################################
+
+# Parameters for the TightDefenseBlocker Skill
+
+#############################################
+
+
+SCREEN_DIST			0.21	#in meters
+GOAL_LINE_OFFSET	0.0275	#gap between goalie and wall should be smaller than ball diameter
+FACE_ANGLE			1.56	#direction to face
+
+#distance and angle thresholds at which we arm the kicker
+KICK_DIST       .18
+KICK_ANGLE      .5
+
+#distance (ball to command) that we will go out and kick it (not including radius)
+CLOSE_DIST      .09
+
+##how out of position the defender can be before it's marked as bad
+DEFENDER_DIST		.3
+
+## if the ball is going faster than this, do try to run and kick it.
+MAX_BALL_SPEED		.05

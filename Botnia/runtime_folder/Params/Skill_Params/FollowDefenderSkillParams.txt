@@ -1,0 +1,9 @@
+################################
+# Follow Defender Skill Params #
+################################
+
+#from defender
+X_OFFSET 0.0
+
+#from defender
+Y_OFFSET 0.25

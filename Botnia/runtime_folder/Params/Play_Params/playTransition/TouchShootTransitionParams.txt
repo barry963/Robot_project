@@ -1,0 +1,8 @@
+#############################################
+# Parameters for the TouchShoot Transition
+#############################################
+
+
+###The max time allowed for play
+MAX_ELAPSED_TIME	2.00
+MIN_BALL_SPEED      0.20

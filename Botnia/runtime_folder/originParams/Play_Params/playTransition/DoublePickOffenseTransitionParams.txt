@@ -1,0 +1,10 @@
+#############################################
+# Parameters for the DoublePickOffense Transition
+#############################################
+
+
+###The max time allowed for play
+MAX_ELAPSED_TIME	20.00
+
+#threshold for finishing
+FINISH_DIST       .2
