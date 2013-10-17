@@ -102,7 +102,8 @@ public:
 public:
     UDP()
     {
-        UdpSocket=NULL;
+        UdpSocket=new QUdpSocket();// lu_test initialize the original
+                                    //null variable
     }
     ~UDP()
     {
