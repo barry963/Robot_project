@@ -15,7 +15,8 @@
 #include "control_hub/computer_control/knowledge_base/algorithms/numeric_operation_templates.h"
 
 
-//多播发送流程
+
+//broadcast send process
 //1 socket
 //2 initialize the sockaddr_in structure
 //3 setsockopt IP_MULTICAST_LOOPBACK
@@ -23,7 +24,7 @@
 //5 sendto
 //6 close
 
-//多播接收流程
+//broadcast receive process
 //1 socket
 //2 setsockopt SO_REUSEADDR
 //3 bind
