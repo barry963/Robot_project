@@ -71,5 +71,20 @@ TODO: try to resolve this problem
 
 =================================================================================================
 
-2013.10.8
+2013.10.17
+Bug:
+1. the strategy server cannot show the location of yellow team when it goes to the blue team field.
+2. error at net_base.cpp 
+qint64 len = UdpSocket->writeDatagram((const char*)data,length,dest.addr,dest.port_);
+UdpSocket pointer null...
+
+solved
+The key is to figure out which pointer is null.
+
+3. null pointer at kdtree.h
+clear(root->child[0]);
+clear(root->child[1]);
+
+
+
 
