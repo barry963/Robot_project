@@ -74,6 +74,9 @@ TODO: try to resolve this problem
 2013.10.17
 Bug:
 1. the strategy server cannot show the location of yellow team when it goes to the blue team field.
+
+
+
 2. error at net_base.cpp 
 qint64 len = UdpSocket->writeDatagram((const char*)data,length,dest.addr,dest.port_);
 UdpSocket pointer null...
@@ -85,6 +88,12 @@ The key is to figure out which pointer is null.
 clear(root->child[0]);
 clear(root->child[1]);
 
+=================================================================================================
+2013.10.22
+Try to solve Bug1
+1. the location after parse
 
-
+two cameras and also no need to update, for recording purpose only
+solve 
+the problem, the key is the compare the updating code for two teams
 
