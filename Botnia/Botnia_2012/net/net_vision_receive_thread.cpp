@@ -34,7 +34,7 @@ void VisionReceiveThread::run()
 	if ( client.Receive ( packet ) )
 	{
 	    if(thread_terminated)break;
-	    //Â§ÑÁêÜÊï∞ÊçÆ
+	    //¥¶¿Ì ˝æ›
 
         VisionUpdate(packet);
 	}
@@ -86,13 +86,13 @@ int VisionUpdate(const SSL_WrapperPacket &f)
     //
 	if(camera_id==oldcamera_id)
 	{
-//	    qDebug() << "camera_id==oldcamera_id: ";
+        qDebug() << "camera_id==oldcamera_id: ";
 
 	    // hacked by Bin, may improve later
 #if 0
-	    //Âè™Êúâ‰∏ÄÂè∞ÊëÑÂÉèÊú∫Êï∞ÊçÆÁöÑÊÉÖÂÜµ
+	    //÷ª”–“ªÃ®…„œÒª˙ ˝æ›µƒ«Èøˆ
 	    update_mode=1;
-        //Ê∏ÖÈô§ÊâÄÊúâÁêÉ‰ø°ÊÅØ
+        //«Â≥˝À˘”–«Ú–≈œ¢
 	    for(i=0;i<MAX_BALLS;i++)
 	    {
 		vision_info.Balls[i].conf=0.0;
@@ -100,7 +100,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		VInfoRaw.BallInfos[0][i].conf=0.0;
 		VInfoRaw.BallInfos[1][i].conf=0.0;
 	    }
-	    //Ê∏ÖÈô§ÊâÄÊúâÊú∫Âô®‰∫∫‰ø°ÊÅØ
+	    //«Â≥˝À˘”–ª˙∆˜»À–≈œ¢
 	    for(i=0;i<MAX_ROBOTS;i++)
 	    {
 		vision_info.Robots[teamBlue][i].conf=0.0;
@@ -115,20 +115,20 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	}
 	else if(camera_id==1)
 	{
-//	    qDebug() << "camera_id==1";
-	    //Êúâ‰∏§Âè∞ÊëÑÂÉèÊú∫Êï∞ÊçÆÁöÑÊÉÖÂÜµ
+        qDebug() << "camera_id==1";
+	    //”–¡ΩÃ®…„œÒª˙ ˝æ›µƒ«Èøˆ
 	    update_mode=2;
 
 	    // hacked by Bin, may improve later
 #if 0
-	    //Ê∏ÖÈô§1Âè∑ÊëÑÂÉèÊú∫ÊâÄÊúâÁêÉ‰ø°ÊÅØ
+	    //«Â≥˝1∫≈…„œÒª˙À˘”–«Ú–≈œ¢
 	    for(i=0;i<MAX_BALLS;i++)
 	    {
 		vision_info.Balls[i].conf=0.0;
 		VInfoRaw.BallInfos[1][i].conf=0.0;
 	    }
 
-	    //Ê∏ÖÈô§1Âè∑ÊëÑÂÉèÊú∫ÊâÄÊúâÊú∫Âô®‰∫∫‰ø°ÊÅØ
+	    //«Â≥˝1∫≈…„œÒª˙À˘”–ª˙∆˜»À–≈œ¢
 	    for(i=0;i<MAX_ROBOTS;i++)
 	    {
 		vision_info.Robots[teamBlue][i].conf=0.0;
@@ -141,16 +141,19 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	}
 	else
 	{
-//	    qDebug() << "No need to update, for recording purpose only";
-	    //‰∏çÈúÄË¶ÅÊõ¥Êñ∞ÔºåÂè™ÊòØËÆ∞ÂΩïÁöÑÊÉÖÂÜµ
+
+        qDebug() << "No need to update, for recording purpose only";
+	    //≤ª–Ë“™∏¸–¬£¨÷ª «º«¬ºµƒ«Èøˆ
 	    update_mode=0;
-	    //Ê∏ÖÈô§ÊâÄÊúâÁêÉ‰ø°ÊÅØ
+
+
+	    //«Â≥˝À˘”–«Ú–≈œ¢
 	    for(i=0; i<MAX_BALLS; i++)
 	    {
 		VInfoRaw.BallInfos[0][i].conf=0.0;
 		VInfoRaw.BallInfos[1][i].conf=0.0;
 	    }
-	    //Ê∏ÖÈô§ÊâÄÊúâÊú∫Âô®‰∫∫‰ø°ÊÅØ
+	    //«Â≥˝À˘”–ª˙∆˜»À–≈œ¢
 	    for(i=0; i<MAX_ROBOTS; i++)
 	    {
 		VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
@@ -158,38 +161,40 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		VInfoRaw.RobotInfos[0][teamYellow][i].conf=0.0;
 		VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
 	    }
+
 	}
 	oldcamera_id = camera_id;
-	//ËÆ°ÁÆóÂ§ö‰∏™ÁêÉÁöÑ‰ø°ÊÅØ
+	//º∆À„∂‡∏ˆ«Úµƒ–≈œ¢
 	int balls_n = detection.balls_size();
 	SSL_DetectionBall ball;
 
 	for ( i = 0; i < balls_n; i++ )
 	{
+
 	    ball = detection.balls ( i );
 
-//	    qDebug() << "ball info: " << ball.x() << ", " << ball.y();
+//        qDebug() << "ball info: " << ball.x() << ", " << ball.y();
 
 	    conf = ball.confidence();
 	    if ( conf == 0.0 )continue;
 	    pos.set(ball.x(),ball.y());
 	    bFound = false;
-	    //ÂØªÊâæÁêÉÁöÑÁ¥¢Âºï
+	    //—∞’“«ÚµƒÀ˜“˝
 	    for(iCurIndex=0; iCurIndex<MAX_BALLS; iCurIndex++)
 	    {
 		if(VInfoRaw.BallInfos[0][iCurIndex].conf==0.0 && VInfoRaw.BallInfos[1][iCurIndex].conf==0.0)
 		{
-		    //Ê≤°ÊúâÊâæÂà∞ÁêÉ
+		    //√ª”–’“µΩ«Ú
 		    VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
 		    VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
 		    bFound=true;
 		    break;
 		}
 
-		//‰∏§‰∏™ÁêÉÁöÑË∑ùÁ¶ªÂ∫îËØ•Â∞è‰∫éÁêÉÁöÑÂçäÂæÑÔºåÂç≥21mm
+		//¡Ω∏ˆ«Úµƒæ‡¿Î”¶∏√–°”⁄«Úµƒ∞Îæ∂£¨º¥21mm
 		if((VInfoRaw.BallInfos[1-camera_id][iCurIndex].pos-pos).length()<21.0)
 		{
-		    //‰∏§‰∏™ÁêÉ‰ø°ÊÅØË∂≥Â§üËøë
+		    //¡Ω∏ˆ«Ú–≈œ¢◊„πªΩ¸
 		    VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
 		    VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
 		    bFound=true;
@@ -210,7 +215,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 
 //		qDebug() << "pos: " << pos.x << ", " << pos.y << ", iCurIndex: " << iCurIndex;
 
-		//Êõ¥Êñ∞ÁêÉÂØπË±°
+		//∏¸–¬«Ú∂‘œÛ
 		vision_info.Balls[iCurIndex].pos = pos;
 		vision_info.Balls[iCurIndex].conf = max(VInfoRaw.BallInfos[0][iCurIndex].conf, VInfoRaw.BallInfos[1][iCurIndex].conf);
 		update_flag=true;
@@ -219,23 +224,75 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 
 //	qDebug() << "vision_info ball: " << vision_info.Balls[0].pos.x << ", " << vision_info.Balls[0].pos.y;
 
-	//ËÆ°ÁÆóÊú∫Âô®‰∫∫‰ø°ÊÅØ
+	//º∆À„ª˙∆˜»À–≈œ¢
 	SSL_DetectionRobot robot_i;
 	int id;
 	int robots_n;
 
-	//ËìùËâ≤Êú∫Âô®‰∫∫
+    //ª∆…´ª˙∆˜»À
+    robots_n = detection.robots_yellow_size();
+    for ( int i = 0; i < robots_n; i++ )
+    {
+        robot_i = detection.robots_yellow ( i );
+        conf=robot_i.confidence();
+//        qDebug() << "yellow "<<i<<" :"<< robot_i.x() << ", " << robot_i.y() << ", conf: " << conf;
+
+        if ( conf == 0.0 )continue;
+        pos.set(robot_i.x(),robot_i.y());
+
+        if(robot_i.has_robot_id())
+        {
+        id=robot_i.robot_id();
+        if(id>=MAX_ROBOT_ID)
+        {
+            printf("id=%d,MAXID=%d\r\n",id,MAX_ROBOT_ID-1);
+            continue;
+        }
+        VInfoRaw.RobotInfos[camera_id][teamYellow][id].pos=pos;
+        VInfoRaw.RobotInfos[camera_id][teamYellow][id].conf=conf;
+        VInfoRaw.RobotInfos[camera_id][teamYellow][id].orientation=robot_i.orientation();
+   //     if(update_mode!=0) lu_test solve the bug!!!
+        {
+            confsum=VInfoRaw.RobotInfos[0][teamYellow][id].conf+VInfoRaw.RobotInfos[1][teamYellow][id].conf;
+            pos =VInfoRaw.RobotInfos[0][teamYellow][id].pos*VInfoRaw.RobotInfos[0][teamYellow][id].conf;
+            pos+=VInfoRaw.RobotInfos[1][teamYellow][id].pos*VInfoRaw.RobotInfos[1][teamYellow][id].conf;
+            pos/=confsum;
+            orientation =VInfoRaw.RobotInfos[0][teamYellow][id].orientation*VInfoRaw.RobotInfos[0][teamYellow][id].conf;
+            orientation+=VInfoRaw.RobotInfos[1][teamYellow][id].orientation*VInfoRaw.RobotInfos[1][teamYellow][id].conf;
+            orientation/=confsum;
+
+            vision_info.Robots[teamYellow][id].pos=pos;
+            vision_info.Robots[teamYellow][id].orientation=orientation;
+            vision_info.Robots[teamYellow][id].conf=max(VInfoRaw.RobotInfos[0][teamYellow][id].conf,VInfoRaw.RobotInfos[1][teamYellow][id].conf);
+            if(world.color_==teamYellow)
+            {
+            vision_info.Robots[teamYellow][id].Tactic=sTactics[i];
+            }
+            else
+            {
+            vision_info.Robots[teamYellow][id].Tactic="";
+            }
+            update_flag=true;
+        }
+        }
+        else
+        {
+        id = NA;
+        //Õ®π˝æ‡¿Î—∞’“Õ¨“ª∏ˆª˙∆˜»À
+        }
+    }
+
+	//¿∂…´ª˙∆˜»À
 	robots_n = detection.robots_blue_size();
 	for ( int i = 0; i < robots_n; i++ )
 	{
 	    robot_i = detection.robots_blue ( i );
 	    conf = robot_i.confidence();
-
+//        qDebug() << "blue "<<i<<" :"<< robot_i.x() << ", " << robot_i.y() << ", conf: " << conf;
 	    // correct!
-//	    qDebug() << "robot_i: " << robot_i.x() << ", " << robot_i.y() << ", conf: " << conf;
 	    if ( conf == 0.0 )continue;
-
 	    pos.set(robot_i.x(),robot_i.y());
+
 	    if(robot_i.has_robot_id())
 	    {
 		id=robot_i.robot_id();
@@ -277,64 +334,16 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	    else
 	    {
 		id = NA;
-		//ÈÄöËøáË∑ùÁ¶ªÂØªÊâæÂêå‰∏Ä‰∏™Êú∫Âô®‰∫∫
+		//Õ®π˝æ‡¿Î—∞’“Õ¨“ª∏ˆª˙∆˜»À
 
 	    }
 	}
 
-	//ÈªÑËâ≤Êú∫Âô®‰∫∫
-	robots_n = detection.robots_yellow_size();
-	for ( int i = 0; i < robots_n; i++ )
-	{
-	    robot_i = detection.robots_yellow ( i );
-	    conf=robot_i.confidence();
-	    if ( conf == 0.0 )continue;
-	    pos.set(robot_i.x(),robot_i.y());
-	    if(robot_i.has_robot_id())
-	    {
-		id=robot_i.robot_id();
-		if(id>=MAX_ROBOT_ID)
-		{
-		    printf("id=%d,MAXID=%d\r\n",id,MAX_ROBOT_ID-1);
-		    continue;
-		}
-		VInfoRaw.RobotInfos[camera_id][teamYellow][id].pos=pos;
-		VInfoRaw.RobotInfos[camera_id][teamYellow][id].conf=conf;
-		VInfoRaw.RobotInfos[camera_id][teamYellow][id].orientation=robot_i.orientation();
-		if(update_mode!=0)
-		{
-		    confsum=VInfoRaw.RobotInfos[0][teamYellow][id].conf+VInfoRaw.RobotInfos[1][teamYellow][id].conf;
-		    pos =VInfoRaw.RobotInfos[0][teamYellow][id].pos*VInfoRaw.RobotInfos[0][teamYellow][id].conf;
-		    pos+=VInfoRaw.RobotInfos[1][teamYellow][id].pos*VInfoRaw.RobotInfos[1][teamYellow][id].conf;
-		    pos/=confsum;
-		    orientation =VInfoRaw.RobotInfos[0][teamYellow][id].orientation*VInfoRaw.RobotInfos[0][teamYellow][id].conf;
-		    orientation+=VInfoRaw.RobotInfos[1][teamYellow][id].orientation*VInfoRaw.RobotInfos[1][teamYellow][id].conf;
-		    orientation/=confsum;
 
-		    vision_info.Robots[teamYellow][id].pos=pos;
-		    vision_info.Robots[teamYellow][id].orientation=orientation;
-		    vision_info.Robots[teamYellow][id].conf=max(VInfoRaw.RobotInfos[0][teamYellow][id].conf,VInfoRaw.RobotInfos[1][teamYellow][id].conf);
-		    if(world.color_==teamYellow)
-		    {
-			vision_info.Robots[teamYellow][id].Tactic=sTactics[i];
-		    }
-		    else
-		    {
-			vision_info.Robots[teamYellow][id].Tactic="";
-		    }
-		    update_flag=true;
-		}
-	    }
-	    else
-	    {
-		id = NA;
-		//ÈÄöËøáË∑ùÁ¶ªÂØªÊâæÂêå‰∏Ä‰∏™Êú∫Âô®‰∫∫
-	    }
-	}
 	display_update_mutex.unlock();
 	if(update_flag)
 	{
-	    //ÈÄöÁü•ÊòæÁ§∫Á∫øÁ®ãÂíåÁ≠ñÁï•Á∫øÁ®ã
+	    //Õ®÷™œ‘ æœﬂ≥Ã∫Õ≤ﬂ¬‘œﬂ≥Ã
 	    VisionReceiveSignal.release();
 	}
     }
