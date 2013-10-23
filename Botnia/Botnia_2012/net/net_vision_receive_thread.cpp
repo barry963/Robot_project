@@ -71,7 +71,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	// store camera id
 	camera_id = detection.camera_id();
 
-//	qDebug() << "camera_id: " << camera_id;
+    //qDebug() << "camera_id: " << camera_id;
 
 	// check whether camera_id is bigger than 1 or not than I will know about the
 	// how many cameras are there camera id (0,1)
@@ -84,6 +84,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	bool update_flag=false;
 	display_update_mutex.lock();
     //
+
 	if(camera_id==oldcamera_id)
 	{
         qDebug() << "camera_id==oldcamera_id: ";
@@ -106,7 +107,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		vision_info.Robots[teamBlue][i].conf=0.0;
 		vision_info.Robots[teamYellow][i].conf=0.0;
 
-		VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
+        VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
 		VInfoRaw.RobotInfos[1][teamBlue][i].conf=0.0;
 		VInfoRaw.RobotInfos[0][teamYellow][i].conf=0.0;
 		VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
@@ -115,11 +116,12 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	}
 	else if(camera_id==1)
 	{
-        qDebug() << "camera_id==1";
+//        qDebug() << "camera_id==1";
 	    //有两台摄像机数据的情况
 	    update_mode=2;
-
-	    // hacked by Bin, may improve later
+//        qDebug() << "ball info " <<i<<" :"<< ball.x() << ", " << ball.y();
+        // hacked by Bin, may improve later
+        //hacked by Lu, improved a lot :)
 #if 0
 	    //清除1号摄像机所有球信息
 	    for(i=0;i<MAX_BALLS;i++)
@@ -138,31 +140,44 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
 	    }
 #endif
+        //清除所有球信息//lu_test add
+        for(i=0; i<MAX_BALLS; i++)
+        {
+        VInfoRaw.BallInfos[0][i].conf=0.0;
+        VInfoRaw.BallInfos[1][i].conf=0.0;
+        }
+        //清除所有机器人信息
+        for(i=0; i<MAX_ROBOTS; i++)
+        {
+        VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
+        VInfoRaw.RobotInfos[1][teamBlue][i].conf=0.0;
+        VInfoRaw.RobotInfos[0][teamYellow][i].conf=0.0;
+        VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
+        }
+
 	}
-	else
+    else//camera id=0
 	{
 
-        qDebug() << "No need to update, for recording purpose only";
-	    //不需要更新，只是记录的情况
+//        qDebug() << "No need to update, for recording purpose only";
 	    update_mode=0;
-
 
 	    //清除所有球信息
 	    for(i=0; i<MAX_BALLS; i++)
-	    {
+        {
 		VInfoRaw.BallInfos[0][i].conf=0.0;
 		VInfoRaw.BallInfos[1][i].conf=0.0;
 	    }
 	    //清除所有机器人信息
 	    for(i=0; i<MAX_ROBOTS; i++)
-	    {
+        {
 		VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
 		VInfoRaw.RobotInfos[1][teamBlue][i].conf=0.0;
 		VInfoRaw.RobotInfos[0][teamYellow][i].conf=0.0;
 		VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
 	    }
-
 	}
+
 	oldcamera_id = camera_id;
 	//计算多个球的信息
 	int balls_n = detection.balls_size();
@@ -170,15 +185,12 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 
 	for ( i = 0; i < balls_n; i++ )
 	{
-
 	    ball = detection.balls ( i );
-
-//        qDebug() << "ball info: " << ball.x() << ", " << ball.y();
 
 	    conf = ball.confidence();
 	    if ( conf == 0.0 )continue;
 	    pos.set(ball.x(),ball.y());
-	    bFound = false;
+        bFound = false;
 	    //寻找球的索引
 	    for(iCurIndex=0; iCurIndex<MAX_BALLS; iCurIndex++)
 	    {
