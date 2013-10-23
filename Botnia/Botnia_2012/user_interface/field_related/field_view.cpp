@@ -38,7 +38,7 @@
 QMutex draw_mutex;
 QMutex display_update_mutex;
 
-#define LU_TEST
+//#define LU_TEST
 
 FieldView::FieldView(QWidget* parent):QGraphicsView(parent)
 {
@@ -275,6 +275,7 @@ void FieldView::BuildRobotAndBall()
     bool ball_at_top;
     //-------------------------------------------------------------------
     //为每个摄像机建立一个球队列
+    //create a ball list for each camera
     QVector<BallItem*> tmp;
     while (balls_.size()<MAX_CAMERA_COUNT)
     {
@@ -282,7 +283,8 @@ void FieldView::BuildRobotAndBall()
     }
     //-------------------------------------------------------------------
     //加入所有球
-    scene->AddBall();
+    //add all balls to scene
+    //scene->AddBall(); LU_TEST
     ball_at_top=true;
     for (i=0; i<MAX_CAMERA_COUNT; i++)
     {
