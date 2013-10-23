@@ -92,6 +92,45 @@ Try to solve Bug1
 1. the location after parse
 
 two cameras and also no need to update, for recording purpose only
-solve 
+
+solved 
 the problem, the key is the compare the updating code for two teams
 
+=================================================================================================
+2013.10.23
+Bug:
+4. two balls appear when moving the ball to the center, it must be graphic programming bug
+
+pay attention to the relationship between FieldSence and FieldView, the latter contains the former.
+
+Solved:
+Ball  0 :( 177.778 , 466.667 ) 1 
+Ball  1 :( 0 , 244.444 ) 1 
+Ball  2 :( 0 , 0 ) 0 
+Ball  3 :( 0 , 0 ) 0 
+Ball  0 :( 211.111 , 477.778 ) 1 
+Ball  1 :( 0 , 244.444 ) 1 
+Ball  2 :( 0 , 0 ) 0 
+Ball  3 :( 0 , 0 ) 0 
+
+The problem comes from the programming in vision update, every time update, the VInfoRaw should firstly be cleared.
+
+TODO: 
+1. how does etWebserverSendThread work
+2. how does vision_send_thread_ work, it has never been used
+
+VInfoRaw only stores the raw info from SSL
+vision_info stores the info after processing from VInfoRaw
+VInfo0 is used to set vision_info to current simulator vision field
+
+    // various threading
+    StrategyThread* strategy_thread_;
+    VisionSendThread* vision_send_thread_;
+    VisionReceiveThread* vision_receive_thread_;
+    RadioSendThread* radio_send_thread_;
+    RadioReceiveThread* radio_receive_thread0_;
+    RadioReceiveThread* radio_receive_thread1_;
+    RefboxReceiveThread* refbox_receive_thread_;
+    NetWebserverSendThread* net_webserver_send_thread_;
+
+JSP server
