@@ -94,8 +94,9 @@ void KDT_FUN::split(node *t,int split_dim)
 	float split_val;
 	//生成两个新的节点，并初始化为空
 	// make new nodes
-	a = anode.alloc();
-	b = anode.alloc();
+    a = anode.alloc();
+    b = anode.alloc();
+    qDebug()<<"allocate for two child!";
 	if (!a || !b) return;
 	a->child[0] = b->child[0] = NULL;
 	a->child[1] = b->child[1] = NULL;
@@ -152,11 +153,11 @@ bool KDT_FUN::setdim(vector2f &minv,vector2f &maxv,int nleaf_size,int nmax_depth
 	if (!root)
 	{
 		//为根节点申请一个空间
-		root = anode.alloc();
+        root = anode.alloc();
 	}
-	if (!root)
+    if (!root)
 	{
-		return(false);
+        return false;
 	}
 	//设定根节点属性
 	mzero(*root);
@@ -164,7 +165,7 @@ bool KDT_FUN::setdim(vector2f &minv,vector2f &maxv,int nleaf_size,int nmax_depth
 	root->maxv = maxv;
 	leaf_size = nleaf_size;
 	max_depth = nmax_depth;
-	return(true);
+    return true;
 }
 
 //将节点增加到树中，
@@ -224,7 +225,8 @@ void KDT_FUN::clear(node *t)
 	t->child[0] = t->child[1] = NULL;
 	t->states = NULL;
 	t->num_states = 0;
-	anode.free(t);
+    anode.free(t);
+    t=NULL;
 }
 
 //清除整个树
@@ -235,11 +237,12 @@ void KDT_FUN::clear()
 	{
 		return;
 	}
-	clear(root->child[0]);
-	clear(root->child[1]);
-	root->child[0] = root->child[1] = NULL;
-	root->states = NULL;
-	root->num_states = 0;
+    clear(root->child[0]);
+    clear(root->child[1]);
+    root->child[0] = root->child[1] = NULL;
+    root->states = NULL;
+    root->num_states = 0;
+    qDebug()<<"clear one";
 }
 
 //

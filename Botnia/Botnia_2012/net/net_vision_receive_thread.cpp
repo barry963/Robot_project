@@ -85,7 +85,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	display_update_mutex.lock();
     //
 
-	if(camera_id==oldcamera_id)
+    if(camera_id==oldcamera_id)//attention, the potential bug lu_test
 	{
         qDebug() << "camera_id==oldcamera_id: ";
 

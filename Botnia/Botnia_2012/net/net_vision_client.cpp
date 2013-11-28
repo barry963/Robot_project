@@ -59,9 +59,22 @@ bool VisionClient::Receive(SSL_WrapperPacket & packet,int iWait)
         net::Address src;
         int r=0;
         r = multicast_server.Recv(in_buffer,MaxDataGramSize,src,iWait);
+       /*
+        QString s(in_buffer);
+        int len=s.length();
+        QString sum;
+        QChar ch;
+        for(int i=0;i<len;i++)
+        {
+          ch= s.at(i);
+          sum+=ch.unicode();
+        }
+
+        qDebug()<<sum;//lu_test
+        */
         if (r>0)
         {
-                return packet.ParseFromArray(in_buffer,r);
+             return packet.ParseFromArray(in_buffer,r);
         }
         return false;
 }

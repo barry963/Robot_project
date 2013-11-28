@@ -1030,6 +1030,7 @@ bool World::restartNeutral()
 }
 
 //重新开始比赛的时候检查是哪方开球
+//check which side starts the ball when restart
 World::Possession World::restartWhoseKick()
 {
     bool blue = (strchr("KPF", game_state) != NULL);

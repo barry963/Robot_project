@@ -77,6 +77,7 @@ bool RadioClient::Receive(SSL_RadioPacket & packet,int iWait)
         r = multicast_server.Recv(in_buffer,MaxDataGramSize,src,iWait);
         if (r>0)
         {
+                qDebug()<<"rec in radio client recieve";
                 fflush(stdout);
                 //decode packet:
                 return packet.ParseFromArray(in_buffer,r);
