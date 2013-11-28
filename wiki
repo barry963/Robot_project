@@ -74,6 +74,8 @@ TODO: try to resolve this problem
 2013.10.17
 Bug:
 1. the strategy server cannot show the location of yellow team when it goes to the blue team field.
+solved
+
 
 2. error at net_base.cpp 
 qint64 len = UdpSocket->writeDatagram((const char*)data,length,dest.addr,dest.port_);
@@ -134,3 +136,15 @@ VInfo0 is used to set vision_info to current simulator vision field
     NetWebserverSendThread* net_webserver_send_thread_;
 
 JSP server
+
+
+=======================================
+2013/11/28
+try to solve this bug of 2013/10/17
+
+3. null pointer at kdtree.h
+clear(root->child[0]);
+clear(root->child[1]);
+
+Bug
+5. Somethimes the locations of balls and robot are 0, seems the problem of DECT frame, so I should check DECT frame firstly
