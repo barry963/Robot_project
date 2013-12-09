@@ -86,7 +86,7 @@ ConfigFile::Element::~Element ()
 
 ConfigFile::ConfigFile(void)
 {
-    //    printf("ConfigFile constructor\r\n");
+        //printf("ConfigFile constructor\r\n");
 
     elements.clear();
 }

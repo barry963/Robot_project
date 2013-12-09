@@ -66,6 +66,8 @@ FSTALC_FUN::~fast_allocator()
 FSTALC_TEM
 item_t *FSTALC_FUN::alloc()
 {
+    qDebug()<<"num_alloc: "<<num_alloc<<"num_free: "<<num_free;
+
 	item_t *p;
 	//如果空闲链表不空，从空闲链表中摘除一个
 	if (free_list)
@@ -88,6 +90,7 @@ item_t *FSTALC_FUN::alloc()
 FSTALC_TEM
 void FSTALC_FUN::free(item_t *item)
 {
+    qDebug()<<"num_alloc: "<<num_alloc<<"num_free: "<<num_free;
 	//将回收的空间放置到空闲链表中
 	item->next = free_list;
 	free_list = item;
@@ -99,6 +102,7 @@ void FSTALC_FUN::free(item_t *item)
 FSTALC_TEM
 void FSTALC_FUN::freelist(item_t *item)
 {
+    qDebug()<<"num_alloc: "<<num_alloc<<"num_free: "<<num_free;
 	item_t *n;
 	while (item)
 	{

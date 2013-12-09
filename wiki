@@ -148,3 +148,20 @@ clear(root->child[1]);
 
 Bug
 5. Somethimes the locations of balls and robot are 0, seems the problem of DECT frame, so I should check DECT frame firstly
+
+
+=======================================
+2013/12/7
+field_analysor_configreader.h
+
+try to figure out the execute of specific tactic
+
+=======================================
+2013/12/9
+
+typedef DataMap *PDataMap; //field_analysor_configreader.h
+
+pay attention to virtual function, that means this function is just a interface.
+
+TODO: kick the ball
+

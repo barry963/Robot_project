@@ -225,7 +225,7 @@ extern ConfigReader configreader;
 #define CR_SETUP(filename,varname,type) \
     varname = \
     configreader.FindDataMapping(#filename, #varname, type); \
-    if (!varname) abort();
+    if (!varname) {qDebug()<<"CR_SETUP abort()"; abort();}
 
 #define CR_SETUP_CR(cr,filename,varname,type) \
     varname = \

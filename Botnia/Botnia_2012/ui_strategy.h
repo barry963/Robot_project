@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Thu Oct 17 18:32:45 2013
+** Created: Mon Dec 9 18:32:46 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -142,6 +142,18 @@ public:
     QRadioButton *strategy6_radio_button_2;
     QRadioButton *dd;
     QWidget *strategy_shoot_tab;
+    QWidget *verticalLayoutWidget_16;
+    QVBoxLayout *strategy_move_layout_2;
+    QGroupBox *strategy_move_box_2;
+    QWidget *verticalLayoutWidget_17;
+    QGridLayout *strategy_selection_layout_3;
+    QRadioButton *move_middle_button_2;
+    QRadioButton *move_straight_button_2;
+    QRadioButton *move_sin_button_2;
+    QRadioButton *strategy5_radio_button_3;
+    QRadioButton *strategy3_radio_button_3;
+    QRadioButton *strategy6_radio_button_3;
+    QRadioButton *dd_2;
     QGroupBox *groupBox_11;
     QTableWidget *generalTableWidget;
     QSpacerItem *strategy_spacer;
@@ -341,7 +353,7 @@ public:
         MainWindow->setCentralWidget(strategy_central_widget);
         menu_bar = new QMenuBar(MainWindow);
         menu_bar->setObjectName(QString::fromUtf8("menu_bar"));
-        menu_bar->setGeometry(QRect(0, 0, 1148, 27));
+        menu_bar->setGeometry(QRect(0, 0, 1148, 25));
         file = new QMenu(menu_bar);
         file->setObjectName(QString::fromUtf8("file"));
         menu_Edit = new QMenu(menu_bar);
@@ -380,7 +392,7 @@ public:
         yrobot_group_box->setStyleSheet(QString::fromUtf8(""));
         verticalLayoutWidget_8 = new QWidget(yrobot_group_box);
         verticalLayoutWidget_8->setObjectName(QString::fromUtf8("verticalLayoutWidget_8"));
-        verticalLayoutWidget_8->setGeometry(QRect(10, 40, 101, 208));
+        verticalLayoutWidget_8->setGeometry(QRect(10, 40, 107, 218));
         QFont font1;
         font1.setFamily(QString::fromUtf8("cmr10"));
         verticalLayoutWidget_8->setFont(font1);
@@ -436,7 +448,7 @@ public:
         brobot_group_box->setFont(font);
         verticalLayoutWidget_7 = new QWidget(brobot_group_box);
         verticalLayoutWidget_7->setObjectName(QString::fromUtf8("verticalLayoutWidget_7"));
-        verticalLayoutWidget_7->setGeometry(QRect(10, 40, 101, 208));
+        verticalLayoutWidget_7->setGeometry(QRect(10, 40, 107, 218));
         brobot_layout = new QVBoxLayout(verticalLayoutWidget_7);
         brobot_layout->setSpacing(2);
         brobot_layout->setContentsMargins(5, 5, 5, 5);
@@ -517,7 +529,7 @@ public:
         source_group_box->setObjectName(QString::fromUtf8("source_group_box"));
         verticalLayoutWidget = new QWidget(source_group_box);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(10, 40, 131, 131));
+        verticalLayoutWidget->setGeometry(QRect(10, 40, 131, 134));
         control_source_layout = new QVBoxLayout(verticalLayoutWidget);
         control_source_layout->setSpacing(2);
         control_source_layout->setContentsMargins(5, 5, 5, 5);
@@ -548,7 +560,7 @@ public:
         side_selection_box->setMaximumSize(QSize(16777215, 150));
         verticalLayoutWidget_10 = new QWidget(side_selection_box);
         verticalLayoutWidget_10->setObjectName(QString::fromUtf8("verticalLayoutWidget_10"));
-        verticalLayoutWidget_10->setGeometry(QRect(10, 40, 201, 88));
+        verticalLayoutWidget_10->setGeometry(QRect(10, 40, 201, 92));
         side_selection_layout = new QVBoxLayout(verticalLayoutWidget_10);
         side_selection_layout->setSpacing(2);
         side_selection_layout->setContentsMargins(5, 5, 5, 5);
@@ -574,7 +586,7 @@ public:
         color_group_box->setLayoutDirection(Qt::LeftToRight);
         verticalLayoutWidget_6 = new QWidget(color_group_box);
         verticalLayoutWidget_6->setObjectName(QString::fromUtf8("verticalLayoutWidget_6"));
-        verticalLayoutWidget_6->setGeometry(QRect(10, 40, 95, 88));
+        verticalLayoutWidget_6->setGeometry(QRect(10, 40, 102, 92));
         color_layout = new QVBoxLayout(verticalLayoutWidget_6);
         color_layout->setSpacing(2);
         color_layout->setContentsMargins(5, 5, 5, 5);
@@ -612,7 +624,7 @@ public:
         robot_selection_group_box->setMaximumSize(QSize(16777215, 200));
         verticalLayoutWidget_4 = new QWidget(robot_selection_group_box);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(10, 40, 431, 92));
+        verticalLayoutWidget_4->setGeometry(QRect(10, 40, 431, 96));
         robot_selection_layout = new QGridLayout(verticalLayoutWidget_4);
         robot_selection_layout->setContentsMargins(5, 5, 5, 5);
         robot_selection_layout->setObjectName(QString::fromUtf8("robot_selection_layout"));
@@ -713,7 +725,7 @@ public:
         strategy_position_box->setMaximumSize(QSize(16777215, 290));
         verticalLayoutWidget_3 = new QWidget(strategy_position_box);
         verticalLayoutWidget_3->setObjectName(QString::fromUtf8("verticalLayoutWidget_3"));
-        verticalLayoutWidget_3->setGeometry(QRect(10, 10, 412, 168));
+        verticalLayoutWidget_3->setGeometry(QRect(10, 10, 420, 176));
         strategy_selection_layout = new QGridLayout(verticalLayoutWidget_3);
         strategy_selection_layout->setSpacing(2);
         strategy_selection_layout->setContentsMargins(5, 5, 5, 5);
@@ -776,7 +788,7 @@ public:
         strategy_move_box->setMaximumSize(QSize(16777215, 290));
         verticalLayoutWidget_15 = new QWidget(strategy_move_box);
         verticalLayoutWidget_15->setObjectName(QString::fromUtf8("verticalLayoutWidget_15"));
-        verticalLayoutWidget_15->setGeometry(QRect(10, 10, 411, 168));
+        verticalLayoutWidget_15->setGeometry(QRect(10, 10, 411, 176));
         strategy_selection_layout_2 = new QGridLayout(verticalLayoutWidget_15);
         strategy_selection_layout_2->setSpacing(2);
         strategy_selection_layout_2->setContentsMargins(5, 5, 5, 5);
@@ -825,6 +837,66 @@ public:
         strategy_type_tab->addTab(strategy_move_tab, QString());
         strategy_shoot_tab = new QWidget();
         strategy_shoot_tab->setObjectName(QString::fromUtf8("strategy_shoot_tab"));
+        verticalLayoutWidget_16 = new QWidget(strategy_shoot_tab);
+        verticalLayoutWidget_16->setObjectName(QString::fromUtf8("verticalLayoutWidget_16"));
+        verticalLayoutWidget_16->setGeometry(QRect(0, 10, 441, 210));
+        strategy_move_layout_2 = new QVBoxLayout(verticalLayoutWidget_16);
+        strategy_move_layout_2->setSpacing(2);
+        strategy_move_layout_2->setContentsMargins(5, 5, 5, 5);
+        strategy_move_layout_2->setObjectName(QString::fromUtf8("strategy_move_layout_2"));
+        strategy_move_layout_2->setContentsMargins(0, 0, 0, 0);
+        strategy_move_box_2 = new QGroupBox(verticalLayoutWidget_16);
+        strategy_move_box_2->setObjectName(QString::fromUtf8("strategy_move_box_2"));
+        strategy_move_box_2->setMinimumSize(QSize(0, 200));
+        strategy_move_box_2->setMaximumSize(QSize(16777215, 290));
+        verticalLayoutWidget_17 = new QWidget(strategy_move_box_2);
+        verticalLayoutWidget_17->setObjectName(QString::fromUtf8("verticalLayoutWidget_17"));
+        verticalLayoutWidget_17->setGeometry(QRect(10, 10, 411, 176));
+        strategy_selection_layout_3 = new QGridLayout(verticalLayoutWidget_17);
+        strategy_selection_layout_3->setSpacing(2);
+        strategy_selection_layout_3->setContentsMargins(5, 5, 5, 5);
+        strategy_selection_layout_3->setObjectName(QString::fromUtf8("strategy_selection_layout_3"));
+        strategy_selection_layout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
+        strategy_selection_layout_3->setContentsMargins(0, 0, 0, 0);
+        move_middle_button_2 = new QRadioButton(verticalLayoutWidget_17);
+        move_middle_button_2->setObjectName(QString::fromUtf8("move_middle_button_2"));
+        move_middle_button_2->setChecked(true);
+
+        strategy_selection_layout_3->addWidget(move_middle_button_2, 0, 0, 1, 1);
+
+        move_straight_button_2 = new QRadioButton(verticalLayoutWidget_17);
+        move_straight_button_2->setObjectName(QString::fromUtf8("move_straight_button_2"));
+
+        strategy_selection_layout_3->addWidget(move_straight_button_2, 3, 0, 1, 1);
+
+        move_sin_button_2 = new QRadioButton(verticalLayoutWidget_17);
+        move_sin_button_2->setObjectName(QString::fromUtf8("move_sin_button_2"));
+
+        strategy_selection_layout_3->addWidget(move_sin_button_2, 0, 1, 1, 1);
+
+        strategy5_radio_button_3 = new QRadioButton(verticalLayoutWidget_17);
+        strategy5_radio_button_3->setObjectName(QString::fromUtf8("strategy5_radio_button_3"));
+
+        strategy_selection_layout_3->addWidget(strategy5_radio_button_3, 4, 0, 1, 1);
+
+        strategy3_radio_button_3 = new QRadioButton(verticalLayoutWidget_17);
+        strategy3_radio_button_3->setObjectName(QString::fromUtf8("strategy3_radio_button_3"));
+
+        strategy_selection_layout_3->addWidget(strategy3_radio_button_3, 3, 1, 1, 1);
+
+        strategy6_radio_button_3 = new QRadioButton(verticalLayoutWidget_17);
+        strategy6_radio_button_3->setObjectName(QString::fromUtf8("strategy6_radio_button_3"));
+
+        strategy_selection_layout_3->addWidget(strategy6_radio_button_3, 4, 1, 1, 1);
+
+        dd_2 = new QRadioButton(verticalLayoutWidget_17);
+        dd_2->setObjectName(QString::fromUtf8("dd_2"));
+
+        strategy_selection_layout_3->addWidget(dd_2, 5, 0, 1, 1);
+
+
+        strategy_move_layout_2->addWidget(strategy_move_box_2);
+
         strategy_type_tab->addTab(strategy_shoot_tab, QString());
 
         strategy_layout->addWidget(strategy_type_tab);
@@ -867,6 +939,11 @@ public:
         generalTableWidget->verticalHeader()->setHighlightSections(true);
         generalTableWidget->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
         generalTableWidget->verticalHeader()->setStretchLastSection(true);
+        generalTableWidget->raise();
+        strategy_type_tab->raise();
+        strategy_type_tab->raise();
+        strategy_type_tab->raise();
+        strategy_type_tab->raise();
 
         strategy_layout->addWidget(groupBox_11);
 
@@ -970,7 +1047,7 @@ public:
         ref_control_box->setMaximumSize(QSize(16777215, 150));
         gridLayoutWidget_2 = new QWidget(ref_control_box);
         gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
-        gridLayoutWidget_2->setGeometry(QRect(10, 40, 331, 88));
+        gridLayoutWidget_2->setGeometry(QRect(10, 40, 331, 92));
         ref_control_layout = new QGridLayout(gridLayoutWidget_2);
         ref_control_layout->setSpacing(2);
         ref_control_layout->setContentsMargins(5, 5, 5, 5);
@@ -1081,7 +1158,7 @@ public:
         retranslateUi(MainWindow);
 
         control_panel->setCurrentIndex(2);
-        strategy_type_tab->setCurrentIndex(0);
+        strategy_type_tab->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1160,6 +1237,14 @@ public:
         strategy6_radio_button_2->setText(QString());
         dd->setText(QString());
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(strategy_move_tab), QApplication::translate("MainWindow", "Move", 0, QApplication::UnicodeUTF8));
+        strategy_move_box_2->setTitle(QString());
+        move_middle_button_2->setText(QApplication::translate("MainWindow", "move_to_middle", 0, QApplication::UnicodeUTF8));
+        move_straight_button_2->setText(QApplication::translate("MainWindow", "move_as_straight", 0, QApplication::UnicodeUTF8));
+        move_sin_button_2->setText(QApplication::translate("MainWindow", "move_as_sin", 0, QApplication::UnicodeUTF8));
+        strategy5_radio_button_3->setText(QString());
+        strategy3_radio_button_3->setText(QString());
+        strategy6_radio_button_3->setText(QString());
+        dd_2->setText(QString());
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(strategy_shoot_tab), QApplication::translate("MainWindow", "Shoot", 0, QApplication::UnicodeUTF8));
         groupBox_11->setTitle(QApplication::translate("MainWindow", "GroupBox", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = generalTableWidget->verticalHeaderItem(0);

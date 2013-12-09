@@ -76,6 +76,7 @@ TPositionForKick::TPositionForKick()
 
 void TPositionForKick::LoadConfig()
 {
+    qDebug()<<"TPositionForKick load config";
         cr_do_setup();
 }
 
@@ -83,6 +84,7 @@ void TPositionForKick::command(World &world, int me,
                                Robot::RobotCommand &command,
                                bool debug)
 {
+        qDebug()<<"TPositionForKick start";
         MyVector2d ball_position = world.ball_position();
 	MyVector2d target;
 	double angle_tolerance;
@@ -102,7 +104,7 @@ void TPositionForKick::command(World &world, int me,
 	                    prev_target, DVAR(SHOOT_AIM_PREF_AMOUNT),
 	                    target, angle_tolerance))
 	{
-		//޷,ֱԷ볡
+		//,
 		MyVector2d downfield[2];
                 downfield[0].set(ball_position.x + 180.0, -FIELD_WIDTH_H);
                 downfield[1].set(ball_position.x + 180.0, FIELD_WIDTH_H);
@@ -116,7 +118,7 @@ void TPositionForKick::command(World &world, int me,
 			// Guaranteed to return true and fill in the parameters when
 			// obs_flags is empty.
 			// (3) Just shoot downfield.
-			//޷Է볡ֱӲϰԷ볡
+			//
 			evaluation.aim(world, world.now, world.ball_position(),
 			               downfield[0], downfield[1],
 			               0, target, angle_tolerance);
@@ -131,24 +133,24 @@ void TPositionForKick::command(World &world, int me,
                                (target - ball_position).rotate(-angle_tolerance) + ball_position);
 	}
 	prev_target = target;
-	//˵ľ
+	//
         double ball_distance = (world.GetRobotPositionByID(me) - ball_position).length();
-	//ٶС20
+	//��20
 	if (world.GetRobotVelocityByID(me).length() < 20.0)
 	{
                 ball_distance -= 20.0;
 	}
 	// put this in config
 	double closest = 85.0;
-	//޶85150֮
+	//85150
         ball_distance = bound(ball_distance, closest, 150.0);
-	//õĵΪΪ׼targetĶԳƷϾ85150֮ĵ㣬㷽
+	//target85150
         MyVector2d targetp = ball_position - (target - ball_position).norm(ball_distance);
         double angle = (ball_position - targetp).angle();
 	int obs = OBS_EVERYTHING_BUT_ME(me);
 	MyVector2d r2target = (targetp - world.GetRobotPositionByID(me));
 	double d2target = r2target.sqlength();
-	//Ŀ20150֮䣬رϰ
+	//20150
 	if ((d2target < 150.0 * 150.0) && (d2target > 20.0 * 20.0) &&
 	        (fabs(angle_mod(angle - r2target.angle())) < M_PI_4))
 	{
@@ -166,7 +168,7 @@ void TPositionForKick::command(World &world, int me,
 	command.angle = angle;
 	//  command.obs = OBS_EVERYTHING_BUT_ME(me);
 	command.observation_type = obs;
-	command.goto_point_type = Robot::GotoPointMoveForw;
+    command.goto_point_type = Robot::GotoPointMoveForw;
 }
 
 ////////////////// Penalty ////////////////////
@@ -185,7 +187,7 @@ void TPositionForPenalty::command(World &world, int me,
                                   Robot::RobotCommand &command,
                                   bool debug)
 {
-	//ŵ450mmȾĵط
+	//450mm
 	MyVector2d mypos = world.GetRobotPositionByID(me);
 	MyVector2d target;
 	double linex;
@@ -193,14 +195,14 @@ void TPositionForPenalty::command(World &world, int me,
 	// figure out which penalty is going
 	if (world.restartWhoseKick() == World::OurBall)
 	{
-		//ҷ
-		//뷣һ
+		//
+		//
 		linex = (PENALTY_SPOT - ROBOT_DEF_WIDTH_H);
 		penalty_goal_dir = 1.0;
 	}
 	else
 	{
-		//Է
+		//
 		linex = -(PENALTY_SPOT - ROBOT_DEF_WIDTH_H);
 		penalty_goal_dir = -1.0;
 	}
@@ -209,7 +211,7 @@ void TPositionForPenalty::command(World &world, int me,
 		gui_debug_line(me, GDBG_TACTICS, MyVector2d(linex, -100), MyVector2d(linex, 100));
 	}
 	if ((linex - mypos.x) * penalty_goal_dir > 0)
-	{//վڷ
+	{//
 		// need to halt here
 		gui_debug_printf(me, GDBG_TACTICS, "we are in position\n");
 		command.cmd = Robot::CmdPosition;
@@ -221,8 +223,8 @@ void TPositionForPenalty::command(World &world, int me,
 	}
 	else
 	{
-		//վڷڣY,ߵ߱Ե
-		//???ǷӦñY
+		//Y,
+		//???Y
 		gui_debug_printf(me, GDBG_TACTICS, "we need to move\n");
 		// choose our target point
 		target.set(linex, mypos.y);
@@ -239,7 +241,7 @@ void TPositionForPenalty::command(World &world, int me,
 	}
 }
 
-//ʵײ
+//
 void TChargeBall::command(World &world, int me, Robot::RobotCommand &command,
                           bool debug)
 {
@@ -248,13 +250,13 @@ void TChargeBall::command(World &world, int me, Robot::RobotCommand &command,
 	command.cmd = Robot::CmdMoveBall;
 	if ((ball - mypos).x > 0)
 	{
-		//ĿΪǰָ,ǰ500mm
+		//,500mm
 		command.target = ball + (ball - mypos).norm(500);
 		command.angle_tolerance = M_PI_2 - fabs((ball - mypos).angle());
 	}
 	else
 	{
-		//ˮƽײĿ500mm
+		//500mm
 		command.target = ball + MyVector2d(500, 0);
 		command.angle_tolerance = M_PI_4;
 	}

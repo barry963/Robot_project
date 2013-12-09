@@ -308,7 +308,7 @@ public:
     {
         the_status = InProgress;
     }
-
+    // attention, this is virtual function
     virtual void command(World &world, int me, Robot::RobotCommand &command,
                          bool debug)
     {

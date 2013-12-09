@@ -94,9 +94,10 @@ double PathPlanner:: distance(state &s0,state &s1)
 // add a child note to the parent node
 state *PathPlanner::add_node(state n,state *parent)
 {
-#if 0
+#if 1//lu_test change 0 to 1
     if (num_nodes >= max_nodes)
     {
+        qDebug()<<"max nodes reached...";
         return(NULL);
     }
 #endif
@@ -276,7 +277,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         }
         while (s>0 && !ok);
 
-#if 0
+#if 1//lu_test change 0 to 1
         if (bDebugPathPlan)
         {
             gui_debug_line(0,0,initial.pos,target.pos);
@@ -291,7 +292,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         {
             printf("  PP: no obs\n");
         }
-#if 0
+#if 1//lu_test change 0 to 1
         if (bDebugPathPlan)
         {
             gui_debug_line(0,0,initial.pos,goal.pos);
@@ -421,7 +422,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         //???¦É?¡¤?waypoint??¦É??
         if (num_waypoints > 0)
         {
-#if 0
+#if 1//lu_test change 0 to 1
             if (bDebugPathPlan)
             {
                 p = nearest_goal;

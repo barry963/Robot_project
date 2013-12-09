@@ -159,7 +159,7 @@ QHeaderView::section {
      <x>0</x>
      <y>0</y>
      <width>1148</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="file">
@@ -254,8 +254,8 @@ QHeaderView::section {
             <rect>
              <x>10</x>
              <y>40</y>
-             <width>101</width>
-             <height>208</height>
+             <width>107</width>
+             <height>218</height>
             </rect>
            </property>
            <property name="font">
@@ -374,8 +374,8 @@ QHeaderView::section {
             <rect>
              <x>10</x>
              <y>40</y>
-             <width>101</width>
-             <height>208</height>
+             <width>107</width>
+             <height>218</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="brobot_layout">
@@ -542,7 +542,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>131</width>
-             <height>131</height>
+             <height>134</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="control_source_layout">
@@ -600,7 +600,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>201</width>
-             <height>88</height>
+             <height>92</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="side_selection_layout">
@@ -653,8 +653,8 @@ QHeaderView::section {
             <rect>
              <x>10</x>
              <y>40</y>
-             <width>95</width>
-             <height>88</height>
+             <width>102</width>
+             <height>92</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="color_layout">
@@ -734,7 +734,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>431</width>
-             <height>92</height>
+             <height>96</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="robot_selection_layout">
@@ -892,7 +892,7 @@ QHeaderView::section {
            </size>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <property name="movable">
            <bool>true</bool>
@@ -939,8 +939,8 @@ QHeaderView::section {
                  <rect>
                   <x>10</x>
                   <y>10</y>
-                  <width>412</width>
-                  <height>168</height>
+                  <width>420</width>
+                  <height>176</height>
                  </rect>
                 </property>
                 <layout class="QGridLayout" name="strategy_selection_layout">
@@ -1055,7 +1055,7 @@ QHeaderView::section {
                   <x>10</x>
                   <y>10</y>
                   <width>411</width>
-                  <height>168</height>
+                  <height>176</height>
                  </rect>
                 </property>
                 <layout class="QGridLayout" name="strategy_selection_layout_2">
@@ -1131,6 +1131,116 @@ QHeaderView::section {
            <attribute name="title">
             <string>Shoot</string>
            </attribute>
+           <widget class="QWidget" name="verticalLayoutWidget_16">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>10</y>
+              <width>441</width>
+              <height>210</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="strategy_move_layout_2" stretch="0">
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <property name="margin">
+              <number>5</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="strategy_move_box_2">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>290</height>
+                </size>
+               </property>
+               <property name="title">
+                <string/>
+               </property>
+               <widget class="QWidget" name="verticalLayoutWidget_17">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>411</width>
+                  <height>176</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="strategy_selection_layout_3">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetDefaultConstraint</enum>
+                 </property>
+                 <property name="margin">
+                  <number>5</number>
+                 </property>
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QRadioButton" name="move_middle_button_2">
+                   <property name="text">
+                    <string>move_to_middle</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QRadioButton" name="move_straight_button_2">
+                   <property name="text">
+                    <string>move_as_straight</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="move_sin_button_2">
+                   <property name="text">
+                    <string>move_as_sin</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QRadioButton" name="strategy5_radio_button_3">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="strategy3_radio_button_3">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="strategy6_radio_button_3">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QRadioButton" name="dd_2">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
          </widget>
         </item>
@@ -1228,6 +1338,11 @@ QHeaderView::section {
             </property>
            </column>
           </widget>
+          <zorder>generalTableWidget</zorder>
+          <zorder>strategy_type_tab</zorder>
+          <zorder>strategy_type_tab</zorder>
+          <zorder>strategy_type_tab</zorder>
+          <zorder>strategy_type_tab</zorder>
          </widget>
         </item>
         <item>
@@ -1469,7 +1584,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>331</width>
-             <height>88</height>
+             <height>92</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="ref_control_layout">
