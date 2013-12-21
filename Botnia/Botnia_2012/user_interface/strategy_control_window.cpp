@@ -150,10 +150,13 @@ void MainWindow::SetupGUIConnection()
     connect(ui->position_start_button,SIGNAL(clicked()),this,SLOT(select_position_strategy_type()));
 
 
-
     connect(ui->move_middle_button,SIGNAL(clicked()),this,SLOT(select_move_strategy_type()));
     connect(ui->move_sin_button,SIGNAL(clicked()),this,SLOT(select_move_strategy_type()));
     connect(ui->move_straight_button,SIGNAL(clicked()),this,SLOT(select_move_strategy_type()));
+
+
+    connect(ui->shoot_simple_kick_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
+
 
     //    connect(ui->strategy1_radio_button,SIGNAL(clicked()),this,SLOT(strategy1_clicked()));
     //    connect(ui->strategy2_radio_button,SIGNAL(clicked()),this,SLOT(strategy2_clicked()));
@@ -266,6 +269,7 @@ void MainWindow::TestingSelection()
     emit select_down_side(true);// left side
     ui->position_kick_button->setChecked(true);
     emit select_position_strategy_type();
+
 }
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
@@ -452,8 +456,6 @@ void MainWindow::select_position_strategy_type()
             StatusOnGUI.tactic_name_ = "position_for_start";
         }
 
-
-
 }
 
 
@@ -480,6 +482,22 @@ void MainWindow::select_move_strategy_type()
     tacitic_name_item->setText(qstring_tactic_name);
     ui->generalTableWidget->setItem(1,0,tacitic_name_item);
 }
+
+void MainWindow::select_shoot_strategy_type()
+{
+    QTableWidgetItem *tacitic_name_item=new QTableWidgetItem();
+
+    QString qstring_tactic_name =ui->position_kick_button->text();
+
+    if(ui->shoot_simple_kick_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "shoot_simple_kick";
+    }
+
+//    tacitic_name_item->setText(qstring_tactic_name);
+//    ui->generalTableWidget->setItem(1,0,tacitic_name_item);
+}
+
 void MainWindow::speed_control(int value)
 {
     QTableWidgetItem *speed=new QTableWidgetItem();

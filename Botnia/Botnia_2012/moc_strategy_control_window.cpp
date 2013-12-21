@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'strategy_control_window.h'
 **
-** Created: Mon Dec 9 19:12:17 2013
+** Created: Sun Dec 22 00:03:09 2013
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      35,   14, // methods
+      36,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -43,29 +43,30 @@ static const uint qt_meta_data_MainWindow[] = {
       96,   11,   11,   11, 0x08,
      121,   11,   11,   11, 0x08,
      153,   11,   11,   11, 0x08,
-     187,  181,   11,   11, 0x08,
-     206,   11,   11,   11, 0x08,
-     227,   11,   11,   11, 0x08,
-     245,   11,   11,   11, 0x08,
-     257,   11,   11,   11, 0x08,
-     271,   11,   11,   11, 0x08,
-     285,   11,   11,   11, 0x08,
-     306,   11,   11,   11, 0x08,
-     329,   11,   11,   11, 0x08,
-     350,   11,   11,   11, 0x08,
-     371,   11,   11,   11, 0x08,
-     392,   11,   11,   11, 0x08,
-     413,   11,   11,   11, 0x08,
-     434,   11,   11,   11, 0x08,
-     455,   11,   11,   11, 0x08,
-     476,   11,   11,   11, 0x08,
-     497,   11,   11,   11, 0x08,
-     518,   11,   11,   11, 0x08,
-     548,  539,   11,   11, 0x08,
-     572,  539,   11,   11, 0x08,
-     597,   11,   11,   11, 0x08,
-     617,   11,   11,   11, 0x08,
-     637,  539,   11,   11, 0x08,
+     181,   11,   11,   11, 0x08,
+     216,  210,   11,   11, 0x08,
+     235,   11,   11,   11, 0x08,
+     256,   11,   11,   11, 0x08,
+     274,   11,   11,   11, 0x08,
+     286,   11,   11,   11, 0x08,
+     300,   11,   11,   11, 0x08,
+     314,   11,   11,   11, 0x08,
+     335,   11,   11,   11, 0x08,
+     358,   11,   11,   11, 0x08,
+     379,   11,   11,   11, 0x08,
+     400,   11,   11,   11, 0x08,
+     421,   11,   11,   11, 0x08,
+     442,   11,   11,   11, 0x08,
+     463,   11,   11,   11, 0x08,
+     484,   11,   11,   11, 0x08,
+     505,   11,   11,   11, 0x08,
+     526,   11,   11,   11, 0x08,
+     547,   11,   11,   11, 0x08,
+     577,  568,   11,   11, 0x08,
+     601,  568,   11,   11, 0x08,
+     626,   11,   11,   11, 0x08,
+     646,   11,   11,   11, 0x08,
+     666,  568,   11,   11, 0x08,
 
        0        // eod
 };
@@ -75,7 +76,8 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "save()\0save_as()\0exit()\0preferences()\0"
     "start()\0stop()\0pause()\0specify_control_source()\0"
     "select_position_strategy_type()\0"
-    "select_move_strategy_type()\0value\0"
+    "select_move_strategy_type()\0"
+    "select_shoot_strategy_type()\0value\0"
     "speed_control(int)\0match_time_control()\0"
     "excute_strategy()\0add_score()\0"
     "minus_score()\0reset_score()\0"
@@ -108,29 +110,30 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 9: _t->specify_control_source(); break;
         case 10: _t->select_position_strategy_type(); break;
         case 11: _t->select_move_strategy_type(); break;
-        case 12: _t->speed_control((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 13: _t->match_time_control(); break;
-        case 14: _t->excute_strategy(); break;
-        case 15: _t->add_score(); break;
-        case 16: _t->minus_score(); break;
-        case 17: _t->reset_score(); break;
-        case 18: _t->select_up_side((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 19: _t->select_down_side((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 20: _t->brobot5_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 21: _t->brobot4_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 22: _t->brobot3_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 23: _t->brobot2_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 24: _t->brobot1_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 25: _t->yrobot5_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 26: _t->yrobot4_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 27: _t->yrobot3_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 28: _t->yrobot2_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 29: _t->yrobot1_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 30: _t->run_mode_selected((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 31: _t->test_mode_selected((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 32: _t->strategy1_clicked(); break;
-        case 33: _t->strategy2_clicked(); break;
-        case 34: _t->start_referee((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 12: _t->select_shoot_strategy_type(); break;
+        case 13: _t->speed_control((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->match_time_control(); break;
+        case 15: _t->excute_strategy(); break;
+        case 16: _t->add_score(); break;
+        case 17: _t->minus_score(); break;
+        case 18: _t->reset_score(); break;
+        case 19: _t->select_up_side((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 20: _t->select_down_side((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 21: _t->brobot5_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 22: _t->brobot4_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 23: _t->brobot3_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 24: _t->brobot2_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 25: _t->brobot1_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 26: _t->yrobot5_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 27: _t->yrobot4_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 28: _t->yrobot3_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 29: _t->yrobot2_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 30: _t->yrobot1_changed((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 31: _t->run_mode_selected((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 32: _t->test_mode_selected((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 33: _t->strategy1_clicked(); break;
+        case 34: _t->strategy2_clicked(); break;
+        case 35: _t->start_referee((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -168,9 +171,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 35)
+        if (_id < 36)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 35;
+        _id -= 36;
     }
     return _id;
 }

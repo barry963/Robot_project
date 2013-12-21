@@ -128,6 +128,9 @@ void RegisterTactics()
         Tactic::registerParser("position_for_loose_ball", TPositionForLooseBall::parser);
 
 
+        Tactic::registerParser("shoot_simple_kick", TChargeBall::parser);//lu_test
+
+
         Tactic::registerParser("charge_ball", TChargeBall::parser);
         Tactic::registerParser("success", TSuccess::parser);
         Tactic::registerParser("complete", TComplete::parser);

@@ -165,3 +165,8 @@ pay attention to virtual function, that means this function is just a interface.
 
 TODO: kick the ball
 
+=======================================
+2013/12/21
+
+add charge ball strategy
+

@@ -135,7 +135,7 @@ void TPositionForKick::command(World &world, int me,
 	prev_target = target;
 	//
         double ball_distance = (world.GetRobotPositionByID(me) - ball_position).length();
-	//§³20
+	//Ð¡20
 	if (world.GetRobotVelocityByID(me).length() < 20.0)
 	{
                 ball_distance -= 20.0;
@@ -248,6 +248,7 @@ void TChargeBall::command(World &world, int me, Robot::RobotCommand &command,
 	MyVector2d ball = world.ball_position();
 	MyVector2d mypos = world.GetRobotPositionByID(me);
 	command.cmd = Robot::CmdMoveBall;
+
 	if ((ball - mypos).x > 0)
 	{
 		//,500mm

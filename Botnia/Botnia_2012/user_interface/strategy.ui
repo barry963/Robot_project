@@ -892,7 +892,7 @@ QHeaderView::section {
            </size>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <property name="movable">
            <bool>true</bool>
@@ -1140,7 +1140,7 @@ QHeaderView::section {
               <height>210</height>
              </rect>
             </property>
-            <layout class="QVBoxLayout" name="strategy_move_layout_2" stretch="0">
+            <layout class="QVBoxLayout" name="strategy_shoot_layout" stretch="0">
              <property name="spacing">
               <number>2</number>
              </property>
@@ -1148,7 +1148,7 @@ QHeaderView::section {
               <number>5</number>
              </property>
              <item>
-              <widget class="QGroupBox" name="strategy_move_box_2">
+              <widget class="QGroupBox" name="strategy_shoot_box">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -1184,9 +1184,9 @@ QHeaderView::section {
                   <number>2</number>
                  </property>
                  <item row="0" column="0">
-                  <widget class="QRadioButton" name="move_middle_button_2">
+                  <widget class="QRadioButton" name="shoot_simple_kick_button">
                    <property name="text">
-                    <string>move_to_middle</string>
+                    <string>simple_kick</string>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -1314,22 +1314,22 @@ QHeaderView::section {
            </attribute>
            <row>
             <property name="text">
-             <string>System Status</string>
+             <string>System Status       </string>
             </property>
            </row>
            <row>
             <property name="text">
-             <string>Current Strategy</string>
+             <string>Current Strategy             </string>
             </property>
            </row>
            <row>
             <property name="text">
-             <string>Control Source</string>
+             <string>Control Source         </string>
             </property>
            </row>
            <row>
             <property name="text">
-             <string>Match Speed</string>
+             <string>Match Speed          </string>
             </property>
            </row>
            <column>
@@ -1338,11 +1338,6 @@ QHeaderView::section {
             </property>
            </column>
           </widget>
-          <zorder>generalTableWidget</zorder>
-          <zorder>strategy_type_tab</zorder>
-          <zorder>strategy_type_tab</zorder>
-          <zorder>strategy_type_tab</zorder>
-          <zorder>strategy_type_tab</zorder>
          </widget>
         </item>
         <item>

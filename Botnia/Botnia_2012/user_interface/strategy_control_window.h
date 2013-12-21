@@ -83,6 +83,8 @@ private slots:
     void specify_control_source();
     void select_position_strategy_type();
     void select_move_strategy_type();
+    void select_shoot_strategy_type();
+
     void speed_control(int value);
     void match_time_control();
     void excute_strategy();
