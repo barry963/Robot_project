@@ -892,7 +892,7 @@ QHeaderView::section {
            </size>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <property name="movable">
            <bool>true</bool>
@@ -905,7 +905,7 @@ QHeaderView::section {
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>10</y>
+              <y>0</y>
               <width>441</width>
               <height>210</height>
              </rect>
@@ -1020,7 +1020,7 @@ QHeaderView::section {
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>10</y>
+              <y>0</y>
               <width>441</width>
               <height>210</height>
              </rect>
@@ -1135,7 +1135,7 @@ QHeaderView::section {
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>10</y>
+              <y>0</y>
               <width>441</width>
               <height>210</height>
              </rect>
@@ -1184,9 +1184,9 @@ QHeaderView::section {
                   <number>2</number>
                  </property>
                  <item row="0" column="0">
-                  <widget class="QRadioButton" name="shoot_simple_kick_button">
+                  <widget class="QRadioButton" name="shoot_charge_ball_button">
                    <property name="text">
-                    <string>simple_kick</string>
+                    <string>charge_ball</string>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -1194,16 +1194,16 @@ QHeaderView::section {
                   </widget>
                  </item>
                  <item row="3" column="0">
-                  <widget class="QRadioButton" name="move_straight_button_2">
+                  <widget class="QRadioButton" name="shoot_dribble_shoot_button">
                    <property name="text">
-                    <string>move_as_straight</string>
+                    <string>dribble_shoot</string>
                    </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QRadioButton" name="move_sin_button_2">
+                  <widget class="QRadioButton" name="shoot_simple_shoot_button">
                    <property name="text">
-                    <string>move_as_sin</string>
+                    <string>simple_shoot</string>
                    </property>
                   </widget>
                  </item>
@@ -1232,6 +1232,372 @@ QHeaderView::section {
                   <widget class="QRadioButton" name="dd_2">
                    <property name="text">
                     <string/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="test1">
+           <attribute name="title">
+            <string>Page</string>
+           </attribute>
+           <widget class="QWidget" name="verticalLayoutWidget_24">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>441</width>
+              <height>210</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="strategy_shoot_layout_3" stretch="0">
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <property name="margin">
+              <number>5</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="strategy_shoot_box_3">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>290</height>
+                </size>
+               </property>
+               <property name="title">
+                <string/>
+               </property>
+               <widget class="QWidget" name="verticalLayoutWidget_25">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>411</width>
+                  <height>176</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="strategy_selection_layout_7">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetDefaultConstraint</enum>
+                 </property>
+                 <property name="margin">
+                  <number>5</number>
+                 </property>
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QRadioButton" name="shoot_button">
+                   <property name="text">
+                    <string>shoot</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QRadioButton" name="clear_button">
+                   <property name="text">
+                    <string>clear</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="steal_button">
+                   <property name="text">
+                    <string>steal</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QRadioButton" name="success_button">
+                   <property name="text">
+                    <string>success</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="charge_ball_button">
+                   <property name="text">
+                    <string>charge_ball</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="complete_button">
+                   <property name="text">
+                    <string>complete</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QRadioButton" name="dribble_to_position_button">
+                   <property name="text">
+                    <string>dribble_to_position</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QRadioButton" name="stop_button_2">
+                   <property name="text">
+                    <string>stop</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="test2">
+           <attribute name="title">
+            <string>Page</string>
+           </attribute>
+           <widget class="QWidget" name="verticalLayoutWidget_26">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>441</width>
+              <height>210</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="strategy_shoot_layout_4" stretch="0">
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <property name="margin">
+              <number>5</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="strategy_shoot_box_4">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>290</height>
+                </size>
+               </property>
+               <property name="title">
+                <string/>
+               </property>
+               <widget class="QWidget" name="verticalLayoutWidget_27">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>411</width>
+                  <height>176</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="strategy_selection_layout_8">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetDefaultConstraint</enum>
+                 </property>
+                 <property name="margin">
+                  <number>5</number>
+                 </property>
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <item row="0" column="0">
+                  <widget class="QRadioButton" name="block_button">
+                   <property name="text">
+                    <string>block</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QRadioButton" name="mark_button">
+                   <property name="text">
+                    <string>mark</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="goalie_button">
+                   <property name="text">
+                    <string>goalie</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QRadioButton" name="velocity_button">
+                   <property name="text">
+                    <string>velocity</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="defend_point_button">
+                   <property name="text">
+                    <string>defend_point</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="defend_lane_button">
+                   <property name="text">
+                    <string>defend_lane</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QRadioButton" name="defend_line_button">
+                   <property name="text">
+                    <string>defend_line</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QRadioButton" name="pass_button">
+                   <property name="text">
+                    <string>pass</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="test3">
+           <attribute name="title">
+            <string>Page</string>
+           </attribute>
+           <widget class="QWidget" name="verticalLayoutWidget_28">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>441</width>
+              <height>210</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="strategy_shoot_layout_5" stretch="0">
+             <property name="spacing">
+              <number>2</number>
+             </property>
+             <property name="margin">
+              <number>5</number>
+             </property>
+             <item>
+              <widget class="QGroupBox" name="strategy_shoot_box_5">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>200</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>290</height>
+                </size>
+               </property>
+               <property name="title">
+                <string/>
+               </property>
+               <widget class="QWidget" name="verticalLayoutWidget_29">
+                <property name="geometry">
+                 <rect>
+                  <x>10</x>
+                  <y>10</y>
+                  <width>411</width>
+                  <height>218</height>
+                 </rect>
+                </property>
+                <layout class="QGridLayout" name="strategy_selection_layout_9">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetDefaultConstraint</enum>
+                 </property>
+                 <property name="margin">
+                  <number>5</number>
+                 </property>
+                 <property name="spacing">
+                  <number>2</number>
+                 </property>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="receive_deflection_button">
+                   <property name="text">
+                    <string>receive_deflection</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QRadioButton" name="dribble_to_region_button">
+                   <property name="text">
+                    <string>dribble_to_region</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="spin_to_region_button">
+                   <property name="text">
+                    <string>spin_to_region</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QRadioButton" name="dribble_to_shoot_button">
+                   <property name="text">
+                    <string>dribble_to_shoot</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="active_def_button">
+                   <property name="text">
+                    <string>active_def</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QRadioButton" name="receive_pass_button">
+                   <property name="text">
+                    <string>receive_pass</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QRadioButton" name="position_button">
+                   <property name="text">
+                    <string>position</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QRadioButton" name="fafad">
+                   <property name="text">
+                    <string>simple_shoot</string>
                    </property>
                   </widget>
                  </item>

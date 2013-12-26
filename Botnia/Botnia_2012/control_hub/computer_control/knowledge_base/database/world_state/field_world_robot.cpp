@@ -37,24 +37,24 @@ const bool robot_sub_state = true;
 const bool robot_debug_die = true;
 
 
-//·â×°ÁËÕû¸ö¶ÓÎéµÄĞĞÎª£¬ÌåÏÖÁË¾Í½üµÄ»úÆ÷ÈËÓÅÏÈ²ÉÈ¡ĞĞ¶¯µÄÔ­Ôò£¬ÃèÊöÁË»úÆ÷ÈË×÷Îª²»Í¬½ÇÉ«ÇòÔ±Ê±µÄĞĞÎªºÍ·´Ó¦¹ı³Ì¡£
+//å°è£…äº†æ•´ä¸ªé˜Ÿä¼çš„è¡Œä¸ºï¼Œä½“ç°äº†å°±è¿‘çš„æœºå™¨äººä¼˜å…ˆé‡‡å–è¡ŒåŠ¨çš„åŸåˆ™ï¼Œæè¿°äº†æœºå™¨äººä½œä¸ºä¸åŒè§’è‰²çƒå‘˜æ—¶çš„è¡Œä¸ºå’Œååº”è¿‡ç¨‹ã€‚
 const char *state_name[] =
 {
-    "SMGotoBall",				//ÅÜÏòÇò
-    "SMFaceBall",				//³¯ÏòÇò
-    "SMApproachBall",		//½Ó½üÇò
-    "SMPullBall",				//À­Çò
-    "SMFaceTarget",			//³¯ÏòÄ¿±ê
-    "SMDriveToGoal",		//³åÏòÇòÃÅ
-    "SMKick",						//Æğ½ÅÌßÇò
-    "SMSpinAtBall",			//ÔÚÇòÇ°Ğı×ª
-    "SMPosition",				//ÅÜÎ»
-    "SMRecieveBall",		//½ÓÇò
-    "SMWait"						//´ıÃü
+    "SMGotoBall",				//è·‘å‘çƒ
+    "SMFaceBall",				//æœå‘çƒ
+    "SMApproachBall",		//æ¥è¿‘çƒ
+    "SMPullBall",				//æ‹‰çƒ
+    "SMFaceTarget",			//æœå‘ç›®æ ‡
+    "SMDriveToGoal",		//å†²å‘çƒé—¨
+    "SMKick",						//èµ·è„šè¸¢çƒ
+    "SMSpinAtBall",			//åœ¨çƒå‰æ—‹è½¬
+    "SMPosition",				//è·‘ä½
+    "SMRecieveBall",		//æ¥çƒ
+    "SMWait"						//å¾…å‘½
 };
-//¶¨ÒåÁËÎÒ·½µ¥¸ö»úÆ÷ÈË¿ÉÄÜ´æÔÚµÄ¸÷ÖÖ×´Ì¬Ä£Ê½£¬Ëæºó¶¨ÒåÁËÏàÓ¦µÄ×´Ì¬´¦Àíº¯Êı¡£
+//å®šä¹‰äº†æˆ‘æ–¹å•ä¸ªæœºå™¨äººå¯èƒ½å­˜åœ¨çš„å„ç§çŠ¶æ€æ¨¡å¼ï¼Œéšåå®šä¹‰äº†ç›¸åº”çš„çŠ¶æ€å¤„ç†å‡½æ•°ã€‚
 
-//½«»úÆ÷ÈËÏŞÖÆÔÚ³¡µØÄÚ
+//å°†æœºå™¨äººé™åˆ¶åœ¨åœºåœ°å†…
 MyVector2d on_field(MyVector2d pos,double radius)
 {
     pos.x = bound(pos.x,-FIELD_LENGTH_H+radius,FIELD_LENGTH_H-radius);
@@ -75,7 +75,7 @@ void Robot::init(int _my_id)
 const MyVector2d own_goal_pos(-FIELD_LENGTH_H-2*BALL_RADIUS,0);
 const MyVector2d opp_goal_pos( FIELD_LENGTH_H+2*BALL_RADIUS,0);
 
-//¸üĞÂÈü³¡ÉÏµÄĞÅÏ¢£¬ÈçÎÒµÄµ±Ç°Î»ÖÃ¡¢½Ç¶È¡¢ËÙ¶È¡¢½ÇËÙ¶È£¬ÎÒµ½¶Ô·½ÇòÃÅÖĞµãµÄÏòÁ¿£¬ÕÏ°­ÎïµÄÇé¿öµÈµÈ;
+//æ›´æ–°èµ›åœºä¸Šçš„ä¿¡æ¯ï¼Œå¦‚æˆ‘çš„å½“å‰ä½ç½®ã€è§’åº¦ã€é€Ÿåº¦ã€è§’é€Ÿåº¦ï¼Œæˆ‘åˆ°å¯¹æ–¹çƒé—¨ä¸­ç‚¹çš„å‘é‡ï¼Œéšœç¢ç‰©çš„æƒ…å†µç­‰ç­‰;
 void Robot::updateSensors(World &world)
 {
     Sensors &s = sensors;
@@ -83,25 +83,25 @@ void Robot::updateSensors(World &world)
     double f;
     //==== update high level sensors ====//
     // find out current position
-    //µ±Ç°»úÆ÷ÈËÎ»ÖÃ
+    //å½“å‰æœºå™¨äººä½ç½®
     s.r_pos = world.GetRobotPositionByID(my_id);
-    //µ±Ç°»úÆ÷ÈË½Ç¶È
+    //å½“å‰æœºå™¨äººè§’åº¦
     s.r_ang = world.teammate_direction(my_id);
-    //µ±Ç°»úÆ÷ÈËËÙ¶È
+    //å½“å‰æœºå™¨äººé€Ÿåº¦
     s.r_vel = world.GetRobotVelocityByID(my_id);
-    //µ±Ç°»úÆ÷ÈË½ÇËÙ¶È
+    //å½“å‰æœºå™¨äººè§’é€Ÿåº¦
     s.r_ang_vel = world.teammate_angular_velocity(my_id);
     //
     s.r_fwd.set(cos(s.r_ang),sin(s.r_ang));
     s.opp_goal_rel = opp_goal_pos - s.r_pos;
     // ball information
-    //ÇòÎ»ÖÃ
+    //çƒä½ç½®
     s.ball_pos  = world.ball_position();
-    //ÇòËÙ¶È
+    //çƒé€Ÿåº¦
     s.ball_vel  = world.ball_velocity();
-    //ÇòÏà¶Ô»úÆ÷ÈË×ø±ê
+    //çƒç›¸å¯¹æœºå™¨äººåæ ‡
     s.ball_rel  = s.ball_pos - s.r_pos;
-    //ÇòÏà¶Ô»úÆ÷ÈË¾àÀë
+    //çƒç›¸å¯¹æœºå™¨äººè·ç¦»
     s.ball_dist = s.ball_rel.length();
     s.own_goal_to_ball = s.ball_pos - own_goal_pos;
     s.ball_to_opp_goal = opp_goal_pos - s.ball_pos;
@@ -117,14 +117,14 @@ void Robot::updateSensors(World &world)
                dot(s.ball_rel.perp(),s.good_ball_dir),s.spin_dir);
         */
     s.ball_conf = world.ball_raw(vpos);
-    //ÇòÔÚ¶Ô·½ÇòÃÅÄÚ
+    //çƒåœ¨å¯¹æ–¹çƒé—¨å†…
     s.ball_in_opp_goal = ((s.ball_pos.x > FIELD_LENGTH_H+2*BALL_RADIUS)  && (fabs(s.ball_pos.y) < GOAL_WIDTH_H) );
-    //ÇòÏà¶Ô»úÆ÷ÈËÊ¸Á¿Ğı×ªµ½XÖá·½Ïò
+    //çƒç›¸å¯¹æœºå™¨äººçŸ¢é‡æ—‹è½¬åˆ°Xè½´æ–¹å‘
     s.robot_ball = s.ball_rel.rotate(-s.r_ang);
-    //ÇòÔÚ»úÆ÷ÈËÄÚ²¿
+    //çƒåœ¨æœºå™¨äººå†…éƒ¨
     s.ball_in_front = (s.robot_ball.x > -20) &&
             (fabs(s.robot_ball.y) < 60);
-    //ÇòÔÚ»úÆ÷ÈËÇ°·½
+    //çƒåœ¨æœºå™¨äººå‰æ–¹
     s.ball_on_front = s.ball_in_front && (s.robot_ball.x < 120);
     //s.ball_target.set(FIELD_LENGTH_H /*+BALL_RADIUS*/,
     //                  bound(s.ball_pos.y,
@@ -193,18 +193,18 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     {
         max_behind = 160; // bound(100,1,100); // -100/10*time_in_state,1,100);
     }
-    //°´ÕÕËÙ¶È1000Ô¤²â£¬¼ÆËãÇòµÄÎ»ÖÃ
+    //æŒ‰ç…§é€Ÿåº¦1000é¢„æµ‹ï¼Œè®¡ç®—çƒçš„ä½ç½®
     t = max(s.ball_dist-200.0,0.0) / 1000.0;
     ball_pred = world.ball_position(world.now + t);
     // walk forward looking for free space
-    //°´ÕÕÉÏÃæÉè¶¨µÄmax_behind¾àÀëÖğ²½Ç°½ø£¬Ñ°ÕÒ¿ÕÏĞµØµã
-    //ÓÃÓÚ½«»úÆ÷ÈË´øµ½ÇòÖĞĞÄ¸½½ü160mm·¶Î§ÄÚ
+    //æŒ‰ç…§ä¸Šé¢è®¾å®šçš„max_behindè·ç¦»é€æ­¥å‰è¿›ï¼Œå¯»æ‰¾ç©ºé—²åœ°ç‚¹
+    //ç”¨äºå°†æœºå™¨äººå¸¦åˆ°çƒä¸­å¿ƒé™„è¿‘160mmèŒƒå›´å†…
     obs_id = -1;
     for (behind=max_behind; behind>=0.0; behind-=10.0)
     {
-        //target_rel Ä¿µÄµØÏà¶Ô»úÆ÷ÈËÎ»ÖÃ²îÊ¸Á¿
+        //target_rel ç›®çš„åœ°ç›¸å¯¹æœºå™¨äººä½ç½®å·®çŸ¢é‡
         targ = ball_pred - target_rel.norm(behind);
-        //½«»úÆ÷ÈËÏŞÖÆÔÚ³¡µØÄÚ
+        //å°†æœºå™¨äººé™åˆ¶åœ¨åœºåœ°å†…
         targ = on_field(targ,ROBOT_RADIUS);
         if (s.obs.check(targ,obs_id))
         {
@@ -215,7 +215,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     {
         printf("  behind = %f (obs %d)\n",behind,obs_id);
     }
-    //Èç¹ûÓëÇòµÄ¾àÀëÉÙÓÚ»úÆ÷ÈË¼ÓÇò°ë¾¶£¬¼´ÇòÔÚ»úÆ÷ÈËÄÚ£¬ÔòÉ¾³ıÇòÕÏ°­Éè¶¨
+    //å¦‚æœä¸çƒçš„è·ç¦»å°‘äºæœºå™¨äººåŠ çƒåŠå¾„ï¼Œå³çƒåœ¨æœºå™¨äººå†…ï¼Œåˆ™åˆ é™¤çƒéšœç¢è®¾å®š
     if (fabs(behind) < ball_rad+OMNIBOT_RADIUS)
     {
         //
@@ -229,7 +229,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
           targ = ball_pred;
         }
         */
-    //¼ÆËã»úÆ÷ÈËÓëÇò¸½½üÄ¿±êµã¾àÀë
+    //è®¡ç®—æœºå™¨äººä¸çƒé™„è¿‘ç›®æ ‡ç‚¹è·ç¦»
     targ_dist = MyVector::distance(targ,s.r_pos);
     if (state_changed)
     {
@@ -257,11 +257,11 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
         case CmdMoveBall:
         case CmdDribble:
             if (targ_dist<150 &&
-                    //Ç÷ÊÆÊÇ½Ó½üÄ¿±êµã
+                    //è¶‹åŠ¿æ˜¯æ¥è¿‘ç›®æ ‡ç‚¹
                     last_dist_from_target<=targ_dist)
             {
                 // printf("  %f <= %f\n",last_dist_from_target,targ_dist);
-                //ÇòÔÚ»úÆ÷ÈËÇ°·½£¬ÄÜ¹»Çı¶¯
+                //çƒåœ¨æœºå™¨äººå‰æ–¹ï¼Œèƒ½å¤Ÿé©±åŠ¨
                 if (s.can_drive && candriver)
                 {
                     //printf("gotoball %3.2f,%3.2f\r\n",target_ball_rel.x,target_ball_rel.y);
@@ -269,7 +269,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
                     /*}else if(fabs(target_ball_rel.x) < 0.0){
                                            return(SMSpinAtBall);*/
                 }
-                //ÇòËÙ¶È
+                //çƒé€Ÿåº¦
                 else if (s.ball_vel.length()<200)
                 {
                     return(SMFaceBall);
@@ -290,7 +290,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     }
     nav.pos    = targ;
     nav.angle  = s.ball_rel.angle();
-    //ÔÊĞí½øÈë¶Ô·½½ûÇø
+    //å…è®¸è¿›å…¥å¯¹æ–¹ç¦åŒº
     nav.obs  &= ~(OBS_THEIR_DZONE);
     last_dist_from_target = targ_dist;
     if (robot_print)
@@ -300,37 +300,37 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     return(SMGotoBall);
 }
 
-//ÊµÏÖÃæÏòÇò
+//å®ç°é¢å‘çƒ
 Robot::SMState Robot::faceBall(World &world,Sensors &s,RobotCommand &cmd,
                                NavTarget &nav)
 {
     double da,dta;
-    //da=»úÆ÷ÈËÓëÇòÁ¬Ïß½Ç¶ÈÓë»úÆ÷ÈË±¾Éí½Ç¶È²î
+    //da=æœºå™¨äººä¸çƒè¿çº¿è§’åº¦ä¸æœºå™¨äººæœ¬èº«è§’åº¦å·®
     da  = angle_mod(s.ball_rel.angle() - s.r_ang);
     dta = angle_mod(target_rel.angle() - s.r_ang);
-    //Èç¹û½Ç¶ÈĞ¡ÓÚ0.1»¡¶È
+    //å¦‚æœè§’åº¦å°äº0.1å¼§åº¦
     if (fabs(da) < 0.1)
     {
         if (s.can_drive)
         {
-            //½«Çò´øÏòÊØÃÅÔ±
+            //å°†çƒå¸¦å‘å®ˆé—¨å‘˜
             return(SMDriveToGoal);
         }
         else
         {
-            //Èç¹û½Ç¶È¹ı´ó,Ğı×ª»úÆ÷ÈË,ÃæÏòÇò
-            //½Ó½üÇò
+            //å¦‚æœè§’åº¦è¿‡å¤§,æ—‹è½¬æœºå™¨äºº,é¢å‘çƒ
+            //æ¥è¿‘çƒ
             return(SMApproachBall);
         }
     }
-    //Ìî³äÃüÁî½á¹¹
+    //å¡«å……å‘½ä»¤ç»“æ„
     nav.direct = true;
-    //Éè¶¨Ğı×ªÁ¿
+    //è®¾å®šæ—‹è½¬é‡
     nav.vel_xya.set(0,0,6*sin(da));
     return(SMFaceBall);
 }
 
-//¿¿½üÇò
+//é è¿‘çƒ
 Robot::SMState Robot::approachBall(World &world,Sensors &s,RobotCommand &cmd,
                                    NavTarget &nav)
 {
@@ -342,8 +342,8 @@ Robot::SMState Robot::approachBall(World &world,Sensors &s,RobotCommand &cmd,
                target_ball_rel.x>0.0,fabs(target_ball_rel.y)<60.0,
                s.ball_on_front);
         */
-    //inOurDefenseZone ¼ì²éÇòÊÇ·ñÔÚÎÒ·½½ûÇøÄÚ
-    //Èç¹ûÓëÇòµÄ¾àÀë´óÓÚ300£¬»òÕßÔÚÎÒ·½·ÀÇøÄÚ
+    //inOurDefenseZone æ£€æŸ¥çƒæ˜¯å¦åœ¨æˆ‘æ–¹ç¦åŒºå†…
+    //å¦‚æœä¸çƒçš„è·ç¦»å¤§äº300ï¼Œæˆ–è€…åœ¨æˆ‘æ–¹é˜²åŒºå†…
     if ((s.ball_dist > 300) || world.inOurDefenseZone())
     {
         return(SMGotoBall);
@@ -386,7 +386,7 @@ Robot::SMState Robot::approachBall(World &world,Sensors &s,RobotCommand &cmd,
     return(SMApproachBall);
 }
 
-//Íê³ÉÀ­Çò¹¦ÄÜ
+//å®Œæˆæ‹‰çƒåŠŸèƒ½
 Robot::SMState Robot::pullBall(World &world,Sensors &s,RobotCommand &cmd,
                                NavTarget &nav)
 {
@@ -395,12 +395,12 @@ Robot::SMState Robot::pullBall(World &world,Sensors &s,RobotCommand &cmd,
     {
         return(SMFaceTarget);
     }
-    //Çò²»ÔÚÃæÇ°
+    //çƒä¸åœ¨é¢å‰
     if (!s.ball_on_front && s.ball_conf>0.5)
     {
         return(SMGotoBall);
     }
-    //À­ÇòËÙ¶ÈÖğ½¥Ôö¼Ó
+    //æ‹‰çƒé€Ÿåº¦é€æ¸å¢åŠ 
     vx = -500.0 * time_in_state;
     nav.dribble_power = 15;
     nav.direct = true;
@@ -413,7 +413,7 @@ Robot::SMState Robot::faceTarget(World &world,Sensors &s,RobotCommand &cmd,
                                  NavTarget &nav)
 {
     double da,sx,sa,vx,va;
-    //¼ÆËãÇòÓë
+    //è®¡ç®—çƒä¸
     da = angle_mod(target_rel.angle() - s.r_ang);
     if (robot_print)
     {
@@ -444,25 +444,25 @@ Robot::SMState Robot::faceTarget(World &world,Sensors &s,RobotCommand &cmd,
     return(SMFaceTarget);
 }
 
-//´øÇò»òÕßÉäÃÅ
+//å¸¦çƒæˆ–è€…å°„é—¨
 //carry the ball or shoot
 Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
                                   NavTarget &nav)
 {
-    //Çò×²»÷µãÏà¶ÔÇòµÄÎ»ÖÃ²îÊ¸Á¿
+    //çƒæ’å‡»ç‚¹ç›¸å¯¹çƒçš„ä½ç½®å·®çŸ¢é‡
     MyVector2d ball_to_target = cmd.ball_target-s.ball_pos;
     // double carrot_dist = max(500.0-s.ball_dist,1.0);
     // MyVector2d carrot_pos = s.ball_pos + ball_to_target.norm(carrot_dist);
     double t,dba;
     double tdist,tbdist;
-    //s.ball_rel ÇòÏà¶Ô»úÆ÷ÈË×ø±ê target_rel Ä¿µÄµØÏà¶Ô»úÆ÷ÈËÎ»ÖÃ²îÊ¸Á¿
-    //¼ÆËãÕâÁ½¸öÊ¸Á¿µ¥Î»»¯ºóµÄµã»ı
+    //s.ball_rel çƒç›¸å¯¹æœºå™¨äººåæ ‡ target_rel ç›®çš„åœ°ç›¸å¯¹æœºå™¨äººä½ç½®å·®çŸ¢é‡
+    //è®¡ç®—è¿™ä¸¤ä¸ªçŸ¢é‡å•ä½åŒ–åçš„ç‚¹ç§¯
     t = cosine(s.ball_rel,target_rel);
-    //ÉäÃÅĞèÒª½Ç¶ÈÓëÇò×ËÌ¬½Ç¶È²î
+    //å°„é—¨éœ€è¦è§’åº¦ä¸çƒå§¿æ€è§’åº¦å·®
     dba = angle_mod(ball_to_target.angle() - s.r_ang);
-    //»úÆ÷ÈË¾àÀëÄ¿±êµã¾àÀë
+    //æœºå™¨äººè·ç¦»ç›®æ ‡ç‚¹è·ç¦»
     tdist  = target_rel.length();
-    //»úÆ÷ÈË¾àÀëÇòµÄ×²»÷µã¾àÀë
+    //æœºå™¨äººè·ç¦»çƒçš„æ’å‡»ç‚¹è·ç¦»
     tbdist = MyVector::distance(cmd.ball_target,s.r_pos);
     if (robot_print)
     {
@@ -473,7 +473,7 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
                (tbdist < 1000+500*omni));
     }
     if (cmd.cmd==CmdMoveBall && s.ball_on_front &&
-            //»úÆ÷ÈËÏà¶ÔÇòµÄËÙ¶È²î³¬¹ı100
+            //æœºå™¨äººç›¸å¯¹çƒçš„é€Ÿåº¦å·®è¶…è¿‡100
             MyVector::dot(s.r_vel,s.ball_rel.norm()) > 100.0 &&
             (fabs(dba) < cmd.angle_tolerance))
     {
@@ -481,18 +481,18 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
         {
         case BallShotOnGoal:
         case BallShotPass:
-            //5000=ÇòËÙ¶È10000*0.5Ãë
-            //½Ç¶È±£Áô25%µÄÓàÁ¿
+            //5000=çƒé€Ÿåº¦10000*0.5ç§’
+            //è§’åº¦ä¿ç•™25%çš„ä½™é‡
             if ((tbdist > 100) && (fabs(dba) < cmd.angle_tolerance*0.75) )//&& (tbdist < 5000) )
             {
                 return(SMKick);
             }
             break;
-            //ÉäÏò¿ÕµØ
+            //å°„å‘ç©ºåœ°
         case BallShotClear:
             // if(!omni || s.on_goal) return(SMKick);
-            //·ÀÖ¹½«ÇòÉä³ö³¡µØ£¬0.5»¡¶È´óÓÚµÈÓÚ30¶È
-            //ÓÃÓÚ½«ÇòÉäÏò¿ÕµØ
+            //é˜²æ­¢å°†çƒå°„å‡ºåœºåœ°ï¼Œ0.5å¼§åº¦å¤§äºç­‰äº30åº¦
+            //ç”¨äºå°†çƒå°„å‘ç©ºåœ°
             if (!omni || fabs(s.r_ang)<0.5)
             {
                 return(SMKick);
@@ -508,7 +508,7 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
         //printf("driveToGoal %3.2f,%3.2f\r\n",target_ball_rel.x,target_ball_rel.y);
         return(SMGotoBall);
     }
-    //ÇòÀëÇ½Ö»ÓĞ50,Ğı×ª½«Çò´øÈë³¡ÄÚ
+    //çƒç¦»å¢™åªæœ‰50,æ—‹è½¬å°†çƒå¸¦å…¥åœºå†…
     if (s.ball_dist_from_wall < 50)
     {
         return(SMSpinAtBall);
@@ -573,12 +573,12 @@ Robot::SMState Robot::kick(World &world,Sensors &s,RobotCommand &cmd,
     {
         last_target_da = 2*M_PI;
     }
-    //Èç¹û´¦ÓÚÌßÇò×´Ì¬Ê±¼ä³¤£¬Ó­ÏòÇò
+    //å¦‚æœå¤„äºè¸¢çƒçŠ¶æ€æ—¶é—´é•¿ï¼Œè¿å‘çƒ
     if (time_in_state>0.25+1.75*omni)
     {
         return(SMGotoBall);
     }
-    //Èç¹ûÇò²»ÔÚ»úÆ÷ÈËÄÚ²¿£¬ÈÃ»úÆ÷ÈËÓ­ÏòÇò
+    //å¦‚æœçƒä¸åœ¨æœºå™¨äººå†…éƒ¨ï¼Œè®©æœºå™¨äººè¿å‘çƒ
     if (!s.ball_in_front)
     {
         return(SMGotoBall);
@@ -696,7 +696,7 @@ Robot::SMState Robot::spinAtBall(World &world,Sensors &s,RobotCommand &cmd,
     return(SMSpinAtBall);
 }
 
-//»úÆ÷ÈËÔË¶¯µ½Ö¸¶¨×ø±ê
+//æœºå™¨äººè¿åŠ¨åˆ°æŒ‡å®šåæ ‡
 // this is the function that assign the target in command to the to the target in navigation algorithm
 // gao mark
 // final place of assigning state
@@ -711,30 +711,30 @@ Robot::SMState Robot::position(World &world,Sensors &s,RobotCommand &cmd,
     return(SMPosition);
 }
 
-//½ÓÇò»ù±¾¶¯×÷
+//æ¥çƒåŸºæœ¬åŠ¨ä½œ
 Robot::SMState Robot::recieveBall(World &world,Sensors &s,RobotCommand &cmd,
                                   NavTarget &nav)
 {
     double a,da;
-    //Èç¹ûÇò²»ÔÚÃæÇ°,¼ÆËãºÍÃæÏòÇòµÄ½Ç¶È²î£¬È»ºó×ªÏòÇò
+    //å¦‚æœçƒä¸åœ¨é¢å‰,è®¡ç®—å’Œé¢å‘çƒçš„è§’åº¦å·®ï¼Œç„¶åè½¬å‘çƒ
     if (!s.ball_on_front)
     {
         a  = s.ball_rel.angle();
         da = angle_mod(a - s.r_ang);
     }
-    //·ñÔò²»ÓÃ×ªÏò
+    //å¦åˆ™ä¸ç”¨è½¬å‘
     else
     {
         da = 0;
     }
-    //Æô¶¯´øÇò¹¦ÄÜ
+    //å¯åŠ¨å¸¦çƒåŠŸèƒ½
     nav.dribble_power = 15;
     nav.direct = true;
     nav.vel_xya.set(0,0,3*sin(da));
     return(SMRecieveBall);
 }
 
-//»úÆ÷ÈËµÈ´ı
+//æœºå™¨äººç­‰å¾…
 Robot::SMState Robot::wait(World &world,Sensors &s,RobotCommand &cmd,
                            NavTarget &nav)
 {
@@ -758,7 +758,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     int n;
     omni = (world.teammate_type(my_id) == ROBOT_TYPE_OMNI);
     // If command changed, set initial state
-    //¼ì²éÃüÁî
+    //æ£€æŸ¥å‘½ä»¤
     if (cmd.cmd != last_cmd)
     {
         switch (cmd.cmd)
@@ -788,14 +788,14 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         }
     };
     // common calculations
-    //Ä¿µÄµØÏà¶Ô»úÆ÷ÈËÎ»ÖÃ²îÊ¸Á¿
+    //ç›®çš„åœ°ç›¸å¯¹æœºå™¨äººä½ç½®å·®çŸ¢é‡
     target_rel = cmd.target - s.r_pos;
     //
     target_ball_rel.set(s.ball_rel.dot(target_rel.norm()),
                         s.ball_rel.dot(target_rel.norm().perp()));
     // target_ball_rel = s.ball_rel.rotate(-(cmd.target-s.r_pos).angle());
     // execute states until no longer switching
-    //Ñ­»·Ö´ĞĞ,Ö±µ½²»ÔÙÇĞ»»×´Ì¬
+    //å¾ªç¯æ‰§è¡Œ,ç›´åˆ°ä¸å†åˆ‡æ¢çŠ¶æ€
     const int maxloop=10;
     n = maxloop;
     state_changed = false;
@@ -803,7 +803,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     {
 
         old_state = state;
-        //¼ÆËãÔÚ±¾×´Ì¬ÖĞ±£³ÖµÄÊ±¼ä
+        //è®¡ç®—åœ¨æœ¬çŠ¶æ€ä¸­ä¿æŒçš„æ—¶é—´
         time_in_state = world.time - state_start_time;
         mzero(nav);
         nav.obs = OBS_EVERYTHING_BUT_ME(my_id);
@@ -813,6 +813,8 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         }
         switch (state)
         {
+
+        //printf("cmd: target(%f,%f)");//lu_test add
         case SMGotoBall:
             state = gotoBall    (world,s,cmd,nav);
             break;
@@ -882,10 +884,10 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     } while (state!=old_state && --n);
 
     nav.DataDisplay();//lu_test add
-
+/*lu_test
     if (n <= 0)
     {
-        //Á¬Ğø·¢Éú10´Î×´Ì¬±ä»¯£¬ÕâÊÇ²»Õı³£Çé¿ö
+        //è¿ç»­å‘ç”Ÿ10æ¬¡çŠ¶æ€å˜åŒ–ï¼Œè¿™æ˜¯ä¸æ­£å¸¸æƒ…å†µ
         printf("Robot::Oscillation Error! in class Robot::run\n");
         nav.direct = true;
         nav.vel_xya.set(100,0,0);
@@ -894,7 +896,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
             exit(1);
         }
     }
-
+*/
     if (robot_print)
     {
         printf("State: %s %0.2fs R(%8.2f,%8.2f)\n",
@@ -906,29 +908,29 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
                      "  robot_ball=<%f,%f>\n",V2COMP(s.robot_ball));
     if (robot_print)
     {
-        printf("  robot_ball=<%f,%f>:%d target_ball_rel=<%f,%f> stuck=%f\n",
+        printf("  robot_ball=<%f,%f>,%d target_ball_rel=<%f,%f> stuck=%f\n",
                V2COMP(s.robot_ball),s.ball_on_front,
                V2COMP(target_ball_rel),
                world.teammate_stuck(my_id));
    }
     // carry out target command
-    //Ö±½ÓÉè¶¨»úÆ÷ÈËµÄËÙ¶È²ÎÊı
+    //ç›´æ¥è®¾å®šæœºå™¨äººçš„é€Ÿåº¦å‚æ•°
     if (nav.direct)
     {
         tcmd.vx = nav.vel_xya.x;
         tcmd.vy = nav.vel_xya.y;
         tcmd.va = nav.vel_xya.z;
-                qDebug()<<"direct speed setting";
+        qDebug()<<"direct speed setting";
 
     }
-    //Í¨¹ıÂ·¾¶µ¼º½ÊµÏÖËÙ¶È¿ØÖÆ
+    //é€šè¿‡è·¯å¾„å¯¼èˆªå®ç°é€Ÿåº¦æ§åˆ¶
     else
     {
         if (nav.spin)
         {
             qDebug()<<"spin to point";
 
-            //Ğı×ª·½Ê½µ½Ö¸¶¨µã£¬²»¶ã±ÜÕÏ°­
+            //æ—‹è½¬æ–¹å¼åˆ°æŒ‡å®šç‚¹ï¼Œä¸èº²é¿éšœç¢
             tcmd = spin_to_point(world,my_id,nav.pos,nav.angle);
         }
         else
@@ -972,27 +974,28 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         }
     }
     tcmd.kick_power   = nav.kick_power;
-    tcmd.dribble_power = nav.dribble_power;
+    tcmd.dribble_power = nav.dribble_power;//lu_test set the kick power and dribble_power
+
     // if(robot_print && nav.kick) printf("Kick!\n");
-    //¼ÆËãÈÎÎñÊÇ·ñÍê³É
+    //è®¡ç®—ä»»åŠ¡æ˜¯å¦å®Œæˆ
     switch (cmd.cmd)
     {
     case CmdMoveBall:
         status = (nav.kick_power)? Completed : InProgress;
         break;
-        //Èç¹ûÊÇÍµÇò
+        //å¦‚æœæ˜¯å·çƒ
     case CmdSteal:
         status = InProgress;
         break;
-        //ÊÇ½ÓÊÕ´«ÇòÃüÁî,Èç¹ûÇòÒÑ¾­ÔÚÃæÇ°,ÔòÍê³É
+        //æ˜¯æ¥æ”¶ä¼ çƒå‘½ä»¤,å¦‚æœçƒå·²ç»åœ¨é¢å‰,åˆ™å®Œæˆ
     case CmdRecieveBall:
         status = (s.ball_on_front)? Completed : InProgress;
         break;
-        //Èç¹ûÊÇ´øÇò,ºÍ¶¨Î»,²¢ÇÒºÍÄ¿±êµã¼ä¾àĞ¡ÓÚ20mm£¬ÔòÈÎÎñÍê³É
+        //å¦‚æœæ˜¯å¸¦çƒ,å’Œå®šä½,å¹¶ä¸”å’Œç›®æ ‡ç‚¹é—´è·å°äº20mmï¼Œåˆ™ä»»åŠ¡å®Œæˆ
     case CmdSpin:
     case CmdDribble:
     case CmdPosition:
-        //20=×î¸ßËÙ¶È/60;
+        //20=æœ€é«˜é€Ÿåº¦/60;
         qDebug()<<"distance between target and raw position: "<<MyVector::distance(cmd.target,s.r_pos);
         if (MyVector::distance(cmd.target,s.r_pos) < 20.0)
         {
@@ -1020,17 +1023,17 @@ Status Robot::run(World &world,RobotCommand &cmd)
     s = run(world,cmd,tcmd);
     if (s!=Failed)
     {
-        //ÏòÖ¸¶¨µÄ»úÆ÷ÈË·¢³öÌßÇòºÍ´øÇòÃüÁî
+        //å‘æŒ‡å®šçš„æœºå™¨äººå‘å‡ºè¸¢çƒå’Œå¸¦çƒå‘½ä»¤
         //send shoot and dribble command to the specific robot
         world.go(my_id,tcmd.vx,tcmd.vy,tcmd.va,tcmd.kick_power,tcmd.bchipkick,tcmd.dribble_power);
     }
     return(s);
 }
 
-//»úÆ÷ÈË¶¯×÷Ê±¼äÆÀ¹À,ÓÃÓÚ»úÆ÷ÈË½ÇÉ«Ñ¡ÔñÆÀ¹À
-//ÊÊÓÃº¯Êı obsLineNum
-//¼ÆËã´Óp1µ½p2Ö±ÏßÉÏÓĞ¶àÉÙ¸öÕÏ°­
-//ÅĞ¶ÏÉí±ßÕÏ°­ÎïµÄ×ÜÊı(°üÀ¨Çò£¬¶ÓÓÑºÍ¶Ô·½ÇòÔ±);
+//æœºå™¨äººåŠ¨ä½œæ—¶é—´è¯„ä¼°,ç”¨äºæœºå™¨äººè§’è‰²é€‰æ‹©è¯„ä¼°
+//é€‚ç”¨å‡½æ•° obsLineNum
+//è®¡ç®—ä»p1åˆ°p2ç›´çº¿ä¸Šæœ‰å¤šå°‘ä¸ªéšœç¢
+//åˆ¤æ–­èº«è¾¹éšœç¢ç‰©çš„æ€»æ•°(åŒ…æ‹¬çƒï¼Œé˜Ÿå‹å’Œå¯¹æ–¹çƒå‘˜);
 //robot action time estimate, used for robot role choose estimate
 //used for obsLineNum
 //calculate how many obstacles between p1 and p2

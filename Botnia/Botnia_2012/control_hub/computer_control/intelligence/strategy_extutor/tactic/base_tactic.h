@@ -375,14 +375,14 @@ public:
         if (!bNAN && the_command.cmd>=0)
         {
             //Ö´ÐÐÃüÁî
+            //execute the command
             the_status = world.robot[me]->run(world, the_command);
-
-
         }
         if (ignore_status)
         {
             the_status = InProgress;
         }
+            printf("tactic %d,%3.2f,%3.2f\n",the_command.cmd,the_command.target.x,the_command.target.y);
     }
 };
 

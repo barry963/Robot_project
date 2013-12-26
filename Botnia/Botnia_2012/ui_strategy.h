@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Sun Dec 22 00:08:30 2013
+** Created: Sun Dec 22 03:08:08 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -147,13 +147,55 @@ public:
     QGroupBox *strategy_shoot_box;
     QWidget *verticalLayoutWidget_17;
     QGridLayout *strategy_selection_layout_3;
-    QRadioButton *shoot_simple_kick_button;
-    QRadioButton *move_straight_button_2;
-    QRadioButton *move_sin_button_2;
+    QRadioButton *shoot_charge_ball_button;
+    QRadioButton *shoot_dribble_shoot_button;
+    QRadioButton *shoot_simple_shoot_button;
     QRadioButton *strategy5_radio_button_3;
     QRadioButton *strategy3_radio_button_3;
     QRadioButton *strategy6_radio_button_3;
     QRadioButton *dd_2;
+    QWidget *test1;
+    QWidget *verticalLayoutWidget_24;
+    QVBoxLayout *strategy_shoot_layout_3;
+    QGroupBox *strategy_shoot_box_3;
+    QWidget *verticalLayoutWidget_25;
+    QGridLayout *strategy_selection_layout_7;
+    QRadioButton *shoot_button;
+    QRadioButton *clear_button;
+    QRadioButton *steal_button;
+    QRadioButton *success_button;
+    QRadioButton *charge_ball_button;
+    QRadioButton *complete_button;
+    QRadioButton *dribble_to_position_button;
+    QRadioButton *stop_button_2;
+    QWidget *test2;
+    QWidget *verticalLayoutWidget_26;
+    QVBoxLayout *strategy_shoot_layout_4;
+    QGroupBox *strategy_shoot_box_4;
+    QWidget *verticalLayoutWidget_27;
+    QGridLayout *strategy_selection_layout_8;
+    QRadioButton *block_button;
+    QRadioButton *mark_button;
+    QRadioButton *goalie_button;
+    QRadioButton *velocity_button;
+    QRadioButton *defend_point_button;
+    QRadioButton *defend_lane_button;
+    QRadioButton *defend_line_button;
+    QRadioButton *pass_button;
+    QWidget *test3;
+    QWidget *verticalLayoutWidget_28;
+    QVBoxLayout *strategy_shoot_layout_5;
+    QGroupBox *strategy_shoot_box_5;
+    QWidget *verticalLayoutWidget_29;
+    QGridLayout *strategy_selection_layout_9;
+    QRadioButton *receive_deflection_button;
+    QRadioButton *dribble_to_region_button;
+    QRadioButton *spin_to_region_button;
+    QRadioButton *dribble_to_shoot_button;
+    QRadioButton *active_def_button;
+    QRadioButton *receive_pass_button;
+    QRadioButton *position_button;
+    QRadioButton *fafad;
     QGroupBox *groupBox_11;
     QTableWidget *generalTableWidget;
     QSpacerItem *strategy_spacer;
@@ -713,7 +755,7 @@ public:
         strategy_position_tab->setObjectName(QString::fromUtf8("strategy_position_tab"));
         verticalLayoutWidget_13 = new QWidget(strategy_position_tab);
         verticalLayoutWidget_13->setObjectName(QString::fromUtf8("verticalLayoutWidget_13"));
-        verticalLayoutWidget_13->setGeometry(QRect(0, 10, 441, 210));
+        verticalLayoutWidget_13->setGeometry(QRect(0, 0, 441, 210));
         strategy_position_layout = new QVBoxLayout(verticalLayoutWidget_13);
         strategy_position_layout->setSpacing(2);
         strategy_position_layout->setContentsMargins(5, 5, 5, 5);
@@ -776,7 +818,7 @@ public:
         strategy_move_tab->setObjectName(QString::fromUtf8("strategy_move_tab"));
         verticalLayoutWidget_14 = new QWidget(strategy_move_tab);
         verticalLayoutWidget_14->setObjectName(QString::fromUtf8("verticalLayoutWidget_14"));
-        verticalLayoutWidget_14->setGeometry(QRect(0, 10, 441, 210));
+        verticalLayoutWidget_14->setGeometry(QRect(0, 0, 441, 210));
         strategy_move_layout = new QVBoxLayout(verticalLayoutWidget_14);
         strategy_move_layout->setSpacing(2);
         strategy_move_layout->setContentsMargins(5, 5, 5, 5);
@@ -839,7 +881,7 @@ public:
         strategy_shoot_tab->setObjectName(QString::fromUtf8("strategy_shoot_tab"));
         verticalLayoutWidget_16 = new QWidget(strategy_shoot_tab);
         verticalLayoutWidget_16->setObjectName(QString::fromUtf8("verticalLayoutWidget_16"));
-        verticalLayoutWidget_16->setGeometry(QRect(0, 10, 441, 210));
+        verticalLayoutWidget_16->setGeometry(QRect(0, 0, 441, 210));
         strategy_shoot_layout = new QVBoxLayout(verticalLayoutWidget_16);
         strategy_shoot_layout->setSpacing(2);
         strategy_shoot_layout->setContentsMargins(5, 5, 5, 5);
@@ -858,21 +900,21 @@ public:
         strategy_selection_layout_3->setObjectName(QString::fromUtf8("strategy_selection_layout_3"));
         strategy_selection_layout_3->setSizeConstraint(QLayout::SetDefaultConstraint);
         strategy_selection_layout_3->setContentsMargins(0, 0, 0, 0);
-        shoot_simple_kick_button = new QRadioButton(verticalLayoutWidget_17);
-        shoot_simple_kick_button->setObjectName(QString::fromUtf8("shoot_simple_kick_button"));
-        shoot_simple_kick_button->setChecked(true);
+        shoot_charge_ball_button = new QRadioButton(verticalLayoutWidget_17);
+        shoot_charge_ball_button->setObjectName(QString::fromUtf8("shoot_charge_ball_button"));
+        shoot_charge_ball_button->setChecked(true);
 
-        strategy_selection_layout_3->addWidget(shoot_simple_kick_button, 0, 0, 1, 1);
+        strategy_selection_layout_3->addWidget(shoot_charge_ball_button, 0, 0, 1, 1);
 
-        move_straight_button_2 = new QRadioButton(verticalLayoutWidget_17);
-        move_straight_button_2->setObjectName(QString::fromUtf8("move_straight_button_2"));
+        shoot_dribble_shoot_button = new QRadioButton(verticalLayoutWidget_17);
+        shoot_dribble_shoot_button->setObjectName(QString::fromUtf8("shoot_dribble_shoot_button"));
 
-        strategy_selection_layout_3->addWidget(move_straight_button_2, 3, 0, 1, 1);
+        strategy_selection_layout_3->addWidget(shoot_dribble_shoot_button, 3, 0, 1, 1);
 
-        move_sin_button_2 = new QRadioButton(verticalLayoutWidget_17);
-        move_sin_button_2->setObjectName(QString::fromUtf8("move_sin_button_2"));
+        shoot_simple_shoot_button = new QRadioButton(verticalLayoutWidget_17);
+        shoot_simple_shoot_button->setObjectName(QString::fromUtf8("shoot_simple_shoot_button"));
 
-        strategy_selection_layout_3->addWidget(move_sin_button_2, 0, 1, 1, 1);
+        strategy_selection_layout_3->addWidget(shoot_simple_shoot_button, 0, 1, 1, 1);
 
         strategy5_radio_button_3 = new QRadioButton(verticalLayoutWidget_17);
         strategy5_radio_button_3->setObjectName(QString::fromUtf8("strategy5_radio_button_3"));
@@ -898,6 +940,210 @@ public:
         strategy_shoot_layout->addWidget(strategy_shoot_box);
 
         strategy_type_tab->addTab(strategy_shoot_tab, QString());
+        test1 = new QWidget();
+        test1->setObjectName(QString::fromUtf8("test1"));
+        verticalLayoutWidget_24 = new QWidget(test1);
+        verticalLayoutWidget_24->setObjectName(QString::fromUtf8("verticalLayoutWidget_24"));
+        verticalLayoutWidget_24->setGeometry(QRect(0, 0, 441, 210));
+        strategy_shoot_layout_3 = new QVBoxLayout(verticalLayoutWidget_24);
+        strategy_shoot_layout_3->setSpacing(2);
+        strategy_shoot_layout_3->setContentsMargins(5, 5, 5, 5);
+        strategy_shoot_layout_3->setObjectName(QString::fromUtf8("strategy_shoot_layout_3"));
+        strategy_shoot_layout_3->setContentsMargins(0, 0, 0, 0);
+        strategy_shoot_box_3 = new QGroupBox(verticalLayoutWidget_24);
+        strategy_shoot_box_3->setObjectName(QString::fromUtf8("strategy_shoot_box_3"));
+        strategy_shoot_box_3->setMinimumSize(QSize(0, 200));
+        strategy_shoot_box_3->setMaximumSize(QSize(16777215, 290));
+        verticalLayoutWidget_25 = new QWidget(strategy_shoot_box_3);
+        verticalLayoutWidget_25->setObjectName(QString::fromUtf8("verticalLayoutWidget_25"));
+        verticalLayoutWidget_25->setGeometry(QRect(10, 10, 411, 176));
+        strategy_selection_layout_7 = new QGridLayout(verticalLayoutWidget_25);
+        strategy_selection_layout_7->setSpacing(2);
+        strategy_selection_layout_7->setContentsMargins(5, 5, 5, 5);
+        strategy_selection_layout_7->setObjectName(QString::fromUtf8("strategy_selection_layout_7"));
+        strategy_selection_layout_7->setSizeConstraint(QLayout::SetDefaultConstraint);
+        strategy_selection_layout_7->setContentsMargins(0, 0, 0, 0);
+        shoot_button = new QRadioButton(verticalLayoutWidget_25);
+        shoot_button->setObjectName(QString::fromUtf8("shoot_button"));
+        shoot_button->setChecked(true);
+
+        strategy_selection_layout_7->addWidget(shoot_button, 0, 0, 1, 1);
+
+        clear_button = new QRadioButton(verticalLayoutWidget_25);
+        clear_button->setObjectName(QString::fromUtf8("clear_button"));
+
+        strategy_selection_layout_7->addWidget(clear_button, 3, 0, 1, 1);
+
+        steal_button = new QRadioButton(verticalLayoutWidget_25);
+        steal_button->setObjectName(QString::fromUtf8("steal_button"));
+
+        strategy_selection_layout_7->addWidget(steal_button, 0, 1, 1, 1);
+
+        success_button = new QRadioButton(verticalLayoutWidget_25);
+        success_button->setObjectName(QString::fromUtf8("success_button"));
+
+        strategy_selection_layout_7->addWidget(success_button, 4, 0, 1, 1);
+
+        charge_ball_button = new QRadioButton(verticalLayoutWidget_25);
+        charge_ball_button->setObjectName(QString::fromUtf8("charge_ball_button"));
+
+        strategy_selection_layout_7->addWidget(charge_ball_button, 3, 1, 1, 1);
+
+        complete_button = new QRadioButton(verticalLayoutWidget_25);
+        complete_button->setObjectName(QString::fromUtf8("complete_button"));
+
+        strategy_selection_layout_7->addWidget(complete_button, 4, 1, 1, 1);
+
+        dribble_to_position_button = new QRadioButton(verticalLayoutWidget_25);
+        dribble_to_position_button->setObjectName(QString::fromUtf8("dribble_to_position_button"));
+
+        strategy_selection_layout_7->addWidget(dribble_to_position_button, 5, 0, 1, 1);
+
+        stop_button_2 = new QRadioButton(verticalLayoutWidget_25);
+        stop_button_2->setObjectName(QString::fromUtf8("stop_button_2"));
+
+        strategy_selection_layout_7->addWidget(stop_button_2, 5, 1, 1, 1);
+
+
+        strategy_shoot_layout_3->addWidget(strategy_shoot_box_3);
+
+        strategy_type_tab->addTab(test1, QString());
+        test2 = new QWidget();
+        test2->setObjectName(QString::fromUtf8("test2"));
+        verticalLayoutWidget_26 = new QWidget(test2);
+        verticalLayoutWidget_26->setObjectName(QString::fromUtf8("verticalLayoutWidget_26"));
+        verticalLayoutWidget_26->setGeometry(QRect(0, 0, 441, 210));
+        strategy_shoot_layout_4 = new QVBoxLayout(verticalLayoutWidget_26);
+        strategy_shoot_layout_4->setSpacing(2);
+        strategy_shoot_layout_4->setContentsMargins(5, 5, 5, 5);
+        strategy_shoot_layout_4->setObjectName(QString::fromUtf8("strategy_shoot_layout_4"));
+        strategy_shoot_layout_4->setContentsMargins(0, 0, 0, 0);
+        strategy_shoot_box_4 = new QGroupBox(verticalLayoutWidget_26);
+        strategy_shoot_box_4->setObjectName(QString::fromUtf8("strategy_shoot_box_4"));
+        strategy_shoot_box_4->setMinimumSize(QSize(0, 200));
+        strategy_shoot_box_4->setMaximumSize(QSize(16777215, 290));
+        verticalLayoutWidget_27 = new QWidget(strategy_shoot_box_4);
+        verticalLayoutWidget_27->setObjectName(QString::fromUtf8("verticalLayoutWidget_27"));
+        verticalLayoutWidget_27->setGeometry(QRect(10, 10, 411, 176));
+        strategy_selection_layout_8 = new QGridLayout(verticalLayoutWidget_27);
+        strategy_selection_layout_8->setSpacing(2);
+        strategy_selection_layout_8->setContentsMargins(5, 5, 5, 5);
+        strategy_selection_layout_8->setObjectName(QString::fromUtf8("strategy_selection_layout_8"));
+        strategy_selection_layout_8->setSizeConstraint(QLayout::SetDefaultConstraint);
+        strategy_selection_layout_8->setContentsMargins(0, 0, 0, 0);
+        block_button = new QRadioButton(verticalLayoutWidget_27);
+        block_button->setObjectName(QString::fromUtf8("block_button"));
+        block_button->setChecked(true);
+
+        strategy_selection_layout_8->addWidget(block_button, 0, 0, 1, 1);
+
+        mark_button = new QRadioButton(verticalLayoutWidget_27);
+        mark_button->setObjectName(QString::fromUtf8("mark_button"));
+
+        strategy_selection_layout_8->addWidget(mark_button, 3, 0, 1, 1);
+
+        goalie_button = new QRadioButton(verticalLayoutWidget_27);
+        goalie_button->setObjectName(QString::fromUtf8("goalie_button"));
+
+        strategy_selection_layout_8->addWidget(goalie_button, 0, 1, 1, 1);
+
+        velocity_button = new QRadioButton(verticalLayoutWidget_27);
+        velocity_button->setObjectName(QString::fromUtf8("velocity_button"));
+
+        strategy_selection_layout_8->addWidget(velocity_button, 4, 0, 1, 1);
+
+        defend_point_button = new QRadioButton(verticalLayoutWidget_27);
+        defend_point_button->setObjectName(QString::fromUtf8("defend_point_button"));
+
+        strategy_selection_layout_8->addWidget(defend_point_button, 3, 1, 1, 1);
+
+        defend_lane_button = new QRadioButton(verticalLayoutWidget_27);
+        defend_lane_button->setObjectName(QString::fromUtf8("defend_lane_button"));
+
+        strategy_selection_layout_8->addWidget(defend_lane_button, 4, 1, 1, 1);
+
+        defend_line_button = new QRadioButton(verticalLayoutWidget_27);
+        defend_line_button->setObjectName(QString::fromUtf8("defend_line_button"));
+
+        strategy_selection_layout_8->addWidget(defend_line_button, 5, 0, 1, 1);
+
+        pass_button = new QRadioButton(verticalLayoutWidget_27);
+        pass_button->setObjectName(QString::fromUtf8("pass_button"));
+
+        strategy_selection_layout_8->addWidget(pass_button, 5, 1, 1, 1);
+
+
+        strategy_shoot_layout_4->addWidget(strategy_shoot_box_4);
+
+        strategy_type_tab->addTab(test2, QString());
+        test3 = new QWidget();
+        test3->setObjectName(QString::fromUtf8("test3"));
+        verticalLayoutWidget_28 = new QWidget(test3);
+        verticalLayoutWidget_28->setObjectName(QString::fromUtf8("verticalLayoutWidget_28"));
+        verticalLayoutWidget_28->setGeometry(QRect(0, 0, 441, 210));
+        strategy_shoot_layout_5 = new QVBoxLayout(verticalLayoutWidget_28);
+        strategy_shoot_layout_5->setSpacing(2);
+        strategy_shoot_layout_5->setContentsMargins(5, 5, 5, 5);
+        strategy_shoot_layout_5->setObjectName(QString::fromUtf8("strategy_shoot_layout_5"));
+        strategy_shoot_layout_5->setContentsMargins(0, 0, 0, 0);
+        strategy_shoot_box_5 = new QGroupBox(verticalLayoutWidget_28);
+        strategy_shoot_box_5->setObjectName(QString::fromUtf8("strategy_shoot_box_5"));
+        strategy_shoot_box_5->setMinimumSize(QSize(0, 200));
+        strategy_shoot_box_5->setMaximumSize(QSize(16777215, 290));
+        verticalLayoutWidget_29 = new QWidget(strategy_shoot_box_5);
+        verticalLayoutWidget_29->setObjectName(QString::fromUtf8("verticalLayoutWidget_29"));
+        verticalLayoutWidget_29->setGeometry(QRect(10, 10, 411, 218));
+        strategy_selection_layout_9 = new QGridLayout(verticalLayoutWidget_29);
+        strategy_selection_layout_9->setSpacing(2);
+        strategy_selection_layout_9->setContentsMargins(5, 5, 5, 5);
+        strategy_selection_layout_9->setObjectName(QString::fromUtf8("strategy_selection_layout_9"));
+        strategy_selection_layout_9->setSizeConstraint(QLayout::SetDefaultConstraint);
+        strategy_selection_layout_9->setContentsMargins(0, 0, 0, 0);
+        receive_deflection_button = new QRadioButton(verticalLayoutWidget_29);
+        receive_deflection_button->setObjectName(QString::fromUtf8("receive_deflection_button"));
+
+        strategy_selection_layout_9->addWidget(receive_deflection_button, 4, 1, 1, 1);
+
+        dribble_to_region_button = new QRadioButton(verticalLayoutWidget_29);
+        dribble_to_region_button->setObjectName(QString::fromUtf8("dribble_to_region_button"));
+
+        strategy_selection_layout_9->addWidget(dribble_to_region_button, 3, 0, 1, 1);
+
+        spin_to_region_button = new QRadioButton(verticalLayoutWidget_29);
+        spin_to_region_button->setObjectName(QString::fromUtf8("spin_to_region_button"));
+
+        strategy_selection_layout_9->addWidget(spin_to_region_button, 3, 1, 1, 1);
+
+        dribble_to_shoot_button = new QRadioButton(verticalLayoutWidget_29);
+        dribble_to_shoot_button->setObjectName(QString::fromUtf8("dribble_to_shoot_button"));
+        dribble_to_shoot_button->setChecked(true);
+
+        strategy_selection_layout_9->addWidget(dribble_to_shoot_button, 0, 0, 1, 1);
+
+        active_def_button = new QRadioButton(verticalLayoutWidget_29);
+        active_def_button->setObjectName(QString::fromUtf8("active_def_button"));
+
+        strategy_selection_layout_9->addWidget(active_def_button, 0, 1, 1, 1);
+
+        receive_pass_button = new QRadioButton(verticalLayoutWidget_29);
+        receive_pass_button->setObjectName(QString::fromUtf8("receive_pass_button"));
+
+        strategy_selection_layout_9->addWidget(receive_pass_button, 4, 0, 1, 1);
+
+        position_button = new QRadioButton(verticalLayoutWidget_29);
+        position_button->setObjectName(QString::fromUtf8("position_button"));
+
+        strategy_selection_layout_9->addWidget(position_button, 5, 0, 1, 1);
+
+        fafad = new QRadioButton(verticalLayoutWidget_29);
+        fafad->setObjectName(QString::fromUtf8("fafad"));
+
+        strategy_selection_layout_9->addWidget(fafad, 5, 1, 1, 1);
+
+
+        strategy_shoot_layout_5->addWidget(strategy_shoot_box_5);
+
+        strategy_type_tab->addTab(test3, QString());
 
         strategy_layout->addWidget(strategy_type_tab);
 
@@ -1153,7 +1399,7 @@ public:
         retranslateUi(MainWindow);
 
         control_panel->setCurrentIndex(2);
-        strategy_type_tab->setCurrentIndex(1);
+        strategy_type_tab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1233,14 +1479,44 @@ public:
         dd->setText(QString());
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(strategy_move_tab), QApplication::translate("MainWindow", "Move", 0, QApplication::UnicodeUTF8));
         strategy_shoot_box->setTitle(QString());
-        shoot_simple_kick_button->setText(QApplication::translate("MainWindow", "simple_kick", 0, QApplication::UnicodeUTF8));
-        move_straight_button_2->setText(QApplication::translate("MainWindow", "move_as_straight", 0, QApplication::UnicodeUTF8));
-        move_sin_button_2->setText(QApplication::translate("MainWindow", "move_as_sin", 0, QApplication::UnicodeUTF8));
+        shoot_charge_ball_button->setText(QApplication::translate("MainWindow", "charge_ball", 0, QApplication::UnicodeUTF8));
+        shoot_dribble_shoot_button->setText(QApplication::translate("MainWindow", "dribble_shoot", 0, QApplication::UnicodeUTF8));
+        shoot_simple_shoot_button->setText(QApplication::translate("MainWindow", "simple_shoot", 0, QApplication::UnicodeUTF8));
         strategy5_radio_button_3->setText(QString());
         strategy3_radio_button_3->setText(QString());
         strategy6_radio_button_3->setText(QString());
         dd_2->setText(QString());
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(strategy_shoot_tab), QApplication::translate("MainWindow", "Shoot", 0, QApplication::UnicodeUTF8));
+        strategy_shoot_box_3->setTitle(QString());
+        shoot_button->setText(QApplication::translate("MainWindow", "shoot", 0, QApplication::UnicodeUTF8));
+        clear_button->setText(QApplication::translate("MainWindow", "clear", 0, QApplication::UnicodeUTF8));
+        steal_button->setText(QApplication::translate("MainWindow", "steal", 0, QApplication::UnicodeUTF8));
+        success_button->setText(QApplication::translate("MainWindow", "success", 0, QApplication::UnicodeUTF8));
+        charge_ball_button->setText(QApplication::translate("MainWindow", "charge_ball", 0, QApplication::UnicodeUTF8));
+        complete_button->setText(QApplication::translate("MainWindow", "complete", 0, QApplication::UnicodeUTF8));
+        dribble_to_position_button->setText(QApplication::translate("MainWindow", "dribble_to_position", 0, QApplication::UnicodeUTF8));
+        stop_button_2->setText(QApplication::translate("MainWindow", "stop", 0, QApplication::UnicodeUTF8));
+        strategy_type_tab->setTabText(strategy_type_tab->indexOf(test1), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
+        strategy_shoot_box_4->setTitle(QString());
+        block_button->setText(QApplication::translate("MainWindow", "block", 0, QApplication::UnicodeUTF8));
+        mark_button->setText(QApplication::translate("MainWindow", "mark", 0, QApplication::UnicodeUTF8));
+        goalie_button->setText(QApplication::translate("MainWindow", "goalie", 0, QApplication::UnicodeUTF8));
+        velocity_button->setText(QApplication::translate("MainWindow", "velocity", 0, QApplication::UnicodeUTF8));
+        defend_point_button->setText(QApplication::translate("MainWindow", "defend_point", 0, QApplication::UnicodeUTF8));
+        defend_lane_button->setText(QApplication::translate("MainWindow", "defend_lane", 0, QApplication::UnicodeUTF8));
+        defend_line_button->setText(QApplication::translate("MainWindow", "defend_line", 0, QApplication::UnicodeUTF8));
+        pass_button->setText(QApplication::translate("MainWindow", "pass", 0, QApplication::UnicodeUTF8));
+        strategy_type_tab->setTabText(strategy_type_tab->indexOf(test2), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
+        strategy_shoot_box_5->setTitle(QString());
+        receive_deflection_button->setText(QApplication::translate("MainWindow", "receive_deflection", 0, QApplication::UnicodeUTF8));
+        dribble_to_region_button->setText(QApplication::translate("MainWindow", "dribble_to_region", 0, QApplication::UnicodeUTF8));
+        spin_to_region_button->setText(QApplication::translate("MainWindow", "spin_to_region", 0, QApplication::UnicodeUTF8));
+        dribble_to_shoot_button->setText(QApplication::translate("MainWindow", "dribble_to_shoot", 0, QApplication::UnicodeUTF8));
+        active_def_button->setText(QApplication::translate("MainWindow", "active_def", 0, QApplication::UnicodeUTF8));
+        receive_pass_button->setText(QApplication::translate("MainWindow", "receive_pass", 0, QApplication::UnicodeUTF8));
+        position_button->setText(QApplication::translate("MainWindow", "position", 0, QApplication::UnicodeUTF8));
+        fafad->setText(QApplication::translate("MainWindow", "simple_shoot", 0, QApplication::UnicodeUTF8));
+        strategy_type_tab->setTabText(strategy_type_tab->indexOf(test3), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
         groupBox_11->setTitle(QApplication::translate("MainWindow", "GroupBox", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = generalTableWidget->verticalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "System Status       ", 0, QApplication::UnicodeUTF8));

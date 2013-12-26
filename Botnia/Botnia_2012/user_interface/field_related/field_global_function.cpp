@@ -128,7 +128,9 @@ void RegisterTactics()
         Tactic::registerParser("position_for_loose_ball", TPositionForLooseBall::parser);
 
 
-        Tactic::registerParser("shoot_simple_kick", TChargeBall::parser);//lu_test
+        Tactic::registerParser("shoot_charge_ball", TChargeBall::parser);//lu_test->
+        Tactic::registerParser("shoot_simple_shoot", TShoot::parser);
+        Tactic::registerParser("shoot_dribble_shoot", TDribbleToShoot::parser);
 
 
         Tactic::registerParser("charge_ball", TChargeBall::parser);
@@ -151,7 +153,7 @@ void RegisterTactics()
         Tactic::registerParser("dribble_to_region", TDribbleToRegion::parser);
         Tactic::registerParser("spin_to_region", TSpinToRegion::parser);
         Tactic::registerParser("receive_pass", TReceivePass::parser);
-        Tactic::registerParser("receive_deflection", TReceiveDeflection::parser);
+        Tactic::registerParser("receive_deflection", TReceiveDeflection::parser);//<- lu_test
 }
 
 QString application_path;

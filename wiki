@@ -161,12 +161,40 @@ try to figure out the execute of specific tactic
 
 typedef DataMap *PDataMap; //field_analysor_configreader.h
 
-pay attention to virtual function, that means this function is just a interface.
+pay attention to pure virtual function, that means this function is just a interface.
 
 TODO: kick the ball
 
 =======================================
 2013/12/21
 
-add charge ball strategy
+add all the special strategy
+
+    SMState gotoBall    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState faceBall    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState approachBall(World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState pullBall    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState faceTarget  (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState driveToGoal (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState kick        (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState spinAtBall  (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState position    (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState recieveBall (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+    SMState wait        (World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav);
+
+
+field_world_robot.h
+
+=======================================
+2013/12/25
+
+field_world_robot.cpp
+Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
+
+set the kick and dribble power
+
+TODO: estimate kick and dribble power
+
+
+
 

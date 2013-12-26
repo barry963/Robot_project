@@ -81,6 +81,7 @@ Tactic *TShoot::parser(const char *param_string)
 	int target;
 	char t;
 	param_string += Parse::pChar(param_string, t);
+
 	switch (t)
 	{
 	case 'N':
@@ -173,7 +174,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
 		               target, angle_tolerance);
 		got_target = true;
 	}
-	if (got_target)
+    if (got_target)
 	{
 		//ţߵŵ㿪ʼ
 		if (debug)
@@ -205,7 +206,8 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
 		command.ball_target = target;
 		command.target = rtarget;
 		command.angle_tolerance = angle_tolerance;
-		command.ball_shot_type = Robot::BallShotOnGoal;
+        command.ball_shot_type = Robot::BallShotOnGoal;//BallShotOnGoal
+
 	}
 	else
 	{

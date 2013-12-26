@@ -790,6 +790,7 @@ void Strategy::run(World &world, Tactic *tactics[])
 	// Warmups
 	if (doing==WARMUP)
 	{
+        qDebug()<<"game run warmup";
 		switch (drills.warmupNum)
 		{
 		case 1:
@@ -821,6 +822,7 @@ void Strategy::run(World &world, Tactic *tactics[])
 	//ÿ���л���Stop״̬�����浱ǰplaybook
 	if (world.game_state == 'S')
 	{
+        qDebug()<<"game state=s";
 		if (last_game_state != 'S')
 		{
 			stopped_time = world.time;
@@ -838,12 +840,14 @@ void Strategy::run(World &world, Tactic *tactics[])
 	//�����л������µ�����״̬����Ҫ����ѡ��play����
 	if ((strchr("s ", world.game_state) == NULL) && world.game_state != last_game_state)
 	{
+        qDebug()<<"playended1";
 		playEnded(world, InProgress);
 	}
 	// If we don't have a play, select one.
 	//����û��play������ѡ��һ���µ�play����
 	else if (!current_play)
 	{
+        qDebug()<<"playended2";
 		playEnded(world, InProgress);
 	}
 	// Run the play executor.

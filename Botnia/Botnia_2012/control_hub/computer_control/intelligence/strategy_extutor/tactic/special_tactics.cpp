@@ -97,7 +97,7 @@ void TPositionForKick::command(World &world, int me,
 	//#  at least this much bigger appears we'll switch to that.
 	//SHOOT_AIM_PREF_AMOUNT = 0.01745 # 1 degree
 	// (1) Try shooting on goal.
-	if (!evaluation.aim(world, world.now, world.ball_position(),
+    if (!evaluation.aim(world, world.now, world.ball_position(),
 	                    world.their_goal_r,
 	                    world.their_goal_l,
 	                    OBS_EVERYTHING_BUT_US,
@@ -109,11 +109,13 @@ void TPositionForKick::command(World &world, int me,
                 downfield[0].set(ball_position.x + 180.0, -FIELD_WIDTH_H);
                 downfield[1].set(ball_position.x + 180.0, FIELD_WIDTH_H);
 		// (2) Try clearing the ball
-		if (!evaluation.aim(world, world.now, world.ball_position(),
+
+        if (!evaluation.aim(world, world.now, world.ball_position(),
 		                    downfield[0], downfield[1],
 		                    OBS_EVERYTHING_BUT_ME(me),
 		                    prev_target, DVAR(SHOOT_AIM_PREF_AMOUNT),
 		                    target, angle_tolerance))
+
 		{
 			// Guaranteed to return true and fill in the parameters when
 			// obs_flags is empty.
@@ -122,6 +124,7 @@ void TPositionForKick::command(World &world, int me,
 			evaluation.aim(world, world.now, world.ball_position(),
 			               downfield[0], downfield[1],
 			               0, target, angle_tolerance);
+            qDebug()<<"shoot downfield";
 		}
 	}
 	if (debug)
@@ -166,7 +169,7 @@ void TPositionForKick::command(World &world, int me,
 	command.target = targetp;
 	command.velocity = MyVector2d(0, 0);
 	command.angle = angle;
-	//  command.obs = OBS_EVERYTHING_BUT_ME(me);
+    //command.obs = OBS_EVERYTHING_BUT_ME(me);
 	command.observation_type = obs;
     command.goto_point_type = Robot::GotoPointMoveForw;
 }
