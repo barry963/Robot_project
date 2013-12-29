@@ -76,16 +76,14 @@ TPositionForKick::TPositionForKick()
 
 void TPositionForKick::LoadConfig()
 {
-    qDebug()<<"TPositionForKick load config";
-        cr_do_setup();
+    cr_do_setup();
 }
 
 void TPositionForKick::command(World &world, int me,
                                Robot::RobotCommand &command,
                                bool debug)
 {
-        qDebug()<<"TPositionForKick start";
-        MyVector2d ball_position = world.ball_position();
+    MyVector2d ball_position = world.ball_position();
 	MyVector2d target;
 	double angle_tolerance;
 	if (!prev_target_set)
@@ -104,7 +102,7 @@ void TPositionForKick::command(World &world, int me,
 	                    prev_target, DVAR(SHOOT_AIM_PREF_AMOUNT),
 	                    target, angle_tolerance))
 	{
-		//,
+        //back border of the goal lu_test
 		MyVector2d downfield[2];
                 downfield[0].set(ball_position.x + 180.0, -FIELD_WIDTH_H);
                 downfield[1].set(ball_position.x + 180.0, FIELD_WIDTH_H);
@@ -138,14 +136,14 @@ void TPositionForKick::command(World &world, int me,
 	prev_target = target;
 	//
         double ball_distance = (world.GetRobotPositionByID(me) - ball_position).length();
-	//С20
+    //question lu_test
 	if (world.GetRobotVelocityByID(me).length() < 20.0)
 	{
                 ball_distance -= 20.0;
 	}
 	// put this in config
 	double closest = 85.0;
-	//85150
+    //question lu_test constant setting
         ball_distance = bound(ball_distance, closest, 150.0);
 	//target85150
         MyVector2d targetp = ball_position - (target - ball_position).norm(ball_distance);
@@ -154,6 +152,7 @@ void TPositionForKick::command(World &world, int me,
 	MyVector2d r2target = (targetp - world.GetRobotPositionByID(me));
 	double d2target = r2target.sqlength();
 	//20150
+    //question lu_test ???
 	if ((d2target < 150.0 * 150.0) && (d2target > 20.0 * 20.0) &&
 	        (fabs(angle_mod(angle - r2target.angle())) < M_PI_4))
 	{

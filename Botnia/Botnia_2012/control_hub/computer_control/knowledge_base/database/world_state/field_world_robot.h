@@ -67,11 +67,11 @@ public:
     // in this stuct, it defines the parameters that will be stored to run the robots
     struct RobotParam
     {
-        double maxSpeed;						//×î¸ßËÙ¶È
-        double maxAccSpeed;					//×î´ó¼ÓËÙ¶È
-                                                //ÉäÃÅËÙ¶È
-        double maxRotateSpeed;			//×î¸ßĞı×ªËÙ¶È
-        double maxRotateAccSpeed;		//×î¸ßĞı×ª¼ÓËÙ¶È
+        double maxSpeed;						//æœ€é«˜é€Ÿåº¦
+        double maxAccSpeed;					//æœ€å¤§åŠ é€Ÿåº¦
+                                                //å°„é—¨é€Ÿåº¦
+        double maxRotateSpeed;			//æœ€é«˜æ—‹è½¬é€Ÿåº¦
+        double maxRotateAccSpeed;		//æœ€é«˜æ—‹è½¬åŠ é€Ÿåº¦
 
     };
 
@@ -118,9 +118,9 @@ public:
 
         // flags
         bool direct;   // raw velocities (not a navigation target)
-        int dribble_power;	//´øÇòÄÜÁ¿
-        int kick_power;     //ÌßÇòÄÜÁ¿
-        bool bchipkick;			//ÌôÇò·½Ê½ type of ball pick
+        int dribble_power;	//å¸¦çƒèƒ½é‡
+        int kick_power;     //è¸¢çƒèƒ½é‡
+        bool bchipkick;			//æŒ‘çƒæ–¹å¼ type of ball pick
 
         bool spin;     // spin to target point
         GotoPointType type;
@@ -132,7 +132,7 @@ public:
         void DataDisplay()
         {
             //printf("\n\nNavTarget pos: (%f, %f), vel: (%f, %f), angle: %f, obs: %d, raw_vel: %f, %f, %f \n\n",pos.x,pos.y,vel.x,vel.y,angle,obs,vel_xya.x,vel_xya.y,vel_xya.z);
-            qDebug()<<"\nNavTarget pos:("<<pos.x<<", "<<pos.y<<"), vel: ("<<vel.x<<", "<<vel.y<<"), angle: "<<angle<<", obs:"<<obs<< ", raw_vel:("<<vel_xya.x<<", "<<vel_xya.y<<", "<<vel_xya.z<<")\n";
+            //qDebug()<<"\nNavTarget pos:("<<pos.x<<", "<<pos.y<<"), vel: ("<<vel.x<<", "<<vel.y<<"), angle: "<<angle<<", obs:"<<obs<< ", raw_vel:("<<vel_xya.x<<", "<<vel_xya.y<<", "<<vel_xya.z<<")\n";
         }
 
     };
@@ -169,13 +169,13 @@ public:
         }
         void DataDisplay()//lu_test add
         {
-            qDebug()<<"Trajectory: bVliad: "<<bValid<<" ,speed:"<<vx<<vy<<va<<" ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";
+            //qDebug()<<"Trajectory: bVliad: "<<bValid<<" ,speed:"<<vx<<vy<<va<<" ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";
         }
     };
 
     // it seems it stores infomation of the command type
 
-    // TODO(gaoyuankidult@gmail.com): is each command type
+
     // related to the one function in skil
     enum CommandType
     {
@@ -186,6 +186,7 @@ public:
         CmdRecieveBall, // (no parameters)
         CmdPosition,    // target, velocity, angle, obs, goto_point_type
         CmdSpin         // target, ball_speed, obs
+
     };
 
     // this enum define the type of shooting
@@ -253,17 +254,17 @@ private:
     SMState state,last_state;
     CommandType last_cmd;
 
-    //Ä¿±êÏà¶Ô»úÆ÷ÈËµÄÎ»ÖÃ²î
+    //ç›®æ ‡ç›¸å¯¹æœºå™¨äººçš„ä½ç½®å·®
     //target location compared to the robot
     MyVector2d target_rel;
 
     //target ball location compared to the robot
     MyVector2d target_ball_rel;
 
-    //½øÈëÒ»¸ö×´Ì¬µÄ¿ªÊ¼Ê±¼ä
+    //è¿›å…¥ä¸€ä¸ªçŠ¶æ€çš„å¼€å§‹æ—¶é—´
     double state_start_time; // timestamp of when we first got in state
     double start_dist_from_ball;
-    //ÔÚÒ»¸ö×´Ì¬ÖĞ±£³ÖµÄÊ±¼ä
+    //åœ¨ä¸€ä¸ªçŠ¶æ€ä¸­ä¿æŒçš„æ—¶é—´
     double time_in_state;
     double last_dist_from_target;
     double last_target_da;

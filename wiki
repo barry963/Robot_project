@@ -197,4 +197,24 @@ TODO: estimate kick and dribble power
 
 
 
+=======================================
+2013/12/28
 
+
+
+TODO: strategy header and source file meaning
+
+question:
+1. pull ball ability exist or not?
+
+2. ParamSet *settings=NULL;
+    field_global_function.cpp
+
+field_world_robot.cpp
+kick()
+time_in_state>0.25+1.75*omni???
+
+
+arbitrary set teammateid=1 in ball_tactics.cpp line#450
+
+3. how to control specific robot? The process in detail

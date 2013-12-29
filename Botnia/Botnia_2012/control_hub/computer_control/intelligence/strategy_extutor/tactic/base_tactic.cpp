@@ -263,6 +263,7 @@ void RobotTactic::makeCommand(World &world, int me, bool debug,
     // if this tactic needs to control the ball, but the ball is out then deal it with "freeKick method"
     if (manipulates_ball && world.ballOutOfPlay())
     {
+        qDebug()<<"ball is out of border, freeKick method start";//lu_test
         MyVector2d fk = world.freeKickPosition(world.ball_position());
         c.cmd = Robot::CmdPosition;
         c.target = fk + (world.our_goal - fk).norm(170.0 + world.teammate_radius(me));

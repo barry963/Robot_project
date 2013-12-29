@@ -356,7 +356,7 @@ Robot::SMState Robot::approachBall(World &world,Sensors &s,RobotCommand &cmd,
     // printf("  bof=%d t=%f wd=%f\n",s.ball_on_front,time_in_state,s.ball_dist_from_wall);
     if (s.ball_on_front && time_in_state >= 1.0)
     {
-        // return((s.ball_dist_from_wall > 100)? SMFaceTarget : SMPullBall);
+        // return((s.ball_dist_from_wall > 100)? SMFaceTarget : SMPullBall); question lu_test
         return((s.ball_dist_from_wall > 50)? SMFaceTarget : SMSpinAtBall);
     }
     else if (time_in_state >= 1.0)
@@ -576,6 +576,7 @@ Robot::SMState Robot::kick(World &world,Sensors &s,RobotCommand &cmd,
     //如果处于踢球状态时间长，迎向球
     if (time_in_state>0.25+1.75*omni)
     {
+        qDebug()<<"Kick state too long, so switch to go to ball"<<time_in_state;
         return(SMGotoBall);
     }
     //如果球不在机器人内部，让机器人迎向球
@@ -763,6 +764,8 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     {
         switch (cmd.cmd)
         {
+        //it seems that every cmd doesnot point to every SMstate,
+        //so future work is to ad more cmd lu_test
         case CmdMoveBall:
             state = SMGotoBall;
             break;
@@ -790,9 +793,11 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     // common calculations
     //目的地相对机器人位置差矢量
     target_rel = cmd.target - s.r_pos;
-    //
+
+    //uselesses target_ball_rel lu_test
     target_ball_rel.set(s.ball_rel.dot(target_rel.norm()),
                         s.ball_rel.dot(target_rel.norm().perp()));
+
     // target_ball_rel = s.ball_rel.rotate(-(cmd.target-s.r_pos).angle());
     // execute states until no longer switching
     //循环执行,直到不再切换状态
@@ -883,7 +888,6 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
 
     } while (state!=old_state && --n);
 
-    nav.DataDisplay();//lu_test add
 /*lu_test
     if (n <= 0)
     {
@@ -959,11 +963,6 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
                                 nav.pos,nav.vel,nav.angle,
                                 nav.obs,nav.type);
 
-            tcmd.DataDisplay();//lu_test add
-            MyVector2d current_position = world.GetRobotPositionByID(my_id);
-            qDebug()<< "get position x:"<<current_position.x<<"y:"<<current_position.y;
-
-
             if (!tcmd.bValid)
             {
                 return Failed;                
@@ -975,6 +974,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     }
     tcmd.kick_power   = nav.kick_power;
     tcmd.dribble_power = nav.dribble_power;//lu_test set the kick power and dribble_power
+    tcmd.DataDisplay();//lu_test add
 
     // if(robot_print && nav.kick) printf("Kick!\n");
     //计算任务是否完成

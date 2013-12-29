@@ -176,7 +176,7 @@ void MainWindow::SetupGUIConnection()
     connect(ui->velocity_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
     connect(ui->defend_lane_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
     connect(ui->defend_line_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->pass_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
+    connect(ui->pass_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
     connect(ui->dribble_to_shoot_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
     connect(ui->active_def_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
     connect(ui->dribble_to_region_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
@@ -525,8 +525,47 @@ void MainWindow::select_shoot_strategy_type()
     {
         StatusOnGUI.tactic_name_ = "shoot_dribble_shoot";
     }
+}
 
+void MainWindow::select_page2_strategy_type()
+{
+    if(ui->block_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "block";
+    }
+    else if(ui->goalie_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "goalie";
+    }
+    else if(ui->mark_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "mark";
+    }
+    else if(ui->defend_point_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "defend_point";
+    }
+    else if(ui->velocity_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "velocity";
+    }
+    else if(ui->defend_lane_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "defend_lane";
+    }
+    else if(ui->defend_line_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "defend_line";
+    }
+    else if(ui->pass_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "pass";
+        qDebug()<<"pass tactic!!!";
+    }
+}
 
+void MainWindow::select_page1_strategy_type()
+{
     if(ui->shoot_button->isChecked())
     {
         StatusOnGUI.tactic_name_ = "shoot";
@@ -563,39 +602,11 @@ void MainWindow::select_shoot_strategy_type()
     {
         StatusOnGUI.tactic_name_ = "stop";
     }
-    else if(ui->block_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "block";
-    }
-    else if(ui->goalie_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "goalie";
-    }
-    else if(ui->mark_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "mark";
-    }
-    else if(ui->defend_point_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "defend_point";
-    }
-    else if(ui->velocity_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "velocity";
-    }
-    else if(ui->defend_lane_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "defend_lane";
-    }
-    else if(ui->defend_line_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "defend_line";
-    }
-    else if(ui->pass_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "pass";
-    }
-    else if(ui->dribble_to_shoot_button->isChecked())
+}
+
+void MainWindow::select_page3_strategy_type()
+{
+    if(ui->dribble_to_shoot_button->isChecked())
     {
         StatusOnGUI.tactic_name_ = "dribble_to_shoot";
     }

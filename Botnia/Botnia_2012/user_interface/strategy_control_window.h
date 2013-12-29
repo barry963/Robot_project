@@ -85,6 +85,10 @@ private slots:
     void select_move_strategy_type();
     void select_shoot_strategy_type();
 
+    void select_page2_strategy_type();//lu_test add
+    void select_page1_strategy_type();
+    void select_page3_strategy_type();
+
     void speed_control(int value);
     void match_time_control();
     void excute_strategy();

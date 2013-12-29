@@ -428,6 +428,6 @@ public:
 
 };
 
-extern World world;//describe the real word LuChunqiu
+extern World world;//describe the real word lu_test
 
 #endif // FIELD_WORLD_H

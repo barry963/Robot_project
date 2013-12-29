@@ -205,9 +205,9 @@ private:
 	int target;
 
 public:
-	TPass(int _target);
+    TPass(int _target);
 
-	static Tactic *parser(const char *param_string);
+    static Tactic *parser(const char *param_string="1");
 	virtual Tactic *clone() const
 	{
 		return new TPass(*this);
