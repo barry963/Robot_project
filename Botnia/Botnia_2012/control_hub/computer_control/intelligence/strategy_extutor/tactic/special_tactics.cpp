@@ -267,4 +267,46 @@ void TChargeBall::command(World &world, int me, Robot::RobotCommand &command,
 	command.ball_shot_type = Robot::BallShotClear;
 }
 
+//===============PassRecieve
+
+TPassandReceive::TPassandReceive(void)
+{
+    PassRobot = new TPass(1);
+    ReceiveRobot = new TReceivePass();
+}
+
+TPassandReceive::~TPassandReceive()
+{
+    if (!PassRobot)
+    {
+        delete PassRobot;
+    }
+
+    if (!ReceiveRobot)
+    {
+        delete ReceiveRobot;
+    }
+}
+
+void TPassandReceive::LoadConfig()
+{
+    cr_do_setup();
+}
+
+void TPassandReceive::command(World &world, int me, Robot::RobotCommand &command, bool debug)
+{
+    if( me == 0)
+    {
+        PassRobot->command(world,me,command,debug);
+    }
+    else
+        if( me == 1)
+        {
+            ReceiveRobot->command(world,me,command,debug);
+        }
+    else
+        {
+            qDebug()<<"Something wrong!";
+        }
+}
 

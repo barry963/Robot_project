@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Sun Dec 22 03:08:08 2013
+** Created: Sun Dec 29 22:56:41 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -195,7 +195,7 @@ public:
     QRadioButton *active_def_button;
     QRadioButton *receive_pass_button;
     QRadioButton *position_button;
-    QRadioButton *fafad;
+    QRadioButton *pass_and_receive_button;
     QGroupBox *groupBox_11;
     QTableWidget *generalTableWidget;
     QSpacerItem *strategy_spacer;
@@ -1135,10 +1135,10 @@ public:
 
         strategy_selection_layout_9->addWidget(position_button, 5, 0, 1, 1);
 
-        fafad = new QRadioButton(verticalLayoutWidget_29);
-        fafad->setObjectName(QString::fromUtf8("fafad"));
+        pass_and_receive_button = new QRadioButton(verticalLayoutWidget_29);
+        pass_and_receive_button->setObjectName(QString::fromUtf8("pass_and_receive_button"));
 
-        strategy_selection_layout_9->addWidget(fafad, 5, 1, 1, 1);
+        strategy_selection_layout_9->addWidget(pass_and_receive_button, 5, 1, 1, 1);
 
 
         strategy_shoot_layout_5->addWidget(strategy_shoot_box_5);
@@ -1399,7 +1399,7 @@ public:
         retranslateUi(MainWindow);
 
         control_panel->setCurrentIndex(2);
-        strategy_type_tab->setCurrentIndex(0);
+        strategy_type_tab->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1515,7 +1515,7 @@ public:
         active_def_button->setText(QApplication::translate("MainWindow", "active_def", 0, QApplication::UnicodeUTF8));
         receive_pass_button->setText(QApplication::translate("MainWindow", "receive_pass", 0, QApplication::UnicodeUTF8));
         position_button->setText(QApplication::translate("MainWindow", "position", 0, QApplication::UnicodeUTF8));
-        fafad->setText(QApplication::translate("MainWindow", "simple_shoot", 0, QApplication::UnicodeUTF8));
+        pass_and_receive_button->setText(QApplication::translate("MainWindow", "pass_and_receive", 0, QApplication::UnicodeUTF8));
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(test3), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
         groupBox_11->setTitle(QApplication::translate("MainWindow", "GroupBox", 0, QApplication::UnicodeUTF8));
         QTableWidgetItem *___qtablewidgetitem = generalTableWidget->verticalHeaderItem(0);

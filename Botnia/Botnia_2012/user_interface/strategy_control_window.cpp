@@ -160,28 +160,32 @@ void MainWindow::SetupGUIConnection()
     connect(ui->shoot_dribble_shoot_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
 
 
-    connect(ui->shoot_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->steal_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->clear_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->charge_ball_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->success_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->complete_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->dribble_to_position_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->position_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->stop_button_2,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->block_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->goalie_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->mark_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->defend_point_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->velocity_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->defend_lane_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->defend_line_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
+    connect(ui->shoot_button,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+    connect(ui->steal_button,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+    connect(ui->clear_button,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+    connect(ui->charge_ball_button,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+    connect(ui->success_button,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+    connect(ui->complete_button,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+    connect(ui->dribble_to_position_button,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+    connect(ui->stop_button_2,SIGNAL(clicked()),this,SLOT(select_page1_strategy_type()));
+
+    connect(ui->block_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
+    connect(ui->goalie_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
+    connect(ui->mark_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
+    connect(ui->defend_point_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
+    connect(ui->velocity_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
+    connect(ui->defend_lane_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
+    connect(ui->defend_line_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
     connect(ui->pass_button,SIGNAL(clicked()),this,SLOT(select_page2_strategy_type()));
-    connect(ui->dribble_to_shoot_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->active_def_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->dribble_to_region_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->receive_pass_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
-    connect(ui->receive_deflection_button,SIGNAL(clicked()),this,SLOT(select_shoot_strategy_type()));
+
+    connect(ui->dribble_to_shoot_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+    connect(ui->active_def_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+    connect(ui->dribble_to_region_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+    connect(ui->spin_to_region_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+    connect(ui->receive_pass_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+    connect(ui->receive_deflection_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+    connect(ui->position_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+    connect(ui->pass_and_receive_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
 
     //    connect(ui->strategy1_radio_button,SIGNAL(clicked()),this,SLOT(strategy1_clicked()));
     //    connect(ui->strategy2_radio_button,SIGNAL(clicked()),this,SLOT(strategy2_clicked()));
@@ -560,7 +564,6 @@ void MainWindow::select_page2_strategy_type()
     else if(ui->pass_button->isChecked())
     {
         StatusOnGUI.tactic_name_ = "pass";
-        qDebug()<<"pass tactic!!!";
     }
 }
 
@@ -594,10 +597,6 @@ void MainWindow::select_page1_strategy_type()
     {
         StatusOnGUI.tactic_name_ = "dribble_to_position";
     }
-    else if(ui->position_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "position";
-    }
     else if(ui->stop_button_2->isChecked())
     {
         StatusOnGUI.tactic_name_ = "stop";
@@ -629,6 +628,14 @@ void MainWindow::select_page3_strategy_type()
     else if(ui->receive_deflection_button->isChecked())
     {
         StatusOnGUI.tactic_name_ = "receive_deflection";
+    }
+    else if(ui->position_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "position";
+    }
+    else if(ui->pass_and_receive_button->isChecked())
+    {
+        StatusOnGUI.tactic_name_ = "pass_and_receive";
     }
 
 //    tacitic_name_item->setText(qstring_tactic_name);

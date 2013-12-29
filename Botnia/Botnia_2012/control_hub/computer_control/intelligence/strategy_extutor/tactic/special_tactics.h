@@ -1,3 +1,15 @@
+// ************************************************************************************************
+//     Copyright 2013-2014 modified by Lu Chunqiu
+//
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//
+//     Additional license information:
+//
+//  **********************************************************************************************/
+
 // special_tactics.h
 //
 // Very basic tactics.
@@ -29,7 +41,9 @@
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/base_tactic.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/skill/simple_tactics.h"
 
-//û˶ָλ
+#include "control_hub/computer_control/intelligence/strategy_extutor/tactic/ball_tactics.h"
+//lu_test add
+
 class TPositionForStart : public SPosition
 {
 public:
@@ -52,7 +66,7 @@ public:
 	virtual Status isDone(World &world, int me);
 };
 
-//û˶ָλȻ
+
 class TPositionForKick : public RobotTactic
 {
 private:
@@ -115,8 +129,7 @@ public:
 };
 
 
-// position the non-kicking players behind the line when a penalty occurs
-// ʱĻ˱һߺ
+// position the non-kicking players behind the line when a penalty occursߺ
 class TPositionForPenalty : public RobotTactic
 {
 public:
@@ -144,7 +157,7 @@ public:
 	                     bool debug);
 };
 
-//ʵײ
+
 class TChargeBall : public RobotTactic
 {
 public:
@@ -167,7 +180,7 @@ public:
 	                     bool debug);
 };
 
-//趨ȴʱ䣬ʱѹɴ״̬ǣûͣ
+
 class TSuccess : public Tactic
 {
 private:
@@ -209,7 +222,7 @@ public:
 	}
 };
 
-//ͳɹͬһ
+
 class TComplete : public Tactic
 {
 private:
@@ -250,5 +263,70 @@ public:
 		world.halt(me);
 	}
 };
+
+
+class TPassandReceive: public RobotTactic
+{
+private:
+    TPass  *PassRobot;
+    TReceivePass *ReceiveRobot;
+
+public:
+    TPassandReceive();
+    ~TPassandReceive();
+
+    virtual const char *name() const
+    {
+        return "PassandRecieve";
+    }
+
+    static Tactic *parser(const char *param_string)
+    {
+        return new TPassandReceive();
+    }
+
+    void LoadConfig();
+    virtual Tactic *clone() const
+    {
+        return new TPassandReceive(*this);
+    }
+    virtual Status isDone(World &world, int me)
+    {
+        //COMM_START		   's'
+        if (strchr("s ", world.game_state) != NULL)
+        {
+            return Succeeded;
+        }
+        else
+        {
+            return InProgress;
+        }
+    }
+
+
+    virtual int selectRobot(World &world, bool candidates[], double bias[])
+    {
+        int best_i = -1;
+        double best = 0;
+        for (uint i=0; i<MAX_TEAM_ROBOTS; i++)
+        {
+            if (!candidates[i])
+                continue;
+            if (bias[i] < 0.0)
+                return i;
+            double d = (world.GetRobotPositionByID(i) - world.ball_position()).sqlength();
+            if ((best_i < 0) || (d < best))
+            {
+                best = d;
+                best_i = i;
+            }
+        }
+        return best_i;
+    }
+
+    virtual void command(World &world, int me, Robot::RobotCommand &command,
+                         bool debug);
+};
+
 
 #endif

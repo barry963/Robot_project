@@ -196,10 +196,12 @@ public:
         if (id<0)return -1;
         if (!teammate_map)
         {
+            //qDebug()<<"teammate_map is empty!";//lu_test
             return -1;
         }
         if (((unsigned int)id)>=(*teammate_map).size())
         {
+            //qDebug()<<"teammate_map doesn't have such id!";//lu_test
             return -1;
         }
         return (*teammate_map)[id];

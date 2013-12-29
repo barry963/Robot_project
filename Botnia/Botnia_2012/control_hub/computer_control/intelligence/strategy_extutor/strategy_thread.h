@@ -54,13 +54,13 @@ extern int iJoystickRobot;
 
 struct RunStatus
 {
-    RUNSTATUSTYPE Status;		//譏插????譏?譌? running status
-    STRATEGYTYPE StrategyIndex;	//?跲澸譏檛??譌  strategy type
-    double dFreq;					//?跲澸譏譏插??譖窵澸譗 frequency
+    RUNSTATUSTYPE Status;		//运行，暂停 running status
+    STRATEGYTYPE StrategyIndex;	//策略类型  strategy type
+    double dFreq;					//策略运行频率 frequency
     char * tactic_name_;
 };
 extern QString sTactics[5];
-extern RunStatus StatusOnGUI;	//?跲澸譏??查?
+extern RunStatus StatusOnGUI;	//策略状态
 
 class StrategyThread : public QThread
 {
@@ -84,8 +84,8 @@ private:
 public slots:
 
 signals:
-    void explains(); //?蝉忱?揬?譏臩?揬猐?等轲譌??轲?, explains??轲?譗譐汃媉?を窵譎
-    void guiRefresh(void);//?譏臩?揬猐??轲?.
+    void explains(); //如果要自定义槽和信号, explains信号是必须的
+    void guiRefresh(void);//自定义信号.
 
 public:
     StrategyThread();

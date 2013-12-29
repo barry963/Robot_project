@@ -153,7 +153,9 @@ void RegisterTactics()
         Tactic::registerParser("dribble_to_region", TDribbleToRegion::parser);
         Tactic::registerParser("spin_to_region", TSpinToRegion::parser);
         Tactic::registerParser("receive_pass", TReceivePass::parser);
-        Tactic::registerParser("receive_deflection", TReceiveDeflection::parser);//<- lu_test
+        Tactic::registerParser("receive_deflection", TReceiveDeflection::parser);
+        Tactic::registerParser("pass_and_receive", TPassandReceive::parser);//<- lu_test
+
 }
 
 QString application_path;

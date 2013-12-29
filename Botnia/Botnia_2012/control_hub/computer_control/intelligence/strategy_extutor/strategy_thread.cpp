@@ -37,13 +37,13 @@ QMutex runstatusMutex;
 static   Robot::RobotCommand robot_command;
 RunStatus InternalStatus,OldInternalStatus,StatusOnGUI={RUN_PAUSE,STRATEGY_RUN,0,NULL};
 
-/*lU_test It seems that tactics are made automatically, but gui_tactics are made by the control panel */
+/*Lu_test It seems that tactics are made automatically, but gui_tactics are made by the control panel */
 Tactic *tactics[MAX_TEAM_ROBOTS];
 
 
 Tactic *RunGui_tactics[MAX_TEAM_ROBOTS] = { NULL, NULL, NULL, NULL, NULL};
 
-//ÍøÂç´«Êä
+//ç½‘ç»œä¼ è¾“ network communication
 SSL_WrapperPacket VisionPacket;
 // open a serial port to communicate with the real robot
 // SerialServer serial_send_server; // initialized in the world
@@ -54,7 +54,7 @@ RadioServer radio_send_server;
 // open a refbox client to get infomation from the reference box
 RefboxClient refbox_client;
 
-//Í¨¹ıÓÎÏ·²Ù×÷¸Ë²Ù×÷µÄ»úÆ÷ÈË±àºÅ
+//é€šè¿‡æ¸¸æˆæ“ä½œæ†æ“ä½œçš„æœºå™¨äººç¼–å·
 int iJoystickRobot=0;
 // Gui Tactics.  These override strategy's tactics.
 extern Tactic *gui_tactics[MAX_TEAM_ROBOTS];//tactic for each robot
@@ -199,10 +199,10 @@ void StrategyThread::run()
         }
         RadioCmds.Clear();
 
-        //GuiÏÔÊ¾»º³åÇøÇĞ»»
+        //Guiæ˜¾ç¤ºç¼“å†²åŒºåˆ‡æ¢
         GuiCmd.StrategySwitchCmds();
 
-        //²ßÂÔÔËĞĞÆµÂÊ¼ÆËã--------------
+        //ç­–ç•¥è¿è¡Œé¢‘ç‡è®¡ç®—--------------
         iFrameCount++;
 
         //runstatusMutex.lock();
@@ -223,7 +223,7 @@ void StrategyThread::run()
         }
 
         //-----------------------------------------------------
-        //¼ÆËã²ßÂÔÖÜÆÚ calculate strategy cycle
+        //è®¡ç®—ç­–ç•¥å‘¨æœŸ calculate strategy cycle
         tick1 = ::GetTickCount();
         if(tick1-oldtick1>18)
         {
@@ -231,7 +231,7 @@ void StrategyThread::run()
         }
         oldtick1=tick1;
         //-----------------------------------------------------
-        //¼ÆËãÆµÂÊ calculate frequency
+        //è®¡ç®—é¢‘ç‡ calculate frequency
 
         TickCount=::GetTickCount();
         if(TickCount-oldTickCount>2000)
@@ -248,7 +248,7 @@ void StrategyThread::run()
         }
         //runstatusMutex.unlock();
 
-        //ÔËĞĞ×´Ì¬¿ØÖÆ--running status control
+        //è¿è¡ŒçŠ¶æ€æ§åˆ¶--running status control
         switch(InternalStatus.Status)
         {
             case RUN_PAUSE:
@@ -364,7 +364,7 @@ void StrategyThread::ClearGuiTactics()
 // do proper tactics()
 void StrategyThread::DoTactics()
 {
-    // tactics ÏÔÊ¾.
+    // tactics æ˜¾ç¤º.
     // if nothing is defined in the gui_tactics then goes to tactics
     // it seems that if the gui tactic is not defined, then it mean the tactic will not show on gui ?
     for (int i=0; i<world.n_teammates; i++)
@@ -382,10 +382,10 @@ void StrategyThread::DoTactics()
             sTactics[i] = "";
         }
     }
-    //tactics ÔËĞĞ.
+    //tactics è¿è¡Œ.
     // excute strategy for each robot
 
-    // bug here!!!
+    // pay attention to the work division lu_test
     for (int i=0; i<world.n_teammates; i++)
     {
         if (gui_tactics[i])
@@ -493,13 +493,13 @@ void StrategyThread::do_StrategyJoystick()
 //        bool kick_on;
 //        bool chipkick_on;
 //        static int dribbler_speed=0;
-//        static int kickpower=0;		//Á¦¶È
+//        static int kickpower=0;		//åŠ›åº¦
 //        //-----------------------------------------------
-//        //ÌßÇòÌôÇò
+//        //è¸¢çƒæŒ‘çƒ
 //        kick_on=joystick.data.b[5];
 //        chipkick_on=joystick.data.b[7];
 //        //-----------------------------------------------
-//        //´øÇòµç»ú
+//        //å¸¦çƒç”µæœº
 //        dribbler_speed=8;
 //        if (joystick.data.b[8])
 //        {
@@ -546,7 +546,7 @@ void StrategyThread::do_StrategyJoystick()
 
 bool StrategyThread::SkipVisionWait()
 {
-    //¼ì²éÊÇ·ñ´¦ÓÚÓÎÏ·²Ù×÷¸Ë¿ØÖÆ
+    //æ£€æŸ¥æ˜¯å¦å¤„äºæ¸¸æˆæ“ä½œæ†æ§åˆ¶
     if(thread_terminated_)return true;
     //runstatusMutex.lock();
     InternalStatus = StatusOnGUI;
@@ -558,7 +558,7 @@ bool StrategyThread::SkipVisionWait()
     return false;
 }
 
-//Èç¹û³¬Ê±·µ»Øtrue
+//å¦‚æœè¶…æ—¶è¿”å›true
 bool StrategyThread::do_refbox_recv()
 {
     int count;
@@ -571,16 +571,16 @@ bool StrategyThread::do_refbox_recv()
     return true;
 }
 
-//Èç¹û³¬Ê±·µ»Øtrue
+//å¦‚æœè¶…æ—¶è¿”å›true
 bool StrategyThread::do_vision_recv()
 {
     static int times_called = 0;
     static int frames_processed = 0;
 
-    //½ÓÊÕĞÅºÅ£¬¸üĞÂÏÔÊ¾
+    //æ¥æ”¶ä¿¡å·ï¼Œæ›´æ–°æ˜¾ç¤º
     SSL_WrapperPacket packet;
 
-    //»ñÈ¡½ÓÊÕĞÅÏ¢
+    //è·å–æ¥æ”¶ä¿¡æ¯
     int i=0;
     timer.MarkStartTime();
     VisionReceiveSignal.acquire();
@@ -602,10 +602,10 @@ bool StrategyThread::do_vision_recv()
     display_update_mutex.unlock();
 
     //times_called++;
-    //¸üĞÂ
+    //æ›´æ–°
     world.update(world.vision_info_);
 
-    //¶ªÖ¡¼ì²â
+    //ä¸¢å¸§æ£€æµ‹
     //if (print_frames_missing && frames_processed >= 150) {
     //  if(frames_processed < times_called){
     //    fprintf(stderr, "Frames Missed: %5g/sec.\n",

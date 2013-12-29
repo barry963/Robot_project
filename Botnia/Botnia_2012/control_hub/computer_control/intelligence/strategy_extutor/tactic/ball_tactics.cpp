@@ -445,12 +445,14 @@ void TPass::command(World &world, int me, Robot::RobotCommand &command,
     qDebug()<<"TPass command: "<<target;
     MyVector2d p[2], targetp, ball;
     double angle_tolerance;
-    //targetp = world.GetRobotPositionByID(getTeammateId(target));
-    targetp = world.GetRobotPositionByID(1);// lu_test
+    targetp = world.GetRobotPositionByID(1);
+
+//    targetp = world.GetRobotPositionByID(getTeammateId(target)); //lu_test arbitratry getTeammateId
+
     qDebug()<<"pass target: "<<world.GetRobotPositionByID(1).x<<world.GetRobotPositionByID(1).y;
 
-//    qDebug()<<"me id: "<<getTeammateId(me)<<"location"<<world.GetRobotPositionByID(getTeammateId(me)).x<<world.GetRobotPositionByID(getTeammateId(me)).y;
-//    qDebug()<<"target id: "<<getTeammateId(target)<<"location"<<world.GetRobotPositionByID(getTeammateId(target)).x<<world.GetRobotPositionByID(getTeammateId(target)).y;
+    qDebug()<<"me id: "<<me<<"location"<<world.GetRobotPositionByID(me).x<<world.GetRobotPositionByID(me).y;
+    qDebug()<<"target id: "<<target<<"location"<<world.GetRobotPositionByID(target).x<<world.GetRobotPositionByID(target).y;
 
     ball = world.ball_position();
     targetp += (ball - targetp).norm(70.0);

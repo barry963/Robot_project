@@ -163,7 +163,7 @@ typedef DataMap *PDataMap; //field_analysor_configreader.h
 
 pay attention to pure virtual function, that means this function is just a interface.
 
-TODO: kick the ball
+TODO: kick the ball, done
 
 =======================================
 2013/12/21
@@ -200,9 +200,7 @@ TODO: estimate kick and dribble power
 =======================================
 2013/12/28
 
-
-
-TODO: strategy header and source file meaning
+TODO: Strategy header and source file meaning
 
 question:
 1. pull ball ability exist or not?
@@ -217,4 +215,21 @@ time_in_state>0.25+1.75*omni???
 
 arbitrary set teammateid=1 in ball_tactics.cpp line#450
 
-3. how to control specific robot? The process in detail
+3. how to control specific robot? The process in detail, done
+panel -> gui_tactics ->each robot, run(world,i)
+
+Problem:
+Here each robot runs the same tactics, so tactics needs to enable each participating robot to do their own corresponding work.
+
+
+=======================================
+2013/12/29
+
+try to implement pass and receive in special_tactics by TPass and TPassReceive
+now two robots can pass and receive, but the result is not stable
+
+question
+4. giShootPowerPass value and also function getTeammateId() in base_tactic (teammate_map and corresponding PlayExecutor class)
+
+TODO: accurately control that process
+

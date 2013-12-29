@@ -892,7 +892,7 @@ QHeaderView::section {
            </size>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>5</number>
           </property>
           <property name="movable">
            <bool>true</bool>
@@ -1595,9 +1595,9 @@ QHeaderView::section {
                   </widget>
                  </item>
                  <item row="5" column="1">
-                  <widget class="QRadioButton" name="fafad">
+                  <widget class="QRadioButton" name="pass_and_receive_button">
                    <property name="text">
-                    <string>simple_shoot</string>
+                    <string>pass_and_receive</string>
                    </property>
                   </widget>
                  </item>
