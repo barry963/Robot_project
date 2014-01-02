@@ -51,6 +51,8 @@ ParamSet *settings=NULL;
 //// Gui Tactics.  These override strategy's tactics.
 Tactic *gui_tactics[MAX_TEAM_ROBOTS] = { NULL, NULL, NULL, NULL, NULL};
 
+bool positionflag=false;//lu_test add temporarily, just for demo
+
 deque<net_gdebug> gmsg_queue;
 bool run;
 
@@ -150,7 +152,7 @@ void RegisterTactics()
         Tactic::registerParser("pass", TPass::parser);
         Tactic::registerParser("dribble_to_shoot", TDribbleToShoot::parser);
         Tactic::registerParser("active_def", TActiveDef::parser);
-        Tactic::registerParser("dribble_to_region", TDribbleToRegion::parser);
+        Tactic::registerParser("dribble_to_region", SDribbleToPosition::parser);//TDribbleToRegion -> SDribbleToPosition
         Tactic::registerParser("spin_to_region", TSpinToRegion::parser);
         Tactic::registerParser("receive_pass", TReceivePass::parser);
         Tactic::registerParser("receive_deflection", TReceiveDeflection::parser);

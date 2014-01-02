@@ -573,12 +573,16 @@ Robot::SMState Robot::kick(World &world,Sensors &s,RobotCommand &cmd,
     {
         last_target_da = 2*M_PI;
     }
+
+/* lu_test comment the whole code, as it is not neccesary
     //如果处于踢球状态时间长，迎向球
     if (time_in_state>0.25+1.75*omni)
     {
         qDebug()<<"Kick state too long, so switch to go to ball"<<time_in_state;
         return(SMGotoBall);
     }
+*/
+
     //如果球不在机器人内部，让机器人迎向球
     if (!s.ball_in_front)
     {
@@ -973,7 +977,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         }
     }
     tcmd.kick_power   = nav.kick_power;
-    tcmd.dribble_power = nav.dribble_power;//lu_test set the kick power and dribble_power
+    tcmd.dribble_power = nav.dribble_power;
     tcmd.DataDisplay();//lu_test add
 
     // if(robot_print && nav.kick) printf("Kick!\n");
@@ -982,6 +986,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     {
     case CmdMoveBall:
         status = (nav.kick_power)? Completed : InProgress;
+        qDebug()<<"cmdmoveball"<<status;
         break;
         //如果是偷球
     case CmdSteal:
@@ -990,6 +995,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         //是接收传球命令,如果球已经在面前,则完成
     case CmdRecieveBall:
         status = (s.ball_on_front)? Completed : InProgress;
+        qDebug()<<"cmdReceiveball"<<status;
         break;
         //如果是带球,和定位,并且和目标点间距小于20mm，则任务完成
     case CmdSpin:

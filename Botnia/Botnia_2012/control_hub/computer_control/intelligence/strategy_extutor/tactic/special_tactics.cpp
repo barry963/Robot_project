@@ -34,6 +34,8 @@ CR_DECLARE(SHOOT_AIM_PREF_AMOUNT);
 CR_DECLARE(DISTANCE_FROM_PENALTY_LINE);
 
 
+extern bool positionflag;//lu_test add temporarily, just for demo
+
 inline void cr_do_setup()
 {
         CR_SETUP(tactic, SHOOT_AIM_PREF_AMOUNT, CR_DOUBLE);
@@ -273,18 +275,24 @@ TPassandReceive::TPassandReceive(void)
 {
     PassRobot = new TPass(1);
     ReceiveRobot = new TReceivePass();
+    PositionRobot = new SPosition(BCoordinate(0,0),BCoordinate(60,60));
 }
 
 TPassandReceive::~TPassandReceive()
 {
-    if (!PassRobot)
+    if (PassRobot)
     {
         delete PassRobot;
     }
 
-    if (!ReceiveRobot)
+    if (ReceiveRobot)
     {
         delete ReceiveRobot;
+    }
+
+    if(PositionRobot)
+    {
+        delete PositionRobot;
     }
 }
 
@@ -297,16 +305,26 @@ void TPassandReceive::command(World &world, int me, Robot::RobotCommand &command
 {
     if( me == 0)
     {
-        PassRobot->command(world,me,command,debug);
+        printf("TPassandReceive pass: %d\n",PassRobot->isDone(world,me));
+       if(positionflag)
+        {
+            qDebug()<<"change pass to position";
+            PositionRobot->command(world,me,command,debug);
+
+        }
+       else
+           PassRobot->command(world,me,command,debug);
     }
     else
         if( me == 1)
         {
+            printf("TPassandReceive receive: %d\n",ReceiveRobot->isDone(world,me));
             ReceiveRobot->command(world,me,command,debug);
+
         }
     else
         {
-            qDebug()<<"Something wrong!";
+            qDebug()<<"Something wrong in the TPassandReceive command function!";
         }
 }
 

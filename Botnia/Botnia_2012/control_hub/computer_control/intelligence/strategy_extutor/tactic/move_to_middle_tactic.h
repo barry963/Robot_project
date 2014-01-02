@@ -68,7 +68,6 @@ public:
                 }
         }
 
-        //ѡ񱾶Ļ
         virtual int selectRobot(World &world, bool candidates[], double bias[])
         {
                 int best_i = -1;

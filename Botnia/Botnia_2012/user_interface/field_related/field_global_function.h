@@ -89,5 +89,4 @@ extern bool bEnYellowRobotNoise;
 
 
 
-
 #endif // FIELD_GLOBAL_FUNCTION_H

@@ -81,21 +81,24 @@ public:
     {
         return "Position";
     }
-
+    /* lu_test
+      _position: target position coordinate
+      _faceto: target angle vector
+    */
     SPosition(BCoordinate _position, BCoordinate _faceto) : RobotTactic(false)
     {
         position = _position;
         faceto = _faceto;
         use_obsflags = false;
     }
-    SPosition(BCoordinate _position, double angle) : RobotTactic(false)
+    SPosition(BCoordinate _position=BCoordinate(1000,1000), double angle=90.0) : RobotTactic(false)
     {
         position = _position;
         faceto = MyVector2d(1, 0).rotate(angle);
         use_obsflags = false;
     }
 
-    SPosition(BCoordinate _position, int _obs) : RobotTactic(false)
+    SPosition(BCoordinate _position=BCoordinate(1000,1000), int _obs=0) : RobotTactic(false)
     {
         position = _position;
         faceto = MyVector2d(1, 0);

@@ -66,8 +66,8 @@ void SPosition::command(World &world, int me, Robot::RobotCommand &command,
                         bool debug)
 {
 	command.cmd = Robot::CmdPosition;
-        command.target = position.asVector(world);
-	command.velocity = MyVector2d(0, 0);//Ŀĵٶȵ0
+    command.target = position.asVector(world);
+    command.velocity = MyVector2d(0, 0);//目的点速度等于0
 	command.angle = faceto.asDirection(world);
 	if (use_obsflags)
 	{
@@ -92,7 +92,7 @@ Tactic *SPosition::parser(const char *param_string)
 //
 // Sends the robot to a position on the field.
 //
-// ָλ
+//
 void SDribbleToPosition::command(World &world, int me,
                                  Robot::RobotCommand &command,
                                  bool debug)

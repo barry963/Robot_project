@@ -240,9 +240,9 @@ public:
     //
     // Tactic specified methods and fields.
     //
-    //ÊÇ·ñ¼¤»î
+    //æ˜¯å¦æ¿€æ´»
     bool active;  // Is true if this is an active tactic.
-    //ÊÇ·ñ²Ù×÷Çò
+    //æ˜¯å¦æ“ä½œçƒ
     bool manipulates_ball; // Is true if tactic manipulates the ball.
 
     // Returns the robot most apt to accomplish the tactic.
@@ -250,7 +250,7 @@ public:
     //  the provided time bias.
     virtual int selectRobot(World &world, bool candidates[], double bias[]);
 
-    //¸ù¾İ²ßÂÔĞèÇóÑ¡Ôñ»úÆ÷ÈË
+    //æ ¹æ®ç­–ç•¥éœ€æ±‚é€‰æ‹©æœºå™¨äºº
     int selectRobot(World &world, bool candidates[])
     {
         static double bias[MAX_TEAM_ROBOTS] = {0};
@@ -258,21 +258,21 @@ public:
     }
 
     // Returns the time to accomplish the tactic.
-    //¼ÆËãÍê³É²ßÂÔÏûºÄµÄÊ±¼ä
+    //è®¡ç®—å®Œæˆç­–ç•¥æ¶ˆè€—çš„æ—¶é—´
     virtual double estimatedTime(World &world, int me)
     {
         return 0.0;
     }
 
     // Returns the status of the tactic.
-    // ²ßÂÔÊÇ·ñÖ´ĞĞÍê³É
+    // ç­–ç•¥æ˜¯å¦æ‰§è¡Œå®Œæˆ
     virtual Status isDone(World &world, int me)
     {
         return Succeeded;
     }
 
     // Performs the tactic and returns the motor traj.
-    // Ö´ĞĞ²ßÂÔ
+    // æ‰§è¡Œç­–ç•¥
     virtual void run(World &world, int me) = 0;
 
     //private:
@@ -295,10 +295,13 @@ public:
     static deque<registration> strategy_register_list;
 };
 
+extern bool positionflag;//lu_test add temporarily, just for demo
+
 class RobotTactic : public Tactic
 {
 protected:
     Status the_status;
+    Robot::RobotCommand the_commandtemp;
 
     void makeCommand(World &world, int me, bool debug,
                      Robot::RobotCommand &command,
@@ -335,14 +338,15 @@ public:
     {
         Robot::RobotCommand the_command;
         bool ignore_status;
-        //Îª»úÆ÷ÈËÉú³ÉÏÂÒ»ÌõÃüÁî
+        //ä¸ºæœºå™¨äººç”Ÿæˆä¸‹ä¸€æ¡å‘½ä»¤
         makeCommand(world, me, false, the_command, ignore_status);
-        //ÆÀ¹ÀÕâÌõÃüÁîÖ´ĞĞÏûºÄµÄÊ±¼ä£¬ÎªÑ¡Ôñ»úÆ÷ÈË½ÇÉ«Ìá¹©ÒÀ¾İ
+        //è¯„ä¼°è¿™æ¡å‘½ä»¤æ‰§è¡Œæ¶ˆè€—çš„æ—¶é—´ï¼Œä¸ºé€‰æ‹©æœºå™¨äººè§’è‰²æä¾›ä¾æ®
         return world.robot[me]->time(world, the_command);
     }
 
     virtual Status isDone(World &world, int me)
     {
+        printf("isDone tactic cmd: %d, status: %d\n",the_commandtemp.cmd,the_status);
         return the_status;
     }
 
@@ -376,7 +380,7 @@ public:
 
         if (!bNAN && the_command.cmd>=0)
         {
-            //Ö´ĞĞÃüÁî
+            //æ‰§è¡Œå‘½ä»¤
             //execute the command
             the_status = world.robot[me]->run(world, the_command);
         }
@@ -384,7 +388,12 @@ public:
         {
             the_status = InProgress;
         }
-            printf("tactic %d,%3.2f,%3.2f\n",the_command.cmd,the_command.target.x,the_command.target.y);
+
+        the_commandtemp = the_command;
+        //lu_test just for demo, improve later
+        if((the_command.cmd == 0)&&(the_status==Completed))
+            positionflag=true;
+
     }
 };
 

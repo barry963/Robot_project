@@ -233,3 +233,46 @@ question
 
 TODO: accurately control that process
 
+=======================================
+2013/12/29
+
+confused: why this rules, it is not neccesary, so comment this
+    //if stay in this state too long, then just push the ball
+    if (time_in_state>0.25+1.75*omni)
+    {
+        qDebug()<<"Kick state too long, so switch to go to ball"<<time_in_state;
+        return(SMGotoBall);
+    }
+
+
+strategy_thread.cpp
+    for (int i=0; i<world.n_teammates; i++)
+    {
+        if (gui_tactics[i])
+        {
+            // execute tactics!!!
+            gui_tactics[i]->run(world, i);
+
+            if(gui_tactics[i]->isDone(world,i)==3)
+            {
+                InternalStatus.Status=RUN_STOP;
+                OldInternalStatus.Status=RUN_STOP;
+            }
+is commented now
+
+TPass in ball_tactics.cpp
+TPass::command(...)
+
+change from
+command.target = targetp;
+to
+command.target = mytarget;
+=======================================
+2014/1/1
+
+The reason that TPassandReceive cannot change cmd is that it constructs object every running time... that's why you cannot store the status
+
+So the main problem is about the relationship between tactic and skills
+
+This time for demo, just add new external variable.
+bool positionflag=false;//lu_test add temporarily, just for demo

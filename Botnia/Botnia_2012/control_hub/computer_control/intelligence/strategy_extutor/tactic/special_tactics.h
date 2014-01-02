@@ -44,6 +44,7 @@
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/ball_tactics.h"
 //lu_test add
 
+
 class TPositionForStart : public SPosition
 {
 public:
@@ -270,6 +271,7 @@ class TPassandReceive: public RobotTactic
 private:
     TPass  *PassRobot;
     TReceivePass *ReceiveRobot;
+    SPosition *PositionRobot;
 
 public:
     TPassandReceive();
@@ -277,7 +279,7 @@ public:
 
     virtual const char *name() const
     {
-        return "PassandRecieve";
+        return "PassandReceive";
     }
 
     static Tactic *parser(const char *param_string)
@@ -290,6 +292,7 @@ public:
     {
         return new TPassandReceive(*this);
     }
+/*
     virtual Status isDone(World &world, int me)
     {
         //COMM_START		   's'
@@ -302,7 +305,7 @@ public:
             return InProgress;
         }
     }
-
+*/
 
     virtual int selectRobot(World &world, bool candidates[], double bias[])
     {

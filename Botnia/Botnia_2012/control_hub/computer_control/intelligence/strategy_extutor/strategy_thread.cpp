@@ -391,7 +391,15 @@ void StrategyThread::DoTactics()
         if (gui_tactics[i])
         {
             // execute tactics!!!
+            //printf("gui_tactics:%s ,%d\n",gui_tactics[i]->name(),i);
             gui_tactics[i]->run(world, i);
+/*
+            if(gui_tactics[i]->isDone(world,i)==3)//if tactics complete lu_test
+            {
+                InternalStatus.Status=RUN_STOP;
+                OldInternalStatus.Status=RUN_STOP;
+            }
+*/
         }
         else if (tactics[i])
         {

@@ -449,14 +449,14 @@ void TPass::command(World &world, int me, Robot::RobotCommand &command,
 
 //    targetp = world.GetRobotPositionByID(getTeammateId(target)); //lu_test arbitratry getTeammateId
 
-    qDebug()<<"pass target: "<<world.GetRobotPositionByID(1).x<<world.GetRobotPositionByID(1).y;
+//    qDebug()<<"pass target: "<<world.GetRobotPositionByID(1).x<<world.GetRobotPositionByID(1).y;
 
-    qDebug()<<"me id: "<<me<<"location"<<world.GetRobotPositionByID(me).x<<world.GetRobotPositionByID(me).y;
-    qDebug()<<"target id: "<<target<<"location"<<world.GetRobotPositionByID(target).x<<world.GetRobotPositionByID(target).y;
+//    qDebug()<<"me id: "<<me<<"location"<<world.GetRobotPositionByID(me).x<<world.GetRobotPositionByID(me).y;
+//    qDebug()<<"target id: "<<target<<"location"<<world.GetRobotPositionByID(target).x<<world.GetRobotPositionByID(target).y;
 
     ball = world.ball_position();
-    targetp += (ball - targetp).norm(70.0);
-    p[0] = targetp + (targetp - ball).perp().norm(-DVAR(PASS_TARGET_WIDTH));
+    targetp += (ball - targetp).norm(70.0);//something wrong here, targetp+= lu_test
+    p[0] = targetp + (targetp - ball).perp().norm(-DVAR(PASS_TARGET_WIDTH));//tactic.cfg 30.0
     p[1] = targetp + (targetp - ball).perp().norm(DVAR(PASS_TARGET_WIDTH));
     evaluation.aim(world, world.now, world.ball_position(),
                    p[0], p[1],
@@ -473,20 +473,20 @@ void TPass::command(World &world, int me, Robot::RobotCommand &command,
     // Set the drive target as 1m from the target, with some exceptions
     // when close.
     MyVector2d mytarget;
-    if ((targetp - ball).length() > 1100)
+    if ((targetp - ball).length() > 1100)//too far
     {
-        mytarget = ball + (targetp - ball).norm(1000);
+        mytarget = ball + (targetp - ball).norm(1000); //1000 distance target
     }
-    else if ((targetp - ball).length() < 100)
+    else if ((targetp - ball).length() < 100)//too closed
     {
         mytarget = targetp;
     }
     else
     {
-        mytarget = targetp + (ball - targetp).norm(100);
+        mytarget = targetp + (ball - targetp).norm(100); //minus 100 distance
     }
     command.cmd = Robot::CmdMoveBall;
-    command.target = targetp; // mytarget;
+    command.target = mytarget; // lu_test change from targetp to mytarget
     command.ball_target = targetp;
     command.angle_tolerance = angle_tolerance;
     command.ball_shot_type = Robot::BallShotPass;
