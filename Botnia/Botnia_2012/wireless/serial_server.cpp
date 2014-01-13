@@ -36,6 +36,7 @@
 
 SerialServer::SerialServer()
 {
+    qDebug()<<"Serial Server init";
     port_operation_ = new PortOperation();
     port_ = port_operation_->OpenPort();
 

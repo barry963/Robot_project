@@ -1,3 +1,15 @@
+// ************************************************************************************************
+//     Copyright 2013-2014 modified by Lu Chunqiu
+//
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//
+//     Additional license information:
+//
+//  **********************************************************************************************/
+
 #ifndef FIELD_WORLD_H
 #define FIELD_WORLD_H
 // world.h
@@ -59,6 +71,12 @@ struct VBallInfo
 {
     MyVector2d pos;
     double conf;
+//    VBallInfo& operator=(VBallInfo& value)
+//    {
+//        pos = value.pos;
+//        conf = value.conf;
+//        return *this;
+//    }
 };
 
 struct VRobotInfo
@@ -67,6 +85,15 @@ struct VRobotInfo
     double conf;
     double orientation;
     QString Tactic;
+
+//    VRobotInfo& operator=(VRobotInfo& value)
+//    {
+//        pos = value.pos;
+//        conf = value.conf;
+//        orientation = value.orientation;
+//        Tactic = value.Tactic;
+//        return *this;
+//    }
 };
 
 struct VisionInfo
@@ -75,7 +102,58 @@ struct VisionInfo
     QString sPlay;
     VBallInfo  Balls[MAX_BALLS];
     VRobotInfo Robots[NUM_TEAMS][MAX_ROBOTS];
+
+//    VisionInfo& operator=(VisionInfo& vision)
+//    {
+//        time = vision.time;
+//        sPlay = vision.sPlay;
+//        for(int i=0;i<MAX_BALLS;i++)
+//        {
+//            Balls[i] = vision.Balls[i];
+//        }
+
+//        for(int i=0;i<NUM_TEAMS;i++)
+//        {
+//            for(int j=0;j<MAX_ROBOTS;j++)
+//            {
+//                Robots[i][j]=vision.Robots[i][j];
+//            }
+//        }
+//        return *this;
+//    }
 };
+
+//class VisionInfo
+//{
+//public:
+//    double time;
+//    QString sPlay;
+//    VBallInfo  Balls[MAX_BALLS];
+//    VRobotInfo Robots[NUM_TEAMS][MAX_ROBOTS];
+
+//    VisionInfo()
+//    {
+//    }
+//    VisionInfo& operator=(VisionInfo& vision)
+//    {
+//        time = vision.time;
+//        sPlay = vision.sPlay;
+//        for(int i=0;i<MAX_BALLS;i++)
+//        {
+//            Balls[i] = vision.Balls[i];
+//        }
+
+//        for(int i=0;i<NUM_TEAMS;i++)
+//        {
+//            for(int j=0;j<MAX_ROBOTS;j++)
+//            {
+//                Robots[i][j]=vision.Robots[i][j];
+//            }
+//        }
+//        return *this;
+//    }
+//};
+
 
 struct VINFO_RAW
 {

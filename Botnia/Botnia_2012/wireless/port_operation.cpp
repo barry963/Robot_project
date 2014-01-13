@@ -34,7 +34,7 @@
 #include <errno.h>
 
 
-char const *PORT  = "/dev/ttyUSB1";
+char const *PORT  = "/dev/ttyUSB0";
 
 PortOperation::PortOperation()
 {
@@ -51,7 +51,7 @@ int PortOperation::OpenPort()
     else
     {
             fcntl(port_, F_SETFL, 0);
-            qDebug("port_ is open.\n");
+            qDebug()<<QString("port_ %1 is open.\n").arg(PORT);
     }
     struct termios port_settings;      // structure to store the port_ settings in
     int termios_state = 0;

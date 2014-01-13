@@ -11,6 +11,7 @@
 
 
 #ifdef UNIT_TEST_KINECT
+
 #include "control_hub/human_control/kinect.h"
 int main(void)
 {
@@ -229,7 +230,32 @@ int main()
     {
     package.SendPackage(temp_pointer,temp_size,fd);
     break;
-    }*/
+    }
+*/
+
+    robot_parameters.x_velocity = joystick.joystick_x_axis();
+    robot_parameters.y_velocity = joystick.joystick_y_axis();
+    robot_parameters.index = 0;
+
+    WirelessRobot robot = WirelessRobot(robot_parameters);
+    robot.set_x_velocity(robot_parameters.x_velocity);
+    robot.set_y_velocity(robot_parameters.y_velocity);
+
+    TransparentOperation package;
+    QByteArray temp_array;
+    temp_array = package.FormByteCommand(temp_array,&robot);
+
+    int fd=package.PortInitialization();
+    int temp_size = temp_array.size();
+    unsigned char *temp_pointer = new unsigned char(temp_size);
+    memcpy(temp_pointer, temp_array.data(), temp_size);
+    while(1)
+    {
+    package.SendPackage(temp_pointer,temp_size,fd);
+    break;
+    }
+
+
     return 0;
 }
 #endif

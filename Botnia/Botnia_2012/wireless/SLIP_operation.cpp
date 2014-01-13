@@ -35,6 +35,7 @@ static int READING_SIZE = 1;
 
 SLIPOperation::SLIPOperation()
 {
+        qDebug()<<"SLIP init";
     port_ = port_operation_->OpenPort();
 }
 SLIPOperation::SLIPOperation(int port,PortOperation* port_operation)

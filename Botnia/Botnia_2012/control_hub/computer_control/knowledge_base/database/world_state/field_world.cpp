@@ -799,7 +799,7 @@ void World::go(int id, double vx, double vy, double va,
     pCmd->set_drib_speed(abs(dribbler_speed));
     RadioSendMutex.unlock();
 
-#if 0
+#if 1 //lu_test
     // deal with the physical communication
     if (!serial_sever_->IsOpen())
     {

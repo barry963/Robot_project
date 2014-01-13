@@ -276,3 +276,17 @@ So the main problem is about the relationship between tactic and skills
 
 This time for demo, just add new external variable.
 bool positionflag=false;//lu_test add temporarily, just for demo
+
+=======================================
+2014/1/13
+
+The problem now is that to run the robot.
+
+field_world.cpp
+#802 add the physical communication part to the code, #if 0 change to #if 1
+
+then another problem now is that 
+strategy_thread.cpp
+#606 world.vision_info_ = vision_info;
+problem about memory, try to improve!
+

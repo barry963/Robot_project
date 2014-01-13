@@ -87,7 +87,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 
     if(camera_id==oldcamera_id)//attention, the potential bug lu_test
 	{
-        qDebug() << "camera_id==oldcamera_id: ";
+        //qDebug() << "camera_id==oldcamera_id: ";
 
 	    // hacked by Bin, may improve later
 #if 0
@@ -334,7 +334,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		    vision_info.Robots[teamBlue][id].conf=max(VInfoRaw.RobotInfos[0][teamBlue][id].conf,VInfoRaw.RobotInfos[1][teamBlue][id].conf);
 		    if(world.color_==teamBlue)
 		    {
-			vision_info.Robots[teamBlue][id].Tactic=sTactics[i];
+            vision_info.Robots[teamBlue][id].Tactic=sTactics[i];
 		    }
 		    else
 		    {

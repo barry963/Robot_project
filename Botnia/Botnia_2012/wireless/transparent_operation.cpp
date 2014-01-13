@@ -45,6 +45,7 @@ void TransparentOperation::ClosePort()
 int TransparentOperation::PortInitialization()
 {
     port_ = port_operation_->OpenPort();
+    printf("Transparent init");
     return port_;
 }
 QByteArray TransparentOperation::FormByteCommand(QByteArray temp_byte,WirelessRobot* robot)

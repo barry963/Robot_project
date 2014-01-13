@@ -43,6 +43,7 @@ void MainWindow::SetupNetwebSendThread()
 void MainWindow::SetupThread()
 {
 #define STRATEGY_MODE
+
 #ifdef STRATEGY_MODE
     SetupVisionReceiveThread();//Lu_test
     SetupRefboxReceiveThread();//lu_test
