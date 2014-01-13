@@ -282,11 +282,36 @@ bool positionflag=false;//lu_test add temporarily, just for demo
 
 The problem now is that to run the robot.
 
+port_operation.cpp
+char const *PORT  = "/dev/ttyUSB1"; //pay attention here
+
 field_world.cpp
 #802 add the physical communication part to the code, #if 0 change to #if 1
 
 then another problem now is that 
 strategy_thread.cpp
 #606 world.vision_info_ = vision_info;
+
 problem about memory, try to improve!
 
+it seems that problem comes from function 
+void FillComChar(unsigned char c)
+{
+    if (c==CHARSYN)
+    {
+        ComBuf[iComBufSize++]=CHARESC;
+        ComBuf[iComBufSize++]=ESC_SYN;
+    }
+    else if (c==CHARESC)
+    {
+        ComBuf[iComBufSize++]=CHARESC;
+        ComBuf[iComBufSize++]=ESC_ESC;
+    }
+    else
+    {
+        ComBuf[iComBufSize++]=c;
+    }
+}
+
+in this function, ComBuf[]is defined as ComBuf[100], but when monitering this array, the size is always increasing, over 100. So the problem is that every time after sending the package, iComBufSize shoud be set as 0.
+So, solution: field_world.cpp #716 iComBufSize = 0;

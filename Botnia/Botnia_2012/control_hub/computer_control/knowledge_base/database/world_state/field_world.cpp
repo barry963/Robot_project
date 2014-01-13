@@ -712,6 +712,8 @@ void FillVerify()
     }
     cVerify+=0x15;
     ComBuf[iComBufSize++]=cVerify;
+
+    iComBufSize = 0;//lu_test
 }
 
 unsigned char ComChar;

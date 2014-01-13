@@ -34,7 +34,7 @@
 #include <errno.h>
 
 
-char const *PORT  = "/dev/ttyUSB0";
+char const *PORT  = "/dev/ttyUSB1";
 
 PortOperation::PortOperation()
 {
