@@ -335,5 +335,11 @@ comment
 #235 //printf("\n%d\nport:%d\n",send_byte_count_,port_);// lu_test
 
 
-the problem now is that when starting the control, the robot will run by itself and after sending command, it will then follow the command.
+#1 problem now is that when starting the control, the robot will run by itself and after sending command, it will then follow the command.
 Solution: in the initial time, some noise will be sent, so try to read the joystick event for several time to cut the noise.
+
+#2 problem similar problem as #1 when starting the strategy server
+solution may be the same
+
+#3 problem joystick is a closed loop, so how to jump out from this loop, I can leave it later as it is not a serious problem.
+

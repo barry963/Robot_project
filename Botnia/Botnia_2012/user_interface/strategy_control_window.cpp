@@ -295,8 +295,8 @@ void MainWindow::TestingSelection()
     emit test_mode_selected(true);
     ui->ref_start_button->setChecked(true);
     emit start_referee(true);
-    ui->select_down_side->setChecked(true);
-    emit select_down_side(true);// left side
+    ui->select_up_side->setChecked(true);
+    emit select_up_side(true);// blue side
     ui->position_kick_button->setChecked(true);
     emit select_position_strategy_type();
 
@@ -411,11 +411,20 @@ void MainWindow::specify_control_source()
     world.setcolor(soccerteam);
 
     if(ui->computer_button->isChecked())
-    {
+    { 
         ui->strategy_tab->setEnabled(true);
 
         control_source->setText(ui->computer_button->text());
         ui->generalTableWidget->setItem(2,0,control_source);
+        if(ui->run_mode->isChecked())
+        {
+            run_mode_selected(true);
+        }
+        else
+            if(ui->test_mode->isChecked())
+            {
+                test_mode_selected(true);
+            }
     }
     else if(ui->keyboard_button->isChecked()||ui->joystick_button->isChecked())
     {
@@ -440,6 +449,8 @@ void MainWindow::specify_control_source()
         control_source->setText("Human("+control_color+" "+control_num+")");
         ui->generalTableWidget->setItem(2,0,control_source);
         ui->generalTableWidget->resizeColumnsToContents();
+
+        StatusOnGUI.StrategyIndex = STRATEGY_JOYSTICK;
     }
 
 }

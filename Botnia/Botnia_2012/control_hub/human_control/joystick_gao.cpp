@@ -27,7 +27,8 @@ Joystick::Joystick()
 {
     wjse_.stick_x = 0;
     wjse_.stick_y = 0;
-    test_flag = true;
+    js_test_flag = true;
+    js_run_flag = true;
 }
 
 Joystick::~Joystick()
@@ -70,7 +71,6 @@ void Joystick::close_joystick()
 void Joystick::JoystickControl(SerialServer* serial_server)
 {
     int fd, rc;
-    int done = 0;
     struct js_event jse;
     fd = open_joystick();
     if (fd < 0) {
@@ -84,16 +84,16 @@ void Joystick::JoystickControl(SerialServer* serial_server)
     QByteArray temp_array;
     int fd_wireless=serial_server->port();
 
-    if(test_flag)// to cut the noise
+    if(js_test_flag)// to cut the noise
     {
         for(int i=0;i<100;i++)
         {
             rc = read_joystick_event(&jse,fd);
         }
-        test_flag = false;
+        js_test_flag = false;
     }
 
-    while (!done)
+    while (!js_run_flag)
     {
         rc = read_joystick_event(&jse,fd);
         usleep(1000);
@@ -105,8 +105,8 @@ void Joystick::JoystickControl(SerialServer* serial_server)
                 jse.value /=128;
                 // jse.value -= 256 ;
             }
-            printf("Event: time %8u, value %8hd, type: %3u, axis/button: %u\n ",
-                   jse.time, jse.value, jse.type, jse.number);
+            //printf("Event: time %8u, value %8hd, type: %3u, axis/button: %u\n ",
+            //       jse.time, jse.value, jse.type, jse.number);
             jse.type &= ~JS_EVENT_INIT; /* ignore synthetic events */
             if (jse.type == JS_EVENT_AXIS)
             {
@@ -120,10 +120,10 @@ void Joystick::JoystickControl(SerialServer* serial_server)
                 default:
                     break;
                 }
-                printf("stick x :%8hd,stick y :%8hd\n",wjse_.stick_x,wjse_.stick_y);
+                //printf("stick x :%8hd,stick y :%8hd\n",wjse_.stick_x,wjse_.stick_y);
                 robot_parameters.x_velocity = joystick_x_axis();
                 robot_parameters.y_velocity = joystick_y_axis();
-                printf("test_x : %d;test_y: %d \n",robot_parameters.x_velocity,robot_parameters.y_velocity);
+                //printf("test_x : %d;test_y: %d \n",robot_parameters.x_velocity,robot_parameters.y_velocity);
 
                 WirelessRobot robot = WirelessRobot(robot_parameters);
                 robot.set_x_velocity(robot_parameters.x_velocity);
@@ -151,9 +151,9 @@ void Joystick::JoystickControl(SerialServer* serial_server)
                         break;
                     }
                 }
-                for( int x=0 ; x<11 ; ++x )
-                    printf( "button: %d",wjse_.button[x] );
-                printf("\n");
+//                for( int x=0 ; x<11 ; ++x )
+//                    printf( "button: %d",wjse_.button[x] );
+//                printf("\n");
             }
         }
 

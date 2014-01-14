@@ -301,12 +301,17 @@ void StrategyThread::run()
         switch(InternalStatus.StrategyIndex)
         {
         // THE STATEGY_TEST case will just do tatic. the tactic has been set previously
+        case STRATEGY_JOYSTICK:
+            //do_StrategyJoystick();
+            break;
         case STRATEGY_TEST:
+            joystick.close_joystick();
             DoTactics();
             //OldInternalStatus = InternalStatus;
             //continue;
             break;
         case STRATEGY_RUN:
+            joystick.close_joystick();
             //timer.markStartTime();
             if(OldInternalStatus.StrategyIndex!=STRATEGY_RUN)
             {
@@ -412,11 +417,11 @@ void StrategyThread::DoTactics()
 
 void StrategyThread::do_StrategyJoystick()
 {
-     Joystick joystick = Joystick();
+     SerialServer serial_server = SerialServer();
      joystick.open_joystick();
      RobotParamters robot_parameters;
      robot_parameters = ClearRobotParameters(robot_parameters);
-    // joystick.JoystickControl();
+     joystick.JoystickControl(&serial_server);
 
  /*
      robot_parameters.x_velocity = joystick.set_joystick_x_axis();
@@ -559,7 +564,7 @@ bool StrategyThread::SkipVisionWait()
     //runstatusMutex.lock();
     InternalStatus = StatusOnGUI;
     //runstatusMutex.unlock();
-//    if(InternalStatus.StrategyIndex==Strategy_Joystick)
+//    if(InternalStatus.StrategyIndex==STRATEGY_JOYSTICK)
 //    {
 //        return true;
 //    }

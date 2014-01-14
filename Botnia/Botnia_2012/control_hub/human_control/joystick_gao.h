@@ -6,6 +6,19 @@ extern "C"
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+// ************************************************************************************************
+//     Copyright 2013-2014 modified by Lu Chunqiu
+//
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//
+//     Additional license information:
+//
+//  **********************************************************************************************/
+
+
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -38,7 +51,8 @@ class Joystick
 private:
     js_event jse_;
     wwvi_js_event wjse_;
-    bool test_flag;//lu_test
+    bool js_test_flag;//lu_test
+    bool js_run_flag;
 
 public:
     Joystick();
@@ -49,5 +63,7 @@ public:
     int joystick_y_axis();
     void close_joystick();   
     void JoystickControl(SerialServer* serial_server);
+    void terminate_joystick();
+
 };
 #endif

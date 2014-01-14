@@ -668,8 +668,10 @@ int World::ball_collision(double t)
     return 0;
 }
 
+#define COMBUFSIZE 100
+unsigned char ComBuf[COMBUFSIZE];
 
-unsigned char ComBuf[100];
+
 int iComBufSize=0;
 #if 0
 const unsigned char CHARSYN=0x7E;
@@ -677,9 +679,17 @@ const unsigned char CHARESC=0xf0;
 const unsigned char ESC_SYN=0xf1;
 const unsigned char ESC_ESC=0xf2;
 #endif
+void ClearCombufArray()
+{
+    for(int i=0;i<COMBUFSIZE;i++)
+    {
+        ComBuf[i]='\0';
+    }
+    iComBufSize=0;
+}
+
 void ClearCombuf()
 {
-    iComBufSize=0;
     ComBuf[iComBufSize++]=CHARSYN;
 }
 
@@ -802,9 +812,8 @@ void World::go(int id, double vx, double vy, double va,
 
 #if 1 //lu_test
     // deal with the physical communication
-    if (!serial_sever_->IsOpen())
+    if (serial_sever_->IsOpen())
     {
-        ClearCombuf();
         if (forcekick_on)
         {
             ComChar|=COM_FORCEKICK;
@@ -860,6 +869,7 @@ void World::go(int id, double vx, double vy, double va,
         FillComChar(kick_power);
         FillVerify();
         serial_sever_->SendTransparentPackage((unsigned char*)ComBuf,iComBufSize);
+        ClearCombufArray();
     }
 #endif
 #ifdef PORT_TEST

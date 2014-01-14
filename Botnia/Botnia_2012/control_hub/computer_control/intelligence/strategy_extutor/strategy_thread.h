@@ -36,6 +36,7 @@
 #include "control_hub/computer_control/knowledge_base/database/world_state/field_world.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/strategy.h"
 
+#include "control_hub/human_control/joystick_gao.h"
 
 // In many thread apllication people need to recursively include classes.
 // This class should be declared here to indicate the name
@@ -44,7 +45,7 @@ class MainWindow;
 
 
 enum RUNSTATUSTYPE{RUN_START,RUN_PAUSE,RUN_STEP,RUN_STOP};
-enum STRATEGYTYPE{STRATEGY_RUN,STRATEGY_TEST};
+enum STRATEGYTYPE{STRATEGY_RUN,STRATEGY_TEST,STRATEGY_JOYSTICK};
 extern QMutex runstatusMutex;
 extern double GetTimeSec();
 // Strategy
@@ -81,6 +82,8 @@ private:
     //-------------------------------------
     unsigned long TickCount,oldTickCount;
     //-------------------------------------
+     Joystick joystick;
+
 public slots:
 
 signals:
