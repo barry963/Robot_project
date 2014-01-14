@@ -9,7 +9,6 @@
 
 #define LU_TEST
 
-
 #ifdef UNIT_TEST_KINECT
 
 #include "control_hub/human_control/kinect.h"
@@ -232,7 +231,7 @@ int main()
     break;
     }
 */
-
+/*
     robot_parameters.x_velocity = joystick.joystick_x_axis();
     robot_parameters.y_velocity = joystick.joystick_y_axis();
     robot_parameters.index = 0;
@@ -251,10 +250,10 @@ int main()
     memcpy(temp_pointer, temp_array.data(), temp_size);
     while(1)
     {
-    package.SendPackage(temp_pointer,temp_size,fd);
-    break;
+        package.SendPackage(temp_pointer,temp_size,fd);
+        break;
     }
-
+*/
 
     return 0;
 }

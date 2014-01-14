@@ -1,3 +1,14 @@
+// ************************************************************************************************
+//     Copyright 2013-2014 modified by Lu Chunqiu
+//
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//
+//     Additional license information:
+//
+//  **********************************************************************************************/
 
 #if 1
 #include <stdio.h>
@@ -14,7 +25,9 @@ static int joystick_fd = -1;
 
 Joystick::Joystick()
 {
-
+    wjse_.stick_x = 0;
+    wjse_.stick_y = 0;
+    test_flag = true;
 }
 
 Joystick::~Joystick()
@@ -70,6 +83,15 @@ void Joystick::JoystickControl(SerialServer* serial_server)
     TransparentOperation package;
     QByteArray temp_array;
     int fd_wireless=serial_server->port();
+
+    if(test_flag)// to cut the noise
+    {
+        for(int i=0;i<100;i++)
+        {
+            rc = read_joystick_event(&jse,fd);
+        }
+        test_flag = false;
+    }
 
     while (!done)
     {
@@ -130,7 +152,7 @@ void Joystick::JoystickControl(SerialServer* serial_server)
                     }
                 }
                 for( int x=0 ; x<11 ; ++x )
-                    printf( "%d",wjse_.button[x] );
+                    printf( "button: %d",wjse_.button[x] );
                 printf("\n");
             }
         }

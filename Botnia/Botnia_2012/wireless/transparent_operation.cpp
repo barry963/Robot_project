@@ -222,12 +222,18 @@ int TransparentOperation::SendPackage(unsigned char* buffer, int length,int port
     unsigned char final_packet[1024];
     final_packet[0] = HDLC_STARTSTOP;
     memcpy(final_packet+1,buffer,length);
+
+    /* lu_test command this part
     for(j = 0;j<length+1;j++)
     {
         printf("inside:%02x\n",*(final_packet+j));
     }
+    */
+
     send_byte_count_ = write(port_,final_packet, length+1);
-    printf("\n%d\nport:%d\n",send_byte_count_,port_);
+
+    //printf("\n%d\nport:%d\n",send_byte_count_,port_);// lu_test
+
     return 0;
 }
 void TransparentOperation::AddByte(QByteArray &temp_byte, char temp_char)

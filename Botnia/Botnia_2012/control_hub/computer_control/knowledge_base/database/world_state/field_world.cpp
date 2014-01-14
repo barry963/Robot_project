@@ -713,7 +713,6 @@ void FillVerify()
     cVerify+=0x15;
     ComBuf[iComBufSize++]=cVerify;
 
-    iComBufSize = 0;//lu_test
 }
 
 unsigned char ComChar;
@@ -805,6 +804,7 @@ void World::go(int id, double vx, double vy, double va,
     // deal with the physical communication
     if (!serial_sever_->IsOpen())
     {
+        ClearCombuf();
         if (forcekick_on)
         {
             ComChar|=COM_FORCEKICK;

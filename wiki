@@ -315,3 +315,25 @@ void FillComChar(unsigned char c)
 
 in this function, ComBuf[]is defined as ComBuf[100], but when monitering this array, the size is always increasing, over 100. So the problem is that every time after sending the package, iComBufSize shoud be set as 0.
 So, solution: field_world.cpp #716 iComBufSize = 0;
+
+=======================================
+2014/1/14
+
+The goal today
+1. joystick test Done
+2. normal skill test like shoot
+
+transparent_operation.cpp
+comment this part #226-#231
+
+    for(j = 0;j<length+1;j++)
+    {
+        printf("inside:%02x\n",*(final_packet+j));
+    }
+
+comment
+#235 //printf("\n%d\nport:%d\n",send_byte_count_,port_);// lu_test
+
+
+the problem now is that when starting the control, the robot will run by itself and after sending command, it will then follow the command.
+Solution: in the initial time, some noise will be sent, so try to read the joystick event for several time to cut the noise.

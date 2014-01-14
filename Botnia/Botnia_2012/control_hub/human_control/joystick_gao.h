@@ -38,6 +38,8 @@ class Joystick
 private:
     js_event jse_;
     wwvi_js_event wjse_;
+    bool test_flag;//lu_test
+
 public:
     Joystick();
     ~Joystick();
