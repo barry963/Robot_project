@@ -681,10 +681,10 @@ const unsigned char ESC_ESC=0xf2;
 #endif
 void ClearCombufArray()
 {
-    for(int i=0;i<COMBUFSIZE;i++)
-    {
-        ComBuf[i]='\0';
-    }
+//    for(int i=0;i<COMBUFSIZE;i++)
+//    {
+//        ComBuf[i]='\0';
+//    }
     iComBufSize=0;
 }
 
@@ -725,7 +725,7 @@ void FillVerify()
 
 }
 
-unsigned char ComChar;
+unsigned char ComChar=0;
 
 #define COM_SENDBACK			(1<<7)
 #define COM_DRIBBLER_EN			(1<<6)
@@ -775,6 +775,7 @@ void World::go(int id, double vx, double vy, double va,
     // store the infomation of the size of the command
     int isize=RadioCmds.cmds_size();
     // enable the changes on different robots
+
     for (int i=0; i<isize; i++)
     {
         pCmd=RadioCmds.mutable_cmds(i);
@@ -785,10 +786,16 @@ void World::go(int id, double vx, double vy, double va,
         }
     }
     // if the robot has not been found, then add a new command for robot
+    /*
+      Here in my opinion, it is not about whether robot has been found, it is
+      about whether there is cmd in the radiocmd. If there is, then do not send
+      any new command, but if there is not, then arrange a new command. lu_test
+    */
     if (!has_found_robot)
     {
         pCmd=RadioCmds.add_cmds();
     }
+
     // set the command for robot
     pCmd->set_id(id);
     pCmd->set_team(color_);
@@ -808,7 +815,33 @@ void World::go(int id, double vx, double vy, double va,
     pCmd->set_kick_time(kick_power);
     pCmd->set_forcekick(forcekick_on);
     pCmd->set_drib_speed(abs(dribbler_speed));
+
     RadioSendMutex.unlock();
+
+#if 0
+    int fd_wireless=serial_sever_->port();
+    TransparentOperation package;
+    RobotParamters robot_parameters;
+    robot_parameters = ClearRobotParameters(robot_parameters);
+    robot_parameters.x_velocity = vx;
+    robot_parameters.y_velocity = vy;
+    WirelessRobot robot1 = WirelessRobot(robot_parameters);
+    robot1.set_x_velocity(vx);
+    robot1.set_y_velocity(vy);
+    robot1.set_index(id);
+    robot1.set_dribble(1);
+
+
+    QByteArray temp_array;
+    temp_array = package.FormByteCommand(temp_array,robot1);
+    int temp_size = temp_array.size();
+    unsigned char *temp_pointer = new unsigned char(temp_size);
+    memcpy(temp_pointer, temp_array.data(), temp_size);
+
+    package.SendPackage(temp_pointer,temp_size,fd_wireless);
+
+#endif
+
 
 #if 1 //lu_test
     // deal with the physical communication
@@ -872,6 +905,7 @@ void World::go(int id, double vx, double vy, double va,
         ClearCombufArray();
     }
 #endif
+
 #ifdef PORT_TEST
     //        if (m_SerialPort.IsOpen())
     //        {

@@ -1,7 +1,7 @@
 #include "field_analysor_parametres.h"
 
-unsigned int giShootPowerMax = 50;//lu_test
-unsigned int giShootPowerPass = 40;//lu_test add initial value
+unsigned int giShootPowerMax = 10;//lu_test
+unsigned int giShootPowerPass = 10;//lu_test add initial value
 
 ParamSet::ParamSet(const QString & fileName, Format format, QObject * parent)
                 : QSettings(fileName,format,parent)

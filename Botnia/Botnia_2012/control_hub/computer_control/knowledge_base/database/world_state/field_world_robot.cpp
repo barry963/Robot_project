@@ -1002,7 +1002,6 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     case CmdDribble:
     case CmdPosition:
         //20=最高速度/60;
-        qDebug()<<"distance between target and raw position: "<<MyVector::distance(cmd.target,s.r_pos);
         if (MyVector::distance(cmd.target,s.r_pos) < 20.0)
         {
             status = Completed;
@@ -1016,6 +1015,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         status = InProgress;
     }
     // some final calculations
+    qDebug()<<"distance between target and raw position: "<<MyVector::distance(cmd.target,s.r_pos);
     last_state = state;
     last_cmd = cmd.cmd;
     return(status);

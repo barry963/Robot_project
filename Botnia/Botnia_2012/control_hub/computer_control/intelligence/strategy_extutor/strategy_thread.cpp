@@ -265,7 +265,6 @@ void StrategyThread::run()
                 {
                     // this will send the command through net and the serial
                     world.go(i);
-
                 }
                 // send the package thread the internet
                 RadioNetCmdSend();
@@ -300,18 +299,20 @@ void StrategyThread::run()
         /// test the strategy state
         switch(InternalStatus.StrategyIndex)
         {
-        // THE STATEGY_TEST case will just do tatic. the tactic has been set previously
         case STRATEGY_JOYSTICK:
             //do_StrategyJoystick();
             break;
+        // THE STATEGY_TEST case will just do tatic. the tactic has been set previously
         case STRATEGY_TEST:
-            joystick.close_joystick();
+            //joystick.close_joystick();
+
             DoTactics();
             //OldInternalStatus = InternalStatus;
             //continue;
             break;
         case STRATEGY_RUN:
-            joystick.close_joystick();
+            //joystick.close_joystick();
+
             //timer.markStartTime();
             if(OldInternalStatus.StrategyIndex!=STRATEGY_RUN)
             {

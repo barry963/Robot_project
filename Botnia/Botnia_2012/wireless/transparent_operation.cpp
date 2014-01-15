@@ -98,7 +98,7 @@ QByteArray TransparentOperation::FormByteCommand(QByteArray temp_byte,WirelessRo
 
     AddByte (temp_byte,temp_char); // second time adding byte
     AddByte (temp_byte,char(temp_y_velocity>OVERALLVELOCITYLIMIT?OVERALLVELOCITYLIMIT:temp_y_velocity)); // third time adding
-    printf("%d\n",char(temp_x_velocity));
+    //printf("Velocity: %d\n",char(temp_x_velocity));
     AddByte (temp_byte,char(temp_x_velocity>OVERALLVELOCITYLIMIT?OVERALLVELOCITYLIMIT:temp_x_velocity)); // forth time adding
     AddByte (temp_byte,char(temp_rotate_velocity>255?255:temp_rotate_velocity)); //fifth time adding
     if (robot_parameters.kick) // sixth time adding
@@ -180,7 +180,7 @@ QByteArray TransparentOperation::FormByteCommand(QByteArray temp_byte,WirelessRo
 
     AddByte (temp_byte,temp_char); // second time adding byte
     AddByte (temp_byte,char(temp_y_velocity>OVERALLVELOCITYLIMIT?OVERALLVELOCITYLIMIT:temp_y_velocity)); // third time adding
-    printf("%d\n",char(temp_x_velocity));
+    //printf("Velocity: %d\n",char(temp_x_velocity));
     AddByte (temp_byte,char(temp_x_velocity>OVERALLVELOCITYLIMIT?OVERALLVELOCITYLIMIT:temp_x_velocity)); // forth time adding
     AddByte (temp_byte,char(temp_rotate_velocity>255?255:temp_rotate_velocity)); //fifth time adding
     if (robot_parameters.kick) // sixth time adding

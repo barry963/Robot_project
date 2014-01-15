@@ -148,7 +148,7 @@ clear(root->child[1]);
 
 Bug
 5. Somethimes the locations of balls and robot are 0, seems the problem of DECT frame, so I should check DECT frame firstly
-
+move to the last post.
 
 =======================================
 2013/12/7
@@ -319,7 +319,7 @@ So, solution: field_world.cpp #716 iComBufSize = 0;
 =======================================
 2014/1/14
 
-The goal today
+Today goal
 1. joystick test Done
 2. normal skill test like shoot
 
@@ -341,5 +341,34 @@ Solution: in the initial time, some noise will be sent, so try to read the joyst
 #2 problem similar problem as #1 when starting the strategy server
 solution may be the same
 
-#3 problem joystick is a closed loop, so how to jump out from this loop, I can leave it later as it is not a serious problem.
+#3 problem add joystick as a part of UI
+joystick is a closed loop, so how to jump out from this loop, I can leave it later as it is not a serious problem.
+Try to add STRATEGY_JOYSTICK, now comment its following execute function.
 
+=======================================
+2014/1/15
+
+Today goal
+1. Normal skill test
+
+field_world.cpp
+SerialServer serial_server_;
+
+
+pCmd store current command to simulator by net
+
+
+strategy_thread.cpp
+RadioServer radio_send_server;//It seems to be the server to send UDP, not the radio.
+
+decrease the max speed of field_go_robot_goto
+motion.cfg
+OMNI_MAX_ACCEL =       3500     3500     3500    3500 # mm/s^2
+OMNI_MAX_SPEED =       1500     900      900     900  # mm/s
+OMNI_MAX_ANG_ACCEL =       18       12       12      12   # radians/s^2
+OMNI_MAX_ANG_VEL =     6        4        4       4    # radians/s
+
+Bug
+5. Somethimes the locations of balls and robot are 0, seems the problem of DECT frame, so I should check DECT frame firstly
+
+6. two balls appear
