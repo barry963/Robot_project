@@ -242,7 +242,7 @@ void KDT_FUN::clear()
     root->child[0] = root->child[1] = NULL;
     root->states = NULL;
     root->num_states = 0;
-    qDebug()<<"clear tree";
+    //qDebug()<<"clear tree";
 }
 
 //

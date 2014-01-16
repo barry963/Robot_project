@@ -32,9 +32,9 @@
 #include "user_interface/field_related/field_global_function.h"
 
 
-const bool robot_print     = true;//lu_test change all to true
-const bool robot_sub_state = true;
-const bool robot_debug_die = true;
+const bool robot_print     = false;//lu_test change all to true
+const bool robot_sub_state = false;
+const bool robot_debug_die = false;
 
 
 //封装了整个队伍的行为，体现了就近的机器人优先采取行动的原则，描述了机器人作为不同角色球员时的行为和反应过程。
@@ -909,11 +909,11 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     {
         printf("State: %s %0.2fs R(%8.2f,%8.2f)\n",
                state_name[state],time_in_state, V2COMP(s.r_pos));
+        gui_debug_printf(my_id, GDBG_TACTICS,
+                         "State: %s %0.2fs\n",state_name[state],time_in_state);
+        gui_debug_printf(my_id, GDBG_TACTICS,
+                         "  robot_ball=<%f,%f>\n",V2COMP(s.robot_ball));
     }
-    gui_debug_printf(my_id, GDBG_TACTICS,
-                     "State: %s %0.2fs\n",state_name[state],time_in_state);
-    gui_debug_printf(my_id, GDBG_TACTICS,
-                     "  robot_ball=<%f,%f>\n",V2COMP(s.robot_ball));
     if (robot_print)
     {
         printf("  robot_ball=<%f,%f>,%d target_ball_rel=<%f,%f> stuck=%f\n",
@@ -928,7 +928,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         tcmd.vx = nav.vel_xya.x;
         tcmd.vy = nav.vel_xya.y;
         tcmd.va = nav.vel_xya.z;
-        qDebug()<<"direct speed setting";
+        //qDebug()<<"direct speed setting";
 
     }
     //通过路径导航实现速度控制
@@ -936,14 +936,14 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     {
         if (nav.spin)
         {
-            qDebug()<<"spin to point";
+            //qDebug()<<"spin to point";
 
             //旋转方式到指定点，不躲避障碍
             tcmd = spin_to_point(world,my_id,nav.pos,nav.angle);
         }
         else
         {
-            qDebug()<<"spin and direct to point";
+            //qDebug()<<"spin and direct to point";
 
             //static int iErr=0;
             //int bOppError=0,bBall=0;
@@ -960,12 +960,13 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
 
 
             // nav _to_point function included pathplanning
-            // gao mark
-//            tcmd = goto_point(world,my_id,nav.pos,nav.vel,nav.angle,
-//                                   nav.type);
-            tcmd = nav_to_point(world,my_id,
-                                nav.pos,nav.vel,nav.angle,
-                                nav.obs,nav.type);
+            // lu_test maybe change to another
+
+            tcmd = goto_point(world,my_id,nav.pos,nav.vel,nav.angle,
+                                   nav.type);
+//            tcmd = nav_to_point(world,my_id,
+//                                nav.pos,nav.vel,nav.angle,
+//                                nav.obs,nav.type);
 
             if (!tcmd.bValid)
             {
@@ -986,7 +987,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     {
     case CmdMoveBall:
         status = (nav.kick_power)? Completed : InProgress;
-        qDebug()<<"cmdmoveball"<<status;
+        //qDebug()<<"cmdmoveball"<<status;
         break;
         //如果是偷球
     case CmdSteal:
@@ -995,7 +996,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         //是接收传球命令,如果球已经在面前,则完成
     case CmdRecieveBall:
         status = (s.ball_on_front)? Completed : InProgress;
-        qDebug()<<"cmdReceiveball"<<status;
+        //qDebug()<<"cmdReceiveball"<<status;
         break;
         //如果是带球,和定位,并且和目标点间距小于20mm，则任务完成
     case CmdSpin:
@@ -1015,7 +1016,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         status = InProgress;
     }
     // some final calculations
-    qDebug()<<"distance between target and raw position: "<<MyVector::distance(cmd.target,s.r_pos);
+    //qDebug()<<"distance between target and raw position: "<<MyVector::distance(cmd.target,s.r_pos);
     last_state = state;
     last_cmd = cmd.cmd;
     return(status);

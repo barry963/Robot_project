@@ -12,6 +12,7 @@ VisionReceiveThread::VisionReceiveThread ( FieldView *_field_view )
 {
     strategyGraphicsView = _field_view;
     thread_terminated = false;
+    vision_initial_flag = true;
 }
 
 void VisionReceiveThread::Terminate()
@@ -26,22 +27,34 @@ void VisionReceiveThread::run()
 
     if(!client.Open ())
     {
-	printf("Client Open failed!\r\n");
-	return;
+        printf("Client Open failed!\r\n");
+        return;
     }
     while ( !thread_terminated )
     {
+
 	if ( client.Receive ( packet ) )
 	{
 	    if(thread_terminated)break;
 	    //处理数据
 
+        if(vision_initial_flag)
+        {
+            for(int i=0;i<100;i++)
+            {
+                client.Receive ( packet );
+            }
+            vision_initial_flag = false;
+        }
+
+
         VisionUpdate(packet);
 	}
 	if(thread_terminated)
-	{
-	    break;
-	}
+        {
+            break;
+        }
+
     }
 }
 
@@ -90,7 +103,8 @@ int VisionUpdate(const SSL_WrapperPacket &f)
         //qDebug() << "camera_id==oldcamera_id: ";
 
 	    // hacked by Bin, may improve later
-#if 0
+
+#if 1// lu_test change to 1
 	    //只有一台摄像机数据的情况
 	    update_mode=1;
         //清除所有球信息
@@ -113,6 +127,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
 	    }
 #endif
+
 	}
 	else if(camera_id==1)
 	{
@@ -196,22 +211,26 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	    {
 		if(VInfoRaw.BallInfos[0][iCurIndex].conf==0.0 && VInfoRaw.BallInfos[1][iCurIndex].conf==0.0)
 		{
-		    //没有找到球
+            /*
+                confused: because of the clean in the beginning, here it should directly go to this
+                sentence. So it is neccessary to add this if-sentence
+            */
+
 		    VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
 		    VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
-		    bFound=true;
+            bFound=true;// lu_test
 		    break;
 		}
 
 		//两个球的距离应该小于球的半径，即21mm
-		if((VInfoRaw.BallInfos[1-camera_id][iCurIndex].pos-pos).length()<21.0)
+        if((VInfoRaw.BallInfos[1-camera_id][iCurIndex].pos-pos).length()<21.0)
 		{
 		    //两个球信息足够近
 		    VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
-		    VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
+            VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
 		    bFound=true;
 		    break;
-		}
+		}           
 	    }
 
 //	    qDebug() << "update_mode: " << update_mode << ", bFound: " << bFound;
@@ -231,7 +250,13 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		vision_info.Balls[iCurIndex].pos = pos;
 		vision_info.Balls[iCurIndex].conf = max(VInfoRaw.BallInfos[0][iCurIndex].conf, VInfoRaw.BallInfos[1][iCurIndex].conf);
 		update_flag=true;
+        //qDebug()<<"Ball position: "<<pos.x<<" , "<<pos.y;
 	    }
+        else//lu_test
+        {
+
+
+        }
 	}
 
 //	qDebug() << "vision_info ball: " << vision_info.Balls[0].pos.x << ", " << vision_info.Balls[0].pos.y;
@@ -326,7 +351,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		    orientation =VInfoRaw.RobotInfos[0][teamBlue][id].orientation*VInfoRaw.RobotInfos[0][teamBlue][id].conf;
 		    orientation+=VInfoRaw.RobotInfos[1][teamBlue][id].orientation*VInfoRaw.RobotInfos[1][teamBlue][id].conf;
 		    orientation/=confsum;
-
+           // qDebug()<<"Robot position: "<<pos.x<<" , "<<pos.y;
 		    vision_info.Robots[teamBlue][id].pos=pos;
 //		    qDebug() << "robot_i: " << vision_info.Robots[teamBlue][id].pos.x << ", " << vision_info.Robots[teamBlue][id].pos.y;
 

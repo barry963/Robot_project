@@ -176,7 +176,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
     if (got_target)
     {
         //ţߵŵ㿪ʼ
-        if (debug)
+        if (0)
         {
             gui_debug_line(me, GDBG_TACTICS, ball, target);
             gui_debug_line(me, GDBG_TACTICS, ball,

@@ -93,7 +93,8 @@ void Joystick::JoystickControl(SerialServer* serial_server)
         js_test_flag = false;
     }
 
-    while (!js_run_flag)
+    //while (!js_run_flag)
+    while (1)
     {
         rc = read_joystick_event(&jse,fd);
         usleep(1000);

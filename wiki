@@ -71,27 +71,28 @@ TODO: try to resolve this problem
 
 =================================================================================================
 
-2013.10.17
+2013.10.17 solved
 Bug:
 1. the strategy server cannot show the location of yellow team when it goes to the blue team field.
 solved
 
 
-2. error at net_base.cpp 
+2. error at net_base.cpp    solved
 qint64 len = UdpSocket->writeDatagram((const char*)data,length,dest.addr,dest.port_);
 UdpSocket pointer null...
 
 solved
 The key is to figure out which pointer is null.
 
-3. null pointer at kdtree.h
+3. null pointer at kdtree.h 
 clear(root->child[0]);
 clear(root->child[1]);
 
+move down
 =================================================================================================
 2013.10.22
 Try to solve Bug1
-1. the location after parse
+1. the location after parse     solved
 
 two cameras and also no need to update, for recording purpose only
 
@@ -101,7 +102,7 @@ the problem, the key is the compare the updating code for two teams
 =================================================================================================
 2013.10.23
 Bug:
-4. two balls appear when moving the ball to the center, it must be graphic programming bug
+4. two balls appear when moving the ball to the center, it must be graphic programming bug      solved
 
 pay attention to the relationship between FieldSence and FieldView, the latter contains the former.
 
@@ -145,10 +146,11 @@ try to solve this bug of 2013/10/17
 3. null pointer at kdtree.h
 clear(root->child[0]);
 clear(root->child[1]);
+move down
 
 Bug
 5. Somethimes the locations of balls and robot are 0, seems the problem of DECT frame, so I should check DECT frame firstly
-move to the last post.
+move to down
 
 =======================================
 2013/12/7
@@ -370,5 +372,35 @@ OMNI_MAX_ANG_VEL =     6        4        4       4    # radians/s
 
 Bug
 5. Somethimes the locations of balls and robot are 0, seems the problem of DECT frame, so I should check DECT frame firstly
+Solution: net_vision_receive_thread.cpp can detect the ball, but the target is 0.
+The process of data following       Kalman problem
 
-6. two balls appear
+
+6. two balls appear         not a serious problem
+
+
+=======================================
+2014/1/16
+
+Bug
+3. null pointer at kdtree.h
+clear(root->child[0]);
+clear(root->child[1]);
+
+7. control_hub/computer_control/knowledge_base/algorithms/path_planner/path_planner.cpp:336: state PathPlanner::plan(obstacles*, int, state, state, int&): Assertion `nearest!=__null' failed.
+
+
+8. debug line is wrong when 'Side Selection' is set as 'Up Side'        solved
+gui_debug_line problem
+
+Solution: gui_debug_line() function shoud also consider the side of world
+
+9. MaybeOccluded! Study it later, kalman problem
+
+
+
+The main problem of normal skill test is that the speed is abnormal.
+SO start from SPosition
+motion planning problem!!!
+field_world_robot_goto_point.cpp
+nav_to_point(XXX) function

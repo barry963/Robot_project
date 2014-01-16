@@ -22,6 +22,7 @@ class VisionReceiveThread : public QThread
 {
         Q_OBJECT
   private:
+    bool vision_initial_flag;
     bool thread_terminated;
     FieldView *strategyGraphicsView;
 //    GLSoccerView * ai_view;

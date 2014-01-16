@@ -985,7 +985,9 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
         /// set initial state
 
         current_position = world.GetRobotPositionByID(focused_robot_id);
-        qDebug()<< "get position x:"<<current_position.x<<"y:"<<current_position.y;
+
+        //qDebug()<< "get position x:"<<current_position.x<<"y:"<<current_position.y;
+
         current_velocity = world.GetRobotVelocityByID(focused_robot_id);
         current_face_angel = world.teammate_direction(focused_robot_id);
         initial.pos = vdtof(current_position);
@@ -996,7 +998,8 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 	obs_id = -1;
         // path planning for the goal (bug)
         // gao mark
-        qDebug()<< "goal x:"<<goal.pos.x<< "y:"<< goal.pos.y;
+
+    //qDebug()<< "goal x:"<<goal.pos.x<< "y:"<< goal.pos.y;
 
         /// path planning return the node it should go
         target = world.path[focused_robot_id].plan(&obstacles_instance,1,initial,goal,obs_id);

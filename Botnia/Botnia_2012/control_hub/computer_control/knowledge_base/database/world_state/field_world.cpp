@@ -797,6 +797,7 @@ void World::go(int id, double vx, double vy, double va,
     }
 
     // set the command for robot
+    qDebug()<<"Command:id="<<id<<", vx"<<vx<<", vy="<<vy<<", va="<<va;
     pCmd->set_id(id);
     pCmd->set_team(color_);
     pCmd->set_vx(vx);

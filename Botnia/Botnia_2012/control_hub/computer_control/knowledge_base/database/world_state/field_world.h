@@ -225,7 +225,10 @@ public:
     // store the color and the side information of team
     char color_;
     char side_;
-
+    char getSide()
+    {
+        return side_;
+    }
     void setside(int side);
     void setcolor(int color);
 

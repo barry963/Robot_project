@@ -87,7 +87,8 @@ public:
     */
     SPosition(BCoordinate _position, BCoordinate _faceto) : RobotTactic(false)
     {
-        position = _position;
+        //position = _position;
+        position=BCoordinate(1000,1000);
         faceto = _faceto;
         use_obsflags = false;
     }

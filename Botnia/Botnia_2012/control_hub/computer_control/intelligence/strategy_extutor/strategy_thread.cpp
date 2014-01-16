@@ -271,7 +271,7 @@ void StrategyThread::run()
                 continue;
                 break;
             default:
-                qDebug() << "Enter default InternalStatus.Status (Running)...";
+                //qDebug() << "Enter default InternalStatus.Status (Running)...";
                 break;
         }
 
@@ -289,7 +289,7 @@ void StrategyThread::run()
                 // assign different gui status to each robot
                 // this gui_tatics will lead to the real tactic.
                 // call corresponding tactic
-                qDebug() << "InternalStatus.tactic_string: " << InternalStatus.tactic_name_;
+                //qDebug() << "InternalStatus.tactic_string: " << InternalStatus.tactic_name_;
                 gui_tactics[i] = Tactic::parse(InternalStatus.tactic_name_);
             }
             InternalStatus.tactic_name_ = NULL;
@@ -609,7 +609,7 @@ bool StrategyThread::do_vision_recv()
 //    world.vision_info_ = testVisionInfo;
 
 //    qDebug() << "--------------strategy thread: display_update_mutex locked!!!";
-    world.vision_info_ = vision_info;	    // Bug here!
+    world.vision_info_ = vision_info;	    // Bug here! No bug now, lu_test
 //    qDebug() << "strategy_thread: ball pos: " << world.vision_info_.Balls[0].pos.x << ", " << world.vision_info_.Balls[0].pos.y;
 //qDebug() << "vision_info ball: " << world.vision_info_.Balls[0].pos.x << ", " << world.vision_info_.Balls[0].pos.y;
 
