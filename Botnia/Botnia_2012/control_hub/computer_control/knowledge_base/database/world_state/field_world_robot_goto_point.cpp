@@ -54,7 +54,7 @@ CR_DECLARE(NAV_THEIR_OBSTACLE_RADIUS);
 CR_DECLARE(NAV_THEIR_GOALIE_OBSTACLE_RADIUS);
 
 
-//°´ÕÕÌİĞÎËÙ¶ÈÇúÏß£¬¼ÆËãÔË¶¯ÏûºÄÊ±¼ä
+//æŒ‰ç…§æ¢¯å½¢é€Ÿåº¦æ›²çº¿ï¼Œè®¡ç®—è¿åŠ¨æ¶ˆè€—æ—¶é—´
 float Robot::motion_time_1d(float dx,float vel0,float vel1,
                             float max_vel,float max_accel,
                             float &t_accel,float &t_cruise,float &t_decel)
@@ -81,13 +81,13 @@ float Robot::motion_time_1d(float dx,float vel0,float vel1,
 		vel0 = -vel0;
 		vel1 = -vel1;
 	}
-	//ÏŞÖÆ×î¸ßËÙ¶È
+	//é™åˆ¶æœ€é«˜é€Ÿåº¦
 	if (vel0 > max_vel) vel0 = max_vel;
 	if (vel1 > max_vel) vel1 = max_vel;
-	// stop  ½µµÍËÙ¶È
+	// stop  é™ä½é€Ÿåº¦
 	if (vel0 > vel1)
 	{
-		//¼ÆËã¼õËÙÊ±¼ä
+		//è®¡ç®—å‡é€Ÿæ—¶é—´
 		t_decel = (vel0 + vel1) / 2*dx;
 		if (debug) printf("<%f> ",fabs(vel1 - vel0)/t_decel);
 		if (fabs(vel1 - vel0)/t_decel > max_accel)
@@ -102,7 +102,7 @@ float Robot::motion_time_1d(float dx,float vel0,float vel1,
 	}
 	// calculate time spent at max velocity
 	tmp = 2*max_accel*dx + sq(vel0) + sq(vel1);
-	//Ñ²º½Ê±¼ä
+	//å·¡èˆªæ—¶é—´
 	t_cruise = (tmp - 2*sq(max_vel)) / (2*max_vel*max_accel);
 	if (t_cruise > 0)
 	{
@@ -127,7 +127,7 @@ float Robot::motion_time_1d(float dx,float vel0,float vel1,
 	return(t_accel + t_cruise + t_decel);
 }
 
-//´ÓËÙ¶È0¿ªÊ¼£¬ÔÚ¾àÀë=dxÇé¿öÏÂ£¬×î´óÄÜÌá¸ßµÄËÙ¶È
+//ä»é€Ÿåº¦0å¼€å§‹ï¼Œåœ¨è·ç¦»=dxæƒ…å†µä¸‹ï¼Œæœ€å¤§èƒ½æé«˜çš„é€Ÿåº¦
 double Robot::max_speed(double dx,double max_a)
 // maximum speed we will be willing to go if we are dx away from
 // target and have an acceleration of max_a
@@ -165,7 +165,7 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
                               double &traj_accel, double &traj_time)
 {
 	// First check to see if nothing needs to be done...
-	//¼ì²éÊÇ·ñÃ»ÓĞÊ²Ã´ĞèÒª×öµÄ
+	//æ£€æŸ¥æ˜¯å¦æ²¡æœ‰ä»€ä¹ˆéœ€è¦åšçš„
 	if (x0 == 0 && v0 == v1)
 	{
 		traj_accel = 0;
@@ -195,33 +195,33 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 	}
 	// Need to do some motion.
 	a_max /= a_factor;
-	//¼ÆËã´Óv0µ½v1ËÙ¶ÈĞèÒªÏûºÄÊ±¼ä
+	//è®¡ç®—ä»v0åˆ°v1é€Ÿåº¦éœ€è¦æ¶ˆè€—æ—¶é—´
 	double time_to_v1 = fabs(v0 - v1) / a_max;
-	//¼ÆËã´ÓËÙ¶Èv0µ½v1ĞèÒªĞĞ×ß¾àÀë
+	//è®¡ç®—ä»é€Ÿåº¦v0åˆ°v1éœ€è¦è¡Œèµ°è·ç¦»
 	double x_to_v1 = fabs((v0 + v1) / 2.0) * time_to_v1;
-	//Éè¶¨É²³µĞèÒªµÄÊ±¼ä·¶Î§
+	//è®¾å®šåˆ¹è½¦éœ€è¦çš„æ—¶é—´èŒƒå›´
 	double period = 2.0 * FRAME_PERIOD;
-	//²ÉÓÃv1µÄ¾ø¶ÔÖµ -x0µÄ·ûºÅ
+	//é‡‡ç”¨v1çš„ç»å¯¹å€¼ -x0çš„ç¬¦å·
 	v1 = copysign(v1, -x0);
 	if (v0 * x0 > 0 || (fabs(v0) > fabs(v1) && x_to_v1 > fabs(x0)))
 	{
 		// Time to reach goal after stopping + Time to stop.
-		//v0É²³µĞèÒªµÄÊ±¼ä
+		//v0åˆ¹è½¦éœ€è¦çš„æ—¶é—´
 		double time_to_stop = fabs(v0) / a_max;
-		//v0É²³µĞèÒªµÄ¾àÀë
+		//v0åˆ¹è½¦éœ€è¦çš„è·ç¦»
 		double x_to_stop = v0 * v0 / (2 * a_max);
-		//¼ÆËã·´ÏòºóÉıËÙµ½v1ĞèÒª»¨·ÑµÄÊ±¼ä
+		//è®¡ç®—åå‘åå‡é€Ÿåˆ°v1éœ€è¦èŠ±è´¹çš„æ—¶é—´
 		compute_motion_1d(x0 + copysign(x_to_stop, v0), 0, v1, a_max * a_factor,
 		                  v_max, a_factor, traj_accel, traj_time);
-		//¼ÆËã×Ü»¨·ÑÊ±¼ä
+		//è®¡ç®—æ€»èŠ±è´¹æ—¶é—´
 		traj_time += time_to_stop;
-		// Decelerate ¼õËÙ
-		//Èç¹ûÁ½Ö¡ÄÚÍê³É¼õËÙÈ»ºó·´ÏòÉıËÙ¶¯×÷£¬¼ÆËã¼ÓËÙ¶È
+		// Decelerate å‡é€Ÿ
+		//å¦‚æœä¸¤å¸§å†…å®Œæˆå‡é€Ÿç„¶ååå‘å‡é€ŸåŠ¨ä½œï¼Œè®¡ç®—åŠ é€Ÿåº¦
 		if (traj_time < period)
 		{
 			traj_accel = compute_stop(v0, a_max * a_factor);
 		}
-		//Èç¹ûÔÚÁ½Ö¡ÄÚÍê³ÉÉ²³µ
+		//å¦‚æœåœ¨ä¸¤å¸§å†…å®Œæˆåˆ¹è½¦
 		else if (time_to_stop < period)
 		{
 			traj_accel = time_to_stop / period * - copysign(a_max * a_factor, v0) +
@@ -238,28 +238,28 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 	// find a single acceleration that would reach the target with zero
 	// velocity.  The later is useful when we are close to the target
 	// where the former is less stable.
-	//ÓĞÁ½¸ö·½·¨£º
-	//1£¬²ÉÓÃ×î´ó¼ÓËÙ¶È¼ÓËÙ£¬È»ºó²ÉÓÃ×î´ó¼õËÙ¶È¼õËÙ£¬´ïµ½Ä¿µÄµØ
-	//2£¬µ¥Ò»¼ÓËÙ¶È£¬µ½´ïÄ¿µÄµØºóËÙ¶ÈµÈÓÚ0.
-	//ºóÒ»·½·¨ÔÚ½Ó½üÄ¿±êÊ±ÓĞÓÃ£¬Ç°Ò»·½·¨ÎÈ¶¨ĞÔ½Ï²î
+	//æœ‰ä¸¤ä¸ªæ–¹æ³•ï¼š
+	//1ï¼Œé‡‡ç”¨æœ€å¤§åŠ é€Ÿåº¦åŠ é€Ÿï¼Œç„¶åé‡‡ç”¨æœ€å¤§å‡é€Ÿåº¦å‡é€Ÿï¼Œè¾¾åˆ°ç›®çš„åœ°
+	//2ï¼Œå•ä¸€åŠ é€Ÿåº¦ï¼Œåˆ°è¾¾ç›®çš„åœ°åé€Ÿåº¦ç­‰äº0.
+	//åä¸€æ–¹æ³•åœ¨æ¥è¿‘ç›®æ ‡æ—¶æœ‰ç”¨ï¼Œå‰ä¸€æ–¹æ³•ç¨³å®šæ€§è¾ƒå·®
 	//------------------------------------------------------------------------------
-	//¿¼ÂÇÖ»ÓĞÉıËÙ»òÕßÖ»ÓĞ½µËÙµÄÇé¿ö
+	//è€ƒè™‘åªæœ‰å‡é€Ÿæˆ–è€…åªæœ‰é™é€Ÿçš„æƒ…å†µ
 	// OPTION 1
 	// This computes the amount of time to accelerate before decelerating.
 	double t_a, t_accel, t_decel;
-	//ÒÔÏÂÎªfabs(v1)>=fabs(v0)µÄÇé¿ö
+	//ä»¥ä¸‹ä¸ºfabs(v1)>=fabs(v0)çš„æƒ…å†µ
 	if (x_to_v1 >= fabs(x0))
 	{
 		if (fabs(v0) > fabs(v1))
 		{
-			//Èç¹û¾àÀë²»×ãÒÔ½«ËÙ¶È±äµ½v1,±íÊ¾Ö»ÓĞÉıËÙ¹ı³Ì
+			//å¦‚æœè·ç¦»ä¸è¶³ä»¥å°†é€Ÿåº¦å˜åˆ°v1,è¡¨ç¤ºåªæœ‰å‡é€Ÿè¿‡ç¨‹
 			t_a = (sqrt(v1 * v1 + 2 * a_max * fabs(x0)) - fabs(v1)) / a_max;
 			t_accel = 0.0;
 			t_decel = t_a;
 		}
 		else
 		{
-			//Èç¹û¾àÀë²»×ãÒÔ½«ËÙ¶È±äµ½v1,±íÊ¾Ö»ÓĞÉıËÙ¹ı³Ì
+			//å¦‚æœè·ç¦»ä¸è¶³ä»¥å°†é€Ÿåº¦å˜åˆ°v1,è¡¨ç¤ºåªæœ‰å‡é€Ÿè¿‡ç¨‹
 			t_a = (sqrt(v0 * v0 + 2 * a_max * fabs(x0)) - fabs(v0)) / a_max;
 			t_accel = t_a;
 			t_decel = 0.0;
@@ -269,8 +269,8 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 	{
 		if (fabs(v0) > fabs(v1))
 		{
-			//Ö»ÓĞ½µËÙ
-			//¼ÆËãv0µ½v1½µËÙĞèÒªÏûºÄµÄÊ±¼ä
+			//åªæœ‰é™é€Ÿ
+			//è®¡ç®—v0åˆ°v1é™é€Ÿéœ€è¦æ¶ˆè€—çš„æ—¶é—´
 			//    t_a = (sqrt((3*v1*v1 + v0*v0) / 2.0 - fabs(v0 * v1) + fabs(x0) * a_max)
 			//	   - fabs(v0)) / a_max;
 			t_a = (sqrt((v0 * v0 + v1 * v1) / 2.0 + fabs(x0) * a_max)  - fabs(v0)) / a_max;
@@ -282,7 +282,7 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 		{
 			//    t_a = (sqrt((3*v0*v0 + v1*v1) / 2.0 - fabs(v0 * v1) + fabs(x0) * a_max)
 			//  - fabs(v1)) / a_max;
-			//´Óv0ÉıËÙµ½v1ĞèÒªÏûºÄµÄÊ±¼ä
+			//ä»v0å‡é€Ÿåˆ°v1éœ€è¦æ¶ˆè€—çš„æ—¶é—´
 			t_a = (sqrt((v0 * v0 + v1 * v1) / 2.0 + fabs(x0) * a_max) - fabs(v1)) / a_max;
 			if (t_a < 0.0) t_a = 0;
 			t_accel = t_a + time_to_v1;
@@ -340,22 +340,22 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 #endif
 
 #if 0
-//¹¦ÄÜ:
-//ÔË¶¯¿ØÖÆ¼ÆËã,¼ÆËã¼ÓËÙ¶ÈºÍ×ÜÏûºÄÊ±¼ä
-//²ÎÊı:
-//x0ĞèÒªĞĞ×ß¾àÀë
-//v0³õÊ¼ËÙ¶È
-//v1ÖÕµãËÙ¶È
-//a_max×î´ó¼ÓËÙ¶È
-//v_max×î´óËÙ¶È
-//a_factory ±ÈÀıÒò×Ó
+//åŠŸèƒ½:
+//è¿åŠ¨æ§åˆ¶è®¡ç®—,è®¡ç®—åŠ é€Ÿåº¦å’Œæ€»æ¶ˆè€—æ—¶é—´
+//å‚æ•°:
+//x0éœ€è¦è¡Œèµ°è·ç¦»
+//v0åˆå§‹é€Ÿåº¦
+//v1ç»ˆç‚¹é€Ÿåº¦
+//a_maxæœ€å¤§åŠ é€Ÿåº¦
+//v_maxæœ€å¤§é€Ÿåº¦
+//a_factory æ¯”ä¾‹å› å­
 
 void Robot::compute_motion_1d(double x0, double v0, double v1,
                               double a_max, double v_max, double a_factor,
                               double &traj_accel, double &traj_time)
 {
 	// First check to see if nothing needs to be done...
-	//¼ì²éÊÇ·ñÃ»ÓĞÊ²Ã´ĞèÒª×öµÄ
+	//æ£€æŸ¥æ˜¯å¦æ²¡æœ‰ä»€ä¹ˆéœ€è¦åšçš„
 	if (x0 == 0 && v0 == v1)
 	{
 		traj_accel = 0;
@@ -369,28 +369,28 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 		traj_time = 0;
 		return;
 	}
-	//Í¨¹ıÅäÖÃÎÄ¼şÅäÖÃa_factorµÄÖµ£¬ÓÃÓÚµ÷½Ú¼ÓËÙ¶È
+	//é€šè¿‡é…ç½®æ–‡ä»¶é…ç½®a_factorçš„å€¼ï¼Œç”¨äºè°ƒèŠ‚åŠ é€Ÿåº¦
 	a_max /= a_factor;
-	//Éè¶¨É²³µĞèÒªµÄÊ±¼ä·¶Î§
+	//è®¾å®šåˆ¹è½¦éœ€è¦çš„æ—¶é—´èŒƒå›´
 	double period = 2.0 * FRAME_PERIOD;
 	double dv=a_max * FRAME_PERIOD;
-	//¼ÆËã´Óv0µ½v1ËÙ¶ÈĞèÒªÏûºÄÊ±¼ä
+	//è®¡ç®—ä»v0åˆ°v1é€Ÿåº¦éœ€è¦æ¶ˆè€—æ—¶é—´
 	double time_to_v1 = fabs(v0 - v1) / a_max;
 	double time_to_v1_round=(int)(time_to_v1/FRAME_PERIOD)*FRAME_PERIOD+period;
-	//¼ÆËã´ÓËÙ¶Èv0µ½v1ĞèÒªĞĞ×ß¾àÀë
+	//è®¡ç®—ä»é€Ÿåº¦v0åˆ°v1éœ€è¦è¡Œèµ°è·ç¦»
 	double x_to_v1 = fabs((v0 + v1) / 2.0) * time_to_v1_round ;
-	//ÓĞÁ½¸ö·½·¨£º
-	//1£¬²ÉÓÃ×î´ó¼ÓËÙ¶È¼ÓËÙ£¬È»ºó²ÉÓÃ×î´ó¼õËÙ¶È¼õËÙ£¬´ïµ½Ä¿µÄµØ
-	//2£¬µ¥Ò»¼ÓËÙ¶È£¬µ½´ïÄ¿µÄµØºóËÙ¶ÈµÈÓÚ0.
-	//ºóÒ»·½·¨ÔÚ½Ó½üÄ¿±êÊ±ÓĞÓÃ£¬Ç°Ò»·½·¨ÎÈ¶¨ĞÔ½Ï²î
+	//æœ‰ä¸¤ä¸ªæ–¹æ³•ï¼š
+	//1ï¼Œé‡‡ç”¨æœ€å¤§åŠ é€Ÿåº¦åŠ é€Ÿï¼Œç„¶åé‡‡ç”¨æœ€å¤§å‡é€Ÿåº¦å‡é€Ÿï¼Œè¾¾åˆ°ç›®çš„åœ°
+	//2ï¼Œå•ä¸€åŠ é€Ÿåº¦ï¼Œåˆ°è¾¾ç›®çš„åœ°åé€Ÿåº¦ç­‰äº0.
+	//åä¸€æ–¹æ³•åœ¨æ¥è¿‘ç›®æ ‡æ—¶æœ‰ç”¨ï¼Œå‰ä¸€æ–¹æ³•ç¨³å®šæ€§è¾ƒå·®
 	//------------------------------------------------------------------------------
-	//¿¼ÂÇÃ»ÓĞ×î¸ßËÙ¶ÈÏŞÖÆ£¬´Óv0ÉıËÙµ½Ä³¸ö²»ÊÜÏŞÖÆµÄ×î¸ßËÙ¶Èvtopºó£¬È»ºóÃ»ÓĞÔÈËÙ£¬Ö±½Ó½µËÙµ½v1µÄ¹ı³Ì
+	//è€ƒè™‘æ²¡æœ‰æœ€é«˜é€Ÿåº¦é™åˆ¶ï¼Œä»v0å‡é€Ÿåˆ°æŸä¸ªä¸å—é™åˆ¶çš„æœ€é«˜é€Ÿåº¦vtopåï¼Œç„¶åæ²¡æœ‰åŒ€é€Ÿï¼Œç›´æ¥é™é€Ÿåˆ°v1çš„è¿‡ç¨‹
 	double t_a, t_accel, t_decel,t_avg,vtop;
 	int ip0=-1,ip1=-1;
 	int iadir=1;
 	if (x0*v0>0)
 	{
-		//ËÙ¶ÈºÍ¾àÀëÏà·´ÔòÖ»ÄÜ½µËÙ
+		//é€Ÿåº¦å’Œè·ç¦»ç›¸ååˆ™åªèƒ½é™é€Ÿ
 		t_accel = 0.0;
 		t_decel = fabs(v0) / a_max;
 		if (v0>0)iadir=-1;
@@ -400,11 +400,11 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 	else if ( x_to_v1 >= fabs(x0) )
 	{
 		vtop=max(v0,v1);
-		//Èç¹û¾àÀë²»×ãÒÔ½«ËÙ¶È±äµ½v1,±íÊ¾Ö»ÓĞÉıËÙ»òÕß½µËÙ¹ı³Ì
+		//å¦‚æœè·ç¦»ä¸è¶³ä»¥å°†é€Ÿåº¦å˜åˆ°v1,è¡¨ç¤ºåªæœ‰å‡é€Ÿæˆ–è€…é™é€Ÿè¿‡ç¨‹
 		t_a = fabs(v1-v0) / a_max;
 		if ( v0 > v1)
 		{
-			//½µËÙ
+			//é™é€Ÿ
 			t_accel = 0.0;
 			t_decel = t_a;
 			if ( v0 > 0 )iadir = -1;
@@ -412,7 +412,7 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 		}
 		else
 		{
-			//ÉıËÙ
+			//å‡é€Ÿ
 			t_accel = t_a;
 			t_decel = 0.0;
 			if ( v0 > 0 )iadir = -1;
@@ -422,7 +422,7 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 	}
 	else
 	{
-		//°üº¬ÔÈËÙ¹ı³Ì
+		//åŒ…å«åŒ€é€Ÿè¿‡ç¨‹
 		vtop=sqrt((v0 * v0 + v1 * v1) / 2.0 + fabs(x0) * a_max);
 		if (v0<0 && v1<0)
 		{
@@ -431,7 +431,7 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 		dv=vtop*FRAME_PERIOD;
 		if (v0<vtop-2*dv)
 		{
-			//ÉıËÙ
+			//å‡é€Ÿ
 			t_accel = fabs(vtop  - v0) / a_max;
 			t_decel = fabs(vtop  - v1) / a_max;
 			t_avg= (fabs(x0)-(vtop+v0)*t_accel/2-(vtop+v1)*t_decel/2)/v_max;
@@ -440,7 +440,7 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 		}
 		else if (v0>=vtop-dv)
 		{
-			//ÔÈËÙ
+			//åŒ€é€Ÿ
 			t_accel = 0;
 			t_decel = fabs(vtop  - v1) / a_max;
 			t_avg= (fabs(x0)-(vtop+v1)*t_decel/2)/vtop;
@@ -448,7 +448,7 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 		}
 		else
 		{
-			//½µËÙ
+			//é™é€Ÿ
 			t_accel = 0;
 			t_decel = fabs(vtop  - v1) / a_max;
 			t_avg= 0;
@@ -462,24 +462,24 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 	{
 		if (t_avg == 0.0 )
 		{
-			//Ö»ÓĞ½µËÙ¹ı³Ì
+			//åªæœ‰é™é€Ÿè¿‡ç¨‹
 			if (t_decel >= period)
 			{
-				//¿ìËÙ½µËÙ
+				//å¿«é€Ÿé™é€Ÿ
 				ip1=0;
 				traj_accel = a_max * a_factor;
 				//traj_accel = _copysign(traj_accel,-v0);
 			}
 			else if (t_decel == 0.0)
 			{
-				//¾²Ö¹
+				//é™æ­¢
 				ip1=1;
 				traj_accel=0;
 			}
 			else
 			{
 				ip1=2;
-				//»ºÂı½µËÙ
+				//ç¼“æ…¢é™é€Ÿ
 				traj_accel = min(fabs(v1-v0)/t_decel,a_max*a_factor);
 				//traj_accel = _copysign(traj_accel,-v0);
 				t_decel=period;
@@ -487,14 +487,14 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 		}
 		else
 		{
-			//ÔÈËÙ¹ı³Ì
+			//åŒ€é€Ÿè¿‡ç¨‹
 			ip1=3;
 			traj_accel=0;
 		}
 	}
 	else
 	{
-		//¼ÓËÙ¹ı³Ì
+		//åŠ é€Ÿè¿‡ç¨‹
 		ip1=4;
 		traj_accel = a_max * a_factor;
 	}
@@ -514,16 +514,16 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 }
 #endif
 
-//ÊäÈë:
-//x0 ĞèÒªĞĞ×ß³¤¶ÈÊ¸Á¿
-//v0 µ±Ç°ËÙ¶È
-//v1 Ä¿±êËÙ¶È
-//a_max ×î´ó¼ÓËÙ¶È
-//v_max ×î´óËÙ¶È
-//a_factor ±ÈÀıÒò×Ó
-//Êä³ö:
-//traj_accel ¼ÓËÙ¶È
-//timeĞèÒªÏûºÄÊ±¼ä
+//è¾“å…¥:
+//x0 éœ€è¦è¡Œèµ°é•¿åº¦çŸ¢é‡
+//v0 å½“å‰é€Ÿåº¦
+//v1 ç›®æ ‡é€Ÿåº¦
+//a_max æœ€å¤§åŠ é€Ÿåº¦
+//v_max æœ€å¤§é€Ÿåº¦
+//a_factor æ¯”ä¾‹å› å­
+//è¾“å‡º:
+//traj_accel åŠ é€Ÿåº¦
+//timeéœ€è¦æ¶ˆè€—æ—¶é—´
 void Robot::compute_motion_2d(MyVector2d x0, MyVector2d v0, MyVector2d v1,
                               double a_max, double v_max, double a_factor,
                               MyVector2d &traj_accel, double &time)
@@ -535,15 +535,15 @@ void Robot::compute_motion_2d(MyVector2d x0, MyVector2d v0, MyVector2d v1,
 	x0 = x0.rotate(-rotangle);
 	v0 = v0.rotate(-rotangle);
 	v1 = v1.rotate(-rotangle);
-	//¼ÆËãx·½ÏòĞèÒªµÄ¼ÓËÙ¶ÈºÍÏûºÄµÄÊ±¼ä
+	//è®¡ç®—xæ–¹å‘éœ€è¦çš„åŠ é€Ÿåº¦å’Œæ¶ˆè€—çš„æ—¶é—´
 	compute_motion_1d(x0.x, v0.x, v1.x, a_max, v_max, a_factor,
 	                  traj_accel.x, time_x);
-	//¼ÆËãy·½ÏòĞèÒªµÄ¼ÓËÙ¶ÈºÍÏûºÄµÄÊ±¼ä
+	//è®¡ç®—yæ–¹å‘éœ€è¦çš„åŠ é€Ÿåº¦å’Œæ¶ˆè€—çš„æ—¶é—´
 	compute_motion_1d(x0.y, v0.y, v1.y, a_max, v_max, a_factor,
 	                  traj_accel.y, time_y);
 	if (v1.length() == 0.0)
 	{
-		//Èç¹ûÄ¿µÄËÙ¶ÈµÈÓÚ0
+		//å¦‚æœç›®çš„é€Ÿåº¦ç­‰äº0
                 double rx = time_x / hypot(time_x, time_y);
                 double ry = time_y / hypot(time_x, time_y);
 		compute_motion_1d(x0.x, v0.x, v1.x, a_max * rx, v_max * rx, a_factor,
@@ -564,22 +564,22 @@ void Robot::compute_motion_2d(MyVector2d x0, MyVector2d v0, MyVector2d v1,
 	time = MAX(time_x, time_y);
 }
 
-//¼ÆËãÉ²³µ¼ÓËÙ¶È
+//è®¡ç®—åˆ¹è½¦åŠ é€Ÿåº¦
 double Robot::compute_stop(double v, double max_a)
 {
 	if (fabs(v) > max_a * FRAME_PERIOD)
 	{
 		return copysign(max_a, -v);
 	}
-	//Èç¹û»¹Ò»Ö¡ÄÚ¿ÉÒÔÉ²³µÍê³É£¬ĞŞ¸Ä¼ÓËÙ¶È
+	//å¦‚æœè¿˜ä¸€å¸§å†…å¯ä»¥åˆ¹è½¦å®Œæˆï¼Œä¿®æ”¹åŠ é€Ÿåº¦
 	else
 	{
 		return -v / FRAME_PERIOD;
 	}
 }
 
-//µ±Ç°»úÆ÷ÈË¸ù¾İ³¡ÉÏĞÎÊÆ(world)£¬ÒÔÏàÓ¦µÄÄ¿±êËÙ¶È(target_vel)¡¢Ä¿±ê½Ç¶È(target_ang)ºÍ
-//ÔË¶¯ÀàĞÍ(type)ÔË¶¯µ½Ö¸¶¨Ä¿±êµã(target_pos)µÄ´¦Àíº¯Êı£¬ÆäÖĞ°üº¬ÁË¶ÔÔË¶¯×´Ì¬µÄ·ÖÎöºÍ¼ÆËã
+//å½“å‰æœºå™¨äººæ ¹æ®åœºä¸Šå½¢åŠ¿(world)ï¼Œä»¥ç›¸åº”çš„ç›®æ ‡é€Ÿåº¦(target_vel)ã€ç›®æ ‡è§’åº¦(target_ang)å’Œ
+//è¿åŠ¨ç±»å‹(type)è¿åŠ¨åˆ°æŒ‡å®šç›®æ ‡ç‚¹(target_pos)çš„å¤„ç†å‡½æ•°ï¼Œå…¶ä¸­åŒ…å«äº†å¯¹è¿åŠ¨çŠ¶æ€çš„åˆ†æå’Œè®¡ç®—
 Robot::Trajectory Robot::goto_point(World &world, int me,
                                     MyVector2d target_pos, MyVector2d target_vel,
                                     double target_ang,GotoPointType type)
@@ -640,7 +640,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
         double target_ang,
         GotoPointType the_type)
 {
-	//¼ÆËãµ±Ç°µãµ½Ä¿µÄµãÏòÁ¿
+	//è®¡ç®—å½“å‰ç‚¹åˆ°ç›®çš„ç‚¹å‘é‡
         MyVector2d x = world.GetRobotPositionByID(me) - target_pos;
 	if (!finite(x.x))
 	{
@@ -648,26 +648,26 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 		t.bValid=false;
 		return t;
 	}
-	//¼ÆËãËÙ¶ÈÏòÁ¿
+	//è®¡ç®—é€Ÿåº¦å‘é‡
         MyVector2d v = world.GetRobotVelocityByID(me);
-	//¼ÆËãµ±Ç°½Ç¶ÈÓëÄ¿µÄ½Ç¶È²î
+	//è®¡ç®—å½“å‰è§’åº¦ä¸ç›®çš„è§’åº¦å·®
 	double dangleme=world.teammate_direction(me);
 	double ang = angle_mod(world.teammate_direction(me) - target_ang);
-	//²éÑ¯µ±Ç°½ÇËÙ¶È
+	//æŸ¥è¯¢å½“å‰è§’é€Ÿåº¦
 	double ang_v = world.teammate_angular_velocity(me);
 	MyVector2d a;
 	double ang_a,factor_a;
 	double time_a, time;
 	int type = the_type;
 	if (type == GotoPointMoveForw) type = GotoPointMove;
-	//XY·½Ïò¼ÓËÙ¶ÈºÍÊ±¼ä¼ÆËã
+	//XYæ–¹å‘åŠ é€Ÿåº¦å’Œæ—¶é—´è®¡ç®—
 	compute_motion_2d(x, v, target_vel,
 	                  VDVAR(OMNI_MAX_ACCEL)[type],
 	                  VDVAR(OMNI_MAX_SPEED)[type],
 	                  DVAR(OMNI_ACCEL_FACTOR),
 	                  a, time);
-	//Ğı×ª¼ÓËÙ¶ÈºÍÊ±¼ä¼ÆËã
-	//´Ó0.4±¶½ÇËÙ¶È¿ªÊ¼¼ÆËã£¬Ñ°ÕÒÒ»¸öÄÜÔÚXYÔË¶¯µ½Î»Ö®Ç°¾ÍÄÜÍê³ÉĞı×ªµÄ½ÇËÙ¶È
+	//æ—‹è½¬åŠ é€Ÿåº¦å’Œæ—¶é—´è®¡ç®—
+	//ä»0.4å€è§’é€Ÿåº¦å¼€å§‹è®¡ç®—ï¼Œå¯»æ‰¾ä¸€ä¸ªèƒ½åœ¨XYè¿åŠ¨åˆ°ä½ä¹‹å‰å°±èƒ½å®Œæˆæ—‹è½¬çš„è§’é€Ÿåº¦
 	factor_a = 0.5 - 0.1;
 	do
 	{
@@ -683,21 +683,22 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 		                  ang_a, time_a);
 	}
 	while (factor_a<1.0 && time_a>time);
-	//¼ÆËãĞÂµÄËÙ¶È
+	//è®¡ç®—æ–°çš„é€Ÿåº¦
 	v += a * FRAME_PERIOD;
 	ang_v += ang_a * FRAME_PERIOD;
-	//¾­¹ıĞı×ªºóĞÂµÄËÙ¶ÈÊ¸Á¿
+	//ç»è¿‡æ—‹è½¬åæ–°çš„é€Ÿåº¦çŸ¢é‡
 	v = v.rotate(-world.teammate_direction(me));
-	//·ÀÖ¹ËÙ¶È³¬¹ıÏŞÖÆ
+	//é˜²æ­¢é€Ÿåº¦è¶…è¿‡é™åˆ¶
 	if (v.length() > VDVAR(OMNI_MAX_SPEED)[type])
 	{
 		v = v.norm() * VDVAR(OMNI_MAX_SPEED)[type];
 	}
-	//·ÀÖ¹½ÇËÙ¶È³¬¹ıÏŞÖÆ
+
+	//é˜²æ­¢è§’é€Ÿåº¦è¶…è¿‡é™åˆ¶
 	ang_v = bound(ang_v,
 	              -VDVAR(OMNI_MAX_ANG_VEL)[type],
 	              VDVAR(OMNI_MAX_ANG_VEL)[type]);
-	//
+	//  
 	Trajectory t(v.x, v.y, ang_v, max(time,time_a));
 	return t;
 }
@@ -863,7 +864,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
         /// set wall as obstacles
 	if (obs_flags & OBS_WALLS)
 	{
-		//ËÄÃæÇò³¡
+		//å››é¢çƒåœº
                 obstacles_instance.add_half_plane(-FIELD_LENGTH_H-GOAL_DEPTH, 0, 1, 0,1);
                 obstacles_instance.add_half_plane( FIELD_LENGTH_H+GOAL_DEPTH, 0,-1, 0,1);
                 obstacles_instance.add_half_plane( 0,-FIELD_WIDTH_H, 0, 1,1);
@@ -966,20 +967,20 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 			}
 		}
 	}
-        /// if needed, set opponents' defense zone as obstacle
+        // if needed, set opponents' defense zone as obstacle
 	if (obs_flags & OBS_THEIR_DZONE)
 	{
                 obstacles_instance.add_rectangle( FIELD_LENGTH_H+DEFENSE_DEPTH,0,
 		                   DEFENSE_DEPTH*4,DEFENSE_WIDTH,1);
 	}
 
-        /// if needed, set ball as obstacle
-        /// bug here
-//	if (obs_flags & OBS_BALL)
-//	{
-//                t = bound(MyVector::distance(ball,robot_position)-180,30,60);
-//                obstacles_instance.add_circle(ball.x,ball.y,t,ball_vel.x,ball_vel.y,1);
-//	}
+        // if needed, set ball as obstacle
+        // bug here lu_test
+    if (obs_flags & OBS_BALL)
+    {
+                t = bound(MyVector::distance(ball,robot_position)-180,30,60);
+                obstacles_instance.add_circle(ball.x,ball.y,t,ball_vel.x,ball_vel.y,1);
+    }
         obstacles_instance.set_mask(1);
 	//-----------------------------------------------------------------------
         /// set initial state
@@ -1016,27 +1017,35 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 			exit(1);
 		}
 	}
-	//ÇóÏÂÒ»Í¾¾­µãÏà¶Ôµ±Ç°Î»ÖÃµ¥Î»Ê¸Á¿
-	//pµ±Ç°Î»ÖÃ
-	//qÍ¾¾¶µãÎ»ÖÃ
+	//æ±‚ä¸‹ä¸€é€”ç»ç‚¹ç›¸å¯¹å½“å‰ä½ç½®å•ä½çŸ¢é‡
+	//på½“å‰ä½ç½®
+	//qé€”å¾„ç‚¹ä½ç½®
         /// set target position
 	q   = vftod(target.pos);
-        qr  = q - current_position;
-	//µ¥Î»»¯
+    qr  = q - current_position;
+
+//lu_test
+//    gui_debug_veloline(focused_robot_id, GDBG_NAVIGATION, current_position, q,G_ARROW_FORW);
+
+//    qDebug()<<"veloline"<<current_position.x<<current_position.y;
+//    qDebug()<<"veloline"<<q.x<<q.y;
+
+
+	//å•ä½åŒ–
 	qrl = qr.length();
 	qr /= qrl;
-	//Èç¹ûÍ¾¾¶µã¾àÀëÄ¿±êµã¶àÓÚ1mm£¬²¢ÇÒµ½ÏÂÒ»²½µÄĞĞ×ß¾àÀëÒ²¶àÓÚ1mm
+	//å¦‚æœé€”å¾„ç‚¹è·ç¦»ç›®æ ‡ç‚¹å¤šäº1mmï¼Œå¹¶ä¸”åˆ°ä¸‹ä¸€æ­¥çš„è¡Œèµ°è·ç¦»ä¹Ÿå¤šäº1mm
 	//if(MyVector::distance(q,target_pos)>1 && qrl>1)
 	//{
 	//  if(obs_id >= 0)
 	//  {
-	//    //ÖĞÍ¾ÓĞÕÏ°­
+	//    //ä¸­é€”æœ‰éšœç¢
 	//    obs_vel.set(obs.obs[obs_id].vel.x,obs.obs[obs_id].vel.y);
 	//    s = bound(MyVector::dot(qr,obs_vel)+500.0,0.0,1500.0);
 	//  }
 	//  else
 	//  {
-	//    //ÖĞÍ¾Ã»ÓĞÕÏ°­
+	//    //ä¸­é€”æ²¡æœ‰éšœç¢
 	//    s = 500;
 	//  }
 	//  v = qr * s;
@@ -1128,7 +1137,7 @@ Robot::Trajectory Robot::goto_point_speed(World &world, int me,
 	return(Trajectory(vx, 0.0, va, time));
 }
 
-//Ğı×ªµ½µã
+//æ—‹è½¬åˆ°ç‚¹
 Robot::Trajectory Robot::spin_to_point(World &world, int me,
                                        MyVector2d target_pos,
                                        double target_ang_vel)

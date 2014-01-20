@@ -20,7 +20,7 @@
 #include "control_hub/computer_control/knowledge_base/database/world_state/field_world_obstacle.h"
 #include "control_hub/computer_control/knowledge_base/algorithms/path_planner/path_plan_tools/kdtree.h"
 
-#define MAX_NODES  5000
+#define MAX_NODES  6000 //5000 -> 6000
 #define MAX_WAYPTS 200
 #define VERYNEAR 100
 //#define MAX_NODES  800

@@ -79,6 +79,20 @@ void gui_debug_line(const char robot, const char level,
   //d.info.line.flags = flags;
 }
 
+void gui_debug_veloline(const char robot, const char level,
+                    MyVector2d p1, MyVector2d p2, char flags)
+{
+        int side_temp = world.getSide();
+        p1*=side_temp;
+        p2*=side_temp;
+        GuiCmd.AddVelo(p1.x,p1.y,p2.x,p2.y);
+
+        //net_gdebug d = { NET_GUI_DEBUG_LINE, world.color, robot, level, world.time};
+  //d.info.line.p[0].set(world.from_world(p1));
+  //d.info.line.p[1].set(world.from_world(p2));
+  //d.info.line.flags = flags;
+}
+
 void gui_debug_x(const char robot, const char level, MyVector2d p)
 {
     int side_temp = world.getSide();

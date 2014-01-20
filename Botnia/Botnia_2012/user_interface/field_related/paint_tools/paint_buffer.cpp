@@ -1,6 +1,7 @@
 #include "paint_buffer.h"
 
 #include "paint_buffer.h"
+#include <QDebug>
 
 PaintCmds GuiCmd;
 
@@ -19,6 +20,16 @@ void PaintCmd::AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1)
                 iLineCount=iLine+1;
         }
 };
+
+void PaintCmd::AddVelo(qreal &x0, qreal &y0, qreal &x1, qreal &y1)
+{
+    int iVeloLine=iVeloCount;
+    if (iVeloLine<MAXLINECMDS)
+    {
+            lines[iVeloLine].setLine(x0,y0,x1,y1);
+            iVeloCount=iVeloLine+1;
+    }
+}
 
 void PaintCmd::AddPoint(qreal& x0,qreal& y0)
 {
@@ -47,12 +58,20 @@ void PaintCmd::ExecCmds(QPainter * painter)
 {
         if (iLineCount)
         {
-                painter->drawLines(lines,iLineCount);
+            painter->setPen(Qt::black);
+            painter->drawLines(lines,iLineCount);
         }
         if (iPointCount)
         {
-                painter->drawPoints(points,iPointCount);
+            painter->drawPoints(points,iPointCount);
         }
+
+        if(iVeloCount)
+        {
+            painter->setPen(QPen(QColor(255, 255, 0), 10, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin));
+            painter->drawLines(velolines,iVeloCount);
+        }
+
         int i;
         painter->setPen(Qt::red);
         painter->save();
@@ -93,6 +112,12 @@ void PaintCmds::AddText(qreal& x0,qreal& y0,QString s)
 {
         Cmds[iStrategy].AddText(x0,y0,s);
 }
+
+void PaintCmds::AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1)
+{
+     Cmds[iStrategy].AddVelo(x0,y0,x1,y1);;
+}
+
 
 void PaintCmds::StrategySwitchCmds()
 {

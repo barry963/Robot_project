@@ -18,6 +18,7 @@
 
 #include <string.h>
 #include "control_hub/human_control/joystick_gao.h"
+#include <QDebug>
 // for sending signals
 
 
@@ -81,7 +82,7 @@ void Joystick::JoystickControl(SerialServer* serial_server)
     RobotParamters robot_parameters;
     robot_parameters = ClearRobotParameters(robot_parameters);
     TransparentOperation package;
-    QByteArray temp_array;
+    QByteArray temp_byte;
     int fd_wireless=serial_server->port();
 
     if(js_test_flag)// to cut the noise
@@ -130,11 +131,15 @@ void Joystick::JoystickControl(SerialServer* serial_server)
                 robot.set_x_velocity(robot_parameters.x_velocity);
                 robot.set_y_velocity(robot_parameters.y_velocity);
 
-
-                temp_array = package.FormByteCommand(temp_array,robot);
-                int temp_size = temp_array.size();
+                temp_byte.clear();
+                temp_byte = package.FormByteCommand(temp_byte,robot);
+                int temp_size = temp_byte.size();
                 unsigned char *temp_pointer = new unsigned char(temp_size);
-                memcpy(temp_pointer, temp_array.data(), temp_size);
+                memcpy(temp_pointer, temp_byte.data(), temp_size);
+
+                qDebug()<<"Pcmd1: vx="<<robot_parameters.x_velocity<<", vy="<<robot_parameters.y_velocity;
+                qDebug()<<temp_pointer;
+
                 while(1)
                 {
                     package.SendPackage(temp_pointer,temp_size,fd_wireless);

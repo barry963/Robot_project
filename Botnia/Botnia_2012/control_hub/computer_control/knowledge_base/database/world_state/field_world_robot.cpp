@@ -962,11 +962,10 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
             // nav _to_point function included pathplanning
             // lu_test maybe change to another
 
-            tcmd = goto_point(world,my_id,nav.pos,nav.vel,nav.angle,
-                                   nav.type);
-//            tcmd = nav_to_point(world,my_id,
-//                                nav.pos,nav.vel,nav.angle,
-//                                nav.obs,nav.type);
+//            tcmd = goto_point(world,my_id,nav.pos,nav.vel,nav.angle,nav.type);
+            tcmd = nav_to_point(world,my_id,
+                                nav.pos,nav.vel,nav.angle,
+                                nav.obs,nav.type);
 
             if (!tcmd.bValid)
             {
@@ -979,7 +978,11 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     }
     tcmd.kick_power   = nav.kick_power;
     tcmd.dribble_power = nav.dribble_power;
-    tcmd.DataDisplay();//lu_test add
+    //tcmd.DataDisplay();//lu_test add
+
+//    qDebug()<<"NavCommand: vx="<<nav.vel_xya.x<<", vy="<<nav.vel_xya.y<<", z="<<nav.vel_xya.z;
+//    qDebug()<<"TCommand: vx="<<tcmd.vx<<", vy="<<tcmd.vy
+//           <<", va="<<tcmd.va<<", kick_power="<<tcmd.kick_power<<", dribble_power="<<tcmd.dribble_power;
 
     // if(robot_print && nav.kick) printf("Kick!\n");
     //计算任务是否完成

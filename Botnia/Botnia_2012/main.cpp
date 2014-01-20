@@ -360,8 +360,6 @@ int main(int argc, char *argv[])
     delete splash;
     splash = NULL;
 
-
-
     return application.exec();
 }
 

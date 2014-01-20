@@ -5,7 +5,7 @@
 #include "port_operation.h"
 
 #include <QBitArray>
-
+#include <QDebug>
 
 
 

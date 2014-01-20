@@ -24,6 +24,7 @@ public:
         void AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
         void AddPoint(qreal& x0,qreal& y0);
         void AddText(qreal& x0,qreal& y0,QString s);
+        void AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
 
         void Clear();
         void ExecCmds(QPainter * painter);
@@ -31,6 +32,8 @@ public:
         int iLineCount;
         int iPointCount;
         int iTextCount;
+        int iVeloCount;
+        QLineF		velolines[MAXLINECMDS];
         QLineF		lines[MAXLINECMDS];
         QPointF		points[MAXPOINTCMDS];
         MyText    texts[MAXTEXTCMDS];
@@ -45,6 +48,8 @@ public:
         void AddPoint(qreal& x0,qreal& y0);
         void AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
         void AddText(qreal& x0,qreal& y0,QString s);
+        void AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
+
         void ExecCmds(QPainter * painter);
 
         void CmdsSwitch(int iType=0);

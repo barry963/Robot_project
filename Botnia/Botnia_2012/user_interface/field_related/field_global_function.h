@@ -66,6 +66,10 @@ inline const char *status_as_string(Status s)
 void gui_debug_point(const char robot, MyVector2d p1 );
 void gui_debug_line(const char robot, const char level,
                     MyVector2d p1, MyVector2d p2, char flags = 0);
+
+void gui_debug_veloline(const char robot, const char level,
+                    MyVector2d p1, MyVector2d p2, char flags = 0);
+
 void gui_debug_arc(const char robot, const char level,
                    MyVector2d p1, MyVector2d dimens,
                    double start_angle, double stop_angle,
@@ -87,6 +91,6 @@ extern bool bEnBigRobotID;
 extern bool bEnBlueRobotNoise;
 extern bool bEnYellowRobotNoise;
 
-
+//QString SendTPackage;
 
 #endif // FIELD_GLOBAL_FUNCTION_H

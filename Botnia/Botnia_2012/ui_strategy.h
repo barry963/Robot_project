@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Thu Jan 2 04:46:35 2014
+** Created: Mon Jan 20 14:34:27 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -209,7 +209,6 @@ public:
     QWidget *verticalLayoutWidget_5;
     QGridLayout *log_text_layout;
     QTextEdit *log_text_area;
-    QSpacerItem *log_spacer;
     QWidget *referee_tab;
     QWidget *verticalLayoutWidget_12;
     QVBoxLayout *referee_layout;
@@ -411,7 +410,7 @@ public:
         control_widget->setObjectName(QString::fromUtf8("control_widget"));
         control_panel = new QTabWidget(control_widget);
         control_panel->setObjectName(QString::fromUtf8("control_panel"));
-        control_panel->setGeometry(QRect(10, 0, 481, 761));
+        control_panel->setGeometry(QRect(10, 10, 511, 751));
         control_panel->setStyleSheet(QString::fromUtf8(""));
         control_panel->setMovable(false);
         general_tab = new QWidget();
@@ -1197,7 +1196,7 @@ public:
         log_tab->setObjectName(QString::fromUtf8("log_tab"));
         verticalLayoutWidget_9 = new QWidget(log_tab);
         verticalLayoutWidget_9->setObjectName(QString::fromUtf8("verticalLayoutWidget_9"));
-        verticalLayoutWidget_9->setGeometry(QRect(10, 10, 451, 681));
+        verticalLayoutWidget_9->setGeometry(QRect(0, 10, 501, 681));
         log_layout = new QVBoxLayout(verticalLayoutWidget_9);
         log_layout->setSpacing(2);
         log_layout->setContentsMargins(5, 5, 5, 5);
@@ -1252,24 +1251,21 @@ public:
         log_group_box = new QGroupBox(verticalLayoutWidget_9);
         log_group_box->setObjectName(QString::fromUtf8("log_group_box"));
         log_group_box->setMinimumSize(QSize(0, 280));
-        log_group_box->setMaximumSize(QSize(16777215, 280));
+        log_group_box->setMaximumSize(QSize(16777215, 1000));
         verticalLayoutWidget_5 = new QWidget(log_group_box);
         verticalLayoutWidget_5->setObjectName(QString::fromUtf8("verticalLayoutWidget_5"));
-        verticalLayoutWidget_5->setGeometry(QRect(30, 40, 281, 191));
+        verticalLayoutWidget_5->setGeometry(QRect(10, 40, 471, 451));
         log_text_layout = new QGridLayout(verticalLayoutWidget_5);
         log_text_layout->setObjectName(QString::fromUtf8("log_text_layout"));
         log_text_layout->setContentsMargins(0, 0, 0, 0);
         log_text_area = new QTextEdit(verticalLayoutWidget_5);
         log_text_area->setObjectName(QString::fromUtf8("log_text_area"));
+        log_text_area->setMaximumSize(QSize(16777215, 16777215));
 
         log_text_layout->addWidget(log_text_area, 0, 0, 1, 1);
 
 
         log_layout->addWidget(log_group_box);
-
-        log_spacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        log_layout->addItem(log_spacer);
 
         control_panel->addTab(log_tab, QString());
         referee_tab = new QWidget();
@@ -1384,7 +1380,7 @@ public:
         strategy_graphics_widget->setObjectName(QString::fromUtf8("strategy_graphics_widget"));
         strategy_graphics_view = new FieldView(strategy_graphics_widget);
         strategy_graphics_view->setObjectName(QString::fromUtf8("strategy_graphics_view"));
-        strategy_graphics_view->setGeometry(QRect(10, 0, 571, 771));
+        strategy_graphics_view->setGeometry(QRect(10, 0, 601, 771));
         strategy_graphics_dockwidget->setWidget(strategy_graphics_widget);
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), strategy_graphics_dockwidget);
 
@@ -1398,7 +1394,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        control_panel->setCurrentIndex(2);
+        control_panel->setCurrentIndex(3);
         strategy_type_tab->setCurrentIndex(5);
 
 

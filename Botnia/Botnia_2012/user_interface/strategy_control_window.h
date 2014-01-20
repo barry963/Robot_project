@@ -65,6 +65,12 @@ public:
     void tick();
     enum status {OFF,ON};
     enum speed_num {SLOW2=-2,SLOW1,NORMAL,FAST1,FAST2};
+//public slots:
+//    void AddSystemLog(QString &info)
+//    {
+//        ui->log_text_area->append(info);
+//    }
+
 protected:
     void timerEvent ( QTimerEvent* );
 

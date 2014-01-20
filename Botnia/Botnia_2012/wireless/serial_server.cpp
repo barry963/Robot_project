@@ -128,6 +128,7 @@ SerialServer::SendingState SerialServer::SendTransparentPackage(WirelessRobot wi
 SerialServer::SendingState SerialServer::SendTransparentPackage(unsigned char * temp_pointer_,int temp_size)
 {
     transparent_operation_->SendPackage(temp_pointer_,temp_size,port_);
+
     return this->SENT_SUCCEDED;
 }
 

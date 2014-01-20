@@ -77,12 +77,14 @@ public:
     SerialServer::SendingState SendTransparentPackage(void);
     SerialServer::SendingState SendTransparentPackage(QByteArray senting_array);
     SerialServer::SendingState SendTransparentPackage(WirelessRobot wireless_robot);
-    SerialServer::SendingState SendTransparentPackage(unsigned char * temp_pointer_,int temp_size);
     SerialServer::SendingState RecievePackage();
 
     bool IsOpen(void);
     QByteArray senting_array(void) {return senting_array_;}
     void set_senting_array(QByteArray senting_array) {senting_array_ = senting_array;}
+
+    SerialServer::SendingState SendTransparentPackage(unsigned char * temp_pointer_,int temp_size);
+
 };
 
 #endif // SERIAL_OPERATIONS_H

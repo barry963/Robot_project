@@ -196,16 +196,16 @@ QHeaderView::section {
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>0</y>
-       <width>481</width>
-       <height>761</height>
+       <y>10</y>
+       <width>511</width>
+       <height>751</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -1729,9 +1729,9 @@ QHeaderView::section {
       <widget class="QWidget" name="verticalLayoutWidget_9">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>0</x>
          <y>10</y>
-         <width>451</width>
+         <width>501</width>
          <height>681</height>
         </rect>
        </property>
@@ -1863,7 +1863,7 @@ QHeaderView::section {
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>280</height>
+            <height>1000</height>
            </size>
           </property>
           <property name="title">
@@ -1872,32 +1872,26 @@ QHeaderView::section {
           <widget class="QWidget" name="verticalLayoutWidget_5">
            <property name="geometry">
             <rect>
-             <x>30</x>
+             <x>10</x>
              <y>40</y>
-             <width>281</width>
-             <height>191</height>
+             <width>471</width>
+             <height>451</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="log_text_layout">
             <item row="0" column="0">
-             <widget class="QTextEdit" name="log_text_area"/>
+             <widget class="QTextEdit" name="log_text_area">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
          </widget>
-        </item>
-        <item>
-         <spacer name="log_spacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
@@ -2111,7 +2105,7 @@ QHeaderView::section {
       <rect>
        <x>10</x>
        <y>0</y>
-       <width>571</width>
+       <width>601</width>
        <height>771</height>
       </rect>
      </property>

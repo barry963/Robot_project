@@ -404,3 +404,12 @@ SO start from SPosition
 motion planning problem!!!
 field_world_robot_goto_point.cpp
 nav_to_point(XXX) function
+
+=======================================
+2014/1/20
+Bug
+10. variable inside FormByteCommand() and outside FormByteCommand() is different
+Solutioin: do not use this function
+
+Change MAX_NODES from 5000 to 6000  //path_planner
+

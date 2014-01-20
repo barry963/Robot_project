@@ -95,7 +95,7 @@ double PathPlanner:: distance(state &s0,state &s1)
 state *PathPlanner::add_node(state n,state *parent)
 {
 #if 1//lu_test change 0 to 1
-    if (num_nodes >= max_nodes)
+    if (num_nodes > max_nodes)
     {
         qDebug()<<"max nodes reached...";
         return(NULL);

@@ -126,6 +126,14 @@ QByteArray TransparentOperation::FormByteCommand(QByteArray temp_byte,WirelessRo
             temp_char+=0x15;//???
             temp_byte.append(temp_char); // seven'th time adding
     }
+
+    int temp_size = temp_byte.size();
+    unsigned char *temp_pointer = new unsigned char(temp_size);
+    memcpy(temp_pointer, temp_byte.data(), temp_size);
+
+    qDebug()<<"Vx1="<<robot_parameters.x_velocity<<", vy="<<robot_parameters.y_velocity;
+    qDebug()<<temp_pointer;
+
     return temp_byte;
 }
 
@@ -208,6 +216,14 @@ QByteArray TransparentOperation::FormByteCommand(QByteArray temp_byte,WirelessRo
             temp_char+=0x15;//???
             temp_byte.append(temp_char); // seven'th time adding
     }
+    int temp_size = temp_byte.size();
+    unsigned char *temp_pointer = new unsigned char(temp_size);
+    memcpy(temp_pointer, temp_byte.data(), temp_size);
+
+    qDebug()<<"Vx2="<<robot_parameters.x_velocity<<", vy="<<robot_parameters.y_velocity;
+    qDebug()<<temp_pointer;
+\
+
     return temp_byte;
 }
 

@@ -685,7 +685,9 @@ void ClearCombufArray()
 //    {
 //        ComBuf[i]='\0';
 //    }
+
     iComBufSize=0;
+    ComBuf[iComBufSize++]=CHARSYN;
 }
 
 void ClearCombuf()
@@ -797,7 +799,7 @@ void World::go(int id, double vx, double vy, double va,
     }
 
     // set the command for robot
-    qDebug()<<"Command:id="<<id<<", vx"<<vx<<", vy="<<vy<<", va="<<va;
+
     pCmd->set_id(id);
     pCmd->set_team(color_);
     pCmd->set_vx(vx);
@@ -820,7 +822,8 @@ void World::go(int id, double vx, double vy, double va,
     RadioSendMutex.unlock();
 
 #if 0
-    int fd_wireless=serial_sever_->port();
+    if(serial_sever_->IsOpen())
+    {
     TransparentOperation package;
     RobotParamters robot_parameters;
     robot_parameters = ClearRobotParameters(robot_parameters);
@@ -838,9 +841,10 @@ void World::go(int id, double vx, double vy, double va,
     int temp_size = temp_array.size();
     unsigned char *temp_pointer = new unsigned char(temp_size);
     memcpy(temp_pointer, temp_array.data(), temp_size);
-
-    package.SendPackage(temp_pointer,temp_size,fd_wireless);
-
+//    qDebug()<<"Pcmd2: vx="<<robot_parameters.x_velocity<<", vy="<<robot_parameters.y_velocity;
+//    qDebug()<<temp_pointer;
+    serial_sever_->SendTransparentPackage((unsigned char*)temp_pointer,temp_size);
+    }
 #endif
 
 
@@ -848,6 +852,9 @@ void World::go(int id, double vx, double vy, double va,
     // deal with the physical communication
     if (serial_sever_->IsOpen())
     {
+        ClearCombufArray();
+
+        ComChar = id&0x07;
         if (forcekick_on)
         {
             ComChar|=COM_FORCEKICK;
@@ -903,7 +910,10 @@ void World::go(int id, double vx, double vy, double va,
         FillComChar(kick_power);
         FillVerify();
         serial_sever_->SendTransparentPackage((unsigned char*)ComBuf,iComBufSize);
-        ClearCombufArray();
+
+        qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
+        qDebug()<<ComBuf;
+
     }
 #endif
 

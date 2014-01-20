@@ -96,7 +96,7 @@ void KDT_FUN::split(node *t,int split_dim)
 	// make new nodes
     a = anode.alloc();
     b = anode.alloc();
-    qDebug()<<"allocate for two child!";
+    //qDebug()<<"allocate for two child!";
 	if (!a || !b) return;
 	a->child[0] = b->child[0] = NULL;
 	a->child[1] = b->child[1] = NULL;
