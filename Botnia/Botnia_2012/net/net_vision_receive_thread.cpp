@@ -247,7 +247,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 //		qDebug() << "pos: " << pos.x << ", " << pos.y << ", iCurIndex: " << iCurIndex;
 
 		//更新球对象
-		vision_info.Balls[iCurIndex].pos = pos;
+        vision_info.Balls[iCurIndex].pos = pos;
 		vision_info.Balls[iCurIndex].conf = max(VInfoRaw.BallInfos[0][iCurIndex].conf, VInfoRaw.BallInfos[1][iCurIndex].conf);
 		update_flag=true;
         //qDebug()<<"Ball position: "<<pos.x<<" , "<<pos.y;

@@ -911,8 +911,8 @@ void World::go(int id, double vx, double vy, double va,
         FillVerify();
         serial_sever_->SendTransparentPackage((unsigned char*)ComBuf,iComBufSize);
 
-        qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
-        qDebug()<<ComBuf;
+        //qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
+        //qDebug()<<ComBuf;
 
     }
 #endif

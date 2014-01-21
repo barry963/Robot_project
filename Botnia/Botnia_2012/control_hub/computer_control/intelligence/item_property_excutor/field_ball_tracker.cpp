@@ -402,6 +402,7 @@ MyVector2d BallTracker::position(double time)
     Matrix x = predict(time);
     //qDebug()<<"ball position"<<x.e(0,0)<<x.e(1,0);
     return MyVector2d(x.e(0,0), x.e(1,0));
+
 }
 
 //返回球的预测速度

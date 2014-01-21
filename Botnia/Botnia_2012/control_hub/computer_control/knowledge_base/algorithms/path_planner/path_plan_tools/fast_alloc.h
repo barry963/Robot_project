@@ -68,22 +68,22 @@ item_t *FSTALC_FUN::alloc()
 {
     //qDebug()<<"num_alloc: "<<num_alloc<<"num_free: "<<num_free;
 
-	item_t *p;
-	//如果空闲链表不空，从空闲链表中摘除一个
-	if (free_list)
-	{
-		p = free_list;
-		free_list = p->next;
-		p->next = NULL;
-		num_free--;
-	}
-	//否则向操作系统申请一个空间
-	else
+    item_t *p;
+    //如果空闲链表不空，从空闲链表中摘除一个
+    if (free_list)
+    {
+        p = free_list;
+        free_list = p->next;
+        p->next = NULL;
+        num_free--;
+    }
+    //否则向操作系统申请一个空间
+    else
 	{
 		p = new item_t;
 	}
 	num_alloc++;
-	return(p);
+    return(p);
 }
 
 //归还一个节点给空闲列表
@@ -91,11 +91,11 @@ FSTALC_TEM
 void FSTALC_FUN::free(item_t *item)
 {
     //qDebug()<<"num_alloc: "<<num_alloc<<"num_free: "<<num_free;
-	//将回收的空间放置到空闲链表中
-	item->next = free_list;
+    //将回收的空间放置到空闲链表中
+    item->next = free_list;
 	free_list = item;
 	num_free++;
-	num_alloc--;
+    num_alloc--;
 }
 
 //归还一个链表中的所有节点给空闲列表

@@ -157,7 +157,7 @@ state *PathPlanner::find_nearest(state target)
         // NOTE: something bad must have happened if we get here.
         // find closest current state
         nearest = &node[0]; // num_nodes-1];
-        assert(nearest!=NULL);
+        //assert(nearest!=NULL); Lu_test command
         nd = distance(*nearest, target);
         for (i=0; i<num_nodes; i++)
         {
@@ -333,8 +333,8 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         i = num_nodes = 0;
         //?
         nearest = nearest_goal = add_node(initial,NULL);
-        assert(nearest!=NULL);
-        d = distance(*nearest,goal);
+        //assert(nearest!=NULL); Lu_test
+        d = distance(*nearest,goal);// Lu_test
         // plan
         iter_limit = max_nodes;
         while (i<iter_limit && num_nodes<max_nodes && d>VERYNEAR)
@@ -343,7 +343,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             //find_nearest ????target?
             //targ_type????
             nearest = (targ_type == 0)? nearest_goal : find_nearest(target);
-            assert(nearest!=NULL);
+            //assert(nearest!=NULL); lu_test
             extend(nearest,target);
             nd = distance(node[num_nodes-1],goal);
             //¡¤??????

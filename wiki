@@ -386,6 +386,7 @@ Bug
 3. null pointer at kdtree.h
 clear(root->child[0]);
 clear(root->child[1]);
+move down
 
 7. control_hub/computer_control/knowledge_base/algorithms/path_planner/path_planner.cpp:336: state PathPlanner::plan(obstacles*, int, state, state, int&): Assertion `nearest!=__null' failed.
 
@@ -413,3 +414,19 @@ Solutioin: do not use this function
 
 Change MAX_NODES from 5000 to 6000  //path_planner
 
+=======================================
+2014/1/21
+
+path_planner.cpp
+//assert(nearest!=NULL); Lu_test command
+d=distance(*nearest,goal);// Lu_test add
+
+Bug
+3. null pointer at kdtree.h
+clear(root->child[0]);
+clear(root->child[1]);
+Reason: root is not null, but it does not point to any memory
+Solution: I guess the problem comes from the unstable data. Confused: in the arrangement, is both leaves arranged?
+
+
+Try to figure out the vision data flow, as field and calculate all need the data after processing nor the raw data

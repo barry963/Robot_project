@@ -25,9 +25,11 @@
 KDT_TEMP
 class KDTree
 {
+    unsigned int node_num;// lu_test
+    unsigned int node_num1;// lu_test
 	struct node
 	{
-		//Ã¿¸ö½Úµã¶¼ÓĞ·¶Î§
+		//æ¯ä¸ªèŠ‚ç‚¹éƒ½æœ‰èŒƒå›´
 		vector2f minv,maxv; // bounding box of subtree
 		state *states;      // list of states stored at this node
 		int num_states;     // number of states of this subtree
@@ -38,12 +40,11 @@ class KDTree
 			node *next;
 		};
 	};
-
-	node *root;
+    node *root;
 	int leaf_size,max_depth;
 	int tests;
-	//ÓÃÓÚ¿ìËÙ·ÖÅäµÄ¹ÜÀíÆ÷£¬Ô­Àí¾ÍÊÇ½¨Á¢¿ÕÏĞÁĞ±í£¬±£´æ·ÏÆúµÄ¿Õ¼ä
-	//ÏÂ´ÎÉêÇë£¬Ê×ÏÈ´Ó·ÏÆú¿Õ¼ä·ÖÅä£¬²»¹»ÔÙÏò²Ù×÷ÏµÍ³ÉêÇë¿Õ¼ä
+	//ç”¨äºå¿«é€Ÿåˆ†é…çš„ç®¡ç†å™¨ï¼ŒåŸç†å°±æ˜¯å»ºç«‹ç©ºé—²åˆ—è¡¨ï¼Œä¿å­˜åºŸå¼ƒçš„ç©ºé—´
+	//ä¸‹æ¬¡ç”³è¯·ï¼Œé¦–å…ˆä»åºŸå¼ƒç©ºé—´åˆ†é…ï¼Œä¸å¤Ÿå†å‘æ“ä½œç³»ç»Ÿç”³è¯·ç©ºé—´
 	fast_allocator<node> anode;
 
 protected:
@@ -56,8 +57,9 @@ protected:
 public:
 	KDTree()
 	{
-		root=NULL;
+        root=NULL;
 		leaf_size=max_depth=0;
+        node_num=0;// lu_test
 	}
 
 	bool setdim(vector2f &minv,vector2f &maxv,int nleaf_size,int nmax_depth);
@@ -65,8 +67,7 @@ public:
 	void clear();
 	state *nearest(float &dist,vector2f &x);
 };
-
-//¼ì²éÎ»ÖÃsÊÇ·ñÔÚminvºÍmaxvÁ½µãÏŞ¶¨µÄ·¶Î§Ö®ÄÚ
+//æ£€æŸ¥ä½ç½®sæ˜¯å¦åœ¨minvå’Œmaxvä¸¤ç‚¹é™å®šçš„èŒƒå›´ä¹‹å†…
 KDT_TEMP
 inline bool KDT_FUN::inside(vector2f &minv,vector2f &maxv,state &s)
 {
@@ -74,7 +75,7 @@ inline bool KDT_FUN::inside(vector2f &minv,vector2f &maxv,state &s)
 	       s.pos.x<maxv.x && s.pos.y<maxv.y);
 }
 
-//¼ÆËãµãpµ½ÓÉminvºÍmaxvÈ·¶¨µÄ¾ØĞÎµÄ¾àÀë
+//è®¡ç®—ç‚¹påˆ°ç”±minvå’Œmaxvç¡®å®šçš„çŸ©å½¢çš„è·ç¦»
 KDT_TEMP
 inline float KDT_FUN::box_distance(vector2f &minv,vector2f &maxv,vector2f &p)
 {
@@ -84,15 +85,15 @@ inline float KDT_FUN::box_distance(vector2f &minv,vector2f &maxv,vector2f &p)
 	return(sqrt(dx*dx + dy*dy));
 }
 
-//½«ÖÆ¶¨½ÚµãµÄstates°´ÕÕ×ø±ê½øĞĞ¶Ô·Ö
-//´Ó·ÖÁÑËã·¨¿´½Úµãt±ØĞëÊÇÒ¶×Ó½Úµã
+//å°†åˆ¶å®šèŠ‚ç‚¹çš„statesæŒ‰ç…§åæ ‡è¿›è¡Œå¯¹åˆ†
+//ä»åˆ†è£‚ç®—æ³•çœ‹èŠ‚ç‚¹tå¿…é¡»æ˜¯å¶å­èŠ‚ç‚¹
 KDT_TEMP
 void KDT_FUN::split(node *t,int split_dim)
 {
 	node *a,*b;
 	state *p,*n;
 	float split_val;
-	//Éú³ÉÁ½¸öĞÂµÄ½Úµã£¬²¢³õÊ¼»¯Îª¿Õ
+	//ç”Ÿæˆä¸¤ä¸ªæ–°çš„èŠ‚ç‚¹ï¼Œå¹¶åˆå§‹åŒ–ä¸ºç©º
 	// make new nodes
     a = anode.alloc();
     b = anode.alloc();
@@ -105,7 +106,7 @@ void KDT_FUN::split(node *t,int split_dim)
 	// determine split value
 	a->minv = b->minv = t->minv;
 	a->maxv = b->maxv = t->maxv;
-	//Èç¹ûsplit_dim=0£¬Ôò°´ÕÕXÖµ½øĞĞÁ½·Ö£¬·ñÔò°´ÕÕY½øĞĞÁ½·Ö
+	//å¦‚æœsplit_dim=0ï¼Œåˆ™æŒ‰ç…§Xå€¼è¿›è¡Œä¸¤åˆ†ï¼Œå¦åˆ™æŒ‰ç…§Yè¿›è¡Œä¸¤åˆ†
 	if (split_dim == 0)
 	{
 		split_val = (t->minv.x + t->maxv.x) / 2;
@@ -118,24 +119,24 @@ void KDT_FUN::split(node *t,int split_dim)
 	}
 	// separate children based on split
 	//
-	n = t->states;//n=½ÚµãtµÄÁ´±í±íÍ·
+	n = t->states;//n=èŠ‚ç‚¹tçš„é“¾è¡¨è¡¨å¤´
 	while (p = n)
 	{
 		n = n->next;
 		if (((split_dim == 0)?p->pos.x : p->pos.y) < split_val)
 		{
-			//½«p²åÈëµ½aµÄstatesÁĞ±íµÄ±íÍ·
+			//å°†pæ’å…¥åˆ°açš„statesåˆ—è¡¨çš„è¡¨å¤´
 			p->next = a->states;
 			a->states = p;
-			//¼ÆÊıÆ÷Ôö¼Ó
+			//è®¡æ•°å™¨å¢åŠ 
 			a->num_states++;
 		}
 		else
 		{
-			//½«p²åÈëµ½bµÄstatesÁĞ±íµÄ±íÍ·
+			//å°†pæ’å…¥åˆ°bçš„statesåˆ—è¡¨çš„è¡¨å¤´
 			p->next = b->states;
 			b->states = p;
-			//¼ÆÊıÆ÷Ôö¼Ó
+			//è®¡æ•°å™¨å¢åŠ 
 			b->num_states++;
 		}
 	}
@@ -145,21 +146,21 @@ void KDT_FUN::split(node *t,int split_dim)
 	t->child[1] = b;
 }
 
-//Éè¶¨Ê÷ÌØĞÔ£¬²¢ÎªÊ÷·ÖÅä¿Õ¼ä
+//è®¾å®šæ ‘ç‰¹æ€§ï¼Œå¹¶ä¸ºæ ‘åˆ†é…ç©ºé—´
 KDT_TEMP
 bool KDT_FUN::setdim(vector2f &minv,vector2f &maxv,int nleaf_size,int nmax_depth)
 {
 	clear();
 	if (!root)
 	{
-		//Îª¸ù½ÚµãÉêÇëÒ»¸ö¿Õ¼ä
+		//ä¸ºæ ¹èŠ‚ç‚¹ç”³è¯·ä¸€ä¸ªç©ºé—´
         root = anode.alloc();
 	}
     if (!root)
 	{
         return false;
 	}
-	//Éè¶¨¸ù½ÚµãÊôĞÔ
+	//è®¾å®šæ ¹èŠ‚ç‚¹å±æ€§
 	mzero(*root);
 	root->minv = minv;
 	root->maxv = maxv;
@@ -168,8 +169,8 @@ bool KDT_FUN::setdim(vector2f &minv,vector2f &maxv,int nleaf_size,int nmax_depth
     return true;
 }
 
-//½«½ÚµãÔö¼Óµ½Ê÷ÖĞ£¬
-//¸ù¾İËã·¨£¬Êı¾İ×ÜÊÇ±£´æÔÚÒ¶×Ó½ÚµãÖĞ
+//å°†èŠ‚ç‚¹å¢åŠ åˆ°æ ‘ä¸­ï¼Œ
+//æ ¹æ®ç®—æ³•ï¼Œæ•°æ®æ€»æ˜¯ä¿å­˜åœ¨å¶å­èŠ‚ç‚¹ä¸­
 KDT_TEMP
 bool KDT_FUN::add(state *s)
 {
@@ -179,64 +180,77 @@ bool KDT_FUN::add(state *s)
 	p = root;
 	if (!p || !inside(p->minv,p->maxv,*s))
 	{
-		//Èç¹û²»´æÔÚ¸ù½Úµã»òÕßµãs²»ÔÚ·¶Î§ÄÚÔò·µ»Øfalse
+		//å¦‚æœä¸å­˜åœ¨æ ¹èŠ‚ç‚¹æˆ–è€…ç‚¹sä¸åœ¨èŒƒå›´å†…åˆ™è¿”å›false
 		return(false);
 	}
 	// go down tree to see where new state should go
-	//Éî¶ÈÓÅÏÈËÑË÷£¬Ö±µ½ÕÒµ½Ò»¸ö°üº¬´Ë½Úµã·ÖÖ§µÄÒ¶×Ó½Úµã
+	//æ·±åº¦ä¼˜å…ˆæœç´¢ï¼Œç›´åˆ°æ‰¾åˆ°ä¸€ä¸ªåŒ…å«æ­¤èŠ‚ç‚¹åˆ†æ”¯çš„å¶å­èŠ‚ç‚¹
 	while (p->child[0])
 	{ // implies p->child[1] also
-		//Èç¹û²»ÔÚ×ó×ÓÊı·¶Î§ÄÚ£¬¾Í¼ì²éÓÒ×ÓÊ÷£¬Ö±µ½ÕÒµ½Ò»¸ö¿Õ×ÓÊ÷
+		//å¦‚æœä¸åœ¨å·¦å­æ•°èŒƒå›´å†…ï¼Œå°±æ£€æŸ¥å³å­æ ‘ï¼Œç›´åˆ°æ‰¾åˆ°ä¸€ä¸ªç©ºå­æ ‘
 		c = !inside(p->child[0]->minv,p->child[0]->maxv,*s);
 		p = p->child[c];
 		level++;
 	}
 	// add it to leaf; and split leaf if too many children
-	//¼ÓÈëÁĞ±í
+	//åŠ å…¥åˆ—è¡¨
 	s->next = p->states;
 	p->states = s;
 	p->num_states++;
-	//ÓÉÓÚÃ¿´Î¶¼ÊÇ¶Ô°ë·Ö½â£¬ËùÒÔ£¬Èç¹û´æÔÚchild[0]¾ÍÒ»¶¨´æÔÚchild[1]
+	//ç”±äºæ¯æ¬¡éƒ½æ˜¯å¯¹åŠåˆ†è§£ï¼Œæ‰€ä»¥ï¼Œå¦‚æœå­˜åœ¨child[0]å°±ä¸€å®šå­˜åœ¨child[1]
 	// split leaf if not too deep and too many children for one node
 	if (level<max_depth && p->num_states>leaf_size)
 	{
-		//Å¼Êı²ã°´ÕÕX¶Ô°ë·Ö£¬ÆæÊı²ã°´ÕÕY¶Ô°ë·Ö
+		//å¶æ•°å±‚æŒ‰ç…§Xå¯¹åŠåˆ†ï¼Œå¥‡æ•°å±‚æŒ‰ç…§Yå¯¹åŠåˆ†
 		split(p,level % 2);
 	}
 	return(true);
 }
 
-//Çå³ıÖ¸¶¨½ÚµãÏÂµÄĞÅÏ¢
+//æ¸…é™¤æŒ‡å®šèŠ‚ç‚¹ä¸‹çš„ä¿¡æ¯
 KDT_TEMP
 void KDT_FUN::clear(node *t)
 {
+    //qDebug()<<"leaf";
 	if (!t)
 	{
 		return;
 	}
+    //qDebug()<<"leaf0.5";
+
 	if (t->child[0])
 	{
+        //qDebug()<<"leaf0";
 		clear(t->child[0]);
 	}
 	if (t->child[1])
 	{
+        //qDebug()<<"leaf1";
 		clear(t->child[1]);
 	}
 	t->child[0] = t->child[1] = NULL;
 	t->states = NULL;
 	t->num_states = 0;
-    anode.free(t);
-    t=NULL;
+
+    if(t!=root)
+        anode.free(t);
+
+    //qDebug()<<"leaf01";
+    //t=NULL;
 }
 
-//Çå³ıÕû¸öÊ÷
+//æ¸…é™¤æ•´ä¸ªæ ‘
 KDT_TEMP
 void KDT_FUN::clear()
 {
-	if (!root)
-	{
-		return;
-	}
+    usleep(100);
+    //qDebug()<<"Clear: "<<node_num++<<" "<<node_num1++;
+    //qDebug()<<"one root";
+    if (!root)
+    {
+        return;
+    }
+    //qDebug()<<"Haha"<<root->num_states;
     clear(root->child[0]);
     clear(root->child[1]);
     root->child[0] = root->child[1] = NULL;
@@ -253,7 +267,7 @@ state *KDT_FUN::nearest(node *t,state *best,float &best_dist,vector2f &x)
 	state *p;
 	int c;
 	// look at states at current node
-	//Ê×ÏÈÔÚstatesÁĞ±íÖĞÑ°ÕÒ
+	//é¦–å…ˆåœ¨statesåˆ—è¡¨ä¸­å¯»æ‰¾
 	p = t->states;
 	while (p)
 	{
@@ -267,18 +281,18 @@ state *KDT_FUN::nearest(node *t,state *best,float &best_dist,vector2f &x)
 		p = p->next;
 	}
 	// recurse on children (nearest first to maximize pruning)
-	//ÓĞµãÒÉÎÊ£¬ÎªÊ²Ã´Ö»¼ì²éÒ»±ßµÄ×Ó½Úµã
+	//æœ‰ç‚¹ç–‘é—®ï¼Œä¸ºä»€ä¹ˆåªæ£€æŸ¥ä¸€è¾¹çš„å­èŠ‚ç‚¹
 	if (t->child[0])
 	{ // implies t->child[1]
 		dc[0] = box_distance(t->child[0]->minv,t->child[0]->maxv,x);
 		dc[1] = box_distance(t->child[1]->minv,t->child[1]->maxv,x);
 		c = dc[1] < dc[0]; // c indicates nearest lower bound distance child
-		//Ê×ÏÈËÑË÷¾àÀëĞ¡µÄ·ÖÖ§
+		//é¦–å…ˆæœç´¢è·ç¦»å°çš„åˆ†æ”¯
 		if (dc[ c] < best_dist)
 		{
 			best = nearest(t->child[ c],best,best_dist,x);
 		}
-		//ÔÙËÑË÷¾àÀë´óµÄ·ÖÖ§
+		//å†æœç´¢è·ç¦»å¤§çš„åˆ†æ”¯
 		if (dc[!c] < best_dist)
 		{
 			best = nearest(t->child[!c],best,best_dist,x);
@@ -299,7 +313,7 @@ state *KDT_FUN::nearest(float &dist,vector2f &x)
 	       +100;
 	tests = 0;
 	best = nearest(root,best,dist,x);
-	//ÏÔÊ¾¾­¹ı¶àÉÙ´Î±È½Ï
+	//æ˜¾ç¤ºç»è¿‡å¤šå°‘æ¬¡æ¯”è¾ƒ
 	//printf("tests=%d dist=%f\n\n",tests,dist);
 	return(best);
 }
