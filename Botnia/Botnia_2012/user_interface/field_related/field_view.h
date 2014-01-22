@@ -10,6 +10,8 @@
 extern QMutex draw_mutex;
 extern QMutex display_update_mutex;
 extern QMutex graphicsMutex;
+extern QMutex display_set_mutex;
+
 #endif
 
 #include <QGraphicsView>

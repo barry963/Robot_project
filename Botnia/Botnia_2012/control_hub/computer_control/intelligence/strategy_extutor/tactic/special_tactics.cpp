@@ -85,7 +85,11 @@ void TPositionForKick::command(World &world, int me,
                                Robot::RobotCommand &command,
                                bool debug)
 {
+
     MyVector2d ball_position = world.ball_position();
+    MyVector2d robot_position = world.GetRobotPositionByID(me);
+    MyVector2d robot_velocity = world.GetRobotVelocityByID(me);
+
 	MyVector2d target;
 	double angle_tolerance;
 	if (!prev_target_set)
@@ -97,7 +101,7 @@ void TPositionForKick::command(World &world, int me,
 	//#  at least this much bigger appears we'll switch to that.
 	//SHOOT_AIM_PREF_AMOUNT = 0.01745 # 1 degree
 	// (1) Try shooting on goal.
-    if (!evaluation.aim(world, world.now, world.ball_position(),
+    if (!evaluation.aim(world, world.now, ball_position,
 	                    world.their_goal_r,
 	                    world.their_goal_l,
 	                    OBS_EVERYTHING_BUT_US,
@@ -110,7 +114,7 @@ void TPositionForKick::command(World &world, int me,
                 downfield[1].set(ball_position.x + 180.0, FIELD_WIDTH_H);
 		// (2) Try clearing the ball
 
-        if (!evaluation.aim(world, world.now, world.ball_position(),
+        if (!evaluation.aim(world, world.now, ball_position,
 		                    downfield[0], downfield[1],
 		                    OBS_EVERYTHING_BUT_ME(me),
 		                    prev_target, DVAR(SHOOT_AIM_PREF_AMOUNT),
@@ -121,7 +125,7 @@ void TPositionForKick::command(World &world, int me,
 			// obs_flags is empty.
 			// (3) Just shoot downfield.
 			//
-			evaluation.aim(world, world.now, world.ball_position(),
+            evaluation.aim(world, world.now, ball_position,
 			               downfield[0], downfield[1],
 			               0, target, angle_tolerance);
             qDebug()<<"shoot downfield";
@@ -137,9 +141,9 @@ void TPositionForKick::command(World &world, int me,
 	}
 	prev_target = target;
 	//
-        double ball_distance = (world.GetRobotPositionByID(me) - ball_position).length();
+        double ball_distance = (robot_position - ball_position).length();
     //question lu_test
-	if (world.GetRobotVelocityByID(me).length() < 20.0)
+    if (robot_velocity.length() < 20.0)
 	{
                 ball_distance -= 20.0;
 	}
@@ -151,7 +155,7 @@ void TPositionForKick::command(World &world, int me,
         MyVector2d targetp = ball_position - (target - ball_position).norm(ball_distance);
         double angle = (ball_position - targetp).angle();
 	int obs = OBS_EVERYTHING_BUT_ME(me);
-	MyVector2d r2target = (targetp - world.GetRobotPositionByID(me));
+    MyVector2d r2target = (targetp - robot_position);
 	double d2target = r2target.sqlength();
 	//20150
     //question lu_test ???

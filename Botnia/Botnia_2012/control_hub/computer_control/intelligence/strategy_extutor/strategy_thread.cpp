@@ -602,7 +602,7 @@ bool StrategyThread::do_vision_recv()
     timer.MarkEndTime();
     VisionUpdate(packet);
 
-    display_update_mutex.lock();
+    display_set_mutex.lock();
 
 //    VisionInfo testVisionInfo;
 //    testVisionInfo.sPlay = QString("Test");
@@ -613,11 +613,13 @@ bool StrategyThread::do_vision_recv()
 //    qDebug() << "strategy_thread: ball pos: " << world.vision_info_.Balls[0].pos.x << ", " << world.vision_info_.Balls[0].pos.y;
 //qDebug() << "vision_info ball: " << world.vision_info_.Balls[0].pos.x << ", " << world.vision_info_.Balls[0].pos.y;
 
-    display_update_mutex.unlock();
+
 
     //times_called++;
     //更新
     world.update(world.vision_info_);
+
+    display_set_mutex.unlock();
 
     //丢帧检测
     //if (print_frames_missing && frames_processed >= 150) {

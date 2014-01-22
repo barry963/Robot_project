@@ -145,16 +145,19 @@ inline int OBS_TEAMMATE(int id)
 //==== Miscellaneous =================================================//
 
 /* Frame time and latencies */
-#define FRAME_RATE    64.0
+#define FRAME_RATE    61.57
 #define FRAME_PERIOD  (1.0 / FRAME_RATE)
 
 // this needs to be remeasured
-#define LATENCY_DELAY 0.100
+#define LATENCY_DELAY 0.200
 
 #define CAMERA_HEIGHT 3500.0
 
 /* Constants */
 #define GRAVITY 9800 // mm/s^2
+
+/*Limited deviation*/
+const float POSITION_ACCURACY = 20; //approximate there
 
 /*
 #define M_E        2.71828182845904523536

@@ -400,7 +400,6 @@ MyVector2d BallTracker::position(double time)
     if (occluded_ == Occluded) return occluded_position(time);
 
     Matrix x = predict(time);
-    //qDebug()<<"ball position"<<x.e(0,0)<<x.e(1,0);
     return MyVector2d(x.e(0,0), x.e(1,0));
 
 }

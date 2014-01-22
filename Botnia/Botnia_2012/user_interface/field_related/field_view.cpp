@@ -37,6 +37,7 @@
 
 QMutex draw_mutex;
 QMutex display_update_mutex;
+QMutex display_set_mutex;
 
 //#define LU_TEST
 

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Mon Jan 20 14:34:27 2014
+** Created: Wed Jan 22 21:12:26 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

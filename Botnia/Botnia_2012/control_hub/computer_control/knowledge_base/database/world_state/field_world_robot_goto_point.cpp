@@ -897,13 +897,14 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
                         t *= robot_speed / (robot_speed + s + EPSILON);
 			// if we can get to our target, or its far away, don't bother
 			t = min3(t,tmax,4.0);
-			/*
-			printf("  s=(%7.2f,%7.2f) t=%5.4f tmax=%5.4f d=%7.2f\n",
+            /*
+            printf("  s=(%7.2f,%7.2f) t=%5.4f tmax=%5.4f d=%7.2f\n",
 			       rv.length(),v.length(),t,tmax,
 			       MyVector::distance(rp,p+v*t));
-			*/
-                        q = current_position + current_velocity*t;
-                        obstacles_instance.add_circle(q.x,q.y,DVAR(NAV_OUR_OBSTACLE_RADIUS),current_velocity.x,current_velocity.y,1);
+            */
+            qDebug()<<"Haha";
+            q = current_position + current_velocity*t;
+            obstacles_instance.add_circle(q.x,q.y,DVAR(NAV_OUR_OBSTACLE_RADIUS),current_velocity.x,current_velocity.y,1);
 			// printf("me=%d t=%f\n",me,t);
 		}
 	}
@@ -938,9 +939,9 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 		{
 			if (OBS_OPPONENT(i) & obs_flags)
 			{
-                                current_position = world.opponent_position(i);
-                                current_velocity = world.opponent_velocity(i);
-                                obstacles_instance.add_circle(current_position.x,current_position.y,DVAR(NAV_THEIR_OBSTACLE_RADIUS),current_velocity.x,current_velocity.y,1);
+                 current_position = world.opponent_position(i);
+                 current_velocity = world.opponent_velocity(i);
+                 obstacles_instance.add_circle(current_position.x,current_position.y,DVAR(NAV_THEIR_OBSTACLE_RADIUS),current_velocity.x,current_velocity.y,1);
 				//obs.add_circle(p.x,p.y,100,v.x,v.y,1);
 			}
 		}
@@ -1054,7 +1055,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 	//{
         current_velocity = target_vel;
 	//}
-        return goto_point(world, focused_robot_id, q, current_velocity, target_angle, type);
+        return goto_point(world, focused_robot_id, q, target_vel, target_angle, type);
 }
 
 // 1400.0, 2000.0, 12.0, 12.0

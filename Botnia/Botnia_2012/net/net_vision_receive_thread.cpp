@@ -36,7 +36,7 @@ void VisionReceiveThread::run()
 	if ( client.Receive ( packet ) )
 	{
 	    if(thread_terminated)break;
-	    //´¦ÀíÊı¾İ
+	    //å¤„ç†æ•°æ®
 
         if(vision_initial_flag)
         {
@@ -79,7 +79,10 @@ int VisionUpdate(const SSL_WrapperPacket &f)
     {
 	// transfer the infomation to the new ssl detection frame
 	SSL_DetectionFrame detection = f.detection();
-	// store time
+
+    display_update_mutex.lock();
+
+    // store time
 	vision_info.time = detection.t_sent();
 	// store camera id
 	camera_id = detection.camera_id();
@@ -95,7 +98,6 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	}
 	// this flag decides whether should I update or not
 	bool update_flag=false;
-	display_update_mutex.lock();
     //
 
     if(camera_id==oldcamera_id)//attention, the potential bug lu_test
@@ -105,21 +107,21 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	    // hacked by Bin, may improve later
 
 #if 1// lu_test change to 1
-	    //Ö»ÓĞÒ»Ì¨ÉãÏñ»úÊı¾İµÄÇé¿ö
+	    //åªæœ‰ä¸€å°æ‘„åƒæœºæ•°æ®çš„æƒ…å†µ
 	    update_mode=1;
-        //Çå³ıËùÓĞÇòĞÅÏ¢
+        //æ¸…é™¤æ‰€æœ‰çƒä¿¡æ¯
 	    for(i=0;i<MAX_BALLS;i++)
 	    {
-		vision_info.Balls[i].conf=0.0;
+        //vision_info.Balls[i].conf=0.0;
 
 		VInfoRaw.BallInfos[0][i].conf=0.0;
 		VInfoRaw.BallInfos[1][i].conf=0.0;
 	    }
-	    //Çå³ıËùÓĞ»úÆ÷ÈËĞÅÏ¢
+	    //æ¸…é™¤æ‰€æœ‰æœºå™¨äººä¿¡æ¯
 	    for(i=0;i<MAX_ROBOTS;i++)
 	    {
-		vision_info.Robots[teamBlue][i].conf=0.0;
-		vision_info.Robots[teamYellow][i].conf=0.0;
+        //vision_info.Robots[teamBlue][i].conf=0.0;
+        //vision_info.Robots[teamYellow][i].conf=0.0;
 
         VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
 		VInfoRaw.RobotInfos[1][teamBlue][i].conf=0.0;
@@ -132,20 +134,20 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	else if(camera_id==1)
 	{
 //        qDebug() << "camera_id==1";
-	    //ÓĞÁ½Ì¨ÉãÏñ»úÊı¾İµÄÇé¿ö
+	    //æœ‰ä¸¤å°æ‘„åƒæœºæ•°æ®çš„æƒ…å†µ
 	    update_mode=2;
 //        qDebug() << "ball info " <<i<<" :"<< ball.x() << ", " << ball.y();
         // hacked by Bin, may improve later
         //hacked by Lu, improved a lot :)
 #if 0
-	    //Çå³ı1ºÅÉãÏñ»úËùÓĞÇòĞÅÏ¢
+	    //æ¸…é™¤1å·æ‘„åƒæœºæ‰€æœ‰çƒä¿¡æ¯
 	    for(i=0;i<MAX_BALLS;i++)
 	    {
 		vision_info.Balls[i].conf=0.0;
 		VInfoRaw.BallInfos[1][i].conf=0.0;
 	    }
 
-	    //Çå³ı1ºÅÉãÏñ»úËùÓĞ»úÆ÷ÈËĞÅÏ¢
+	    //æ¸…é™¤1å·æ‘„åƒæœºæ‰€æœ‰æœºå™¨äººä¿¡æ¯
 	    for(i=0;i<MAX_ROBOTS;i++)
 	    {
 		vision_info.Robots[teamBlue][i].conf=0.0;
@@ -155,13 +157,13 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
 	    }
 #endif
-        //Çå³ıËùÓĞÇòĞÅÏ¢//lu_test add
+        //æ¸…é™¤æ‰€æœ‰çƒä¿¡æ¯//lu_test add
         for(i=0; i<MAX_BALLS; i++)
         {
         VInfoRaw.BallInfos[0][i].conf=0.0;
         VInfoRaw.BallInfos[1][i].conf=0.0;
         }
-        //Çå³ıËùÓĞ»úÆ÷ÈËĞÅÏ¢
+        //æ¸…é™¤æ‰€æœ‰æœºå™¨äººä¿¡æ¯
         for(i=0; i<MAX_ROBOTS; i++)
         {
         VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
@@ -177,13 +179,13 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 //        qDebug() << "No need to update, for recording purpose only";
 	    update_mode=0;
 
-	    //Çå³ıËùÓĞÇòĞÅÏ¢
+	    //æ¸…é™¤æ‰€æœ‰çƒä¿¡æ¯
 	    for(i=0; i<MAX_BALLS; i++)
         {
 		VInfoRaw.BallInfos[0][i].conf=0.0;
 		VInfoRaw.BallInfos[1][i].conf=0.0;
 	    }
-	    //Çå³ıËùÓĞ»úÆ÷ÈËĞÅÏ¢
+	    //æ¸…é™¤æ‰€æœ‰æœºå™¨äººä¿¡æ¯
 	    for(i=0; i<MAX_ROBOTS; i++)
         {
 		VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
@@ -194,80 +196,98 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	}
 
 	oldcamera_id = camera_id;
-	//¼ÆËã¶à¸öÇòµÄĞÅÏ¢
+	//è®¡ç®—å¤šä¸ªçƒçš„ä¿¡æ¯
 	int balls_n = detection.balls_size();
 	SSL_DetectionBall ball;
-
+    //qDebug()<<"Ball_num"<<balls_n;
+    /*
+      Here it should consider the situation when there is nothing
+    */
+    if(balls_n != 0)
+    {
 	for ( i = 0; i < balls_n; i++ )
 	{
 	    ball = detection.balls ( i );
 
 	    conf = ball.confidence();
-	    if ( conf == 0.0 )continue;
+        if ( conf == 0.0 )
+        {
+            qDebug()<<"No ball detected???";
+            continue;
+        }
 	    pos.set(ball.x(),ball.y());
         bFound = false;
-	    //Ñ°ÕÒÇòµÄË÷Òı
+	    //å¯»æ‰¾çƒçš„ç´¢å¼•
 	    for(iCurIndex=0; iCurIndex<MAX_BALLS; iCurIndex++)
 	    {
-		if(VInfoRaw.BallInfos[0][iCurIndex].conf==0.0 && VInfoRaw.BallInfos[1][iCurIndex].conf==0.0)
-		{
-            /*
-                confused: because of the clean in the beginning, here it should directly go to this
-                sentence. So it is neccessary to add this if-sentence
-            */
+            if(VInfoRaw.BallInfos[0][iCurIndex].conf==0.0 && VInfoRaw.BallInfos[1][iCurIndex].conf==0.0)
+            {
+                /*
+                    confused: because of the clean in the beginning, here it should directly go to this
+                    sentence. So it is neccessary to add this if-sentence Lu_test
+                */
 
-		    VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
-		    VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
-            bFound=true;// lu_test
-		    break;
-		}
+                VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
+                VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
+                bFound=true;// lu_test
+                break;
+            }
 
-		//Á½¸öÇòµÄ¾àÀëÓ¦¸ÃĞ¡ÓÚÇòµÄ°ë¾¶£¬¼´21mm
-        if((VInfoRaw.BallInfos[1-camera_id][iCurIndex].pos-pos).length()<21.0)
-		{
-		    //Á½¸öÇòĞÅÏ¢×ã¹»½ü
-		    VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
-            VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
-		    bFound=true;
-		    break;
-		}           
+		//ä¸¤ä¸ªçƒçš„è·ç¦»åº”è¯¥å°äºçƒçš„åŠå¾„ï¼Œå³21mm
+            if((VInfoRaw.BallInfos[1-camera_id][iCurIndex].pos-pos).length()<21.0)
+            {
+                //ä¸¤ä¸ªçƒä¿¡æ¯è¶³å¤Ÿè¿‘
+                VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
+                VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
+                bFound=true;
+                break;
+            }
 	    }
 
 //	    qDebug() << "update_mode: " << update_mode << ", bFound: " << bFound;
 	    // hacked by Bin, may improve later
 //	    if(update_mode!=0 && bFound)
-	    if(bFound)
+        if(bFound)
 	    {
 //		qDebug() << "update_mode!=0 && bFound";
 		confsum = VInfoRaw.BallInfos[0][iCurIndex].conf+VInfoRaw.BallInfos[1][iCurIndex].conf;
-		pos = VInfoRaw.BallInfos[0][iCurIndex].pos*VInfoRaw.BallInfos[0][iCurIndex].conf;
-		pos += VInfoRaw.BallInfos[1][iCurIndex].pos*VInfoRaw.BallInfos[1][iCurIndex].conf;
-		pos /= confsum;
+        pos = (VInfoRaw.BallInfos[0][iCurIndex].pos*VInfoRaw.BallInfos[0][iCurIndex].conf);
+        pos += (VInfoRaw.BallInfos[1][iCurIndex].pos*VInfoRaw.BallInfos[1][iCurIndex].conf);
+        pos /= confsum;
 
 //		qDebug() << "pos: " << pos.x << ", " << pos.y << ", iCurIndex: " << iCurIndex;
 
-		//¸üĞÂÇò¶ÔÏó
+		//æ›´æ–°çƒå¯¹è±¡
         vision_info.Balls[iCurIndex].pos = pos;
 		vision_info.Balls[iCurIndex].conf = max(VInfoRaw.BallInfos[0][iCurIndex].conf, VInfoRaw.BallInfos[1][iCurIndex].conf);
-		update_flag=true;
+        update_flag=true;
         //qDebug()<<"Ball position: "<<pos.x<<" , "<<pos.y;
 	    }
-        else//lu_test
-        {
 
-
-        }
 	}
+    }
+//    else//no ball detected
+//    {
+//        qDebug()<<"NO ball detected";
+
+//        for(i=0; i<MAX_BALLS; i++)
+//        {
+//            vision_info.Balls[i].conf=0.0;
+//        }
+//        update_flag=true;
+//    }
 
 //	qDebug() << "vision_info ball: " << vision_info.Balls[0].pos.x << ", " << vision_info.Balls[0].pos.y;
 
-	//¼ÆËã»úÆ÷ÈËĞÅÏ¢
+	//è®¡ç®—æœºå™¨äººä¿¡æ¯
 	SSL_DetectionRobot robot_i;
 	int id;
 	int robots_n;
 
-    //»ÆÉ«»úÆ÷ÈË
+    //é»„è‰²æœºå™¨äºº
     robots_n = detection.robots_yellow_size();
+    if(robots_n != 0)
+    {
     for ( int i = 0; i < robots_n; i++ )
     {
         robot_i = detection.robots_yellow ( i );
@@ -315,12 +335,23 @@ int VisionUpdate(const SSL_WrapperPacket &f)
         else
         {
         id = NA;
-        //Í¨¹ı¾àÀëÑ°ÕÒÍ¬Ò»¸ö»úÆ÷ÈË
+        //é€šè¿‡è·ç¦»å¯»æ‰¾åŒä¸€ä¸ªæœºå™¨äºº
         }
     }
+    }
+//    else//no yellow robot detected
+//    {
+//        for(i=0;i<MAX_ROBOTS;i++)
+//        {
+//        vision_info.Robots[teamYellow][i].conf=0.0;
+//        }
+//        update_flag=true;
+//    }
 
-	//À¶É«»úÆ÷ÈË
+	//è“è‰²æœºå™¨äºº
 	robots_n = detection.robots_blue_size();
+    if(robots_n != 0)
+    {
 	for ( int i = 0; i < robots_n; i++ )
 	{
 	    robot_i = detection.robots_blue ( i );
@@ -371,18 +402,47 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	    else
 	    {
 		id = NA;
-		//Í¨¹ı¾àÀëÑ°ÕÒÍ¬Ò»¸ö»úÆ÷ÈË
+		//é€šè¿‡è·ç¦»å¯»æ‰¾åŒä¸€ä¸ªæœºå™¨äºº
 
 	    }
 	}
-
-
-	display_update_mutex.unlock();
-	if(update_flag)
-	{
-	    //Í¨ÖªÏÔÊ¾Ïß³ÌºÍ²ßÂÔÏß³Ì
-	    VisionReceiveSignal.release();
-	}
     }
+//    else//no blue robot detected
+//    {
+//        for(i=0;i<MAX_ROBOTS;i++)
+//        {
+//            vision_info.Robots[teamBlue][i].conf=0.0;
+//        }
+//        update_flag=true;
+//    }
+
+
+        display_update_mutex.unlock();
+        if(update_flag)
+        {
+	    //é€šçŸ¥æ˜¾ç¤ºçº¿ç¨‹å’Œç­–ç•¥çº¿ç¨‹
+            VisionReceiveSignal.release();
+        }
+    }
+//    else//no vision detected
+//    {
+//        qDebug()<<"NO vision detected";
+//        //æ¸…é™¤1å·æ‘„åƒæœºæ‰€æœ‰çƒä¿¡æ¯
+//        for(i=0;i<MAX_BALLS;i++)
+//        {
+//        vision_info.Balls[i].conf=0.0;
+//        VInfoRaw.BallInfos[1][i].conf=0.0;
+//        }
+
+//        //æ¸…é™¤1å·æ‘„åƒæœºæ‰€æœ‰æœºå™¨äººä¿¡æ¯
+//        for(i=0;i<MAX_ROBOTS;i++)
+//        {
+//        vision_info.Robots[teamBlue][i].conf=0.0;
+//        vision_info.Robots[teamYellow][i].conf=0.0;
+
+//        VInfoRaw.RobotInfos[1][teamBlue][i].conf=0.0;
+//        VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
+//        }
+//    }
     return update_mode;
 }

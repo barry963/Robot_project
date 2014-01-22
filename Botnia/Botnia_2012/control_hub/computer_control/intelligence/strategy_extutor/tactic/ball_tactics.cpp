@@ -110,12 +110,13 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
                      bool debug)
 {
     MyVector2d ball = world.ball_position();
+    MyVector2d robot_position = world.GetRobotPositionByID(me);
     MyVector2d target;
     double angle_tolerance;
     //û趨prev_target,prev_target趨ΪΪģ˵ĶԳƵ
     if (!prev_target_set)
     {
-        prev_target = (ball - (world.GetRobotPositionByID(me) - ball));//Ϊģ˵ĶԳƵ
+        prev_target = (ball - (robot_position - ball));//Ϊģ˵ĶԳƵ
         prev_target_set = true;
     }
     Type the_type = type;
@@ -176,7 +177,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
     if (got_target)
     {
         //ţߵŵ㿪ʼ
-        if (0)
+        if (debug)
         {
             gui_debug_line(me, GDBG_TACTICS, ball, target);
             gui_debug_line(me, GDBG_TACTICS, ball,

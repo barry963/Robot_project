@@ -57,6 +57,7 @@ RobotItem::RobotItem ( double _x, double _y, double _orientation, int _teamID, i
     {
         brush = new QBrush ( QColor ( 0x41,0x7e,0xff,255 ),Qt::SolidPattern );
         pen = new QPen ( QColor ( 0x12,0x3b,0xa0,255 ) );
+
         break;
     }
     case teamYellow:

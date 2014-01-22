@@ -905,7 +905,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         }
     }
 */
-    if (robot_print)
+    if (1)
     {
         printf("State: %s %0.2fs R(%8.2f,%8.2f)\n",
                state_name[state],time_in_state, V2COMP(s.r_pos));
@@ -1006,7 +1006,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     case CmdDribble:
     case CmdPosition:
         //20=最高速度/60;
-        if (MyVector::distance(cmd.target,s.r_pos) < 20.0)
+        if (MyVector::distance(cmd.target,s.r_pos) < POSITION_ACCURACY)
         {
             status = Completed;
         }
