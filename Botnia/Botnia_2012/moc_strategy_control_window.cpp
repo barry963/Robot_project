@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'strategy_control_window.h'
 **
-** Created: Wed Jan 22 21:14:13 2014
+** Created: Thu Jan 23 18:35:37 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!

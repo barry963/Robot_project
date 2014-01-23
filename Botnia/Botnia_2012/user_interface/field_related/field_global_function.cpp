@@ -59,6 +59,13 @@ bool run;
 
 char *tactic_string = NULL;
 
+void gui_debug_robot(MyVector2d pos,double angle)
+{
+    int side_temp = world.getSide();
+    MyVector2d postemp = pos*side_temp;
+
+    GuiCmd.AddRobot(postemp.x,postemp.y,angle);
+}
 
 void gui_debug_point(const char robot, MyVector2d p1 )
 {
@@ -78,6 +85,12 @@ void gui_debug_line(const char robot, const char level,
   //d.info.line.p[1].set(world.from_world(p2));
   //d.info.line.flags = flags;
 }
+
+void gui_debug_text(double x,double y,QString text)
+{
+    GuiCmd.AddText(x,y,text);
+}
+
 
 void gui_debug_veloline(const char robot, const char level,
                     MyVector2d p1, MyVector2d p2, char flags)

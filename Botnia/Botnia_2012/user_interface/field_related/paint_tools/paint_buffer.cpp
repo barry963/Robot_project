@@ -2,6 +2,7 @@
 
 #include "paint_buffer.h"
 #include <QDebug>
+#include "math.h"
 
 PaintCmds GuiCmd;
 
@@ -54,11 +55,59 @@ void PaintCmd::AddText(qreal& x0,qreal& y0,QString s)
         }
 };
 
+void PaintCmd::AddRobot(qreal &x0, qreal &y0, qreal &z0)
+{
+    int iRobot = iRobotCount;
+    if (iRobot<MAXDEBUGROBOT)
+    {
+        if ( fabs ( z0 ) <360 )
+        {
+            robotdebug[iRobot].body.moveTo ( 90+x0,0+y0 );
+            robotdebug[iRobot].body.arcTo ( -90+x0,-90+y0,180,180,0,270 );
+            robotdebug[iRobot].body.closeSubpath();
+        }
+        else
+        {
+            robotdebug[iRobot].body.addEllipse ( -90+x0,-90+y0,180,180 );
+        }
+        robotdebug[iRobot].x = x0;
+        robotdebug[iRobot].y = y0;
+        robotdebug[iRobot].z = z0*180.0/M_PI;
+
+        iRobotCount=iRobot+1;
+    }
+}
+
 void PaintCmd::ExecCmds(QPainter * painter)
 {
+
+//    if(iRobotCount)
+//    {
+//        painter->setBrush(Qt::NoBrush);
+//        painter->setPen(Qt::DotLine);
+
+//        for(int i=0;i<iRobotCount;i++)
+//        {
+//            double _orientation = robotdebug[i].z;
+//            if ( fabs ( _orientation ) <360 )
+//            {
+//                painter->rotate ( -45+_orientation );
+//                painter->drawPath ( robotdebug[i].body );
+//                painter->rotate ( 45-_orientation );
+//            }
+//            else
+//            {
+//                painter->drawPath ( robotdebug[i].body );
+//            }
+//            qDebug()<<"targetdebug="<<robotdebug[i].x<<","<<robotdebug[i].y<<","<<robotdebug[i].z;
+//        }
+//        painter->scale(1,-1);
+
+//     }
+
         if (iLineCount)
         {
-            painter->setPen(Qt::black);
+            painter->setPen(QPen(Qt::gray, 10, Qt::DotLine, Qt::SquareCap, Qt::BevelJoin));
             painter->drawLines(lines,iLineCount);
         }
         if (iPointCount)
@@ -68,9 +117,10 @@ void PaintCmd::ExecCmds(QPainter * painter)
 
         if(iVeloCount)
         {
-            painter->setPen(QPen(QColor(255, 255, 0), 10, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin));
+            painter->setPen(QPen(Qt::red, 1, Qt::SolidLine, Qt::SquareCap, Qt::BevelJoin));
             painter->drawLines(velolines,iVeloCount);
         }
+
 
         int i;
         painter->setPen(Qt::red);
@@ -88,6 +138,8 @@ void PaintCmd::Clear()
         iLineCount=0;
         iPointCount=0;
         iTextCount=0;
+        iVeloCount=0;
+        iRobotCount = 0;
 }
 
 //------------------------------------------------------------------
@@ -118,6 +170,10 @@ void PaintCmds::AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1)
      Cmds[iStrategy].AddVelo(x0,y0,x1,y1);;
 }
 
+void PaintCmds::AddRobot(qreal &x0, qreal &y0, qreal &z0)
+{
+    Cmds[iStrategy].AddRobot(x0,y0,z0);
+}
 
 void PaintCmds::StrategySwitchCmds()
 {

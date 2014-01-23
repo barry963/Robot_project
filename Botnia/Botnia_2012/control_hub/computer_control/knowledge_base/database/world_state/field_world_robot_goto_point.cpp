@@ -5,6 +5,14 @@
 // Created by:  Michael Bowling (mhb@cs.cmu.edu)
 //
 /* LICENSE:
+
+ ************************************************************************************************
+     Copyright 2013-2014 modified by Lu Chunqiu
+
+     This software is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
   =========================================================================
     CMDragons'02 RoboCup F180 Source Code Release
   -------------------------------------------------------------------------
@@ -845,8 +853,11 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 		//gui_debug_line(me, GDBG_NAVIGATION, world.teammate_position(me),
 		//	 target_pos, G_ARROW_FORW);
 	}
-        gui_debug_line(focused_robot_id, GDBG_NAVIGATION, target_pos, target_pos + target_vel,
-           G_ARROW_FORW);
+
+        gui_debug_line(focused_robot_id, GDBG_NAVIGATION, target_pos, target_pos + target_vel,G_ARROW_FORW);
+
+        gui_debug_robot(target_pos,target_angle);//Lu_test
+        //qDebug()<<"target="<<target_pos.x<<","<<target_pos.y<<","<<target_angle;
 
         /// get the robot parameters
         // get the teammate position

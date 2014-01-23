@@ -905,7 +905,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         }
     }
 */
-    if (1)
+    if (robot_print)
     {
         printf("State: %s %0.2fs R(%8.2f,%8.2f)\n",
                state_name[state],time_in_state, V2COMP(s.r_pos));
@@ -1019,7 +1019,8 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         status = InProgress;
     }
     // some final calculations
-    //qDebug()<<"distance between target and raw position: "<<MyVector::distance(cmd.target,s.r_pos);
+    qDebug()<<"Current("<<s.r_pos.x<<","<<s.r_pos.y<<")->("<<cmd.target.x<<","<<cmd.target.y<<")";
+    qDebug()<<"distance"<<MyVector::distance(cmd.target,s.r_pos);
     last_state = state;
     last_cmd = cmd.cmd;
     return(status);

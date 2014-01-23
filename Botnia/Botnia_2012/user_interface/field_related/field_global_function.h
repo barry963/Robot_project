@@ -63,6 +63,8 @@ inline const char *status_as_string(Status s)
         return "";
 }
 
+void gui_debug_robot( MyVector2d pos,double angle);
+
 void gui_debug_point(const char robot, MyVector2d p1 );
 void gui_debug_line(const char robot, const char level,
                     MyVector2d p1, MyVector2d p2, char flags = 0);

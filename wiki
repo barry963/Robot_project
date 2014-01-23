@@ -451,7 +451,7 @@ display_set_mutex, lock the process when set world.vision_info_ as vision_info
 Question:
 1.        do
         {
-            target.pos = initial.pos*(1-s) + goal.pos*s;
+            target.pos = initial.pos*(1-s) + goal.pos*s;// why here is pulus not minus
             ok = obs->check(initial,target);
             s -= 0.1;
         }
@@ -492,10 +492,26 @@ target angle, velocity etc. should also be taken into consideration
 3. lock the world or use the same world when update postion, velocity etc, like in the sensor(field_work_robot.cpp)
 
 Goal:
-Add target position figure.
+1. Add target position figure.
 
         brush = new QBrush(Qt::NoBrush);
         pen = new QPen (Qt::DotLine);
 
         construction function of field_robot.cpp
 
+2. Firstly, enable the robot to reach specific position
+
+=======================================
+2014/1/22
+
+1. Add target position figure 
+
+paint_buffer.cpp
+
+field_world_robot_goto_point.cpp
+#851 gui_debug_robot(XXX);
+
+const float POSITION_ACCURACY = 500;
+
+TODO:
+Slow down when approaching the target goal.

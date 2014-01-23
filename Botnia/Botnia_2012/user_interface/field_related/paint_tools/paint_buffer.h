@@ -10,11 +10,20 @@
 const int MAXLINECMDS=400;
 const int MAXPOINTCMDS=500;
 const int MAXTEXTCMDS=100;
+const int MAXDEBUGROBOT = 20;
 
 struct MyText
 {
         QPointF pos;
         QString text;
+};
+
+struct RobotDebug
+{
+    QPainterPath body;
+    qreal x;
+    qreal y;
+    qreal z;
 };
 
 class PaintCmd
@@ -25,6 +34,7 @@ public:
         void AddPoint(qreal& x0,qreal& y0);
         void AddText(qreal& x0,qreal& y0,QString s);
         void AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
+        void AddRobot(qreal& x0,qreal& y0,qreal& z0);
 
         void Clear();
         void ExecCmds(QPainter * painter);
@@ -33,10 +43,13 @@ public:
         int iPointCount;
         int iTextCount;
         int iVeloCount;
+        int iRobotCount;
+
         QLineF		velolines[MAXLINECMDS];
         QLineF		lines[MAXLINECMDS];
         QPointF		points[MAXPOINTCMDS];
         MyText    texts[MAXTEXTCMDS];
+        RobotDebug robotdebug[MAXDEBUGROBOT];
 };
 
 class PaintCmds
@@ -49,6 +62,7 @@ public:
         void AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
         void AddText(qreal& x0,qreal& y0,QString s);
         void AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
+        void AddRobot(qreal& x0,qreal& y0,qreal& z0);
 
         void ExecCmds(QPainter * painter);
 
