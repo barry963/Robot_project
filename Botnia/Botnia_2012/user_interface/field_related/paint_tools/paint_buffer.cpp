@@ -178,7 +178,7 @@ void PaintCmds::AddRobot(qreal &x0, qreal &y0, qreal &z0)
 void PaintCmds::StrategySwitchCmds()
 {
         int itemp;
-        //策略切换
+        //策略切换 between iIdle and iStrategy
         IdleMutex.lock();
         itemp=iIdle;
         iIdle=iStrategy;

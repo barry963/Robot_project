@@ -34,7 +34,7 @@ extern xwin field;
 void DrawLine(xdrawable &w,double x1,double y1,double x2,double y2);
 */
 
-const bool plan_print = true;
+const bool plan_print = false;
 const double out_of_obs_dot = 0.40; // 0.1; // 0.7071;
 
 //?¦¶?[-1,1]

@@ -157,7 +157,7 @@ inline int OBS_TEAMMATE(int id)
 #define GRAVITY 9800 // mm/s^2
 
 /*Limited deviation*/
-const float POSITION_ACCURACY = 500; //approximate there
+const float POSITION_ACCURACY = 20.0; //approximate there
 
 /*
 #define M_E        2.71828182845904523536

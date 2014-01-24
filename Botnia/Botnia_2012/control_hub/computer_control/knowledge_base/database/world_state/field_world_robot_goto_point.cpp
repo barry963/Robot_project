@@ -1066,7 +1066,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 	//{
         current_velocity = target_vel;
 	//}
-        return goto_point(world, focused_robot_id, q, target_vel, target_angle, type);
+        return goto_point(world, focused_robot_id, q, current_velocity, target_angle, type);
 }
 
 // 1400.0, 2000.0, 12.0, 12.0

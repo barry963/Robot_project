@@ -110,24 +110,24 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	    //只有一台摄像机数据的情况
 	    update_mode=1;
         //清除所有球信息
-	    for(i=0;i<MAX_BALLS;i++)
-	    {
+        for(i=0;i<MAX_BALLS;i++)
+        {
         //vision_info.Balls[i].conf=0.0;
 
-		VInfoRaw.BallInfos[0][i].conf=0.0;
-		VInfoRaw.BallInfos[1][i].conf=0.0;
-	    }
-	    //清除所有机器人信息
-	    for(i=0;i<MAX_ROBOTS;i++)
-	    {
+        VInfoRaw.BallInfos[0][i].conf=0.0;
+        VInfoRaw.BallInfos[1][i].conf=0.0;
+        }
+        //清除所有机器人信息
+        for(i=0;i<MAX_ROBOTS;i++)
+        {
         //vision_info.Robots[teamBlue][i].conf=0.0;
         //vision_info.Robots[teamYellow][i].conf=0.0;
 
         VInfoRaw.RobotInfos[0][teamBlue][i].conf=0.0;
-		VInfoRaw.RobotInfos[1][teamBlue][i].conf=0.0;
-		VInfoRaw.RobotInfos[0][teamYellow][i].conf=0.0;
-		VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
-	    }
+        VInfoRaw.RobotInfos[1][teamBlue][i].conf=0.0;
+        VInfoRaw.RobotInfos[0][teamYellow][i].conf=0.0;
+        VInfoRaw.RobotInfos[1][teamYellow][i].conf=0.0;
+        }
 #endif
 
 	}
@@ -229,7 +229,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 
                 VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
                 VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
-                bFound=true;// lu_test
+                bFound=false;// lu_test
                 break;
             }
 
@@ -289,7 +289,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
     if(robots_n != 0)
     {
     for ( int i = 0; i < robots_n; i++ )
-    {
+     {
         robot_i = detection.robots_yellow ( i );
         conf=robot_i.confidence();
 //        qDebug() << "yellow "<<i<<" :"<< robot_i.x() << ", " << robot_i.y() << ", conf: " << conf;
@@ -298,7 +298,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
         pos.set(robot_i.x(),robot_i.y());
 
         if(robot_i.has_robot_id())
-        {
+      {
         id=robot_i.robot_id();
         if(id>=MAX_ROBOT_ID)
         {
@@ -331,13 +331,13 @@ int VisionUpdate(const SSL_WrapperPacket &f)
             }
             update_flag=true;
         }
-        }
+      }
         else
         {
         id = NA;
         //通过距离寻找同一个机器人
         }
-    }
+     }
     }
 //    else//no yellow robot detected
 //    {
@@ -356,9 +356,13 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	{
 	    robot_i = detection.robots_blue ( i );
 	    conf = robot_i.confidence();
-//        qDebug() << "blue "<<i<<" :"<< robot_i.x() << ", " << robot_i.y() << ", conf: " << conf;
+        //qDebug() << "blue "<<i<<" :"<< robot_i.x() << ", " << robot_i.y() << ", conf: " << conf;
 	    // correct!
-	    if ( conf == 0.0 )continue;
+        if ( conf == 0.0 )
+        {
+            qDebug()<<"Blueteam Robot#"<<i<<",conf=0";
+            break;
+        }
 	    pos.set(robot_i.x(),robot_i.y());
 
 	    if(robot_i.has_robot_id())
@@ -367,7 +371,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		if(id>=MAX_ROBOT_ID)
 		{
 		    printf("id=%d,MAXID=%d\r\n",id,MAX_ROBOT_ID-1);
-		    continue;
+            break;
 		}
 		VInfoRaw.RobotInfos[camera_id][teamBlue][id].pos=pos;
 		VInfoRaw.RobotInfos[camera_id][teamBlue][id].conf=conf;
@@ -384,7 +388,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		    orientation/=confsum;
            // qDebug()<<"Robot position: "<<pos.x<<" , "<<pos.y;
 		    vision_info.Robots[teamBlue][id].pos=pos;
-//		    qDebug() << "robot_i: " << vision_info.Robots[teamBlue][id].pos.x << ", " << vision_info.Robots[teamBlue][id].pos.y;
+            qDebug() << "robot_i: " << vision_info.Robots[teamBlue][id].pos.x << ", " << vision_info.Robots[teamBlue][id].pos.y;
 
 		    vision_info.Robots[teamBlue][id].orientation=orientation;
 		    vision_info.Robots[teamBlue][id].conf=max(VInfoRaw.RobotInfos[0][teamBlue][id].conf,VInfoRaw.RobotInfos[1][teamBlue][id].conf);
@@ -407,14 +411,15 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 	    }
 	}
     }
-//    else//no blue robot detected
-//    {
+    else//no blue robot detected
+    {
+//        qDebug()<<"No blue robot detected";
 //        for(i=0;i<MAX_ROBOTS;i++)
 //        {
 //            vision_info.Robots[teamBlue][i].conf=0.0;
 //        }
 //        update_flag=true;
-//    }
+    }
 
 
         display_update_mutex.unlock();

@@ -1019,8 +1019,8 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         status = InProgress;
     }
     // some final calculations
-    qDebug()<<"Current("<<s.r_pos.x<<","<<s.r_pos.y<<")->("<<cmd.target.x<<","<<cmd.target.y<<")";
-    qDebug()<<"distance"<<MyVector::distance(cmd.target,s.r_pos);
+//    qDebug()<<"Current("<<s.r_pos.x<<","<<s.r_pos.y<<")->("<<cmd.target.x<<","<<cmd.target.y<<")";
+//    qDebug()<<"distance"<<MyVector::distance(cmd.target,s.r_pos);
     last_state = state;
     last_cmd = cmd.cmd;
     return(status);

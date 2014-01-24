@@ -492,7 +492,7 @@ target angle, velocity etc. should also be taken into consideration
 3. lock the world or use the same world when update postion, velocity etc, like in the sensor(field_work_robot.cpp)
 
 Goal:
-1. Add target position figure.
+1. Add target position figure. 
 
         brush = new QBrush(Qt::NoBrush);
         pen = new QPen (Qt::DotLine);
@@ -504,7 +504,7 @@ Goal:
 =======================================
 2014/1/22
 
-1. Add target position figure 
+1. Add target position figure       Still need debug
 
 paint_buffer.cpp
 
@@ -515,3 +515,29 @@ const float POSITION_ACCURACY = 500;
 
 TODO:
 Slow down when approaching the target goal.
+
+
+=======================================
+2014/1/23
+
+Show target position and debug function executes in 
+        field_view.cpp, drawForeground(XXX), GuiCmd.Execmds(painter);
+
+
+Attention:
+When open real cameror and simulator cameror at the same time, the behaviour of the robot is similar with the real robot!!!!
+
+//lu_test change all to true
+
+Needs to improve the net_vision_receive_thread.cpp later.
+
+
+            for(int i=0;i<100;i++)
+            {
+                client.Receive ( packet );
+            }
+            vision_initial_flag = false;
+
+            //why here it should be 100 times
+
+
