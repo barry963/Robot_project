@@ -81,33 +81,34 @@ void PaintCmd::AddRobot(qreal &x0, qreal &y0, qreal &z0)
 void PaintCmd::ExecCmds(QPainter * painter)
 {
 
-//    if(iRobotCount)
-//    {
-//        painter->setBrush(Qt::NoBrush);
-//        painter->setPen(Qt::DotLine);
+    if(iRobotCount)
+    {
+        painter->setBrush(Qt::NoBrush);
+        painter->setPen(QPen(Qt::black, 2));
 
-//        for(int i=0;i<iRobotCount;i++)
-//        {
-//            double _orientation = robotdebug[i].z;
-//            if ( fabs ( _orientation ) <360 )
-//            {
-//                painter->rotate ( -45+_orientation );
-//                painter->drawPath ( robotdebug[i].body );
-//                painter->rotate ( 45-_orientation );
-//            }
-//            else
-//            {
-//                painter->drawPath ( robotdebug[i].body );
-//            }
-//            qDebug()<<"targetdebug="<<robotdebug[i].x<<","<<robotdebug[i].y<<","<<robotdebug[i].z;
-//        }
-//        painter->scale(1,-1);
+        for(int i=0;i<iRobotCount;i++)
+        {
+            double _orientation = robotdebug[i].z;
+            if ( fabs ( _orientation ) <360 )
+            {
+                painter->rotate ( -45+_orientation );
+                painter->drawPath ( robotdebug[i].body );
+                painter->rotate ( 45-_orientation );
+            }
+            else
+            {
+                painter->drawPath ( robotdebug[i].body );
+            }
+            qDebug()<<"targetdebug #"<<i<<", ="<<robotdebug[i].x<<","<<robotdebug[i].y<<","<<robotdebug[i].z;
+        }
+        //painter->scale(1,-1);
+        //painter->restore();
 
-//     }
+     }
 
         if (iLineCount)
         {
-            painter->setPen(QPen(Qt::gray, 10, Qt::DotLine, Qt::SquareCap, Qt::BevelJoin));
+            painter->setPen(QPen(Qt::gray, 10, Qt::DotLine));
             painter->drawLines(lines,iLineCount);
         }
         if (iPointCount)
@@ -139,7 +140,7 @@ void PaintCmd::Clear()
         iPointCount=0;
         iTextCount=0;
         iVeloCount=0;
-        iRobotCount = 0;
+        //iRobotCount = 0;
 }
 
 //------------------------------------------------------------------
@@ -180,15 +181,16 @@ void PaintCmds::StrategySwitchCmds()
         int itemp;
         //策略切换 between iIdle and iStrategy
         IdleMutex.lock();
-        itemp=iIdle;
-        iIdle=iStrategy;
-        iStrategy=itemp;
+//        itemp=iIdle;
+//        iIdle=iStrategy;
+//        iStrategy=itemp;
         Cmds[iStrategy].Clear();
         IdleMutex.unlock();
 }
 
 void PaintCmds::GuiSwitchCmds()
 {
+        qDebug()<<"GuiSwitch";
         int itemp;
         //GUI切换
         IdleMutex.lock();
@@ -201,5 +203,5 @@ void PaintCmds::GuiSwitchCmds()
 
 void PaintCmds::ExecCmds(QPainter * painter)
 {
-        Cmds[iGui].ExecCmds(painter);
+        Cmds[iStrategy].ExecCmds(painter);
 }

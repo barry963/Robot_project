@@ -200,7 +200,7 @@ void StrategyThread::run()
         RadioCmds.Clear();
 
         //Gui显示缓冲区切换
-        GuiCmd.StrategySwitchCmds();
+        //GuiCmd.StrategySwitchCmds();
 
         //策略运行频率计算--------------
         iFrameCount++;

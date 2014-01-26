@@ -69,7 +69,7 @@ FieldView::FieldView(QWidget* parent):QGraphicsView(parent)
     this->rotate(-90);
     this->shutdownfield_view = false;
 
-
+    debug_painter=new QPainter();
 }
 
 FieldView::~FieldView()
@@ -120,13 +120,13 @@ void FieldView::LoadFieldGeometry()
 void FieldView::ConstructField()
 {
     field_painter = new QPainterPath();
-    //»­ÖĞÏß
+    //ç”»ä¸­çº¿
     field_painter->moveTo ( 0,-this->field_width_/2 );
     field_painter->lineTo ( 0,this->field_width_/2 );
-    //»­ÖĞĞÄÔ²
+    //ç”»ä¸­å¿ƒåœ†
     field_painter->addEllipse ( -this->center_circle_radius_,-this->center_circle_radius_,\
                                 2*this->center_circle_radius_,2*this->center_circle_radius_ );
-    //Çò³¡±ß½ç
+    //çƒåœºè¾¹ç•Œ
     field_painter->moveTo ( this->field_length_/2,-this->field_width_/2 );
     field_painter->lineTo ( this->field_length_/2,this->field_width_/2 );
     field_painter->moveTo ( -this->field_length_/2,-this->field_width_/2 );
@@ -135,7 +135,7 @@ void FieldView::ConstructField()
     field_painter->lineTo ( this->field_length_/2,-this->field_width_/2 );
     field_painter->moveTo ( -this->field_length_/2,this->field_width_/2 );
     field_painter->lineTo ( this->field_length_/2,this->field_width_/2 );
-    //ÇòÎ§À¸
+    //çƒå›´æ 
     field_painter->moveTo (  this->field_length_/2+this->boundary_width_,-this->field_width_/2-this->boundary_width_ );
     field_painter->lineTo (  this->field_length_/2+this->boundary_width_, this->field_width_/2+this->boundary_width_ );
     field_painter->moveTo ( -this->field_length_/2-this->boundary_width_,-this->field_width_/2-this->boundary_width_ );
@@ -144,7 +144,7 @@ void FieldView::ConstructField()
     field_painter->lineTo (  this->field_length_/2+this->boundary_width_,-this->field_width_/2-this->boundary_width_ );
     field_painter->moveTo ( -this->field_length_/2-this->boundary_width_, this->field_width_/2+this->boundary_width_ );
     field_painter->lineTo (  this->field_length_/2+this->boundary_width_, this->field_width_/2+this->boundary_width_ );
-    //ÇòÃÅ
+    //çƒé—¨
     field_painter->moveTo ( this->field_length_/2,this->goal_width_/2 );
     field_painter->lineTo ( ( this->field_length_/2+goal_depth_ ),this->goal_width_/2 );
     field_painter->lineTo ( ( this->field_length_/2+goal_depth_ ),-this->goal_width_/2 );
@@ -179,7 +179,7 @@ void FieldView::ScaleView ( qreal scale_factor )
 
 void FieldView::UpdateViewScale()
 {
-    //ÖØĞÂÉè¶¨·Å´óÏµÊı
+    //é‡æ–°è®¾å®šæ”¾å¤§ç³»æ•°
     if ( this->scaling_requested )
     {
         qreal factor = matrix().scale ( draw_scale, draw_scale ).mapRect ( QRectF ( 0, 0, 1, 1 ) ).width();
@@ -272,7 +272,7 @@ void FieldView::BuildRobotAndBall()
     BallItem* pBall;
     bool ball_at_top;
     //-------------------------------------------------------------------
-    //ÎªÃ¿¸öÉãÏñ»ú½¨Á¢Ò»¸öÇò¶ÓÁĞ
+    //ä¸ºæ¯ä¸ªæ‘„åƒæœºå»ºç«‹ä¸€ä¸ªçƒé˜Ÿåˆ—
     //create a ball list for each camera
     QVector<BallItem*> tmp;
     while (balls_.size()<MAX_CAMERA_COUNT)
@@ -280,7 +280,7 @@ void FieldView::BuildRobotAndBall()
         balls_.append(tmp);
     }
     //-------------------------------------------------------------------
-    //¼ÓÈëËùÓĞÇò
+    //åŠ å…¥æ‰€æœ‰çƒ
     //add all balls to scene
     //scene->AddBall(); LU_TEST
     ball_at_top=true;
@@ -302,7 +302,7 @@ void FieldView::BuildRobotAndBall()
             balls_[i].append ( pBall );
         }
     }
-    //¼ÓÈë¸÷ÖÖ»úÆ÷ÈË
+    //åŠ å…¥å„ç§æœºå™¨äºº
     RobotItem* p_robot;
     int l=0;
     for (i=0; i<MAX_CAMERA_COUNT; i++)
@@ -330,7 +330,7 @@ void FieldView::BuildRobotAndBall()
 void FieldView::AddBall ( BallItem *ball,int cameraID )
 {
     //-------------------------------------------------------------------
-    //ÎªÃ¿¸öÉãÏñ»ú½¨Á¢Ò»¸öÇò¶ÓÁĞ
+    //ä¸ºæ¯ä¸ªæ‘„åƒæœºå»ºç«‹ä¸€ä¸ªçƒé˜Ÿåˆ—
     QVector<BallItem*> tmp;
     while (cameraID+1>balls_.size())
     {
@@ -419,14 +419,14 @@ void FieldView::UpdateRobotsDisplay ( )
 {
 
 
-    //¸üĞÂ»úÆ÷ÈËºÍÇòĞÅÏ¢
+    //æ›´æ–°æœºå™¨äººå’Œçƒä¿¡æ¯
     QList<QGraphicsItem *> items;
     BallItem* pball;
     RobotItem* p_robot;
     FieldItem* gitem;
     MyVector2d pos;
     int itype;
-    //¸ù¾İÊÓ¾õ½ÓÊÕ½á¹û¸üĞÂÏÔÊ¾
+    //æ ¹æ®è§†è§‰æ¥æ”¶ç»“æœæ›´æ–°æ˜¾ç¤º
     display_update_mutex.lock();
     VInfo0 = vision_info;
     display_update_mutex.unlock();
@@ -483,13 +483,15 @@ void FieldView::UpdateRobotsDisplay ( )
         }
     }
 
-
 }
 
 void FieldView::drawForeground ( QPainter * painter, const QRectF & rect )
 {
-    GuiCmd.GuiSwitchCmds();
+    //GuiCmd.GuiSwitchCmds();
+
     GuiCmd.ExecCmds(painter);
+    GuiCmd.StrategySwitchCmds();
+
     QFont drawFont = QFont ( "Courier",80,2,false );
     QPen pen=QPen(Qt::yellow);
     painter->setFont ( drawFont );

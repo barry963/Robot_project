@@ -63,7 +63,7 @@ void gui_debug_robot(MyVector2d pos,double angle)
 {
     int side_temp = world.getSide();
     MyVector2d postemp = pos*side_temp;
-
+    //postemp.y*=side_temp;
     GuiCmd.AddRobot(postemp.x,postemp.y,angle);
 }
 

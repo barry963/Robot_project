@@ -433,7 +433,7 @@ Now it is sure that the problem is not the unstable data or thread disturbance.
 Try to figure out the vision data flow, as field and calculate all need the data after processing nor the raw data
 
 =======================================
-2014/1/21
+2014/1/22
 
 Bug
 11. when there is nothing, the previous location still remains.
@@ -502,7 +502,7 @@ Goal:
 2. Firstly, enable the robot to reach specific position
 
 =======================================
-2014/1/22
+2014/1/23
 
 1. Add target position figure       Still need debug
 
@@ -518,7 +518,7 @@ Slow down when approaching the target goal.
 
 
 =======================================
-2014/1/23
+2014/1/24
 
 Show target position and debug function executes in 
         field_view.cpp, drawForeground(XXX), GuiCmd.Execmds(painter);
@@ -539,5 +539,13 @@ Needs to improve the net_vision_receive_thread.cpp later.
             vision_initial_flag = false;
 
             //why here it should be 100 times
+            //answer: just cut the noise first
 
+=======================================
+2014/1/24
 
+//是否显示轨迹相关调试信息
+//whether display path debug info
+bool bDebugPathPlan=false;//lu_test, from false -> true
+
+Add path record function

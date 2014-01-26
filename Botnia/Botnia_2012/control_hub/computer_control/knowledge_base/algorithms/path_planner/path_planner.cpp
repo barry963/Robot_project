@@ -27,8 +27,8 @@
 #include "control_hub/computer_control/knowledge_base/database/world_state/field_world_obstacle.h"
 #include "path_planner.h"
 
-//Ч?·??ж??λá?
-//?λ????·?????·
+//效?路??卸??位谩?
+//?位????路?????路
 /*
 extern xwin field;
 void DrawLine(xdrawable &w,double x1,double y1,double x2,double y2);
@@ -36,14 +36,15 @@ void DrawLine(xdrawable &w,double x1,double y1,double x2,double y2);
 
 const bool plan_print = false;
 const double out_of_obs_dot = 0.40; // 0.1; // 0.7071;
+unsigned int debugfreq=0;
 
-//?Χ?[-1,1]
+//?围?[-1,1]
 double sdrand48()
 {
     return(2*drand48()-1);
 }
 
-//?λ
+//?位
 state PathPlanner::random_state()
 {
     state s;
@@ -54,7 +55,7 @@ state PathPlanner::random_state()
 }
 
 //??
-//·???
+//路???
 void PathPlanner::init(int _max_nodes,int _num_waypoints,
                        double _goal_target_prob,//=0.15
                        double _waypoint_target_prob,//0.75
@@ -141,7 +142,7 @@ state PathPlanner::choose_target(int &targ)
     }
 }
 
-//????·???
+//????路???
 state *PathPlanner::find_nearest(state target)
 {
     state *nearest;
@@ -194,11 +195,11 @@ int PathPlanner::extend(state *s,state target)
     //s?
     if (!obs->check(*s,id))
     {
-        //???λ?
+        //???位?
         f  = obs->repulse(*s);
         //????
         fg = n.pos - s->pos;
-        //С?????Χ
+        //小?????围
         if (f.dot(fg) > out_of_obs_dot)
         {
             // leaving obstacle, ok
@@ -216,7 +217,7 @@ int PathPlanner::extend(state *s,state target)
         if (obs->obs[id].type == OBS_CIRCLE)
         {//??
             // find tangent angle
-            //???н
+            //???薪
             p = obs->obs[id].pos;
             r = max(obs->obs[id].rad.x,obs->obs[id].rad.y);
             d = MyVector::distance(n.pos,p);
@@ -228,7 +229,7 @@ int PathPlanner::extend(state *s,state target)
                 n.pos = s->pos + step.rotate(-a);
                 if (!obs->check(n))
                 {
-                    //е??????
+                    //械??????
                     return(num);
                 }
             }
@@ -240,9 +241,9 @@ int PathPlanner::extend(state *s,state target)
     return(num);
 }
 
-//·??·
+//路??路
 state PathPlanner::plan(obstacles *_obs,int obs_mask,
-                        state initial,state _goal,int &obs_id)
+                        state initial,state _goal,int &obs_id,double current_angle)
 {
     state target,*nearest,*nearest_goal,*p,*head;
     vector2f f;
@@ -280,6 +281,8 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
 #if 1//lu_test change 0 to 1
         if (bDebugPathPlan)
         {
+            for(int i=0;i++;)
+            //gui_debug_robot(initial.pos,180);//Lu_test
             gui_debug_line(0,0,initial.pos,target.pos);
         }
 #endif
@@ -295,6 +298,11 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
 #if 1//lu_test change 0 to 1
         if (bDebugPathPlan)
         {
+            if(debugfreq++>3)
+            {
+                gui_debug_robot(initial.pos,180);//Lu_test
+                debugfreq=0;
+            }
             gui_debug_line(0,0,initial.pos,goal.pos);
         }
 #endif
@@ -321,7 +329,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
        return(target);
      */
     }
-    else
+    else//obstacles
     {
         //???
         if (plan_print)
@@ -346,10 +354,10 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             //assert(nearest!=NULL); lu_test
             extend(nearest,target);
             nd = distance(node[num_nodes-1],goal);
-            //·??????
+            //路??????
             if (nd < d)
             {
-                //??·?
+                //??路?
                 nearest_goal = &node[num_nodes-1];
                 d = nd;
             }
@@ -361,7 +369,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         p = nearest_goal;
         if (!inobs)
         {
-            //??Χ
+            //??围
             //??????????????
             //??obs_id?
             while (p!=NULL && !obs->check(initial,*p,obs_id))
@@ -371,8 +379,8 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         }
         else
         {
-            //?Χ
-            //?????λ?
+            //?围
+            //?????位?
             f = obs->repulse(initial);
             if (false)
             {
@@ -419,7 +427,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
      }
      */
         // put in waypoint cache if solution
-        //???ι?·?waypoint??ι??
+        //???喂?路?waypoint??喂??
         if (num_waypoints > 0)
         {
 #if 1//lu_test change 0 to 1
@@ -436,7 +444,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
 #endif
             if (p!=NULL && ((d < VERYNEAR) || drand48()<0.1))
             {
-                //??·,10%
+                //??路,10%
                 p = nearest_goal;
                 while (p != NULL)
                 {

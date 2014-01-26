@@ -62,6 +62,7 @@ CR_DECLARE(NAV_THEIR_OBSTACLE_RADIUS);
 CR_DECLARE(NAV_THEIR_GOALIE_OBSTACLE_RADIUS);
 
 
+
 //按照梯形速度曲线，计算运动消耗时间
 float Robot::motion_time_1d(float dx,float vel0,float vel1,
                             float max_vel,float max_accel,
@@ -650,6 +651,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 {
 	//计算当前点到目的点向量
         MyVector2d x = world.GetRobotPositionByID(me) - target_pos;
+
 	if (!finite(x.x))
 	{
 		Trajectory t(0, 0, 0, 0);
@@ -854,9 +856,9 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 		//	 target_pos, G_ARROW_FORW);
 	}
 
-        gui_debug_line(focused_robot_id, GDBG_NAVIGATION, target_pos, target_pos + target_vel,G_ARROW_FORW);
+        //gui_debug_line(focused_robot_id, GDBG_NAVIGATION, target_pos, target_pos + target_vel,G_ARROW_FORW);
 
-        gui_debug_robot(target_pos,target_angle);//Lu_test
+        //gui_debug_robot(target_pos,target_angle);//Lu_test
         //qDebug()<<"target="<<target_pos.x<<","<<target_pos.y<<","<<target_angle;
 
         /// get the robot parameters
@@ -1004,6 +1006,8 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
         current_velocity = world.GetRobotVelocityByID(focused_robot_id);
         current_face_angel = world.teammate_direction(focused_robot_id);
         initial.pos = vdtof(current_position);
+
+
 	// initial.vel = vdtof(v);
 	goal.pos = vdtof(target_pos);
 	// goal.vel = vdtof(target_vel);
@@ -1015,7 +1019,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
     //qDebug()<< "goal x:"<<goal.pos.x<< "y:"<< goal.pos.y;
 
         /// path planning return the node it should go
-        target = world.path[focused_robot_id].plan(&obstacles_instance,1,initial,goal,obs_id);
+        target = world.path[focused_robot_id].plan(&obstacles_instance,1,initial,goal,obs_id,world.teammate_direction(focused_robot_id));
 	//if(!finite(target.pos.x) || !finite(target.pos.y))
 	//{
 	//	printf("nav_to_point target=: NANs!%3.2f,%3.2f\n",target.pos.x,target.pos.y);

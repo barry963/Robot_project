@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'strategy_thread.h'
 **
-** Created: Fri Jan 24 16:25:56 2014
+** Created: Sun Jan 26 02:18:27 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!

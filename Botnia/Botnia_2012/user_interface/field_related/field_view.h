@@ -97,6 +97,7 @@ private:
     QPainterPath *debugPath;
     QGraphicsPathItem *debugPathItem;
 
+    QPainter *debug_painter;
 //    bool leftButton;
 //    bool midButton;
 //    bool rightButton;

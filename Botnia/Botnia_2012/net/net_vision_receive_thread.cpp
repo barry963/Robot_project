@@ -38,7 +38,7 @@ void VisionReceiveThread::run()
 	    if(thread_terminated)break;
 	    //处理数据
 
-        if(vision_initial_flag)
+        if(vision_initial_flag)//cut the noise first
         {
             for(int i=0;i<100;i++)
             {
@@ -229,7 +229,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 
                 VInfoRaw.BallInfos[camera_id][iCurIndex].pos=pos;
                 VInfoRaw.BallInfos[camera_id][iCurIndex].conf=conf;
-                bFound=false;// lu_test
+                bFound=true;// lu_test
                 break;
             }
 
