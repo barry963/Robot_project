@@ -41,7 +41,7 @@
 #include "user_interface/field_related/field_constants.h"
 
 #include "field_world_obstacle.h"
-
+#include "QDebug"
 
 //====================================================================//
 //    Obstacle class implementation
@@ -337,12 +337,15 @@ bool obstacles::check(state s0,state s1)
 {
         int i;
         i = 0;
+        qDebug()<<num;
         while (i<num && ( ((obs[i].mask&current_mask)==0) || obs[i].check(s0,s1)))
         {
-                // printf("%d",obs[i].check(s0,s1));
-                i++;
+            qDebug()<<"s0-s1: "<<obs[i].check(s0,s1)<<",i="<<i<<",type="<<obs[i].type;
+            i++;
         }
-        // printf("\n");
+        if(i!=num)
+        qDebug()<<"s0-s1: false"<<",i="<<i<<",type="<<obs[i].type<<" ,pos("<<obs[i].pos.x<<","<<obs[i].pos.y<<")";
+
         return(i == num);
 }
 

@@ -51,7 +51,7 @@ public:
         //如果是圆形障碍物，rad.x保存圆半径
         //如果是矩形障碍物,保存宽和高
         //如果是平面障碍物,保存那个方向和哪边
-        vector2f rad;  // (x,y) radii
+        vector2f rad;  // (x,y) radii chuixian
         vector2f vel;  // object velocity
 public:
         //一下函数中的state s用于存储机器人的位置

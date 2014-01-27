@@ -491,6 +491,8 @@ void TPass::command(World &world, int me, Robot::RobotCommand &command,
     command.ball_target = targetp;
     command.angle_tolerance = angle_tolerance;
     command.ball_shot_type = Robot::BallShotPass;
+
+    //command.observation_type=OBS_EVERYTHING_BUT_BALL;//LU_TEST
 }
 
 Tactic *TDribbleToShoot::parser(const char *param_string)

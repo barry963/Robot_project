@@ -34,7 +34,7 @@ extern xwin field;
 void DrawLine(xdrawable &w,double x1,double y1,double x2,double y2);
 */
 
-const bool plan_print = false;
+const bool plan_print = true;
 const double out_of_obs_dot = 0.40; // 0.1; // 0.7071;
 unsigned int debugfreq=0;
 
@@ -293,7 +293,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
     {
         if (plan_print)
         {
-            printf("  PP: no obs\n");
+            qDebug()<<"  PP: noobs\n";
         }
 #if 1//lu_test change 0 to 1
         if (bDebugPathPlan)
@@ -334,6 +334,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         //???
         if (plan_print)
         {
+            qDebug()<<"PP: obs";
             printf("  PP: plan(%f,%f)->(%f,%f)\n",
                    V2COMP(initial.pos),V2COMP(goal.pos));
         }

@@ -563,3 +563,24 @@ Solution: This results from the delay time, it shoud be 0.02s not 0.2s, as I hav
 // this needs to be remeasured
 #define LATENCY_DELAY 0.02
 
+TODO:
+Bug 3
+this bug seriously influence the stability of the system.
+
+
+Comment the defense zone obstacle in field_world_robot_goto_point.cpp
+Because the original code brings too many obstacles.
+
+Confused: 
+    if (obs_flags & OBS_BALL)
+    {
+                t = bound(MyVector::distance(ball,robot_position)-180,30,60);
+                obstacles_instance.add_circle(ball.x,ball.y,t,ball_vel.x,ball_vel.y,1);
+    }
+
+why it minus 180, and the border is [30,60] ???
+
+
+
+Attention:
+Check velocity of ball after ticking

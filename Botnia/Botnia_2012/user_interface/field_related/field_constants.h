@@ -116,18 +116,18 @@ const double TEAMMATE_EFFECTIVE_RADIUS=100.0;
 //==== Obstacle Flags ================================================//
 
 // Standard Obstacles
-const int OBS_BALL=(1 << 0);
-const int OBS_WALLS=(1 << 1);
+const int OBS_BALL=(1 << 0);//01
+const int OBS_WALLS=(1 << 1);//10
 //对方禁区障碍
 const int OBS_THEIR_DZONE=(1 << 2);
 //己方禁区障碍
 const int OBS_OUR_DZONE=(1 << 3);
 
-const int OBS_TEAMMATES=((1 << MAX_TEAM_ROBOTS) - 1) <<  4;
+const int OBS_TEAMMATES=((1 << MAX_TEAM_ROBOTS) - 1) <<  4;//01111 10000
 const int OBS_OPPONENTS=((1 << MAX_TEAM_ROBOTS) - 1) << (4 + MAX_TEAM_ROBOTS);
-const int OBS_EVERYTHING=~((int) 0);
-const int OBS_EVERYTHING_BUT_US=OBS_EVERYTHING & (~(OBS_TEAMMATES));
-const int OBS_EVERYTHING_BUT_BALL=OBS_EVERYTHING & (~(OBS_BALL));
+const int OBS_EVERYTHING=~((int) 0);//11111 11111
+const int OBS_EVERYTHING_BUT_US=OBS_EVERYTHING & (~(OBS_TEAMMATES));//
+const int OBS_EVERYTHING_BUT_BALL=OBS_EVERYTHING & (~(OBS_BALL));//11111 11110
 
 inline int OBS_TEAMMATE(int id)
 {
