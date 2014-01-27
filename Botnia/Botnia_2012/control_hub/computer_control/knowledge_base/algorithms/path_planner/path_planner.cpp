@@ -243,7 +243,7 @@ int PathPlanner::extend(state *s,state target)
 
 //·??·
 state PathPlanner::plan(obstacles *_obs,int obs_mask,
-                        state initial,state _goal,int &obs_id,double current_angle)
+                        state initial,state _goal,int &obs_id)
 {
     state target,*nearest,*nearest_goal,*p,*head;
     vector2f f;

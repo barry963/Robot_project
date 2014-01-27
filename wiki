@@ -515,7 +515,7 @@ const float POSITION_ACCURACY = 500;
 
 TODO:
 Slow down when approaching the target goal.
-
+Solution: Done
 
 =======================================
 2014/1/24
@@ -542,10 +542,24 @@ Needs to improve the net_vision_receive_thread.cpp later.
             //answer: just cut the noise first
 
 =======================================
-2014/1/24
+2014/1/25
 
 //是否显示轨迹相关调试信息
 //whether display path debug info
 bool bDebugPathPlan=false;//lu_test, from false -> true
 
 Add path record function
+
+Goal: Decrease delay as much as possible
+Solution: delay mainly results from vision update, not strategy server.
+=======================================
+2014/1/27
+When using remote simulator, it also has similar problem.
+
+Solution: This results from the delay time, it shoud be 0.02s not 0.2s, as I have measured that. 
+#define FRAME_RATE    65.0
+#define FRAME_PERIOD  (1.0 / FRAME_RATE)
+
+// this needs to be remeasured
+#define LATENCY_DELAY 0.02
+

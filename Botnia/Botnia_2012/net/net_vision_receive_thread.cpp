@@ -388,7 +388,7 @@ int VisionUpdate(const SSL_WrapperPacket &f)
 		    orientation/=confsum;
            // qDebug()<<"Robot position: "<<pos.x<<" , "<<pos.y;
 		    vision_info.Robots[teamBlue][id].pos=pos;
-            qDebug() << "robot_i: " << vision_info.Robots[teamBlue][id].pos.x << ", " << vision_info.Robots[teamBlue][id].pos.y;
+            //qDebug() << "robot_i: " << vision_info.Robots[teamBlue][id].pos.x << ", " << vision_info.Robots[teamBlue][id].pos.y;
 
 		    vision_info.Robots[teamBlue][id].orientation=orientation;
 		    vision_info.Robots[teamBlue][id].conf=max(VInfoRaw.RobotInfos[0][teamBlue][id].conf,VInfoRaw.RobotInfos[1][teamBlue][id].conf);

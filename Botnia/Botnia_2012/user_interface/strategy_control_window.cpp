@@ -759,7 +759,7 @@ void MainWindow::tick ( )
 
         iFrameCount=0;
     }
-
+    //qDebug()<<s;
 
 }
 

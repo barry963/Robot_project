@@ -95,6 +95,10 @@ QString sTactics[5];
 
 char guitacticsbuf[1000];//temperary store the tactic name of InternalStatus.tactic_name_
 
+double oldRuntime=0.0;//lu_test
+double oldVisiontime=0.0;
+double oldStrategyTIme=0.0;
+
 // main program
 void StrategyThread::run()
 {
@@ -164,6 +168,8 @@ void StrategyThread::run()
 
     while(!thread_terminated_)//excute the strategy here lu_test
     {
+        double time0=timer.MarkStartTime();
+
         /// if change the team, then we need to restart the server
         if (oldsoccerteam != soccerteam)
         {
@@ -179,6 +185,8 @@ void StrategyThread::run()
         }
 
         //-----------------------------
+
+        double time1=timer.MarkStartTime();
         if(SkipVisionWait())
         {
             emit guiRefresh();
@@ -189,6 +197,7 @@ void StrategyThread::run()
             bVisionOverTime = do_vision_recv();
             if(SkipVisionWait())bVisionOverTime=false;
         }
+        qDebug()<<"\nVision_Interval"<<(timer.MarkStartTime()-time1)/1000.0;
 
         if(thread_terminated_)break;
 
@@ -227,7 +236,7 @@ void StrategyThread::run()
         tick1 = ::GetTickCount();
         if(tick1-oldtick1>18)
         {
-            //printf("Strategy OverTime Error %d\r\n",tick1-oldtick1);
+            printf("Strategy OverTime Error %d\r\n",tick1-oldtick1);
         }
         oldtick1=tick1;
         //-----------------------------------------------------
@@ -249,6 +258,7 @@ void StrategyThread::run()
         //runstatusMutex.unlock();
 
         //运行状态控制--running status control
+
         switch(InternalStatus.Status)
         {
             case RUN_PAUSE:
@@ -275,6 +285,8 @@ void StrategyThread::run()
                 break;
         }
 
+
+
 //        qDebug()<<InternalStatus.tactic_name_;
 //        qDebug()<<OldInternalStatus.tactic_name_;
 //        qDebug()<<!IsStrategyOld();
@@ -297,6 +309,7 @@ void StrategyThread::run()
 
         /// really starting point of the strategy
         /// test the strategy state
+        double time2=timer.MarkStartTime();
         switch(InternalStatus.StrategyIndex)
         {
         case STRATEGY_JOYSTICK:
@@ -340,12 +353,16 @@ void StrategyThread::run()
             break;
 
         default:
-            continue;
+            //continue;
             break;
         }
+        qDebug()<<"Strategy_Interval"<<(timer.MarkStartTime()-time2)/1000.0;
+
         OldInternalStatus = InternalStatus;
         /// net signal sending sending
         RadioNetCmdSend();
+
+        qDebug()<<"Interval"<<(timer.MarkStartTime()-time0)/1000.0;
     }
     ClearGuiTactics();
 }
@@ -600,7 +617,7 @@ bool StrategyThread::do_vision_recv()
     VisionReceiveSignal.acquire();
     if(SkipVisionWait())return false;
     timer.MarkEndTime();
-    //VisionUpdate(packet);//lu_test comment, as it is not neccessary
+    VisionUpdate(packet);//lu_test comment, as it is not neccessary
 
     display_update_mutex.lock();
 

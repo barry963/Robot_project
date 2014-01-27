@@ -99,7 +99,7 @@ void PaintCmd::ExecCmds(QPainter * painter)
             {
                 painter->drawPath ( robotdebug[i].body );
             }
-            qDebug()<<"targetdebug #"<<i<<", ="<<robotdebug[i].x<<","<<robotdebug[i].y<<","<<robotdebug[i].z;
+//            qDebug()<<"targetdebug #"<<i<<", ="<<robotdebug[i].x<<","<<robotdebug[i].y<<","<<robotdebug[i].z;
         }
         //painter->scale(1,-1);
         //painter->restore();

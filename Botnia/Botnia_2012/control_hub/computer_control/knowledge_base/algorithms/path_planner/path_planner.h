@@ -62,7 +62,7 @@ public:
 
         int extend(state *s,state target);
         state plan(obstacles *_obs,int obs_mask,
-                   state initial,state _goal,int &obs_id,double current_angle=0.0);
+                   state initial,state _goal,int &obs_id);
 };
 
 #endif /*__PATH_PLANNER_H__*/

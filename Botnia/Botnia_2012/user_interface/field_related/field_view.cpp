@@ -69,7 +69,6 @@ FieldView::FieldView(QWidget* parent):QGraphicsView(parent)
     this->rotate(-90);
     this->shutdownfield_view = false;
 
-    debug_painter=new QPainter();
 }
 
 FieldView::~FieldView()
