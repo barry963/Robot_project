@@ -97,8 +97,12 @@ void KDT_FUN::split(node *t,int split_dim)
 	// make new nodes
     a = anode.alloc();
     b = anode.alloc();
-    //qDebug()<<"allocate for two child!";
-	if (!a || !b) return;
+
+    if (!a || !b)
+    {
+        qDebug()<<"No memory for child[0] or child[1]";
+        return;
+    }
 	a->child[0] = b->child[0] = NULL;
 	a->child[1] = b->child[1] = NULL;
 	a->states = b->states = NULL;
@@ -106,6 +110,8 @@ void KDT_FUN::split(node *t,int split_dim)
 	// determine split value
 	a->minv = b->minv = t->minv;
 	a->maxv = b->maxv = t->maxv;
+    a->next = b->next = NULL;//Lu_test
+
 	//如果split_dim=0，则按照X值进行两分，否则按照Y进行两分
 	if (split_dim == 0)
 	{
@@ -144,6 +150,8 @@ void KDT_FUN::split(node *t,int split_dim)
 	t->states = NULL;
 	t->child[0] = a;
 	t->child[1] = b;
+    qDebug()<<"allocate for two child!";
+
 }
 
 //设定树特性，并为树分配空间
@@ -158,6 +166,7 @@ bool KDT_FUN::setdim(vector2f &minv,vector2f &maxv,int nleaf_size,int nmax_depth
 	}
     if (!root)
 	{
+        qDebug()<<"Cannot allocate memory";
         return false;
 	}
 	//设定根节点属性
@@ -181,6 +190,7 @@ bool KDT_FUN::add(state *s)
 	if (!p || !inside(p->minv,p->maxv,*s))
 	{
 		//如果不存在根节点或者点s不在范围内则返回false
+        qDebug()<<"No such node or not in range";
 		return(false);
 	}
 	// go down tree to see where new state should go
@@ -197,11 +207,14 @@ bool KDT_FUN::add(state *s)
 	s->next = p->states;
 	p->states = s;
 	p->num_states++;
+//    p->child[0]=NULL;
+//    p->child[1]=NULL;
 	//由于每次都是对半分解，所以，如果存在child[0]就一定存在child[1]
 	// split leaf if not too deep and too many children for one node
 	if (level<max_depth && p->num_states>leaf_size)
 	{
 		//偶数层按照X对半分，奇数层按照Y对半分
+        qDebug()<<"KDsplit";
 		split(p,level % 2);
 	}
 	return(true);
@@ -211,21 +224,21 @@ bool KDT_FUN::add(state *s)
 KDT_TEMP
 void KDT_FUN::clear(node *t)
 {
-    //qDebug()<<"leaf";
+    qDebug()<<"leaf";
 	if (!t)
 	{
 		return;
 	}
-    //qDebug()<<"leaf0.5";
+    qDebug()<<"leaf0.5";
 
 	if (t->child[0])
 	{
-        //qDebug()<<"leaf0";
+        qDebug()<<"leaf0";
 		clear(t->child[0]);
 	}
 	if (t->child[1])
 	{
-        //qDebug()<<"leaf1";
+        qDebug()<<"leaf1";
 		clear(t->child[1]);
 	}
 	t->child[0] = t->child[1] = NULL;
@@ -243,20 +256,22 @@ void KDT_FUN::clear(node *t)
 KDT_TEMP
 void KDT_FUN::clear()
 {
-    usleep(100);
+    //usleep(100);
     //qDebug()<<"Clear: "<<node_num++<<" "<<node_num1++;
     //qDebug()<<"one root";
     if (!root)
     {
+        qDebug()<<"RootNULL";
         return;
     }
-    //qDebug()<<"Haha"<<root->num_states;
+    if(root->child[0])
+        qDebug()<<"Root_states"<<root->child[0]->num_states;
     clear(root->child[0]);
     clear(root->child[1]);
     root->child[0] = root->child[1] = NULL;
     root->states = NULL;
     root->num_states = 0;
-    //qDebug()<<"clear tree";
+    qDebug()<<"clear tree";
 }
 
 //

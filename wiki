@@ -584,3 +584,13 @@ why it minus 180, and the border is [30,60] ???
 
 Attention:
 Check velocity of ball after ticking
+
+
+=======================================
+2014/1/28
+
+Bug 3
+
+After clearing root two NULL children for several times, it will terminate. Maybe this is the system bug.
+
+It should be algorithm bug, when it cannot find the right point.

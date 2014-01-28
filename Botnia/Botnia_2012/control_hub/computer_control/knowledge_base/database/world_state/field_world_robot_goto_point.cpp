@@ -1023,7 +1023,8 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 
     //qDebug()<< "goal x:"<<goal.pos.x<< "y:"<< goal.pos.y;
 
-        /// path planning return the node it should go
+        // path planning return the node it should go
+        qDebug()<<"Path-planning";
         target = world.path[focused_robot_id].plan(&obstacles_instance,1,initial,goal,obs_id);
 	//if(!finite(target.pos.x) || !finite(target.pos.y))
 	//{

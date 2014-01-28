@@ -146,14 +146,13 @@ bool obstacle::check(state s0,state s1)
                 // returns nearest point on line segment s0.pos-s1.pos to point pos
                 //计算直线段(s0,s1)上离pos点最近的点
                 p = MyVector::point_on_segment(s0.pos,s1.pos,pos);
-                if (false)
+                if (true)
                 {
-                        printf("pos(%f,%f)-(%f,%f):(%f,%f)=(%f,%f)\n",
-                               s0.pos.x,s0.pos.y,
-                               s1.pos.x,s1.pos.y,
-                               pos.x,pos.y,
-                               p.x,p.y);
+                    qDebug()<<"Obstacle: pos("<<s0.pos.x <<","<< s0.pos.y
+                           <<")-("<<s1.pos.x <<","<<s1.pos.y <<"):("<< pos.x
+                          <<","<< pos.y<<")=("<<p.x <<","<<p.y <<")\n";
                 }
+
                 d = MyVector::distance(p,pos);
                 return(d > rad.x+ROBOT_RADIUS);
         case OBS_RECTANGLE:

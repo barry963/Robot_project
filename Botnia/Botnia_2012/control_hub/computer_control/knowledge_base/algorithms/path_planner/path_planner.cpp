@@ -95,6 +95,7 @@ double PathPlanner:: distance(state &s0,state &s1)
 // add a child note to the parent node
 state *PathPlanner::add_node(state n,state *parent)
 {
+    qDebug()<<"num_nodes "<<num_nodes;
 #if 1//lu_test change 0 to 1
     if (num_nodes > max_nodes)
     {
@@ -175,6 +176,7 @@ state *PathPlanner::find_nearest(state target)
 
 int PathPlanner::extend(state *s,state target)
 {
+    qDebug()<<"Extend";
     state n;
     vector2f step,p;
     vector2f f,fg;
@@ -245,6 +247,7 @@ int PathPlanner::extend(state *s,state target)
 state PathPlanner::plan(obstacles *_obs,int obs_mask,
                         state initial,state _goal,int &obs_id)
 {
+    //num_nodes=0;
     state target,*nearest,*nearest_goal,*p,*head;
     vector2f f;
     double d,nd,s;
@@ -335,14 +338,20 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         if (plan_print)
         {
             qDebug()<<"PP: obs";
-            printf("  PP: plan(%f,%f)->(%f,%f)\n",
-                   V2COMP(initial.pos),V2COMP(goal.pos));
+            qDebug()<<"  PP: plan("<<initial.pos.x <<","<<initial.pos.y<<")->("
+                   <<goal.pos.x<<","<<goal.pos.y<<")D="<<MyVector::distance(initial.pos,goal.pos)<<"\n";
         }
 
         i = num_nodes = 0;
         //?
         nearest = nearest_goal = add_node(initial,NULL);
-        //assert(nearest!=NULL); Lu_test
+
+        if(nearest==NULL)//lu_test
+        {
+            qDebug()<<"Memory Error";
+            assert(nearest!=NULL);
+        }
+
         d = distance(*nearest,goal);// Lu_test
         // plan
         iter_limit = max_nodes;
@@ -352,7 +361,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             //find_nearest ????target?
             //targ_type????
             nearest = (targ_type == 0)? nearest_goal : find_nearest(target);
-            //assert(nearest!=NULL); lu_test
+            assert(nearest!=NULL);
             extend(nearest,target);
             nd = distance(node[num_nodes-1],goal);
             //·??????

@@ -197,7 +197,7 @@ void StrategyThread::run()
             bVisionOverTime = do_vision_recv();
             if(SkipVisionWait())bVisionOverTime=false;
         }
-        qDebug()<<"\nVision_Interval"<<(timer.MarkStartTime()-time1)/1000.0;
+        //qDebug()<<"\nVision_Interval"<<(timer.MarkStartTime()-time1)/1000.0;
 
         if(thread_terminated_)break;
 
@@ -356,13 +356,13 @@ void StrategyThread::run()
             //continue;
             break;
         }
-        qDebug()<<"Strategy_Interval"<<(timer.MarkStartTime()-time2)/1000.0;
+        //qDebug()<<"Strategy_Interval"<<(timer.MarkStartTime()-time2)/1000.0;
 
         OldInternalStatus = InternalStatus;
         /// net signal sending sending
         RadioNetCmdSend();
 
-        qDebug()<<"Interval"<<(timer.MarkStartTime()-time0)/1000.0;
+        //qDebug()<<"Interval"<<(timer.MarkStartTime()-time0)/1000.0;
     }
     ClearGuiTactics();
 }
