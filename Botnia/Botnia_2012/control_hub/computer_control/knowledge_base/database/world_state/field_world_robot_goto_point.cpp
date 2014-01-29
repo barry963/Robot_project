@@ -710,6 +710,8 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	              VDVAR(OMNI_MAX_ANG_VEL)[type]);
 	//  
 	Trajectory t(v.x, v.y, ang_v, max(time,time_a));
+    qDebug()<<"Final";
+    t.DataDisplay();
 	return t;
 }
 
@@ -1024,20 +1026,26 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
     //qDebug()<< "goal x:"<<goal.pos.x<< "y:"<< goal.pos.y;
 
         // path planning return the node it should go
-        qDebug()<<"Path-planning";
+        //qDebug()<<"Path_planning";
         target = world.path[focused_robot_id].plan(&obstacles_instance,1,initial,goal,obs_id);
 	//if(!finite(target.pos.x) || !finite(target.pos.y))
 	//{
 	//	printf("nav_to_point target=: NANs!%3.2f,%3.2f\n",target.pos.x,target.pos.y);
 	//}
-	if (false)
+    if (true)
 	{
-		printf("  Init(%f,%f)  Goal(%f,%f)  Target(%f,%f)\n",
-		       V2COMP(initial.pos),V2COMP(goal.pos),V2COMP(target.pos));
-		if (target.pos.length() < 10)
-		{
-			exit(1);
-		}
+
+//		printf("  Init(%f,%f)  Goal(%f,%f)  Target(%f,%f)\n",
+//		       V2COMP(initial.pos),V2COMP(goal.pos),V2COMP(target.pos));
+
+        qDebug()<<"  Init("<<initial.pos.x <<","<<initial.pos.y<<")  Goal("
+               <<goal.pos.x<<","<<goal.pos.y<<") Target("<<target.pos.x <<","<<target.pos.y<<")";
+
+//		if (target.pos.length() < 10)
+//		{
+//			exit(1);
+//		}
+
 	}
 	//求下一途经点相对当前位置单位矢量
 	//p当前位置

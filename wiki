@@ -594,3 +594,10 @@ Bug 3
 After clearing root two NULL children for several times, it will terminate. Maybe this is the system bug.
 
 It should be algorithm bug, when it cannot find the right point.
+
+=======================================
+2014/1/30
+
+Bug 3
+Solution: It is lrand48() bug, as the generating number is sometimes too large or too small, so change it to another function.
+

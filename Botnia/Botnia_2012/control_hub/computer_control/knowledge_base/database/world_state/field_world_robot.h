@@ -169,7 +169,7 @@ public:
         }
         void DataDisplay()//lu_test add
         {
-            //qDebug()<<"Trajectory: bVliad: "<<bValid<<" ,speed:"<<vx<<vy<<va<<" ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";        
+            qDebug()<<"Trajectory: bVliad: "<<bValid<<" ,speed:"<<vx<<vy<<va<<" ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";
         }
     };
 

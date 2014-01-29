@@ -41,7 +41,8 @@ unsigned int debugfreq=0;
 //?Χ?[-1,1]
 double sdrand48()
 {
-    return(2*drand48()-1);
+    double temp=(2*drand48()-1);
+    return temp;
 }
 
 //?λ
@@ -133,7 +134,10 @@ state PathPlanner::choose_target(int &targ)
     else if (p < goal_target_prob+waypoint_target_prob)
     {
         targ = 1;
-        i = lrand48() % num_waypoints;
+        //i = lrand48() % num_waypoints;
+
+        i = randInt(num_waypoints);
+
         return(waypoint[i]);
     }
     else
@@ -159,7 +163,7 @@ state *PathPlanner::find_nearest(state target)
         // NOTE: something bad must have happened if we get here.
         // find closest current state
         nearest = &node[0]; // num_nodes-1];
-        //assert(nearest!=NULL); Lu_test command
+        assert(nearest!=NULL); //Lu_test command
         nd = distance(*nearest, target);
         for (i=0; i<num_nodes; i++)
         {
@@ -176,7 +180,7 @@ state *PathPlanner::find_nearest(state target)
 
 int PathPlanner::extend(state *s,state target)
 {
-    qDebug()<<"Extend";
+    //qDebug()<<"Extend";
     state n;
     vector2f step,p;
     vector2f f,fg;
@@ -338,9 +342,21 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         if (plan_print)
         {
             qDebug()<<"PP: obs";
-            qDebug()<<"  PP: plan("<<initial.pos.x <<","<<initial.pos.y<<")->("
+            qDebug()<<"PP: plan("<<initial.pos.x <<","<<initial.pos.y<<")->("
                    <<goal.pos.x<<","<<goal.pos.y<<")D="<<MyVector::distance(initial.pos,goal.pos)<<"\n";
         }
+
+
+        if (bDebugPathPlan)
+        {
+            if(debugfreq++>3)
+            {
+                gui_debug_robot(initial.pos,180);//Lu_test
+                debugfreq=0;
+            }
+            gui_debug_line(0,0,initial.pos,goal.pos);
+        }
+
 
         i = num_nodes = 0;
         //?
@@ -355,6 +371,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         d = distance(*nearest,goal);// Lu_test
         // plan
         iter_limit = max_nodes;
+
         while (i<iter_limit && num_nodes<max_nodes && d>VERYNEAR)
         {
             target = choose_target(targ_type);
@@ -373,7 +390,13 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             }
             i++;
         }
+
+
         inobs = !obs->check(initial);
+
+
+        qDebug()<<"III: "<<i<<" .Nearst_goal("<<nearest_goal->pos.x<<","<<nearest_goal->pos.y<<")";
+
 
         // trace back up plan to find simple path
         p = nearest_goal;
@@ -386,9 +409,11 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             {
                 p = p->parent;
             }
+            qDebug()<<"Notinobs "<<obs_id;
         }
         else
         {
+            qDebug()<<"Doinobs";
             //?Χ
             //?????λ?
             f = obs->repulse(initial);
@@ -413,10 +438,12 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         head = p;
         if (head)
         {
+            qDebug()<<"head is NOTNULL";
             target = *head;
         }
         else
         {
+            qDebug()<<"head is DONULL";
             target = initial;
         }
         //  if(plan_print)
@@ -440,7 +467,8 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         //???ι?·?waypoint??ι??
         if (num_waypoints > 0)
         {
-#if 1//lu_test change 0 to 1
+            qDebug()<<"num_waypoints"<<num_waypoints;
+#if 0//lu_test change 0 to 1
             if (bDebugPathPlan)
             {
                 p = nearest_goal;
@@ -452,17 +480,24 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
                 }
             }
 #endif
-            if (p!=NULL && ((d < VERYNEAR) || drand48()<0.1))
+
+            double randnum=drand48();
+
+            if (p!=NULL && ((d < VERYNEAR) || randnum<0.1))
             {
                 //??·,10%
                 p = nearest_goal;
                 while (p != NULL)
                 {
-                    i = lrand48()%num_waypoints;
+//                    int temp=lrand48();
+//                    qDebug()<<"LRAND "<<temp;
+                    i=randInt(num_waypoints);
+
                     waypoint[i] = *p;
                     waypoint[i].parent = NULL;
                     if (p == head)
                     {
+                        qDebug()<<"p==head";
                         break;
                     }
                     p = p->parent;
@@ -471,7 +506,9 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             else
             {
                 //??(90%)??
-                i = lrand48()%num_waypoints;
+                //i = lrand48()%num_waypoints;//Here is wants to
+                i=randInt(num_waypoints);
+                qDebug()<<"I090: "<<i;
                 waypoint[i] = random_state();
             }
         }

@@ -57,6 +57,7 @@ static unsigned x[3] =
 
 //double drand48(void);
 //long lrand48();
+int randInt(int value);
 
 #define copysign		_copysign
 #define finite          isfinite

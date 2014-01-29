@@ -1,5 +1,6 @@
 #include "algorithm_base.h"
 #include <stdlib.h>
+#include <QTime>
 
 double
 drand48(void)
@@ -33,3 +34,9 @@ long lrand48()
 	temp |= (rand() & 0x1);
 	return temp;
 }
+
+int randInt(int value)
+    {
+    // Random number between low and high
+    return qrand() % value;
+    }

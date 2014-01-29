@@ -361,6 +361,7 @@ bool obstacles::check(state s0,state s1,int &id)
         if (i < num)
         {
                 id = i;
+                qDebug()<<"s0-s1: false"<<",i="<<i<<",type="<<obs[i].type<<" ,pos("<<obs[i].pos.x<<","<<obs[i].pos.y<<")"<<", ID="<<id;
         }
         return(i == num);
 }

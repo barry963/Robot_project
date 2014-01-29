@@ -25,6 +25,7 @@
 KDT_TEMP
 class KDTree
 {
+public:
     unsigned int node_num;// lu_test
     unsigned int node_num1;// lu_test
 	struct node
@@ -163,6 +164,7 @@ bool KDT_FUN::setdim(vector2f &minv,vector2f &maxv,int nleaf_size,int nmax_depth
 	{
 		//为根节点申请一个空间
         root = anode.alloc();
+        //root = new node;
 	}
     if (!root)
 	{
@@ -264,8 +266,10 @@ void KDT_FUN::clear()
         qDebug()<<"RootNULL";
         return;
     }
+    if(root)
+        qDebug()<<"Root_states"<<root->num_states;
     if(root->child[0])
-        qDebug()<<"Root_states"<<root->child[0]->num_states;
+        qDebug()<<"Root_childstates"<<root->child[0]->num_states;
     clear(root->child[0]);
     clear(root->child[1]);
     root->child[0] = root->child[1] = NULL;
