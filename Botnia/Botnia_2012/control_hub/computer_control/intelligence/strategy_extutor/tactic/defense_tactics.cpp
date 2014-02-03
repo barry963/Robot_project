@@ -71,15 +71,14 @@ void TDefendLine::command(World &world, int me, Robot::RobotCommand &command,
 			gui_debug_printf(me, GDBG_TACTICS,
 			                 "DefendLine: WARNING evaluation.defend_line() returned false.");
 		}
-		//⣬ײ뱾
-		//????
+
 		target = ball;
 		velocity = MyVector2d(0, 0);
 	}
 	// Obstacles... don't avoid the ball if away from the line.
 	int obs_flags = OBS_EVERYTHING_BUT_ME(me);
 	MyVector2d mypos = world.GetRobotPositionByID(me);
-	//ŸͰ򲻵ϰ
+
 	if (distance_to_line(v[0], v[1], mypos) <
 	        distance_to_line(v[0], v[1], ball))
 	{

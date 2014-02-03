@@ -258,7 +258,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
         {
         case CmdMoveBall:
         case CmdDribble:
-            if (targ_dist<180 &&
+            if (targ_dist<150 &&
                     //趋势是接近目标点
                     last_dist_from_target<=targ_dist)
             {
@@ -612,7 +612,7 @@ Robot::SMState Robot::kick(World &world,Sensors &s,RobotCommand &cmd,
         {
             nav.kick_power = giShootPowerMax;
         }
-        printf("Kick! (t=%f,power=%d)\n",time_in_state,nav.kick_power);
+        qDebug()<<"Kick! t="<<time_in_state<<", power="<<nav.kick_power;
         last_kick_timestamp = world.time;
     }
     if (robot_print)

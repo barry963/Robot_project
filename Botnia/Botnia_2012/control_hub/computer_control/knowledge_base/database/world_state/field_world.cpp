@@ -910,8 +910,8 @@ void World::go(int id, double vx, double vy, double va,
         FillComChar(kick_power);
         FillVerify();
         serial_sever_->SendTransparentPackage((unsigned char*)ComBuf,iComBufSize);
-
-        //qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
+//        if(!((vx==0)&&(vy==0)&&(va==0)&&(kick_power==0)))
+//            qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
         //qDebug()<<ComBuf;
 
     }

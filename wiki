@@ -622,7 +622,14 @@ Optimize the passandreceive tactic
 Problem: 
 1. Keep rotating in SMGotoBall for a relatively long time.
 Solution: enable difference between target and real situation.
+The right process should be that firstly go to the specific place, then rotate and finally kick the ball.
 
 2. Figure out the meaning of SMDriveToGoal and SMFaceBall
 
+unsigned int giShootPowerMax = 30;//lu_test
+unsigned int giShootPowerPass = 30;//lu_test add initial value
 
+TODO:
+Optimize the passandreceive tactic
+Solution: Figure out the relationship between tactic and skills.
+Then implement the whole tactic in such STP architecture

@@ -674,7 +674,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 
 //    qDebug()<<"Current: Speed:("<<v.x<<v.y<<ang_v<<") AngDiff"<<ang<<"\n";
 
-//    if(ang<0.2||ang>6.0)//lu_test angle difference
+//    if(ang<0.4||ang>6.24)//lu_test angle difference
 //    {
 //        ang=0.0;
 //    }

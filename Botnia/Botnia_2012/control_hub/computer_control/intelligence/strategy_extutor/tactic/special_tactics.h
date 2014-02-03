@@ -271,7 +271,7 @@ private:
     TPass  *PassRobot;
     TReceivePass *ReceiveRobot;
     SPosition *PositionRobot;
-
+    static int PasserRobot=0;
 
 public:
     TPassandReceive();

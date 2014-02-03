@@ -39,7 +39,7 @@ private:
 	BCoordinate p[2];
 	double distmin, distmax;
 
-	//Ƿ
+    //
 	bool intercepting;
 
 public:

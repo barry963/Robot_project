@@ -402,9 +402,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         p = nearest_goal;
         if (!inobs)
         {
-            //??Χ
-            //??????????????
-            //??obs_id?
+
             while (p!=NULL && !obs->check(initial,*p,obs_id))
             {
                 p = p->parent;
@@ -412,9 +410,8 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         }
         else
         {
-            qDebug()<<"Doinobs";
-            //?Χ
-            //?????λ?
+            //qDebug()<<"Doinobs";
+
             f = obs->repulse(initial);
             if (false)
             {
@@ -430,7 +427,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             while (p!=NULL && p->parent!=NULL &&
                    f.dot(p->pos - initial.pos)<out_of_obs_dot)
             {
-                //???????
+
                 p = p->parent;
             }
         }
