@@ -44,7 +44,6 @@
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/ball_tactics.h"
 //lu_test add
 
-
 class TPositionForStart : public SPosition
 {
 public:
@@ -272,6 +271,7 @@ private:
     TPass  *PassRobot;
     TReceivePass *ReceiveRobot;
     SPosition *PositionRobot;
+
 
 public:
     TPassandReceive();

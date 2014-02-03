@@ -675,7 +675,7 @@ void Strategy::LoadConfig()
     doing = NONE;
 }
 
-//��ʼ�����ɺ����Զ�װ��playbook
+//playbook
 void Strategy::init(const char *playbook_file)
 {
     LoadConfig();
@@ -701,7 +701,7 @@ bool Strategy::parse(char *string)
     fprintf(stderr, "Strategy:parse with %s\n", string);
 #endif
     int n = 0;
-    //������һ��ʳ���
+    //
     for (str = string; (*str != 0) && (*str != ' '); str++, n++)
         ;
     if (strncmp(string, "warmup", n) == 0)
@@ -736,10 +736,10 @@ void Strategy::stop(World &world, Tactic *tactics[])
     }
 }
 
-//�л�play
+
 void Strategy::playEnded(World &world, Status status)
 {
-    //�����оɵ�play
+
     if (current_play)
     {
         //RESPONSIBLE_MIN_RUNTIME = 2.0 # s
@@ -762,7 +762,7 @@ void Strategy::playEnded(World &world, Status status)
                              executor.runningTime(world));
         }
     }
-    //����ѡ���µ�play
+
     current_play = playbook.select(world);
     if (current_play)
     {
@@ -819,7 +819,7 @@ void Strategy::run(World &world, Tactic *tactics[])
     }
     //'S'=Stop
     // Check for stopped game.
-    //ÿ���л���Stop״̬�����浱ǰplaybook
+
     if (world.game_state == 'S')
     {
         qDebug()<<"game state=s";
@@ -837,23 +837,23 @@ void Strategy::run(World &world, Tactic *tactics[])
     }
     //'s'=Force Start ' '=normal Start
     // If the game state changes to a special state, reselect the play.
-    //�����л������µ�����״̬����Ҫ����ѡ��play����
+
     if ((strchr("s ", world.game_state) == NULL) && world.game_state != last_game_state)
     {
         qDebug()<<"playended1";
         playEnded(world, InProgress);
     }
     // If we don't have a play, select one.
-    //����û��play������ѡ��һ���µ�play����
+
     else if (!current_play)
     {
         qDebug()<<"playended2";
         playEnded(world, InProgress);
     }
     // Run the play executor.
-    //����֮ǰ�ȳ�ʼ��Ϊֹͣս��
+
     stop(world, tactics);
-    //����tactics�ķ�������
+
     executor.run(world, tactics);
 }
 
@@ -867,11 +867,11 @@ void Strategy::credit(World &world, Play *play, Status status)
     }
 }
 
-//��������״̬�������µ��жϺ;��ߡ�
+
 void Strategy::think(World &world)
 {
     // Check for special conditions, such as a goal.
-    //�������ŵ÷�����
+
     if (world.goal_scored)
     {
         Play *play = responsiblePlay(world);

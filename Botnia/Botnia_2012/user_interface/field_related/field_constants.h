@@ -149,7 +149,7 @@ inline int OBS_TEAMMATE(int id)
 #define FRAME_PERIOD  (1.0 / FRAME_RATE)
 
 // this needs to be remeasured
-#define LATENCY_DELAY 0.02
+#define LATENCY_DELAY 0.025
 
 #define CAMERA_HEIGHT 3500.0
 

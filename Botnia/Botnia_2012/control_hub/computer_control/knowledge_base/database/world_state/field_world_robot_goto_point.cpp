@@ -662,7 +662,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
         MyVector2d v = world.GetRobotVelocityByID(me);
 	//计算当前角度与目的角度差
 	double dangleme=world.teammate_direction(me);
-	double ang = angle_mod(world.teammate_direction(me) - target_ang);
+    double ang = angle_mod(dangleme - target_ang);
 	//查询当前角速度
 	double ang_v = world.teammate_angular_velocity(me);
 	MyVector2d a;
@@ -671,6 +671,14 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	int type = the_type;
 	if (type == GotoPointMoveForw) type = GotoPointMove;
 	//XY方向加速度和时间计算
+
+//    qDebug()<<"Current: Speed:("<<v.x<<v.y<<ang_v<<") AngDiff"<<ang<<"\n";
+
+//    if(ang<0.2||ang>6.0)//lu_test angle difference
+//    {
+//        ang=0.0;
+//    }
+
 	compute_motion_2d(x, v, target_vel,
 	                  VDVAR(OMNI_MAX_ACCEL)[type],
 	                  VDVAR(OMNI_MAX_SPEED)[type],
@@ -709,9 +717,9 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	              -VDVAR(OMNI_MAX_ANG_VEL)[type],
 	              VDVAR(OMNI_MAX_ANG_VEL)[type]);
 	//  
+
 	Trajectory t(v.x, v.y, ang_v, max(time,time_a));
-    qDebug()<<"Final";
-    t.DataDisplay();
+//    t.DataDisplay();
 	return t;
 }
 
@@ -919,7 +927,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 			       rv.length(),v.length(),t,tmax,
 			       MyVector::distance(rp,p+v*t));
             */
-            qDebug()<<"Haha";
+
             q = current_position + current_velocity*t;
             obstacles_instance.add_circle(q.x,q.y,DVAR(NAV_OUR_OBSTACLE_RADIUS),current_velocity.x,current_velocity.y,1);
 			// printf("me=%d t=%f\n",me,t);
@@ -1038,8 +1046,8 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 //		printf("  Init(%f,%f)  Goal(%f,%f)  Target(%f,%f)\n",
 //		       V2COMP(initial.pos),V2COMP(goal.pos),V2COMP(target.pos));
 
-        qDebug()<<"  Init("<<initial.pos.x <<","<<initial.pos.y<<")  Goal("
-               <<goal.pos.x<<","<<goal.pos.y<<") Target("<<target.pos.x <<","<<target.pos.y<<")";
+//        qDebug()<<"  Init("<<initial.pos.x <<","<<initial.pos.y<<")  Goal("
+//               <<goal.pos.x<<","<<goal.pos.y<<") Target("<<target.pos.x <<","<<target.pos.y<<")";
 
 //		if (target.pos.length() < 10)
 //		{

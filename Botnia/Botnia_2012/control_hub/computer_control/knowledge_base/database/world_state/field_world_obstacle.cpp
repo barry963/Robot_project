@@ -146,7 +146,7 @@ bool obstacle::check(state s0,state s1)
                 // returns nearest point on line segment s0.pos-s1.pos to point pos
                 //计算直线段(s0,s1)上离pos点最近的点
                 p = MyVector::point_on_segment(s0.pos,s1.pos,pos);
-                if (true)
+                if (false)
                 {
                     qDebug()<<"Obstacle: pos("<<s0.pos.x <<","<< s0.pos.y
                            <<")-("<<s1.pos.x <<","<<s1.pos.y <<"):("<< pos.x
@@ -336,14 +336,14 @@ bool obstacles::check(state s0,state s1)
 {
         int i;
         i = 0;
-        qDebug()<<num;
+
         while (i<num && ( ((obs[i].mask&current_mask)==0) || obs[i].check(s0,s1)))
         {
-            qDebug()<<"s0-s1: "<<obs[i].check(s0,s1)<<",i="<<i<<",type="<<obs[i].type;
+            //qDebug()<<"s0-s1: "<<obs[i].check(s0,s1)<<",i="<<i<<",type="<<obs[i].type;
             i++;
         }
-        if(i!=num)
-        qDebug()<<"s0-s1: false"<<",i="<<i<<",type="<<obs[i].type<<" ,pos("<<obs[i].pos.x<<","<<obs[i].pos.y<<")";
+//        if(i!=num)
+//        qDebug()<<"s0-s1: false"<<",i="<<i<<",type="<<obs[i].type<<" ,pos("<<obs[i].pos.x<<","<<obs[i].pos.y<<")";
 
         return(i == num);
 }
@@ -361,7 +361,7 @@ bool obstacles::check(state s0,state s1,int &id)
         if (i < num)
         {
                 id = i;
-                qDebug()<<"s0-s1: false"<<",i="<<i<<",type="<<obs[i].type<<" ,pos("<<obs[i].pos.x<<","<<obs[i].pos.y<<")"<<", ID="<<id;
+                //qDebug()<<"s0-s1: false"<<",i="<<i<<",type="<<obs[i].type<<" ,pos("<<obs[i].pos.x<<","<<obs[i].pos.y<<")"<<", ID="<<id;
         }
         return(i == num);
 }

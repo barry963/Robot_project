@@ -151,7 +151,6 @@ void KDT_FUN::split(node *t,int split_dim)
 	t->states = NULL;
 	t->child[0] = a;
 	t->child[1] = b;
-    qDebug()<<"allocate for two child!";
 
 }
 
@@ -209,14 +208,13 @@ bool KDT_FUN::add(state *s)
 	s->next = p->states;
 	p->states = s;
 	p->num_states++;
-//    p->child[0]=NULL;
-//    p->child[1]=NULL;
+
+
 	//由于每次都是对半分解，所以，如果存在child[0]就一定存在child[1]
 	// split leaf if not too deep and too many children for one node
 	if (level<max_depth && p->num_states>leaf_size)
 	{
 		//偶数层按照X对半分，奇数层按照Y对半分
-        qDebug()<<"KDsplit";
 		split(p,level % 2);
 	}
 	return(true);
@@ -226,21 +224,17 @@ bool KDT_FUN::add(state *s)
 KDT_TEMP
 void KDT_FUN::clear(node *t)
 {
-    qDebug()<<"leaf";
 	if (!t)
 	{
 		return;
 	}
-    qDebug()<<"leaf0.5";
 
 	if (t->child[0])
 	{
-        qDebug()<<"leaf0";
 		clear(t->child[0]);
 	}
 	if (t->child[1])
 	{
-        qDebug()<<"leaf1";
 		clear(t->child[1]);
 	}
 	t->child[0] = t->child[1] = NULL;
@@ -263,19 +257,20 @@ void KDT_FUN::clear()
     //qDebug()<<"one root";
     if (!root)
     {
-        qDebug()<<"RootNULL";
+//        qDebug()<<"RootNULL";
         return;
     }
-    if(root)
-        qDebug()<<"Root_states"<<root->num_states;
-    if(root->child[0])
-        qDebug()<<"Root_childstates"<<root->child[0]->num_states;
+//    if(root)
+//        qDebug()<<"Root_states"<<root->num_states;
+//    if(root->child[0])
+//        qDebug()<<"Root_childstates"<<root->child[0]->num_states;
+
     clear(root->child[0]);
     clear(root->child[1]);
     root->child[0] = root->child[1] = NULL;
     root->states = NULL;
     root->num_states = 0;
-    qDebug()<<"clear tree";
+//    qDebug()<<"clear tree";
 }
 
 //

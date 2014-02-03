@@ -36,6 +36,8 @@ CR_DECLARE(DISTANCE_FROM_PENALTY_LINE);
 
 extern bool positionflag;//lu_test add temporarily, just for demo
 
+unsigned int constructor_time=0;
+
 inline void cr_do_setup()
 {
         CR_SETUP(tactic, SHOOT_AIM_PREF_AMOUNT, CR_DOUBLE);
@@ -277,6 +279,8 @@ void TChargeBall::command(World &world, int me, Robot::RobotCommand &command,
 
 TPassandReceive::TPassandReceive(void)
 {
+    qDebug()<<"Constructor time "<<constructor_time<<"\n";
+    constructor_time++;
     PassRobot = new TPass(1);
     ReceiveRobot = new TReceivePass();
     PositionRobot = new SPosition(BCoordinate(0,0),BCoordinate(60,60));
@@ -309,6 +313,7 @@ void TPassandReceive::command(World &world, int me, Robot::RobotCommand &command
 {
     if( me == 0)
     {
+        constructor_time--;
         printf("TPassandReceive pass: %d\n",PassRobot->isDone(world,me));
        if(positionflag)
         {

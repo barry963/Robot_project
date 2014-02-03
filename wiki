@@ -589,7 +589,7 @@ Check velocity of ball after ticking
 =======================================
 2014/1/28
 
-Bug 3
+Bug 3        DONE
 
 After clearing root two NULL children for several times, it will terminate. Maybe this is the system bug.
 
@@ -598,6 +598,31 @@ It should be algorithm bug, when it cannot find the right point.
 =======================================
 2014/1/30
 
-Bug 3
+Bug 3       DONE
 Solution: It is lrand48() bug, as the generating number is sometimes too large or too small, so change it to another function.
+
+=======================================
+2014/1/31
+
+RobotTactic::makeCommand(XXX)
+change c.target to its current position, that means stop immediately after ball is out of border.
+
+
+OMNI_MAX_ACCEL =       20     20     20    20 # mm/s^2
+OMNI_MAX_SPEED =       100     50      50    50  # mm/s
+OMNI_MAX_ANG_ACCEL =       18       12       12      12   # radians/s^2
+OMNI_MAX_ANG_VEL =     6        4        4       4    # radians/s
+
+
+Optimize the passandreceive tactic
+
+=======================================
+2014/2/3
+
+Problem: 
+1. Keep rotating in SMGotoBall for a relatively long time.
+Solution: enable difference between target and real situation.
+
+2. Figure out the meaning of SMDriveToGoal and SMFaceBall
+
 

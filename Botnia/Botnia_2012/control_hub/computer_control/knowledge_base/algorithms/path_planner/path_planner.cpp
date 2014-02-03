@@ -34,7 +34,7 @@ extern xwin field;
 void DrawLine(xdrawable &w,double x1,double y1,double x2,double y2);
 */
 
-const bool plan_print = true;
+const bool plan_print = false;
 const double out_of_obs_dot = 0.40; // 0.1; // 0.7071;
 unsigned int debugfreq=0;
 
@@ -96,7 +96,7 @@ double PathPlanner:: distance(state &s0,state &s1)
 // add a child note to the parent node
 state *PathPlanner::add_node(state n,state *parent)
 {
-    qDebug()<<"num_nodes "<<num_nodes;
+//    qDebug()<<"num_nodes "<<num_nodes;
 #if 1//lu_test change 0 to 1
     if (num_nodes > max_nodes)
     {
@@ -395,7 +395,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         inobs = !obs->check(initial);
 
 
-        qDebug()<<"III: "<<i<<" .Nearst_goal("<<nearest_goal->pos.x<<","<<nearest_goal->pos.y<<")";
+//        qDebug()<<"III: "<<i<<" .Nearst_goal("<<nearest_goal->pos.x<<","<<nearest_goal->pos.y<<")";
 
 
         // trace back up plan to find simple path
@@ -409,7 +409,6 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
             {
                 p = p->parent;
             }
-            qDebug()<<"Notinobs "<<obs_id;
         }
         else
         {
@@ -438,12 +437,10 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         head = p;
         if (head)
         {
-            qDebug()<<"head is NOTNULL";
             target = *head;
         }
         else
         {
-            qDebug()<<"head is DONULL";
             target = initial;
         }
         //  if(plan_print)
@@ -467,7 +464,6 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
         //???ι?·?waypoint??ι??
         if (num_waypoints > 0)
         {
-            qDebug()<<"num_waypoints"<<num_waypoints;
 #if 0//lu_test change 0 to 1
             if (bDebugPathPlan)
             {
@@ -497,7 +493,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
                     waypoint[i].parent = NULL;
                     if (p == head)
                     {
-                        qDebug()<<"p==head";
+                        //qDebug()<<"p==head";
                         break;
                     }
                     p = p->parent;
@@ -508,7 +504,6 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
                 //??(90%)??
                 //i = lrand48()%num_waypoints;//Here is wants to
                 i=randInt(num_waypoints);
-                qDebug()<<"I090: "<<i;
                 waypoint[i] = random_state();
             }
         }

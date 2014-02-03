@@ -55,12 +55,12 @@ TShoot::TShoot(Type _type, int _deflect_target) : RobotTactic(true, true)
     prev_target_set = false;
     //Ĭֻ10
     eval.set(
-        BRegion(BCoordinate(0, 0,						//뾶Ϊ400Բ
+        BRegion(BCoordinate(0, 0,
                             BCoordinate::SBall,
                             BCoordinate::OBall, true),
                 800),
         &eval_fn,
-        0.2442					//ѾڵĵȨظô࣬ű¼
+        0.2442
     );
     deflect_target = _deflect_target;
         //cr_do_setup();
@@ -113,14 +113,14 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
     MyVector2d robot_position = world.GetRobotPositionByID(me);
     MyVector2d target;
     double angle_tolerance;
-    //û趨prev_target,prev_target趨ΪΪģ˵ĶԳƵ
+
     if (!prev_target_set)
     {
         prev_target = (ball - (robot_position - ball));//Ϊģ˵ĶԳƵ
         prev_target_set = true;
     }
     Type the_type = type;
-    //ԷǷڽڷ(һַΪ)
+
     if (world.twoDefendersInTheirDZone())
     {
         the_type = NoAim;
@@ -129,7 +129,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
     //# The amount we'd prefer to shoot at our previous angle.  If an another
     //#  at least this much bigger appears we'll switch to that.
     //SHOOT_AIM_PREF_AMOUNT = 0.01745 # 1 degree
-    //ֱ
+
     if (the_type == Aim)
     {
         got_target = evaluation.aim(world, world.now, world.ball_position(),
@@ -139,7 +139,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
                                     prev_target, DVAR(SHOOT_AIM_PREF_AMOUNT),
                                     target, angle_tolerance);
     }
-    //䷽ʽ
+
     if (the_type == Deflect)
     {
         MyVector2d t = world.GetRobotPositionByID(getTeammateId(deflect_target));
@@ -176,7 +176,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
     }
     if (got_target)
     {
-        //ţߵŵ㿪ʼ
+
         if (debug)
         {
             gui_debug_line(me, GDBG_TACTICS, ball, target);
@@ -185,7 +185,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
             gui_debug_line(me, GDBG_TACTICS, ball,
                            (target - ball).rotate(-angle_tolerance) + ball);
         }
-        //ŽǶȲСֵֵԽСҪԽȷ
+
         //# We make sure the angle tolerance is always this big.
         //SHOOT_MIN_ANGLE_TOLERANCE = 0.1745 # Pi / 16
         if (angle_tolerance < DVAR(SHOOT_MIN_ANGLE_TOLERANCE))
@@ -198,8 +198,7 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
         MyVector2d rtarget;
         MyVector2d targ_ball;
         targ_ball = target - ball;
-        //Ѱײ㷽ϣײ500*0.75=375߶ǷڶԷ
-        //ʵϾж·ŸǷл
+
         world.obsLineFirst(target-targ_ball.bound(500)*0.75, target,
                            OBS_OPPONENTS /*| OBS_THEIR_DZONE*/, rtarget);
         command.cmd = Robot::CmdMoveBall;
@@ -242,13 +241,12 @@ double TShoot::eval_fn(World &world, const MyVector2d p,
     MyVector2d target;
     double tolerance;
     obs_flags |= OBS_OPPONENTS | OBS_OUR_DZONE | OBS_THEIR_DZONE | OBS_WALLS;
-    //жϵpǷ֣ҷԷǽͻ
+
     if (world.obsPosition(p, obs_flags))
     {
         return -1;
     }
-    //ǶԷ򣬲ѶԷϰ
-    //???Ӧֹײײ
+
     obs_flags = OBS_OPPONENTS;
     for (int i=0; i<world.n_opponents; i++)
     {
@@ -258,21 +256,19 @@ double TShoot::eval_fn(World &world, const MyVector2d p,
             obs_flags &= ~OBS_OPPONENT(i);
         }
     }
-    //㵽·ϰ
+
     if (world.obsLine(p, world.ball_position(), obs_flags))
     {
         return -1;
     }
     //
-    //their_goal_r Էĵ  their_goal_rΪ
-    //վǰԷžķ
+
+
     if (evaluation.aim(world, world.now, p,
                        world.their_goal_r, world.their_goal_l,
                        OBS_OPPONENTS, target, tolerance))
     {
-        //target ײ
-        //aʾʱ˷
-        //tolerance ϶Ƕ
+
         a = (target - p).angle();
         return tolerance;
     }
@@ -329,13 +325,13 @@ void TClear::command(World &world, int me, Robot::RobotCommand &command,
         gui_debug_line(me, GDBG_TACTICS, downfield[0], downfield[1]);
     }
     if (!prev_target_set) prev_target = world.their_goal;
-    //angle_tolerance Ƕȹ
+
     aimed = evaluation.aim(world, world.now, world.ball_position(),
                            downfield[0], downfield[1],
                            OBS_EVERYTHING_BUT_ME(me),
                            prev_target, DVAR(SHOOT_AIM_PREF_AMOUNT),
                            target, angle_tolerance);
-    //ϰʽҵ϶ϰʽԷ볡
+
     if (!aimed)
     {
         // Guaranteed to return true and fill in the parameters when
@@ -353,7 +349,7 @@ void TClear::command(World &world, int me, Robot::RobotCommand &command,
     //double a_to_goal_r = (world.their_goal_r - ball).angle();
     MyVector2d rtarget;
     rtarget=target;
-    //ΧڰԷţԶԷΪĿ
+
     if (fabs(anglemod(a - a_to_goal)) < 0.8 * angle_tolerance)
     {
         bool got_target;
@@ -365,13 +361,12 @@ void TClear::command(World &world, int me, Robot::RobotCommand &command,
                                     target, angle_tolerance);
         if (got_target)
         {
-            //target ײŵ
+
             prev_target = target;
             // Aim for point in front of obstacles.
             MyVector2d targ_ball;
             targ_ball = target - ball;
-            //Ѱײ㷽ϣײ500*0.75=375߶ǷڶԷ
-            //ʵϾж·ŸǷл
+
             world.obsLineFirst(target-targ_ball.bound(500)*0.75, target,
                                OBS_OPPONENTS /*| OBS_THEIR_DZONE*/, rtarget);
             angle_tolerance = angle_tolerance;
@@ -386,7 +381,7 @@ void TClear::command(World &world, int me, Robot::RobotCommand &command,
         gui_debug_line(me, GDBG_TACTICS, ball,
                        (target - ball).rotate(-angle_tolerance) + ball);
     }
-    //ŵСǶ
+
     if (angle_tolerance < DVAR(SHOOT_MIN_ANGLE_TOLERANCE))
     {
         angle_tolerance = DVAR(SHOOT_MIN_ANGLE_TOLERANCE);

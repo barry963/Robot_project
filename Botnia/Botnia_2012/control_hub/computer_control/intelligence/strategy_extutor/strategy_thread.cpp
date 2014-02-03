@@ -236,7 +236,7 @@ void StrategyThread::run()
         tick1 = ::GetTickCount();
         if(tick1-oldtick1>18)
         {
-            printf("Strategy OverTime Error %d\r\n",tick1-oldtick1);
+//            printf("Strategy OverTime Error %d\r\n",tick1-oldtick1);
         }
         oldtick1=tick1;
         //-----------------------------------------------------
@@ -647,11 +647,12 @@ bool StrategyThread::do_vision_recv()
     //}
     visionGetTimeVal = timer.GetInterval_ms();
 
-#if 1
+#if 0
     if(visionGetTimeVal>=17)
     {
         //timer.markStartTime();
-        printf("%d visionGetTimeVal=%f\r\n",i++,visionGetTimeVal);
+        //printf("%d visionGetTimeVal=%f\r\n",i++,visionGetTimeVal);
+        printf("VisionGetTimeVal=%f ms\r\n",visionGetTimeVal);
     }
 #endif
     return false;

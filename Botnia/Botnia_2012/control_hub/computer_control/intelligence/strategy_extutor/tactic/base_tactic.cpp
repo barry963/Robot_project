@@ -266,7 +266,10 @@ void RobotTactic::makeCommand(World &world, int me, bool debug,
         qDebug()<<"ball is out of border, freeKick method start";//lu_test
         MyVector2d fk = world.freeKickPosition(world.ball_position());
         c.cmd = Robot::CmdPosition;
-        c.target = fk + (world.our_goal - fk).norm(170.0 + world.teammate_radius(me));
+
+        //c.target = fk + (world.our_goal - fk).norm(170.0 + world.teammate_radius(me));//lu_test
+        c.target = world.GetRobotPositionByID(me);//stop immediately after the ball is out of border
+
         c.velocity = MyVector2d(0, 0);
         c.angle = (fk - world.our_goal).angle();
         c.observation_type = OBS_EVERYTHING_BUT_ME(me);

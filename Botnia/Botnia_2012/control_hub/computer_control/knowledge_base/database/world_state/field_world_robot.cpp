@@ -243,6 +243,8 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
                behind,targ_dist,last_dist_from_target);
     }
     bool candriver=true;
+
+    qDebug()<<"Target_ball_rel:("<<target_ball_rel.x<<","<<target_ball_rel.y<<")\n";
     if (target_ball_rel.x<20.0 ||
             target_ball_rel.x>250.0 ||
             fabs(target_ball_rel.y)>90.0)
@@ -256,12 +258,13 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
         {
         case CmdMoveBall:
         case CmdDribble:
-            if (targ_dist<150 &&
+            if (targ_dist<180 &&
                     //趋势是接近目标点
                     last_dist_from_target<=targ_dist)
             {
                 // printf("  %f <= %f\n",last_dist_from_target,targ_dist);
                 //球在机器人前方，能够驱动
+                qDebug()<<"Can_drive"<<s.can_drive<<" candriver:"<<candriver;
                 if (s.can_drive && candriver)
                 {
                     //printf("gotoball %3.2f,%3.2f\r\n",target_ball_rel.x,target_ball_rel.y);
@@ -293,9 +296,9 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     //允许进入对方禁区
     nav.obs  &= ~(OBS_THEIR_DZONE);
     last_dist_from_target = targ_dist;
-    if (robot_print)
+    if (false)
     {
-        printf("  targ=<%f,%f> targ_dist = %f\n",V2COMP(targ),targ_dist);
+        printf("  targ=<%f,%f> targ_dist = %f navangle= %f \n",V2COMP(targ),targ_dist,nav.angle);
     }
     return(SMGotoBall);
 }
@@ -327,6 +330,7 @@ Robot::SMState Robot::faceBall(World &world,Sensors &s,RobotCommand &cmd,
     nav.direct = true;
     //设定旋转量
     nav.vel_xya.set(0,0,6*sin(da));
+    //qDebug()<<"Nav(vx,vy,va)"<<nav.vel_xya.x<<", "<<nav.vel_xya.y<<", "<<nav.vel_xya.z<<")";
     return(SMFaceBall);
 }
 
@@ -864,30 +868,30 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         {
             state_start_time = world.time;
             state_changed = true;
-            //switch(state){
-            //	case SMGotoBall:
-            //		printf("SMGotoBall\r\n");break;
-            //	case SMFaceBall:
-            //		printf("SMFaceBall\r\n");break;
-            //	case SMApproachBall:
-            //		printf("SMApproachBall\r\n");break;
-            //	case SMPullBall:
-            //		printf("SMPullBall\r\n");break;
-            //	case SMFaceTarget:
-            //		printf("SMFaceTarget\r\n");break;
-            //	case SMDriveToGoal:
-            //		printf("SMDriveToGoal\r\n");break;
-            //	case SMKick:
-            //		printf("SMKick\r\n");break;
-            //	case SMSpinAtBall:
-            //		printf("SMSpinAtBall\r\n");break;
-            //	case SMPosition:
-            //		printf("SMPosition\r\n");break;
-            //	case SMRecieveBall:
-            //		printf("SMRecieveBall\r\n");break;
-            //	case SMWait:
-            //		printf("SMWait\r\n");break;
-            //}
+            switch(state){
+                case SMGotoBall:
+                    printf("SMGotoBall\r\n");break;
+                case SMFaceBall:
+                    printf("SMFaceBall\r\n");break;
+                case SMApproachBall:
+                    printf("SMApproachBall\r\n");break;
+                case SMPullBall:
+                    printf("SMPullBall\r\n");break;
+                case SMFaceTarget:
+                    printf("SMFaceTarget\r\n");break;
+                case SMDriveToGoal:
+                    printf("SMDriveToGoal\r\n");break;
+                case SMKick:
+                    printf("SMKick\r\n");break;
+                case SMSpinAtBall:
+                    printf("SMSpinAtBall\r\n");break;
+                case SMPosition:
+                    printf("SMPosition\r\n");break;
+                case SMRecieveBall:
+                    printf("SMRecieveBall\r\n");break;
+                case SMWait:
+                    printf("SMWait\r\n");break;
+            }
         }
 
     } while (state!=old_state && --n);
@@ -905,6 +909,10 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         }
     }
 */
+
+//    printf("State: %s %0.2fs R(%8.2f,%8.2f)\n",
+//           state_name[state],time_in_state, V2COMP(s.r_pos));
+
     if (robot_print)
     {
         printf("State: %s %0.2fs R(%8.2f,%8.2f)\n",
