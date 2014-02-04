@@ -52,7 +52,7 @@ Matrix::Matrix()
 
     r_ = 0;
     c_ = 0;
-    mat = 0;
+    mat = NULL;
 }
 
 Matrix::Matrix(const Matrix& other)
@@ -78,17 +78,25 @@ Matrix::Matrix(const Matrix& other)
 
 Matrix::~Matrix()
 {
-    if(mat) free(mat);
+    if(mat)
+    {
+        free(mat);
+        mat = NULL;
+    }
 }
 
 void Matrix::CopyData(float *data)
 {
+    if(!mat) return;
+
     for (double *ptr = mat; ptr < mat + r_ * c_; ptr++)
         *data++ = (float) (*ptr++);
 }
 
 void Matrix::CopyData(double *data)
 {
+    if(!mat) return;
+
     memcpy(data, mat, r_ * c_ * sizeof(double));
 }
 
@@ -102,7 +110,11 @@ const Matrix& Matrix::operator= (const Matrix& other)
 
     //  fprintf(stderr, "mat: 0x%x\n", mat);
 
-    if(mat) free(mat);
+    if(mat)
+    {
+        free(mat);
+        mat = NULL;
+    }
     r_ = other.r_;
     c_ = other.c_;
 
@@ -124,7 +136,11 @@ const Matrix& Matrix::operator= (const Matrix& other)
 
 const Matrix& Matrix::operator= (char* const init_string)
 {
-    if(mat) free(mat);
+    if(mat)
+    {
+        free(mat);
+        mat = NULL;
+    }
     str_init(init_string);
 
     return *this;
@@ -132,6 +148,7 @@ const Matrix& Matrix::operator= (char* const init_string)
 
 void Matrix::str_init(char* const init_string)
 {
+
     char* str1 = (char*)malloc(strlen(init_string)+1);
     int tcount;
     char* delim = " ;[]";
@@ -219,6 +236,7 @@ const Matrix transpose(const Matrix& a)
 //乘法
 const Matrix& m_multiply(Matrix& out, const Matrix& a, const Matrix& b)
 {
+
     int i, j, k;
 
     assert(a.c_ == b.r_);
@@ -309,8 +327,11 @@ const Matrix& Matrix::transpose()
     t = c_;
     c_ = r_;
     r_ = t;
-
-    free(mat);
+    if(mat)
+    {
+        free(mat);
+        mat = NULL;
+    }
     mat = newmat;
 
     return *this;
@@ -319,7 +340,11 @@ const Matrix& Matrix::transpose()
 //单位矩阵
 const Matrix& Matrix::identity(int size)
 {
-    if(mat) free(mat);
+    if(mat)
+    {
+        free(mat);
+        mat = NULL;
+    }
     r_ = size;
     c_ = size;
 
@@ -337,7 +362,11 @@ const Matrix& Matrix::resize(int rows, int columns)
     if (rows == r_ && columns == c_)
         return *this;
 
-    if(mat) free(mat);
+    if(mat)
+    {
+        free(mat);
+        mat = NULL;
+    }
 
     r_ = rows;
     c_ = columns;

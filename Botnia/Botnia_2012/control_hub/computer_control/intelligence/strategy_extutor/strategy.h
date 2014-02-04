@@ -131,13 +131,13 @@ private:
 	public:
 		int counts[5];
 
-		//״̬
+        //state count to 0
 		Results()
 		{
 			counts[0]=counts[1]=counts[2]=counts[3]=counts[4]=0;
 		}
 
-		//״̬
+        //state count increase
 		void incr(Status s)
 		{
 			counts[(int) s]++;

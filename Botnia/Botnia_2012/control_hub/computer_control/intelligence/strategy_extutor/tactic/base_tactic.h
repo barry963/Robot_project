@@ -346,7 +346,8 @@ public:
 
     virtual Status isDone(World &world, int me)
     {
-        printf("isDone tactic cmd: %d, status: %d\n",the_commandtemp.cmd,the_status);
+        //printf("isDone tactic cmd: %d, status: %d\n",the_commandtemp.cmd,the_status);
+        qDebug()<<"isDone tactic cmd"<<the_commandtemp.cmd<<", status: "<<the_status<<"\n";
         return the_status;
     }
 

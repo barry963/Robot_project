@@ -244,7 +244,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     }
     bool candriver=true;
 
-    qDebug()<<"Target_ball_rel:("<<target_ball_rel.x<<","<<target_ball_rel.y<<")\n";
+    //qDebug()<<"Target_ball_rel:("<<target_ball_rel.x<<","<<target_ball_rel.y<<")\n";
     if (target_ball_rel.x<20.0 ||
             target_ball_rel.x>250.0 ||
             fabs(target_ball_rel.y)>90.0)

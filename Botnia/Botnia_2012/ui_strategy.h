@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Tue Feb 4 14:25:32 2014
+** Created: Tue Feb 4 20:40:21 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -164,10 +164,10 @@ public:
     QRadioButton *clear_button;
     QRadioButton *steal_button;
     QRadioButton *success_button;
-    QRadioButton *charge_ball_button;
     QRadioButton *complete_button;
     QRadioButton *dribble_to_position_button;
     QRadioButton *stop_button_2;
+    QRadioButton *charge_ball_button;
     QWidget *test2;
     QWidget *verticalLayoutWidget_26;
     QVBoxLayout *strategy_shoot_layout_4;
@@ -983,11 +983,6 @@ public:
 
         strategy_selection_layout_7->addWidget(success_button, 4, 0, 1, 1);
 
-        charge_ball_button = new QRadioButton(verticalLayoutWidget_25);
-        charge_ball_button->setObjectName(QString::fromUtf8("charge_ball_button"));
-
-        strategy_selection_layout_7->addWidget(charge_ball_button, 3, 1, 1, 1);
-
         complete_button = new QRadioButton(verticalLayoutWidget_25);
         complete_button->setObjectName(QString::fromUtf8("complete_button"));
 
@@ -1002,6 +997,11 @@ public:
         stop_button_2->setObjectName(QString::fromUtf8("stop_button_2"));
 
         strategy_selection_layout_7->addWidget(stop_button_2, 5, 1, 1, 1);
+
+        charge_ball_button = new QRadioButton(verticalLayoutWidget_25);
+        charge_ball_button->setObjectName(QString::fromUtf8("charge_ball_button"));
+
+        strategy_selection_layout_7->addWidget(charge_ball_button, 3, 1, 1, 1);
 
 
         strategy_shoot_layout_3->addWidget(strategy_shoot_box_3);
@@ -1395,7 +1395,7 @@ public:
         retranslateUi(MainWindow);
 
         control_panel->setCurrentIndex(2);
-        strategy_type_tab->setCurrentIndex(0);
+        strategy_type_tab->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1484,33 +1484,33 @@ public:
         dd_2->setText(QString());
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(strategy_shoot_tab), QApplication::translate("MainWindow", "Shoot", 0, QApplication::UnicodeUTF8));
         strategy_shoot_box_3->setTitle(QString());
-        shoot_button->setText(QApplication::translate("MainWindow", "shoot", 0, QApplication::UnicodeUTF8));
-        clear_button->setText(QApplication::translate("MainWindow", "clear", 0, QApplication::UnicodeUTF8));
-        steal_button->setText(QApplication::translate("MainWindow", "steal", 0, QApplication::UnicodeUTF8));
-        success_button->setText(QApplication::translate("MainWindow", "success", 0, QApplication::UnicodeUTF8));
-        charge_ball_button->setText(QApplication::translate("MainWindow", "charge_ball", 0, QApplication::UnicodeUTF8));
-        complete_button->setText(QApplication::translate("MainWindow", "complete", 0, QApplication::UnicodeUTF8));
-        dribble_to_position_button->setText(QApplication::translate("MainWindow", "dribble_to_position", 0, QApplication::UnicodeUTF8));
-        stop_button_2->setText(QApplication::translate("MainWindow", "stop", 0, QApplication::UnicodeUTF8));
+        shoot_button->setText(QString());
+        clear_button->setText(QString());
+        steal_button->setText(QString());
+        success_button->setText(QString());
+        complete_button->setText(QString());
+        dribble_to_position_button->setText(QString());
+        stop_button_2->setText(QString());
+        charge_ball_button->setText(QString());
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(test1), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
         strategy_shoot_box_4->setTitle(QString());
-        block_button->setText(QApplication::translate("MainWindow", "block", 0, QApplication::UnicodeUTF8));
-        mark_button->setText(QApplication::translate("MainWindow", "mark", 0, QApplication::UnicodeUTF8));
-        goalie_button->setText(QApplication::translate("MainWindow", "goalie", 0, QApplication::UnicodeUTF8));
-        velocity_button->setText(QApplication::translate("MainWindow", "velocity", 0, QApplication::UnicodeUTF8));
-        defend_point_button->setText(QApplication::translate("MainWindow", "defend_point", 0, QApplication::UnicodeUTF8));
-        defend_lane_button->setText(QApplication::translate("MainWindow", "defend_lane", 0, QApplication::UnicodeUTF8));
-        defend_line_button->setText(QApplication::translate("MainWindow", "defend_line", 0, QApplication::UnicodeUTF8));
-        pass_button->setText(QApplication::translate("MainWindow", "pass", 0, QApplication::UnicodeUTF8));
+        block_button->setText(QString());
+        mark_button->setText(QString());
+        goalie_button->setText(QString());
+        velocity_button->setText(QString());
+        defend_point_button->setText(QString());
+        defend_lane_button->setText(QString());
+        defend_line_button->setText(QString());
+        pass_button->setText(QString());
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(test2), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
         strategy_shoot_box_5->setTitle(QString());
-        receive_deflection_button->setText(QApplication::translate("MainWindow", "receive_deflection", 0, QApplication::UnicodeUTF8));
-        dribble_to_region_button->setText(QApplication::translate("MainWindow", "dribble_to_region", 0, QApplication::UnicodeUTF8));
-        spin_to_region_button->setText(QApplication::translate("MainWindow", "spin_to_region", 0, QApplication::UnicodeUTF8));
-        dribble_to_shoot_button->setText(QApplication::translate("MainWindow", "dribble_to_shoot", 0, QApplication::UnicodeUTF8));
-        active_def_button->setText(QApplication::translate("MainWindow", "active_def", 0, QApplication::UnicodeUTF8));
-        receive_pass_button->setText(QApplication::translate("MainWindow", "receive_pass", 0, QApplication::UnicodeUTF8));
-        position_button->setText(QApplication::translate("MainWindow", "position", 0, QApplication::UnicodeUTF8));
+        receive_deflection_button->setText(QString());
+        dribble_to_region_button->setText(QString());
+        spin_to_region_button->setText(QString());
+        dribble_to_shoot_button->setText(QString());
+        active_def_button->setText(QString());
+        receive_pass_button->setText(QString());
+        position_button->setText(QString());
         pass_and_receive_button->setText(QApplication::translate("MainWindow", "pass_and_receive", 0, QApplication::UnicodeUTF8));
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(test3), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
         groupBox_11->setTitle(QApplication::translate("MainWindow", "GroupBox", 0, QApplication::UnicodeUTF8));

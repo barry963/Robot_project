@@ -77,7 +77,7 @@ public:
 	TPositionForKick();
 	virtual const char *name() const
 	{
-		return "KickLoc";
+        return "position_for_kick";
 	}
 
 	static Tactic *parser(const char *param_string)

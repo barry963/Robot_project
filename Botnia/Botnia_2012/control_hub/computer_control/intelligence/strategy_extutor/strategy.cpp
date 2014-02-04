@@ -118,7 +118,7 @@ void PlayExecutor::updateMaps(World &world)
         //设定己方守门员
         world.trole_goalie = id_goalie;
     }
-        //设定己方守门员
+     //get active tactics
     for (int i=0; i<MAX_PLAY_ROLES; i++)
     {
         if (tactics[i] && tactics[i]->active)
@@ -127,25 +127,26 @@ void PlayExecutor::updateMaps(World &world)
             break;
         }
     }
-    //�����������ͼ
+    //establish our tactic place
     for (int i=0; i<MAX_PLAY_ROLES; i++)
     {
         teammate_map[i] = assign[i];
     }
-    //���ݽű�Ҫ�󣬽���Է�����ͼ
+    //establish their tactic place
     play->updateOpponentMap(world, &opponent_map);
 }
 
-//�̶���ɫָ��
+//fixed role assignment
 void PlayExecutor::fixedAssignment(World &world)
 {
     assign[play->getFixedRoleID(0)] = (world.sideBall() > 0 ? 0 : 1);
     assign[play->getFixedRoleID(1)] = (world.sideBall() > 0 ? 1 : 0);
     assign[play->getFixedRoleID(2)] = 2;
     assign[play->getFixedRoleID(3)] = 3;
+
 }
 
-//��ʼ��������������;
+//initial role assignment
 void PlayExecutor::initialAssignment(World &world)
 {
     bool candidates[MAX_TEAM_ROBOTS];
@@ -215,12 +216,12 @@ void PlayExecutor::checkForOpportunity(World &world)
 {
     if (world.situation == World::Offense)
     {
-        //����
+        //offense
         tactic_opportunity = tactic_opportunity_off;
     }
     else if (world.situation == World::Defense)
     {
-        //����
+        //denfense
         tactic_opportunity = tactic_opportunity_def;
     }
     else
@@ -231,7 +232,7 @@ void PlayExecutor::checkForOpportunity(World &world)
     {
         return;
     }
-    //����������
+    //if ball out of border
     if (world.ballOutOfPlay())
     {
         return;
@@ -240,9 +241,9 @@ void PlayExecutor::checkForOpportunity(World &world)
     makeCandidates(world, candidates);
     double best_t = 0;
     int best_i = -1;
-    //�Ի����˽���ʱ�����
-    //�����ǽ�����������������ʱ�����
-    //�����Ƿ��أ�����TClear����ʱ�����
+    //time evaluation for robot
+    //offense: time evaluation after shoot finish
+    //defense: TClear time evaluation
     for (int i=0; i<MAX_TEAM_ROBOTS; i++)
     {
         if (!candidates[i])
@@ -280,8 +281,9 @@ void PlayExecutor::checkBusy(World &world)
     // Check for no longer busy tactics.
     for (int i=0; i<MAX_TEAM_ROBOTS; i++)
     {
-        //�����Ƿ���ս������æ�������Ѿ�æ�꣬ɾ��æս��
-        //æս���������ڽ��з����Ļ����ˣ��������ڽ���������ز����������ɫת������
+        //check whether there is tactics is busy, if it finishes, then delete it
+        //Busy tactics is sued for defense robot,
+        //if blocking is happening, never allow any role reassignment
         if (busy_tactics[i] && busy_tactics[i]->isDone(world, i) != Busy)
         {
             if (tactics[i] != busy_tactics[i])
@@ -296,7 +298,7 @@ void PlayExecutor::checkBusy(World &world)
     {
         if (!busy_tactics[i] && assign[i] >= 0 && tactics[i] && tactics[i]->isDone(world, i) == Busy)
         {
-            //�����趨æս��
+            //Set busy tactics
             busy_tactics[i] = tactics[i];
         }
     }
@@ -315,7 +317,7 @@ Status PlayExecutor::nextInSequence(World &world)
         Tactic *t = r[sequence_index];
         if (t)
         {
-            //�����л�����һ����ս��ر�æ��־
+           //if changes to the next layer tactics, then close busy flag
             if (tactics[i] && busy_tactics[i] != tactics[i])
             {
                 delete tactics[i];
@@ -329,14 +331,15 @@ Status PlayExecutor::nextInSequence(World &world)
     return InProgress;
 }
 
-//�����������ƽ�����ԣ���ÿ�������˷���ָ�����񣬲�������Ӧ״̬��־λ
+//establish tactics according to the field situation, assign
+//tasks to every robot and set corresponding state flag
 void PlayExecutor::setTactics(World &world, Tactic *t[],
                               bool set_everyone,
                               bool set_anyone,
                               bool set_goalie)
 {
     //printf("setTactic----------------------------------------------\r\n");
-    //assign �����趨�����˵Ľ�ɫ���ţ����ڶ�̬��ɫ
+    //assign set robot role number for dynamic role
     if (set_everyone || set_anyone)
     {
         for (int i=0; i<MAX_PLAY_ROLES; i++)
@@ -353,7 +356,7 @@ void PlayExecutor::setTactics(World &world, Tactic *t[],
                 }
             }
 #if 1
-            //��æ����صĻ����˽�ֹ��ɫ�л�
+            //Forbid role reassign for busy block robot
             if (busy_tactics[assign[i]])
             {
                 //fprintf(stderr, "BUSY: %d, %s\n", assign[i], busy_tactics[assign[i]]->name());
@@ -361,14 +364,14 @@ void PlayExecutor::setTactics(World &world, Tactic *t[],
             }
             else
             {
-                //���ɽ�ɫ�л�
+                //Finish role reassign
                 //fprintf(stderr, "Tactic: %d, %s\n", assign[i], tactics[i]->name());
                 t[assign[i]] = tactics[i];
             }
 #else
             t[assign[i]] = tactics[i];
 #endif
-            //�����Ѿ��趨����Ա���Ͳ�Ҫ���趨����Ա��
+
             if (assign[i] == id_goalie)
             {
                 set_goalie = false;
@@ -379,12 +382,12 @@ void PlayExecutor::setTactics(World &world, Tactic *t[],
             }
         }
     }
-    //�趨����Ա�������Ų���
+    //Set goalie defense tactics
     if (set_goalie && id_goalie >= 0)
     {
         t[id_goalie] = tactic_goalie;
     }
-    //���ڲⶨ�߱����û������Ż��߷��صĻ����ˣ���ʱ�������߱�������ɫ
+    //Evaluate robot with best shoot or defense opportunity
     //PLAYEXEC_OPPORTUNISM =    1 # boolean
     if (IVAR(PLAYEXEC_OPPORTUNISM) && tactic_opportunity && id_opportunity >= 0)
     {
@@ -395,20 +398,21 @@ void PlayExecutor::setTactics(World &world, Tactic *t[],
 
 void PlayExecutor::checkStatus(World &world)
 {
-    //Ĭ��ÿ��play����ά��25��
-    //��ʱ����
+    //Default that every play lasts most 25 seconds
+    //Over time control
     if (world.game_state == COMM_START &&
             play->timeout() >= 0.0  &&
             world.time - start_timestamp > play->timeout())
     {
-        //����play��ʱ
+        //if play over time
         status = completed ? Completed : Aborted;
         return;
     }
     //
     for (int i=0; i<MAX_PLAY_ROLES; i++)
     {
-        //���ݻtactic�Ƿ�������ж�play�Ƿ�����
+        //evluate whether the tactic is finished to judge
+        //whether the play is finished
         if (tactics[i] && tactics[i]->active)
         {
             Status s = tactics[i]->isDone(world, assign[i]);
@@ -424,7 +428,7 @@ void PlayExecutor::checkStatus(World &world)
             }
             else if (s == Succeeded || s == Completed)
             {
-                //����һ��tactic���ɣ���ʼ��һ��tactic
+                //if one tactics finished, then start next tactic
                 status = nextInSequence(world);
                 if (status == InProgress)
                 {
@@ -445,52 +449,54 @@ void PlayExecutor::checkStatus(World &world)
     }
 }
 
-//���в���
+//run tactic
 void PlayExecutor::run(World &world, Tactic *t[])
 {
     if (play)
     {
         // Need a World to set the start timestamp, so we set it if not set.
-        //����û���趨��ʼʱ�䣬�趨һ��
+
         if (start_timestamp < 0.0)
         {
             start_timestamp = world.time;
         }
-        //����play�����˶೤ʱ��
+        //calculate how much time play takes
         else if ((strchr("s ", world.game_state) != NULL) && last_run_timestamp != world.time)
         {
             runtime += (world.time - last_run_timestamp);
         }
         // Robot assignment
-        //�����˽�ɫ����
+
         if (sequence_index < 0)
-        {//��play��һ�ν���
-            //���tactics�б�
+        {//new play first enter
+            //establish tactics list
             nextInSequence(world);
-            //����ҷ���ɫ��������
+            //establish our role assignment
             //PLAYEXEC_FIXED_ROLES =    0 # boolean
+            //lu_test change from 0 to 1 for test
             if (IVAR(PLAYEXEC_FIXED_ROLES))
             {
-                fixedAssignment(world);//�̶���ɫָ��
+                fixedAssignment(world);//fixed role
             }
             else
             {
-                initialAssignment(world);	//��̬��ɫָ��
+                initialAssignment(world);	//dynamic role
             }
+
             if (world.n_teammates == 1)
             {
-                id_goalie = -1;	//��������ֻ��һ�������ˣ���������Ա
+                id_goalie = -1;	//if there is only one robot, then no goalie
             }
             else
             {
-                //���򽫱��������Ļ������趨Ϊ����Ա
-                id_goalie = world.n_teammates - 1;	//Ĭ��ȡ����������Ϊ����Ա
+                //set the robot with largest number as goalie
+                id_goalie = world.n_teammates - 1;
             }
         }
         //PLAYEXEC_ROLE_SWITCHING = 1 # boolean
         else if (IVAR(PLAYEXEC_ROLE_SWITCHING))
         {
-            //������ɫ�л�
+            //check role assignment
             checkAssignment(world);
         }
         updateMaps(world);
@@ -508,12 +514,12 @@ void PlayExecutor::run(World &world, Tactic *t[])
     // Goalie always runs.
     //
     //COMM_START=s COMM_KICKOFF_YELLOW=k  COMM_PENALTY_YELLOW=p
-    //�����ǿ�ʼ�����߿��򣬻��߷����������趨ÿһ�������˵Ĺ��ս��
+    //if start, start ball or penalty ball, reassign every robot tactics
     bool set_everyone = (strchr("skKpP ", world.game_state) != NULL);
-    //�������ҷ�������ֻ�趨һ�������˵�ս��
+    //set only one robot tactic if it is our turn to start the abll
     bool set_anyone = (world.restart() &&
                        world.restartWhoseKick() == World::OurBall);
-    //������ĳһ�����򣬲����������趨����Ա����
+    //if start ball, not scrimmage, then set the tactic of goalie
     bool set_goalie = !world.restartNeutral();
     //
     if (!play)
@@ -524,7 +530,7 @@ void PlayExecutor::run(World &world, Tactic *t[])
     // Check status
     if (play)
     {
-        //���鱾play�Ƿ��Ѿ�����
+        //check play is finished
         checkStatus(world);
     }
     // Check busy
@@ -549,14 +555,16 @@ bool PlayBook::load(const char *filename)
         Play *p;
         int n = 0;
         char *name;
-        if (!fgets(line, 256, f)) continue;
-        if (line[0] == '#' || (uint) Parse::skipWS(line) >= strlen(line)) continue;
+        if (!fgets(line, 256, f))
+            continue;
+        if (line[0] == '#' || (uint) Parse::skipWS(line) >= strlen(line))
+            continue;
         n += Parse::pDouble(line + n, weight);
         n += Parse::pWord(line + n, &name);
         filepath=application_path+"/config/plays/";
         filepath+=name;
         filepath+=".ply";
-                p = new PlayAscii(filepath.toStdString().c_str(), error);
+        p = new PlayAscii(filepath.toStdString().c_str(), error);
         if (!error && p && weight > 0.0)
         {
             add(p, name, weight);
@@ -588,12 +596,12 @@ bool PlayBook::save(const char *filename)
     return true;
 }
 
-//ÿ��play����Ȩ�أ�������������play������ѡ��ѡ��
+//Every play has weight, randomly choose alternative play
 Play *PlayBook::select(World &w)
 {
     bool* applicable=new bool[plays.size()];
     double sum = 0.0;
-    //��������������playȨ��֮��
+    //calculate the sum of play weight
     for (uint i=0; i<plays.size(); i++)
     {
         applicable[i] = plays[i]->isApplicable(w);
@@ -607,14 +615,14 @@ Play *PlayBook::select(World &w)
         delete applicable;
         return NULL;
     }
-    //��ӡÿ����������play������
+    //print alternative play name
     gui_debug_printf(-1, GDBG_STRATEGY, "SELECT PLAY\n");
     for (uint i=0; i<plays.size(); i++)
     {
         if (applicable[i])
         {
                     // Bin: TODO: problematic code,needs converting!
-                        vision_info.sPlay = QString::fromUtf8(plays[i]->name);
+            vision_info.sPlay = QString::fromUtf8(plays[i]->name);
                     //vision_info.sPlay = QString("test");
 
             //gui_debug_printf(-1, GDBG_STRATEGY,
@@ -622,9 +630,9 @@ Play *PlayBook::select(World &w)
             results[i].gui_print();
         }
     }
-    //����������
+    //Generate random number
     double r = sum * (rand() / ((double) RAND_MAX + 1));
-    //����������ѡ��
+    //choose based on random number
     for (uint i=0; i<plays.size(); i++)
     {
         if (!applicable[i]) continue;
@@ -672,7 +680,7 @@ void Strategy::LoadConfig()
     doing = NONE;
 }
 
-//playbook
+//automatically load playbook
 void Strategy::init(const char *playbook_file)
 {
     LoadConfig();
@@ -698,7 +706,7 @@ bool Strategy::parse(char *string)
     fprintf(stderr, "Strategy:parse with %s\n", string);
 #endif
     int n = 0;
-    //
+    //calculate the length of next word
     for (str = string; (*str != 0) && (*str != ' '); str++, n++)
         ;
     if (strncmp(string, "warmup", n) == 0)
@@ -733,10 +741,10 @@ void Strategy::stop(World &world, Tactic *tactics[])
     }
 }
 
-
+//change play
 void Strategy::playEnded(World &world, Status status)
 {
-
+    //if there is old play
     if (current_play)
     {
         //RESPONSIBLE_MIN_RUNTIME = 2.0 # s
@@ -759,7 +767,7 @@ void Strategy::playEnded(World &world, Status status)
                              executor.runningTime(world));
         }
     }
-
+    //choose new play
     current_play = playbook.select(world);
     if (current_play)
     {
@@ -816,7 +824,7 @@ void Strategy::run(World &world, Tactic *tactics[])
     }
     //'S'=Stop
     // Check for stopped game.
-
+    //Every time when changes to stop state, save current playbook
     if (world.game_state == 'S')
     {
         qDebug()<<"game state=s";
@@ -834,7 +842,7 @@ void Strategy::run(World &world, Tactic *tactics[])
     }
     //'s'=Force Start ' '=normal Start
     // If the game state changes to a special state, reselect the play.
-
+    //if changes to new special state, then choose new play object again
     if ((strchr("s ", world.game_state) == NULL) && world.game_state != last_game_state)
     {
         qDebug()<<"playended1";
@@ -848,9 +856,9 @@ void Strategy::run(World &world, Tactic *tactics[])
         playEnded(world, InProgress);
     }
     // Run the play executor.
-
+    //
     stop(world, tactics);
-
+    //calcuate tactics assignment
     executor.run(world, tactics);
 }
 
@@ -864,11 +872,11 @@ void Strategy::credit(World &world, Play *play, Status status)
     }
 }
 
-
+//check special state and make new judegement
 void Strategy::think(World &world)
 {
     // Check for special conditions, such as a goal.
-
+    //Ckeck shoot and scoring situation
     if (world.goal_scored)
     {
         Play *play = responsiblePlay(world);

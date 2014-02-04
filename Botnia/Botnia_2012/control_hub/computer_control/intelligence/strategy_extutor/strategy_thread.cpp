@@ -336,7 +336,7 @@ void StrategyThread::run()
             strategy.run(world, tactics);
             timer.MarkEndTime();
             DoTactics();
-            RadioNetCmdSend();
+            RadioNetCmdSend(); //lu_test not neccessary here
 
             // Strategy may need some more intensive thinking time.  This
             // needs to be called every frame since otherwise things like
@@ -432,7 +432,9 @@ void StrategyThread::DoTactics()
         case STRATEGY_RUN:
             if (tactics[i])
             {
+                qDebug()<<"Tactics# "<<i<<" :"<<tactics[i]->name();
                 tactics[i]->run(world, i);
+
             }
             break;
         }

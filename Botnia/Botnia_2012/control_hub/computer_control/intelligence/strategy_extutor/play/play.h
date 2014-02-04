@@ -61,7 +61,7 @@ public:
 //
 // Play
 //
-//жϷֵҪϢΪһ
+//analyze the info of opponents, abstract class
 class Play
 {
 protected:
@@ -80,8 +80,10 @@ public:
 
 	virtual int &getFixedRoleID(int robot)
 	{
-		static int irobot=robot;
-		return irobot;
+        //static int irobot=robot;
+        int irobot = robot;//lu_test, it should not be static value
+                           //as this will result all irobot
+        return irobot;     //to be the same, 0
 	}
 
 	virtual bool isApplicable(World &w)
@@ -109,11 +111,11 @@ typedef bool (*WorldPredicate)(World &world, double argument);
 class WorldPredicateConjunct
 {
 private:
-	//
+    //action
 	vector<WorldPredicate> predicate;
 
 	vector<bool> predicate_negated;
-	//
+    //action argument
 	vector<double> predicate_argument;
 
 public:
@@ -164,8 +166,8 @@ private:
 
 	vector<int> fixed_roles;
 
-	//õĶֽɫֲ
-	//Ҫ˽ĶԷ˽ɫ
+    //calculate to get the assignment of opponents
+    //store the opponent role
 	vector<OpponentRole> opponent_roles;
 
 	double play_timeout;
@@ -177,33 +179,33 @@ private:
 	// Predicates	ν
 	//
 
-	//
+    //offense
 	static bool pred_offense(World &w, double a)
 	{
 		return w.situation == World::Offense;
 	}
-	//
+    //defense
 	static bool pred_defense(World &w, double a)
 	{
 		return w.situation == World::Defense;
 	}
-	//ֿ
+    //ֿopponent control
 	static bool pred_their_ball(World &w, double a)
 	{
 		return w.possession == World::TheirBall;
 	}
-	//
+    //out control
 	static bool pred_our_ball(World &w, double a)
 	{
 		return w.possession == World::OurBall;
 	}
-	//˫
+    //no side control
 	static bool pred_loose_ball(World &w, double a)
 	{
 		return w.possession == World::LooseBall;
 	}
 
-	//ڶԷ볡
+    //our control
 	static bool pred_their_side(World &w, double a)
 	{
 		return w.fieldPosition == World::TheirSide;

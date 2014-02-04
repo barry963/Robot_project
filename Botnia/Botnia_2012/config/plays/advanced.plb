@@ -1,14 +1,15 @@
 # Offensive Plays
-1	o2_shoot1
-1	o2_shoot2
-# 1	o2_corner_spin1
-1	o2_corner_dribble1
-1	o2_corner_dribble2
-1	o2_screen1
+#1	o2_shoot1
+#1	o2_shoot2
+#1	o2_corner_spin1
+#1	o2_corner_dribble1
+#1	o2_corner_dribble2
+#1	o2_screen1
 # 0.25	o3_mark1
 # 1	o3_screen1
 # 0.25	o4_mark1
 # 0.25	o2_deflect1
+1   o2_test
 
 # Defensive Plays
 1	d_cross1

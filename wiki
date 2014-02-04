@@ -642,3 +642,30 @@ field_global_function.cpp
 Strategy strategy;//Play
 
 Modify the code so now it can run the auto strategy!
+
+Bug 15:
+After executing strategy for a while, it will appears:
+corrupted double-linked list
+malloc(): smallbin double linked list corrupted:
+
+
+strategy.cfg
+change from
+PLAYEXEC_ROLE_SWITCHING = 1 # boolean
+PLAYEXEC_FIXED_ROLES =    0 # boolean
+
+to
+
+PLAYEXEC_ROLE_SWITCHING = 0 # boolean
+PLAYEXEC_FIXED_ROLES =    1 # boolean
+
+For test
+
+advanced.plb
+add 
+1   o2_test
+
+Backup in archive
+
+Question:
+The syntax of .ply file, espcially APPLICABLE and DONE

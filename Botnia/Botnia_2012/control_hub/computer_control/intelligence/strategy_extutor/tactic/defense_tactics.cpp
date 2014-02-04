@@ -399,7 +399,7 @@ Tactic *TMark::parser(const char *param_string)
 	if (param_string[0] != '\n')
 	{
 		param_string += Parse::pWord(param_string, &word);
-		if (strcmp(word, "ball") == 0)
+        if (strcmp(word, "from_ball") == 0)//lu_test modify according to the .ply
 		{
 			type = FromBall;
 		}

@@ -1,0 +1,17 @@
+PLAY TEST
+
+APPLICABLE offense
+
+
+TIMEOUT 100
+
+ROLE 1
+	pass 0
+	none
+ROLE 2
+	receive_pass
+	none
+ROLE 3
+	none
+ROLE 4
+	none

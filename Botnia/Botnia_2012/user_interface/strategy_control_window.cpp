@@ -544,110 +544,114 @@ void MainWindow::select_shoot_strategy_type()
 
 void MainWindow::select_page2_strategy_type()
 {
-    if(ui->block_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "block";
-    }
-    else if(ui->goalie_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "goalie";
-    }
-    else if(ui->mark_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "mark";
-    }
-    else if(ui->defend_point_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "defend_point";
-    }
-    else if(ui->velocity_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "velocity";
-    }
-    else if(ui->defend_lane_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "defend_lane";
-    }
-    else if(ui->defend_line_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "defend_line";
-    }
-    else if(ui->pass_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "pass";
-    }
+        //not neccessary lu_test
+//    if(ui->block_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "block";
+//    }
+//    else if(ui->goalie_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "goalie";
+//    }
+//    else if(ui->mark_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "mark";
+//    }
+//    else if(ui->defend_point_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "defend_point";
+//    }
+//    else if(ui->velocity_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "velocity";
+//    }
+//    else if(ui->defend_lane_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "defend_lane";
+//    }
+//    else if(ui->defend_line_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "defend_line";
+//    }
+//    else if(ui->pass_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "pass";
+//    }
 }
 
 void MainWindow::select_page1_strategy_type()
 {
-    if(ui->shoot_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "shoot";
-    }
-    else if(ui->steal_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "steal";
-    }
-    else if(ui->clear_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "clear";
-    }
-    else if(ui->charge_ball_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "charge_ball";
-    }
-    else if(ui->success_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "success";
-    }
-    else if(ui->complete_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "complete";
-    }
-    else if(ui->dribble_to_position_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "dribble_to_position";
-    }
-    else if(ui->stop_button_2->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "stop";
-    }
+        //not neccessary lu_test
+//    if(ui->shoot_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "shoot";
+//    }
+//    else if(ui->steal_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "steal";
+//    }
+//    else if(ui->clear_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "clear";
+//    }
+//    else if(ui->charge_ball_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "charge_ball";
+//    }
+//    else if(ui->success_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "success";
+//    }
+//    else if(ui->complete_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "complete";
+//    }
+//    else if(ui->dribble_to_position_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "dribble_to_position";
+//    }
+//    else if(ui->stop_button_2->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "stop";
+//    }
 }
 
 void MainWindow::select_page3_strategy_type()
 {
-    if(ui->dribble_to_shoot_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "dribble_to_shoot";
-    }
-    else if(ui->active_def_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "active_def";
-    }
-    else if(ui->dribble_to_region_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "dribble_to_region";
-    }
-    else if(ui->spin_to_region_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "spin_to_region";
-    }
-    else if(ui->receive_pass_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "receive_pass";
-    }
-    else if(ui->receive_deflection_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "receive_deflection";
-    }
-    else if(ui->position_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "position";
-    }
-    else if(ui->pass_and_receive_button->isChecked())
-    {
-        StatusOnGUI.tactic_name_ = "pass_and_receive";
-    }
+    //not neccessary lu_test
+//    if(ui->dribble_to_shoot_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "dribble_to_shoot";
+//    }
+//    else if(ui->active_def_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "active_def";
+//    }
+//    else if(ui->dribble_to_region_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "dribble_to_region";
+//    }
+//    else if(ui->spin_to_region_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "spin_to_region";
+//    }
+//    else if(ui->receive_pass_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "receive_pass";
+//    }
+//    else if(ui->receive_deflection_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "receive_deflection";
+//    }
+//    else if(ui->position_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "position";
+//    }
+//    else if(ui->pass_and_receive_button->isChecked())
+//    {
+//        StatusOnGUI.tactic_name_ = "pass_and_receive";
+//    }
+
 
 //    tacitic_name_item->setText(qstring_tactic_name);
 //    ui->generalTableWidget->setItem(1,0,tacitic_name_item);

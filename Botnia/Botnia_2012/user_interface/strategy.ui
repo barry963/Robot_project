@@ -892,7 +892,7 @@ QHeaderView::section {
            </size>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <property name="movable">
            <bool>true</bool>
@@ -1301,7 +1301,7 @@ QHeaderView::section {
                  <item row="0" column="0">
                   <widget class="QRadioButton" name="shoot_button">
                    <property name="text">
-                    <string>shoot</string>
+                    <string/>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -1311,49 +1311,49 @@ QHeaderView::section {
                  <item row="3" column="0">
                   <widget class="QRadioButton" name="clear_button">
                    <property name="text">
-                    <string>clear</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
                   <widget class="QRadioButton" name="steal_button">
                    <property name="text">
-                    <string>steal</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="0">
                   <widget class="QRadioButton" name="success_button">
                    <property name="text">
-                    <string>success</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QRadioButton" name="charge_ball_button">
-                   <property name="text">
-                    <string>charge_ball</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="1">
                   <widget class="QRadioButton" name="complete_button">
                    <property name="text">
-                    <string>complete</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="5" column="0">
                   <widget class="QRadioButton" name="dribble_to_position_button">
                    <property name="text">
-                    <string>dribble_to_position</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="5" column="1">
                   <widget class="QRadioButton" name="stop_button_2">
                    <property name="text">
-                    <string>stop</string>
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="charge_ball_button">
+                   <property name="text">
+                    <string/>
                    </property>
                   </widget>
                  </item>
@@ -1423,7 +1423,7 @@ QHeaderView::section {
                  <item row="0" column="0">
                   <widget class="QRadioButton" name="block_button">
                    <property name="text">
-                    <string>block</string>
+                    <string/>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -1433,49 +1433,49 @@ QHeaderView::section {
                  <item row="3" column="0">
                   <widget class="QRadioButton" name="mark_button">
                    <property name="text">
-                    <string>mark</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="0" column="1">
                   <widget class="QRadioButton" name="goalie_button">
                    <property name="text">
-                    <string>goalie</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="0">
                   <widget class="QRadioButton" name="velocity_button">
                    <property name="text">
-                    <string>velocity</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="1">
                   <widget class="QRadioButton" name="defend_point_button">
                    <property name="text">
-                    <string>defend_point</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="1">
                   <widget class="QRadioButton" name="defend_lane_button">
                    <property name="text">
-                    <string>defend_lane</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="5" column="0">
                   <widget class="QRadioButton" name="defend_line_button">
                    <property name="text">
-                    <string>defend_line</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="5" column="1">
                   <widget class="QRadioButton" name="pass_button">
                    <property name="text">
-                    <string>pass</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
@@ -1545,28 +1545,28 @@ QHeaderView::section {
                  <item row="4" column="1">
                   <widget class="QRadioButton" name="receive_deflection_button">
                    <property name="text">
-                    <string>receive_deflection</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="0">
                   <widget class="QRadioButton" name="dribble_to_region_button">
                    <property name="text">
-                    <string>dribble_to_region</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="3" column="1">
                   <widget class="QRadioButton" name="spin_to_region_button">
                    <property name="text">
-                    <string>spin_to_region</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="0" column="0">
                   <widget class="QRadioButton" name="dribble_to_shoot_button">
                    <property name="text">
-                    <string>dribble_to_shoot</string>
+                    <string/>
                    </property>
                    <property name="checked">
                     <bool>true</bool>
@@ -1576,21 +1576,21 @@ QHeaderView::section {
                  <item row="0" column="1">
                   <widget class="QRadioButton" name="active_def_button">
                    <property name="text">
-                    <string>active_def</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="4" column="0">
                   <widget class="QRadioButton" name="receive_pass_button">
                    <property name="text">
-                    <string>receive_pass</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item row="5" column="0">
                   <widget class="QRadioButton" name="position_button">
                    <property name="text">
-                    <string>position</string>
+                    <string/>
                    </property>
                   </widget>
                  </item>

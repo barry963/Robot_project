@@ -438,14 +438,18 @@ Tactic *TPass::parser(const char *param_string)
 void TPass::command(World &world, int me, Robot::RobotCommand &command,
                     bool debug)
 {
+    if(target==me)
+    {
+        qDebug()<<"Donot pass to itself!";
+    }
     qDebug()<<"TPass command: "<<target;
     MyVector2d p[2], targetp, ball;
     double angle_tolerance;
-    targetp = world.GetRobotPositionByID(1);
+    targetp = world.GetRobotPositionByID(target);
 
 //    targetp = world.GetRobotPositionByID(getTeammateId(target)); //lu_test arbitratry getTeammateId
 
-//    qDebug()<<"pass target: "<<world.GetRobotPositionByID(1).x<<world.GetRobotPositionByID(1).y;
+    qDebug()<<"Passtarget: "<<world.GetRobotPositionByID(target).x<<world.GetRobotPositionByID(target).y;
 
 //    qDebug()<<"me id: "<<me<<"location"<<world.GetRobotPositionByID(me).x<<world.GetRobotPositionByID(me).y;
 //    qDebug()<<"target id: "<<target<<"location"<<world.GetRobotPositionByID(target).x<<world.GetRobotPositionByID(target).y;
