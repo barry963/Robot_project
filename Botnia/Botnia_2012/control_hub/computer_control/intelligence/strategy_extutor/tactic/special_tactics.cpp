@@ -281,7 +281,7 @@ TPassandReceive::TPassandReceive(void)
 {
 //    qDebug()<<"Constructor time "<<constructor_time<<"\n";
 //    constructor_time++;
-    PassRobot = new TPass(PasserRobot);
+    PassRobot = new TPass(1);
     ReceiveRobot = new TReceivePass();
     PositionRobot = new SPosition(BCoordinate(0,0),BCoordinate(60,60));
 }
@@ -311,7 +311,7 @@ void TPassandReceive::LoadConfig()
 
 void TPassandReceive::command(World &world, int me, Robot::RobotCommand &command, bool debug)
 {
-    if( me == PasserRobot)
+    if( me == 0)
     {
         //constructor_time--;
         printf("TPassandReceive pass: %d\n",PassRobot->isDone(world,me));
@@ -325,7 +325,7 @@ void TPassandReceive::command(World &world, int me, Robot::RobotCommand &command
            PassRobot->command(world,me,command,debug);
     }
     else
-        if( me == 1-PasserRobot)
+        if( me == 1)
         {
             printf("TPassandReceive receive: %d\n",ReceiveRobot->isDone(world,me));
             ReceiveRobot->command(world,me,command,debug);

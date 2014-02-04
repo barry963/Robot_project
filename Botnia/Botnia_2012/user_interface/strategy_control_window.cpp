@@ -893,6 +893,7 @@ void MainWindow::run_mode_selected(bool selected)
     if(!selected)
         return;
     StatusOnGUI.StrategyIndex =STRATEGY_RUN;
+    ui->strategy_type_tab->setDisabled(true);
 }
 
 void MainWindow::test_mode_selected(bool selected)
@@ -900,6 +901,7 @@ void MainWindow::test_mode_selected(bool selected)
     if(!selected)
         return;
     StatusOnGUI.StrategyIndex =STRATEGY_TEST;
+    ui->strategy_type_tab->setDisabled(false);
 }
 
 // menully select "start" for referee box

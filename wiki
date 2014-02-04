@@ -633,3 +633,12 @@ TODO:
 Optimize the passandreceive tactic
 Solution: Figure out the relationship between tactic and skills.
 Then implement the whole tactic in such STP architecture
+
+
+=======================================
+2014/2/3
+
+field_global_function.cpp 
+Strategy strategy;//Play
+
+Modify the code so now it can run the auto strategy!

@@ -392,18 +392,26 @@ void StrategyThread::DoTactics()
     // it seems that if the gui tactic is not defined, then it mean the tactic will not show on gui ?
     for (int i=0; i<world.n_teammates; i++)
     {
-        if (gui_tactics[i])
+        switch(InternalStatus.StrategyIndex)
         {
-            sTactics[i] = gui_tactics[i]->name();
+        case STRATEGY_TEST:
+            if (gui_tactics[i])
+            {
+                sTactics[i] = gui_tactics[i]->name();
+            }
+            break;
+        case STRATEGY_RUN:
+            if (tactics[i])
+            {
+                sTactics[i] = tactics[i]->name();
+            }
+            else
+            {
+                sTactics[i] = "";
+            }
+            break;
         }
-        else if (tactics[i])
-        {
-            sTactics[i] = tactics[i]->name();
-        }
-        else
-        {
-            sTactics[i] = "";
-        }
+
     }
     //tactics 运行.
     // excute strategy for each robot
@@ -411,23 +419,24 @@ void StrategyThread::DoTactics()
     // pay attention to the work division lu_test
     for (int i=0; i<world.n_teammates; i++)
     {
-        if (gui_tactics[i])
+        switch(InternalStatus.StrategyIndex)
         {
+        case STRATEGY_TEST:
+            if (gui_tactics[i])
+            {
             // execute tactics!!!
             //printf("gui_tactics:%s ,%d\n",gui_tactics[i]->name(),i);
-            gui_tactics[i]->run(world, i);
-/*
-            if(gui_tactics[i]->isDone(world,i)==3)//if tactics complete lu_test
-            {
-                InternalStatus.Status=RUN_STOP;
-                OldInternalStatus.Status=RUN_STOP;
+                gui_tactics[i]->run(world, i);
             }
-*/
+            break;
+        case STRATEGY_RUN:
+            if (tactics[i])
+            {
+                tactics[i]->run(world, i);
+            }
+            break;
         }
-        else if (tactics[i])
-        {
-            tactics[i]->run(world, i);
-        }
+
     }
     // Send all the radio commands.
     //client.Send();

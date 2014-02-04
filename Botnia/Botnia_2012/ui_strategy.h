@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Fri Jan 31 20:26:28 2014
+** Created: Tue Feb 4 14:25:32 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -1394,8 +1394,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        control_panel->setCurrentIndex(3);
-        strategy_type_tab->setCurrentIndex(5);
+        control_panel->setCurrentIndex(2);
+        strategy_type_tab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

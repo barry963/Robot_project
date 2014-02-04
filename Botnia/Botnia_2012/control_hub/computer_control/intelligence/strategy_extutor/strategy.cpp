@@ -1,6 +1,3 @@
-//��������״̬���������ͽ�ɫ���о������䣬ͬʱΪ������
-//׼����һ����ǰ��������
-
 // strategy.cc
 //
 // Encapsulates the strategy engine
