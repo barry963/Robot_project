@@ -698,6 +698,10 @@ void PlayExecutor::fixedAssignment(World &world)
 2014/2/6
 
 The problem in real experiment comes from the motion planning algorithm, which can also be obversed in simulator.
+
+
+OPtimize trajectory recorder complete.
+
 TODO:
 optimize motion planning algorithm
-Done
+The key is to try decrease the physical problem, by using proper motion direction.

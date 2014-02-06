@@ -60,7 +60,7 @@ void PaintCmd::AddRobot(qreal x0, qreal y0, qreal z0)
 {
     int iRobot = iRobotCount;
     double tempangle=z0*180.0/M_PI;
-    qDebug()<<tempangle;
+
     if (iRobot<MAXDEBUGROBOT)
     {
 //        if ( fabs ( tempangle ) <360 )

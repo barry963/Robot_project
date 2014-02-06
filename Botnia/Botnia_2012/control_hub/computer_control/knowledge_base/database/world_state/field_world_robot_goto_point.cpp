@@ -1023,7 +1023,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
         current_face_angel = world.teammate_direction(focused_robot_id);
         initial.pos = vdtof(current_position);
 
-        if(debugfreq++>100)
+        if(debugfreq++>50)
         {
             gui_debug_robot(initial.pos,current_face_angel);//Lu_test
             debugfreq=0;

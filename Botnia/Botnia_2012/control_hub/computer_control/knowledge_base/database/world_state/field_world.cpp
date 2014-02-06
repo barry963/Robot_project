@@ -800,6 +800,7 @@ void World::go(int id, double vx, double vy, double va,
 
     // set the command for robot
 
+
     pCmd->set_id(id);
     pCmd->set_team(color_);
     pCmd->set_vx(vx);
@@ -818,6 +819,10 @@ void World::go(int id, double vx, double vy, double va,
     pCmd->set_kick_time(kick_power);
     pCmd->set_forcekick(forcekick_on);
     pCmd->set_drib_speed(abs(dribbler_speed));
+
+    if(!((vx==0)&&(vy==0)&&(va==0)&&(kick_power==0)))
+        qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
+
 
     RadioSendMutex.unlock();
 
@@ -875,6 +880,7 @@ void World::go(int id, double vx, double vy, double va,
             }
         }
         FillComChar(ComChar);
+
         //第二个字符
         ComChar=0;
         if (dribbler_speed<0)
@@ -904,14 +910,13 @@ void World::go(int id, double vx, double vy, double va,
         va=va*10;
         FillComChar(ComChar);
         //第三个字符
+
         FillComChar((unsigned char)(vx>255?255:vx));
         FillComChar((unsigned char) (vy>255?255:vy));
         FillComChar((unsigned char)(va>255?255:va));
         FillComChar(kick_power);
         FillVerify();
         serial_sever_->SendTransparentPackage((unsigned char*)ComBuf,iComBufSize);
-//        if(!((vx==0)&&(vy==0)&&(va==0)&&(kick_power==0)))
-//            qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
         //qDebug()<<ComBuf;
 
     }
