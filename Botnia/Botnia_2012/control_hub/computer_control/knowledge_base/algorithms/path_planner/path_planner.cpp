@@ -36,7 +36,8 @@ void DrawLine(xdrawable &w,double x1,double y1,double x2,double y2);
 
 const bool plan_print = false;
 const double out_of_obs_dot = 0.40; // 0.1; // 0.7071;
-unsigned int debugfreq=0;
+
+int debugfreq1=0;//lu_test just for test
 
 //?Χ?[-1,1]
 double sdrand48()
@@ -288,13 +289,13 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
 #if 1//lu_test change 0 to 1
         if (bDebugPathPlan)
         {
-            for(int i=0;i++;)
-            //gui_debug_robot(initial.pos,180);//Lu_test
-            gui_debug_line(0,0,initial.pos,target.pos);
+            //gui_debug_line(0,0,initial.pos,target.pos);
         }
 #endif
         return(target);
     }
+
+
     //if there is no obstacles, return the target
     if (obs->check(initial,goal))
     {
@@ -305,12 +306,12 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
 #if 1//lu_test change 0 to 1
         if (bDebugPathPlan)
         {
-            if(debugfreq++>3)
-            {
-                gui_debug_robot(initial.pos,180);//Lu_test
-                debugfreq=0;
-            }
-            gui_debug_line(0,0,initial.pos,goal.pos);
+//            if(debugfreq1++>50)
+//            {
+//                gui_debug_robot(initial.pos,180);//Lu_test
+//                debugfreq1=0;
+//            }
+//            gui_debug_line(0,0,initial.pos,goal.pos);
         }
 #endif
         // no obstacles in the way
@@ -349,12 +350,7 @@ state PathPlanner::plan(obstacles *_obs,int obs_mask,
 
         if (bDebugPathPlan)
         {
-            if(debugfreq++>3)
-            {
-                gui_debug_robot(initial.pos,180);//Lu_test
-                debugfreq=0;
-            }
-            gui_debug_line(0,0,initial.pos,goal.pos);
+            //gui_debug_line(0,0,initial.pos,target.pos);
         }
 
 

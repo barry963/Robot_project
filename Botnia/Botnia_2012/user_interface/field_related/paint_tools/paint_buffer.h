@@ -10,7 +10,7 @@
 const int MAXLINECMDS=400;
 const int MAXPOINTCMDS=500;
 const int MAXTEXTCMDS=100;
-const int MAXDEBUGROBOT = 20;
+const int MAXDEBUGROBOT = 1000;
 
 struct MyText
 {
@@ -34,7 +34,7 @@ public:
         void AddPoint(qreal& x0,qreal& y0);
         void AddText(qreal& x0,qreal& y0,QString s);
         void AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
-        void AddRobot(qreal& x0,qreal& y0,qreal& z0);
+        void AddRobot(qreal x0,qreal y0,qreal z0);
 
         void Clear();
         void ExecCmds(QPainter * painter);
@@ -44,6 +44,7 @@ public:
         int iTextCount;
         int iVeloCount;
         int iRobotCount;
+        int iRobotLastCount;
 
         QLineF		velolines[MAXLINECMDS];
         QLineF		lines[MAXLINECMDS];

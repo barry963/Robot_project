@@ -636,7 +636,7 @@ Then implement the whole tactic in such STP architecture
 
 
 =======================================
-2014/2/3
+2014/2/4
 
 field_global_function.cpp 
 Strategy strategy;//Play
@@ -669,3 +669,35 @@ Backup in archive
 
 Question:
 The syntax of .ply file, espcially APPLICABLE and DONE
+
+=======================================
+2014/2/5
+
+Offense situation:
+        else if (possession == OurBall || fieldPosition == TheirSide ||
+                 situation == Special)
+        {
+            situation = Offense;
+        }
+Mofication
+//fixed role assignment
+void PlayExecutor::fixedAssignment(World &world)
+{
+    //assign[play->getFixedRoleID(0)] = (world.sideBall() > 0 ? 0 : 1);
+    //assign[play->getFixedRoleID(1)] = (world.sideBall() > 0 ? 1 : 0);
+    //lu_test
+    assign[play->getFixedRoleID(0)] = 0;
+    assign[play->getFixedRoleID(1)] = 1;
+
+    assign[play->getFixedRoleID(2)] = 2;
+    assign[play->getFixedRoleID(3)] = 3;
+
+}
+
+=======================================
+2014/2/6
+
+The problem in real experiment comes from the motion planning algorithm, which can also be obversed in simulator.
+TODO:
+optimize motion planning algorithm
+Done

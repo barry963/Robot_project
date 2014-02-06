@@ -1,16 +1,14 @@
-PLAY TEST1
+PLAY TEST2
 
 APPLICABLE offense
 DONE aborted !offense
 
 ROLE 0
-	position { { 2500 -1000 } { 0 0 }}	
 	position { { 2500 -500 } { 0 0 }}	
 	position { { 2500 0 } { 0 0 }}
 	position { { 2500 500 } { 0 0 }}
 	none
 ROLE 1
-	position { { 500 -1000 } { 0 0 }}
 	position { { 500 -500 } { 0 0 }}
 	position { { 500 0 } { 0 0 }}
 	position { { 500 500 } { 0 0 }}		

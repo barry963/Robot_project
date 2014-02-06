@@ -62,6 +62,7 @@ CR_DECLARE(NAV_THEIR_OBSTACLE_RADIUS);
 CR_DECLARE(NAV_THEIR_GOALIE_OBSTACLE_RADIUS);
 
 
+int debugfreq=0;//lu_test just for test
 
 //按照梯形速度曲线，计算运动消耗时间
 float Robot::motion_time_1d(float dx,float vel0,float vel1,
@@ -1022,6 +1023,12 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
         current_face_angel = world.teammate_direction(focused_robot_id);
         initial.pos = vdtof(current_position);
 
+        if(debugfreq++>100)
+        {
+            gui_debug_robot(initial.pos,current_face_angel);//Lu_test
+            debugfreq=0;
+        }
+
 
 	// initial.vel = vdtof(v);
 	goal.pos = vdtof(target_pos);
@@ -1036,7 +1043,10 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
         // path planning return the node it should go
         //qDebug()<<"Path_planning";
         target = world.path[focused_robot_id].plan(&obstacles_instance,1,initial,goal,obs_id);
-	//if(!finite(target.pos.x) || !finite(target.pos.y))
+        gui_debug_line(0,0,initial.pos,target.pos);
+        gui_debug_line(0,0,initial.pos,goal.pos);
+
+        //if(!finite(target.pos.x) || !finite(target.pos.y))
 	//{
 	//	printf("nav_to_point target=: NANs!%3.2f,%3.2f\n",target.pos.x,target.pos.y);
 	//}

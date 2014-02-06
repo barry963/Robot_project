@@ -162,7 +162,7 @@ public:
 	}
 };
 
-//˲
+//
 class TMark : public RobotTactic
 {
 public:

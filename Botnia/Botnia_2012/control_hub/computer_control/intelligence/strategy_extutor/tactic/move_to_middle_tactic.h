@@ -42,7 +42,7 @@ public:
         TMoveToMiddle();
         virtual const char *name() const
         {
-                return "KickLoc";
+                return "TMoveToMiddle";
         }
 
         static Tactic *parser(const char *param_string)

@@ -87,10 +87,10 @@ public:
     */
     SPosition(BCoordinate _position, BCoordinate _faceto) : RobotTactic(false)
     {
-        //position = _position;
-        position=BCoordinate(2500,1000);
-        //faceto = _faceto;
-        faceto = MyVector2d(0, 0).rotate(90);
+        position = _position;
+        //position=BCoordinate(2500,1000);
+        faceto = _faceto;
+        //faceto = MyVector2d(0, 0).rotate(90);
         use_obsflags = false;
     }
     SPosition(BCoordinate _position=BCoordinate(1000,1000), double angle=90.0) : RobotTactic(false)

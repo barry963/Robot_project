@@ -896,7 +896,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
 
     } while (state!=old_state && --n);
 
-/*lu_test
+
     if (n <= 0)
     {
         //连续发生10次状态变化，这是不正常情况
@@ -908,7 +908,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
             exit(1);
         }
     }
-*/
+
 
 //    printf("State: %s %0.2fs R(%8.2f,%8.2f)\n",
 //           state_name[state],time_in_state, V2COMP(s.r_pos));

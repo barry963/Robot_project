@@ -3,9 +3,10 @@
 #include "paint_buffer.h"
 #include <QDebug>
 #include "math.h"
+#include <QtCore/qmath.h>
 
 PaintCmds GuiCmd;
-
+QMutex drawMutex;
 //--------------------------------------------------------------------
 PaintCmd::PaintCmd()
 {
@@ -55,55 +56,62 @@ void PaintCmd::AddText(qreal& x0,qreal& y0,QString s)
         }
 };
 
-void PaintCmd::AddRobot(qreal &x0, qreal &y0, qreal &z0)
+void PaintCmd::AddRobot(qreal x0, qreal y0, qreal z0)
 {
     int iRobot = iRobotCount;
+    double tempangle=z0*180.0/M_PI;
+    qDebug()<<tempangle;
     if (iRobot<MAXDEBUGROBOT)
     {
-        if ( fabs ( z0 ) <360 )
+//        if ( fabs ( tempangle ) <360 )
+//        {
+//            robotdebug[iRobot].body.moveTo ( 90+x0,y0 );
+
+//            robotdebug[iRobot].body.arcTo ( -90+x0,-90+y0,180,180,0,270);
+//            robotdebug[iRobot].body.closeSubpath();
+////            robotdebug[iRobot].body.moveTo(x0,y0);
+////            robotdebug[iRobot].body.lineTo(0,90);
+//        }
+//        else
         {
-            robotdebug[iRobot].body.moveTo ( 90+x0,0+y0 );
-            robotdebug[iRobot].body.arcTo ( -90+x0,-90+y0,180,180,0,270 );
-            robotdebug[iRobot].body.closeSubpath();
-        }
-        else
-        {
-            robotdebug[iRobot].body.addEllipse ( -90+x0,-90+y0,180,180 );
+            robotdebug[iRobot].body.addEllipse ( -10+x0,-10+y0,20,20 );
+            robotdebug[iRobot].body.moveTo(x0,y0);
+            robotdebug[iRobot].body.lineTo(127.26*qCos(M_PI-z0)+x0,-127.26*qSin(z0)+y0);
         }
         robotdebug[iRobot].x = x0;
         robotdebug[iRobot].y = y0;
-        robotdebug[iRobot].z = z0*180.0/M_PI;
-
+        robotdebug[iRobot].z = tempangle;
+        //qDebug()<<tempangle;
         iRobotCount=iRobot+1;
     }
 }
 
 void PaintCmd::ExecCmds(QPainter * painter)
 {
-
     if(iRobotCount)
     {
+        painter->save();
+
         painter->setBrush(Qt::NoBrush);
-        painter->setPen(QPen(Qt::black, 2));
+        painter->setPen(QPen(Qt::gray, 2));
 
         for(int i=0;i<iRobotCount;i++)
         {
             double _orientation = robotdebug[i].z;
             if ( fabs ( _orientation ) <360 )
             {
-                painter->rotate ( -45+_orientation );
                 painter->drawPath ( robotdebug[i].body );
-                painter->rotate ( 45-_orientation );
             }
             else
             {
                 painter->drawPath ( robotdebug[i].body );
             }
-//            qDebug()<<"targetdebug #"<<i<<", ="<<robotdebug[i].x<<","<<robotdebug[i].y<<","<<robotdebug[i].z;
+            //qDebug()<<"targetdebug #"<<i<<", ="<<robotdebug[i].x<<","<<robotdebug[i].y<<","<<robotdebug[i].z;
         }
         //painter->scale(1,-1);
         //painter->restore();
 
+        painter->restore();
      }
 
         if (iLineCount)

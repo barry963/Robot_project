@@ -5,6 +5,8 @@
 #include "field_scene.h"
 #include "net/net_vision_server.h"
 #include "net/net_vision_client.h"
+#include "user_interface/field_related/paint_tools/paint_buffer.h"
+
 #ifndef MUTEX
 #define MUTEX
 extern QMutex draw_mutex;
@@ -70,7 +72,11 @@ public:
     void repaint ( const QRect & rect );
     void repaint ( const QRegion & rgn );
     void tick ();
-
+//    void DrawDebugObject()
+//    {
+//    GuiCmd.ExecCmds(painter);
+//    GuiCmd.StrategySwitchCmds();
+//    }
 protected:
 
     void wheelEvent ( QWheelEvent *event );

@@ -30,6 +30,7 @@
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/ball_tactics.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/move_as_sin_tactic.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/move_as_straight_tactic.h"
+#include "control_hub/computer_control/intelligence/strategy_extutor/tactic/move_to_middle_tactic.h"
 
 #include "control_hub/computer_control/intelligence/strategy_extutor/strategy.h"
 #include "user_interface/field_related/field_global_function.h"
@@ -63,7 +64,6 @@ void gui_debug_robot(MyVector2d pos,double angle)
 {
     int side_temp = world.getSide();
     MyVector2d postemp = pos*side_temp;
-    //postemp.y*=side_temp;
     GuiCmd.AddRobot(postemp.x,postemp.y,angle);
 }
 
@@ -149,7 +149,7 @@ void RegisterTactics()
         Tactic::registerParser("steal", TSteal::parser);
         Tactic::registerParser("clear", TClear::parser);
 
-        Tactic::registerParser("move_to_middle", SPosition::parser);
+        Tactic::registerParser("move_to_middle", TMoveToMiddle::parser);
         Tactic::registerParser("move_as_sin", TMoveAsSin::parser);
         Tactic::registerParser("move_as_straight", TMoveAsStraight::parser);
 

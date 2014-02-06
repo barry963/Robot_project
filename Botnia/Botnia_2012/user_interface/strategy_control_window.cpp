@@ -652,7 +652,10 @@ void MainWindow::select_page3_strategy_type()
 //        StatusOnGUI.tactic_name_ = "pass_and_receive";
 //    }
 
-
+        if(ui->pass_and_receive_button->isChecked())
+        {
+            StatusOnGUI.tactic_name_ = "pass_and_receive";
+        }
 //    tacitic_name_item->setText(qstring_tactic_name);
 //    ui->generalTableWidget->setItem(1,0,tacitic_name_item);
 }

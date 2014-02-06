@@ -139,8 +139,12 @@ void PlayExecutor::updateMaps(World &world)
 //fixed role assignment
 void PlayExecutor::fixedAssignment(World &world)
 {
-    assign[play->getFixedRoleID(0)] = (world.sideBall() > 0 ? 0 : 1);
-    assign[play->getFixedRoleID(1)] = (world.sideBall() > 0 ? 1 : 0);
+    //assign[play->getFixedRoleID(0)] = (world.sideBall() > 0 ? 0 : 1);
+    //assign[play->getFixedRoleID(1)] = (world.sideBall() > 0 ? 1 : 0);
+    //lu_test
+    assign[play->getFixedRoleID(0)] = 0;
+    assign[play->getFixedRoleID(1)] = 1;
+
     assign[play->getFixedRoleID(2)] = 2;
     assign[play->getFixedRoleID(3)] = 3;
 

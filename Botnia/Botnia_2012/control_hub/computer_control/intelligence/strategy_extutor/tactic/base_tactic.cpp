@@ -275,9 +275,9 @@ void RobotTactic::makeCommand(World &world, int me, bool debug,
         c.observation_type = OBS_EVERYTHING_BUT_ME(me);
         if (debug)
         {
-            gui_debug_line(me, GDBG_TACTICS, world.GetRobotPositionByID(me),
-                           c.target, G_ARROW_FORW);
-            gui_debug_line(me, GDBG_TACTICS, fk, c.target);
+            //gui_debug_line(me, GDBG_TACTICS, world.GetRobotPositionByID(me),
+            //               c.target, G_ARROW_FORW);
+            //gui_debug_line(me, GDBG_TACTICS, fk, c.target);
         }
         ignore_status = true;
     }

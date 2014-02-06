@@ -168,6 +168,7 @@ void StrategyThread::run()
 
     while(!thread_terminated_)//excute the strategy here lu_test
     {
+//        soccerView->DrawDebugObject();
         double time0=timer.MarkStartTime();
 
         /// if change the team, then we need to restart the server
