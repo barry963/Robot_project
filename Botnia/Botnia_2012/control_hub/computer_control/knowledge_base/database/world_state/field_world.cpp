@@ -800,7 +800,6 @@ void World::go(int id, double vx, double vy, double va,
 
     // set the command for robot
 
-
     pCmd->set_id(id);
     pCmd->set_team(color_);
     pCmd->set_vx(vx);
@@ -820,8 +819,8 @@ void World::go(int id, double vx, double vy, double va,
     pCmd->set_forcekick(forcekick_on);
     pCmd->set_drib_speed(abs(dribbler_speed));
 
-    if(!((vx==0)&&(vy==0)&&(va==0)&&(kick_power==0)))
-        qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
+//    if(!((vx==0)&&(vy==0)&&(va==0)&&(kick_power==0)))
+//        qDebug()<<"Pcmd: vx="<<vx<<", vy="<<vy<<", va="<<va<<"kick_power"<<kick_power;
 
 
     RadioSendMutex.unlock();
@@ -846,8 +845,8 @@ void World::go(int id, double vx, double vy, double va,
     int temp_size = temp_array.size();
     unsigned char *temp_pointer = new unsigned char(temp_size);
     memcpy(temp_pointer, temp_array.data(), temp_size);
-//    qDebug()<<"Pcmd2: vx="<<robot_parameters.x_velocity<<", vy="<<robot_parameters.y_velocity;
-//    qDebug()<<temp_pointer;
+    qDebug()<<"Pcmd2: vx="<<robot_parameters.x_velocity<<", vy="<<robot_parameters.y_velocity;
+    qDebug()<<temp_pointer;
     serial_sever_->SendTransparentPackage((unsigned char*)temp_pointer,temp_size);
     }
 #endif

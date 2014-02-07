@@ -705,3 +705,61 @@ OPtimize trajectory recorder complete.
 TODO:
 optimize motion planning algorithm
 The key is to try decrease the physical problem, by using proper motion direction.
+
+=======================================
+2014/2/7
+
+speed planning
+                navigation
+
+Robot::SMState Robot::faceBall(World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav)
+...
+    nav.direct = true;
+    nav.vel_xya.set(0,0,6*sin(da));
+
+...
+
+
+Robot::SMState Robot::approachBall(World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav)
+...
+    nav.direct  = true;
+    if (omni)
+    {
+        ball_dir = ball_dir.rotate(-s.r_ang) * speed;
+        nav.vel_xya.set(ball_dir.x,ball_dir.y,0);
+    }
+...
+
+Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav)
+...    
+    if (omni)
+    {
+        nav.dribble_power = 15;
+        nav.pos   = cmd.target; // carrot_pos; // s.ball_pos; // cmd.target;
+        nav.angle = (cmd.target - s.r_pos).angle();
+        nav.vel   = ball_to_target.norm(1000);
+        nav.vel_xya.set(0,bound(target_ball_rel.y,-100,100),0);
+...
+
+CONFUSED: why the vel_xya is set like below
+Robot::SMState Robot::kick(World &world,Sensors &s,RobotCommand &cmd,NavTarget &nav)
+...
+    nav.direct  = true;
+    if (omni)
+    {
+        va = 6*sin(da);
+        nav.vel_xya.set(
+                    world.teammate_robot_velocity(my_id).x,
+                    -va*70.0,
+                    va
+                    );
+    }
+...
+
+
+#define LU_VERSION in field_world_robot_goto_point to 
+figure the speed planning of my version
+
+
+study:
+void Robot::compute_motion_1d

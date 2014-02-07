@@ -4,6 +4,20 @@
 //
 // Created by:  Michael Bowling (mhb@cs.cmu.edu)
 //
+
+// ************************************************************************************************
+//     Copyright 2013-2014 modified by Lu Chunqiu
+//
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//
+//
+//
+//  **********************************************************************************************/
+
+
 /* LICENSE:
 
  ************************************************************************************************
@@ -63,6 +77,8 @@ CR_DECLARE(NAV_THEIR_GOALIE_OBSTACLE_RADIUS);
 
 
 int debugfreq=0;//lu_test just for test
+
+#define LU_VERSION //lu_test for new speed planning
 
 //按照梯形速度曲线，计算运动消耗时间
 float Robot::motion_time_1d(float dx,float vel0,float vel1,
@@ -170,6 +186,12 @@ void Robot::compute_motion_1d(double x0, double v0, double v1,
 #endif
 
 #if 1
+/*
+a_max=12*(0.5->1.0)
+v_max=6
+a_factor=1.1
+*/
+
 void Robot::compute_motion_1d(double x0, double v0, double v1,
                               double a_max, double v_max, double a_factor,
                               double &traj_accel, double &traj_time)
@@ -660,7 +682,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 		return t;
 	}
 	//计算速度向量
-        MyVector2d v = world.GetRobotVelocityByID(me);
+    MyVector2d v = world.GetRobotVelocityByID(me);
 	//计算当前角度与目的角度差
 	double dangleme=world.teammate_direction(me);
     double ang = angle_mod(dangleme - target_ang);
@@ -673,7 +695,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	if (type == GotoPointMoveForw) type = GotoPointMove;
 	//XY方向加速度和时间计算
 
-//    qDebug()<<"Current: Speed:("<<v.x<<v.y<<ang_v<<") AngDiff"<<ang<<"\n";
+    qDebug()<<"CurrentSpeed:("<<v.x<<","<<v.y<<","<<ang_v<<") AngDiff"<<ang*180/M_PI<<"\n";
 
 //    if(ang<0.4||ang>6.24)//lu_test angle difference
 //    {
@@ -720,7 +742,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	//  
 
 	Trajectory t(v.x, v.y, ang_v, max(time,time_a));
-//    t.DataDisplay();
+    t.DataDisplay();
 	return t;
 }
 
@@ -894,7 +916,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
                 obstacles_instance.add_half_plane( 0,-FIELD_WIDTH_H, 0, 1,1);
                 obstacles_instance.add_half_plane( 0, FIELD_WIDTH_H, 0,-1,1);
 		//
-#if 0 //comment by Lu_test, for the sake of convinience, comment the whole part
+#ifndef LU_VERSION //comment by Lu_test, for the sake of convinience, comment the whole part
                 obstacles_instance.add_rectangle(-FIELD_LENGTH_H-GOAL_DEPTH,
 		                  (FIELD_WIDTH_H+GOAL_WIDTH_H)/2,
 		                  GOAL_DEPTH,FIELD_WIDTH_H-GOAL_WIDTH_H,1);
@@ -973,7 +995,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 		}
 	}
 
-#if 0 //comment by Lu_test, for the sake of convinience, comment the whole part
+#ifndef LU_VERSION //comment by Lu_test, for the sake of convinience, comment the whole part
         // if needed, set our defense zone as obstacle
 	if (obs_flags & OBS_OUR_DZONE)
 	{

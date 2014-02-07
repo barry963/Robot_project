@@ -252,7 +252,7 @@ int Tactic::selectRobot(World &world, bool candidates[], double bias[])
     }
     return best;
 }
-
+bool ball_border_info_flag=true;
 void RobotTactic::makeCommand(World &world, int me, bool debug,
                               Robot::RobotCommand &c,
                               bool &ignore_status)
@@ -263,7 +263,11 @@ void RobotTactic::makeCommand(World &world, int me, bool debug,
     // if this tactic needs to control the ball, but the ball is out then deal it with "freeKick method"
     if (manipulates_ball && world.ballOutOfPlay())
     {
-        qDebug()<<"ball is out of border, freeKick method start";//lu_test
+        if(ball_border_info_flag)
+        {
+            qDebug()<<"Ball is out of border, freeKick method start";//lu_test
+            ball_border_info_flag = false;
+        }
         MyVector2d fk = world.freeKickPosition(world.ball_position());
         c.cmd = Robot::CmdPosition;
 

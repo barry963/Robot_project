@@ -1,5 +1,17 @@
 #include "field_world_robot.h"
 
+// ************************************************************************************************
+//     Copyright 2013-2014 modified by Lu Chunqiu
+//
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//
+//
+//
+//  **********************************************************************************************/
+
 /* LICENSE:
   =========================================================================
     CMDragons'02 RoboCup F180 Source Code Release
@@ -35,7 +47,7 @@
 const bool robot_print     = false;//lu_test change all to true
 const bool robot_sub_state = false;
 const bool robot_debug_die = false;
-
+bool state_start_flag=true;
 
 //封装了整个队伍的行为，体现了就近的机器人优先采取行动的原则，描述了机器人作为不同角色球员时的行为和反应过程。
 const char *state_name[] =
@@ -70,6 +82,7 @@ void Robot::init(int _my_id)
     last_dist_from_target = 0.0;
     last_target_da = 0.0;
     spin_dir = 0;
+    time_in_state = 0.0;
 }
 
 const MyVector2d own_goal_pos(-FIELD_LENGTH_H-2*BALL_RADIUS,0);
@@ -578,14 +591,14 @@ Robot::SMState Robot::kick(World &world,Sensors &s,RobotCommand &cmd,
         last_target_da = 2*M_PI;
     }
 
-/* lu_test comment the whole code, as it is not neccesary
+// lu_test comment the whole code, as it is not neccesary
     //如果处于踢球状态时间长，迎向球
     if (time_in_state>0.25+1.75*omni)
     {
         qDebug()<<"Kick state too long, so switch to go to ball"<<time_in_state;
         return(SMGotoBall);
     }
-*/
+
 
     //如果球不在机器人内部，让机器人迎向球
     if (!s.ball_in_front)
@@ -756,6 +769,37 @@ Robot::SMState Robot::wait(World &world,Sensors &s,RobotCommand &cmd,
     return(SMWait);
 }
 
+void Robot::DisplayCurrentInfo(SMState state)
+{
+    switch(state){
+        case SMGotoBall:
+            qDebug()<<"SMGotoBall";break;
+        case SMFaceBall:
+            qDebug()<<"SMFaceBall";break;
+        case SMApproachBall:
+            qDebug()<<"SMApproachBall";break;
+        case SMPullBall:
+            qDebug()<<"SMPullBall";break;
+        case SMFaceTarget:
+            qDebug()<<"SMFaceTarget";break;
+        case SMDriveToGoal:
+            qDebug()<<"SMDriveToGoal";break;
+        case SMKick:
+            qDebug()<<"SMKick";break;
+        case SMSpinAtBall:
+            qDebug()<<"SMSpinAtBall";break;
+        case SMPosition:
+            qDebug()<<"SMPosition";break;
+        case SMRecieveBall:
+            qDebug()<<"SMRecieveBall";break;
+        case SMWait:
+            qDebug()<<"SMWait";break;
+        default:
+            qDebug()<<"Invalid State";break;
+
+    }
+}
+
 // precondition: update_sensors has been run this timestep
 Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
 {
@@ -817,6 +861,13 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
 
         old_state = state;
         //计算在本状态中保持的时间
+        if(state_start_flag)
+        {
+            state_start_time = world.time;
+            DisplayCurrentInfo(state);
+            state_start_flag = false;
+        }
+
         time_in_state = world.time - state_start_time;
         mzero(nav);
         nav.obs = OBS_EVERYTHING_BUT_ME(my_id);
@@ -868,30 +919,8 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         {
             state_start_time = world.time;
             state_changed = true;
-            switch(state){
-                case SMGotoBall:
-                    printf("SMGotoBall\r\n");break;
-                case SMFaceBall:
-                    printf("SMFaceBall\r\n");break;
-                case SMApproachBall:
-                    printf("SMApproachBall\r\n");break;
-                case SMPullBall:
-                    printf("SMPullBall\r\n");break;
-                case SMFaceTarget:
-                    printf("SMFaceTarget\r\n");break;
-                case SMDriveToGoal:
-                    printf("SMDriveToGoal\r\n");break;
-                case SMKick:
-                    printf("SMKick\r\n");break;
-                case SMSpinAtBall:
-                    printf("SMSpinAtBall\r\n");break;
-                case SMPosition:
-                    printf("SMPosition\r\n");break;
-                case SMRecieveBall:
-                    printf("SMRecieveBall\r\n");break;
-                case SMWait:
-                    printf("SMWait\r\n");break;
-            }
+            qDebug()<<"Time in State: "<<time_in_state<<" s\n\n";
+            DisplayCurrentInfo(state);
         }
 
     } while (state!=old_state && --n);
@@ -991,6 +1020,13 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
 //    qDebug()<<"NavCommand: vx="<<nav.vel_xya.x<<", vy="<<nav.vel_xya.y<<", z="<<nav.vel_xya.z;
 //    qDebug()<<"TCommand: vx="<<tcmd.vx<<", vy="<<tcmd.vy
 //           <<", va="<<tcmd.va<<", kick_power="<<tcmd.kick_power<<", dribble_power="<<tcmd.dribble_power;
+
+//    tcmd.vx=0;
+//    tcmd.vy=0;
+//    tcmd.va=10;
+
+//    qDebug()<<"Position("<<world.GetRobotPositionByID(0).x<<","<<world.GetRobotPositionByID(0).y<<")";
+
 
     // if(robot_print && nav.kick) printf("Kick!\n");
     //计算任务是否完成

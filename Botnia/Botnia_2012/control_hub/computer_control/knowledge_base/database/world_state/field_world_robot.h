@@ -1,5 +1,16 @@
 #ifndef FIELD_WORLD_ROBOT_H
 #define FIELD_WORLD_ROBOT_H
+// ************************************************************************************************
+//     Copyright 2013-2014 modified by Lu Chunqiu
+//
+//     This software is distributed in the hope that it will be useful,
+//     but WITHOUT ANY WARRANTY; without even the implied warranty of
+//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//
+//     Additional license information:
+//
+//  **********************************************************************************************/
 
 /* LICENSE:
   =========================================================================
@@ -169,7 +180,7 @@ public:
         }
         void DataDisplay()//lu_test add
         {
-            qDebug()<<"Trajectory: Speed:("<<vx<<vy<<va<<") ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";
+            qDebug()<<"TrajectorySpeed:("<<vx<<vy<<va<<") ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";
         }
     };
 
@@ -305,6 +316,8 @@ public:
                            double a_max, double v_max, double a_factor,
                            MyVector2d &traj_accel, double &time);
     double compute_stop(double v, double max_a);
+    void DisplayCurrentInfo(SMState state);
+
     Trajectory goto_point(World &world, int me,
                           MyVector2d target_pos, MyVector2d target_vel,
                           double target_ang,
