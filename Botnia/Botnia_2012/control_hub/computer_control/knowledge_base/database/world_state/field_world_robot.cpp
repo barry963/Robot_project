@@ -49,6 +49,8 @@ const bool robot_sub_state = false;
 const bool robot_debug_die = false;
 bool state_start_flag=true;
 
+#define LU_VERSION
+
 //封装了整个队伍的行为，体现了就近的机器人优先采取行动的原则，描述了机器人作为不同角色球员时的行为和反应过程。
 const char *state_name[] =
 {
@@ -137,8 +139,16 @@ void Robot::updateSensors(World &world)
     //球在机器人内部
     s.ball_in_front = (s.robot_ball.x > -20) &&
             (fabs(s.robot_ball.y) < 60);
+#ifndef LU_VERSION
     //球在机器人前方
     s.ball_on_front = s.ball_in_front && (s.robot_ball.x < 120);
+#endif
+
+#ifdef LU_VERSION
+    //球在机器人前方
+    s.ball_on_front = s.ball_in_front && (s.robot_ball.x < 200);
+#endif
+
     //s.ball_target.set(FIELD_LENGTH_H /*+BALL_RADIUS*/,
     //                  bound(s.ball_pos.y,
     //                        -GOAL_WIDTH_H+ROBOT_RADIUS,
@@ -148,9 +158,16 @@ void Robot::updateSensors(World &world)
     //s.on_goal = (s.r_fwd.cross(world.their_goal_l - s.r_pos) > 0) &&
     //            (s.r_fwd.cross(world.their_goal_r - s.r_pos) < 0);
     // printf("on_goal=%d\n",s.on_goal);
+#if 0
+    s.can_drive = (target_ball_rel.x>30.0 ||target_ball_rel.x<200.0)&&
+            (fabs(target_ball_rel.y)<150.0||fabs(target_ball_rel.y)>60.0);
+#endif
+
+#if 1
     s.can_drive = target_ball_rel.x>60.0 &&
             target_ball_rel.x<500.0 &&
             fabs(target_ball_rel.y)<60.0;
+#endif
     //==== set up obstacles ====//
     MyVector2d p,v;
     int i;
@@ -257,13 +274,17 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     }
     bool candriver=true;
 
+#ifdef LU_VERSION
     //qDebug()<<"Target_ball_rel:("<<target_ball_rel.x<<","<<target_ball_rel.y<<")\n";
+
     if (target_ball_rel.x<20.0 ||
             target_ball_rel.x>250.0 ||
             fabs(target_ball_rel.y)>90.0)
     {
         candriver=false;
     }
+#endif
+
     // probably want to add obstacle check here
     if (!world.inOurDefenseZone())
     {
@@ -277,7 +298,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
             {
                 // printf("  %f <= %f\n",last_dist_from_target,targ_dist);
                 //球在机器人前方，能够驱动
-                qDebug()<<"Can_drive"<<s.can_drive<<" candriver:"<<candriver;
+                //qDebug()<<"Can_drive"<<s.can_drive<<" candriver:"<<candriver;
                 if (s.can_drive && candriver)
                 {
                     //printf("gotoball %3.2f,%3.2f\r\n",target_ball_rel.x,target_ball_rel.y);
@@ -324,8 +345,17 @@ Robot::SMState Robot::faceBall(World &world,Sensors &s,RobotCommand &cmd,
     //da=机器人与球连线角度与机器人本身角度差
     da  = angle_mod(s.ball_rel.angle() - s.r_ang);
     dta = angle_mod(target_rel.angle() - s.r_ang);
+    //qDebug()<<"TargetDiff "<<da;
     //如果角度小于0.1弧度
-    if (fabs(da) < 0.1)
+
+#ifdef LU_VERSION
+    if ((fabs(da) < 0.15)||fabs(da) > 6.15)//Lu_test
+#endif
+
+#ifndef LU_VERSION
+    if (fabs(da) < 0.1)//Lu_test
+#endif
+
     {
         if (s.can_drive)
         {
@@ -339,11 +369,52 @@ Robot::SMState Robot::faceBall(World &world,Sensors &s,RobotCommand &cmd,
             return(SMApproachBall);
         }
     }
-    //填充命令结构
+
+
+#ifdef LU_VERSION
+    else
+    {//填充命令结构
     nav.direct = true;
     //设定旋转量
-    nav.vel_xya.set(0,0,6*sin(da));
-    //qDebug()<<"Nav(vx,vy,va)"<<nav.vel_xya.x<<", "<<nav.vel_xya.y<<", "<<nav.vel_xya.z<<")";
+
+    if(da>0)
+    {
+        double temp1 = -10*sin(da);
+        if(temp1>2.0)
+        {
+            temp1=2.0;
+        }
+        else
+            if(temp1<-2.0)
+        {
+            temp1=-2.0;
+        }
+        nav.vel_xya.set(0,0,temp1);
+    }
+    if(da<0)
+    {
+        double temp2 = 10*sin(da);
+        if(temp2>2.0)
+        {
+            temp2=2.0;
+        }
+        else
+            if(temp2<-2.0)
+        {
+            temp2=-2.0;
+        }
+        nav.vel_xya.set(0,0,temp2);
+    }
+
+    }//lu_test
+#endif
+
+#ifndef LU_VERSION
+     nav.direct = true;
+     nav.vel_xya.set(0,0,6*sin(da));
+#endif
+
+    //qDebug()<<"SMFaceBall_Nav(vx,vy,va)"<<nav.vel_xya.x<<", "<<nav.vel_xya.y<<", "<<nav.vel_xya.z<<")";
     return(SMFaceBall);
 }
 
@@ -366,10 +437,19 @@ Robot::SMState Robot::approachBall(World &world,Sensors &s,RobotCommand &cmd,
         return(SMGotoBall);
     }
     //
+#ifndef LU_VERSION
     if (s.can_drive && (s.ball_dist_from_wall > 100) && time_in_state>=1.0)
     { // && s.r_vel.length()<200)){
         return(SMDriveToGoal);
+    }    
+#endif
+#ifdef LU_VERSION
+    if (s.can_drive)
+    { // && s.r_vel.length()<200)){
+        return(SMDriveToGoal);
     }
+#endif
+
     // printf("  bof=%d t=%f wd=%f\n",s.ball_on_front,time_in_state,s.ball_dist_from_wall);
     if (s.ball_on_front && time_in_state >= 1.0)
     {
@@ -467,6 +547,7 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
                                   NavTarget &nav)
 {
     //球撞击点相对球的位置差矢量
+    //the vector from kick direction point to ball position
     MyVector2d ball_to_target = cmd.ball_target-s.ball_pos;
     // double carrot_dist = max(500.0-s.ball_dist,1.0);
     // MyVector2d carrot_pos = s.ball_pos + ball_to_target.norm(carrot_dist);
@@ -481,6 +562,11 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
     tdist  = target_rel.length();
     //机器人距离球的撞击点距离
     tbdist = MyVector::distance(cmd.ball_target,s.r_pos);
+
+    qDebug()<<"Drive_to_Goal"<<dba<<s.ball_on_front
+           <<MyVector::dot(s.r_vel,s.ball_rel.norm())
+             <<fabs(dba)<<cmd.angle_tolerance;
+
     if (robot_print)
     {
         printf("  to kick: c%d f%d s%d a%d d%d\n",
@@ -489,10 +575,19 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
                (fabs(dba) < cmd.angle_tolerance),
                (tbdist < 1000+500*omni));
     }
+
+#ifndef LU_VERSION
     if (cmd.cmd==CmdMoveBall && s.ball_on_front &&
             //机器人相对球的速度差超过100
             MyVector::dot(s.r_vel,s.ball_rel.norm()) > 100.0 &&
             (fabs(dba) < cmd.angle_tolerance))
+#endif
+#ifdef LU_VERSION
+        if (cmd.cmd==CmdMoveBall && s.ball_on_front &&
+                //机器人相对球的速度差超过100
+                MyVector::dot(s.r_vel,s.ball_rel.norm()) > 5.0 &&
+                ((fabs(dba) < 2*cmd.angle_tolerance)||(2*M_PI-fabs(dba)<2*cmd.angle_tolerance)))
+#endif
     {
         switch (cmd.ball_shot_type)
         {
@@ -548,6 +643,7 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
     {
         nav.dribble_power = 15;
         nav.pos   = cmd.target; // carrot_pos; // s.ball_pos; // cmd.target;
+        //qDebug()<<"NAVPOS: "<<nav.pos.x<<nav.pos.y;
         nav.angle = (cmd.target - s.r_pos).angle();
         nav.vel   = ball_to_target.norm(1000);
         nav.vel_xya.set(0,bound(target_ball_rel.y,-100,100),0);

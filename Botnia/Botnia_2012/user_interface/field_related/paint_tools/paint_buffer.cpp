@@ -13,12 +13,13 @@ PaintCmd::PaintCmd()
         Clear();
 };
 
-void PaintCmd::AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1)
+void PaintCmd::AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1,int color)
 {
         int iLine=iLineCount;
         if (iLine<MAXLINECMDS)
         {
                 lines[iLine].setLine(x0,y0,x1,y1);
+                colorArray[iLine]=color;
                 iLineCount=iLine+1;
         }
 };
@@ -116,8 +117,17 @@ void PaintCmd::ExecCmds(QPainter * painter)
 
         if (iLineCount)
         {
-            painter->setPen(QPen(Qt::gray, 10, Qt::DotLine));
+            painter->save();
+//            if(colorArray[iLineCount]==0)
+                painter->setPen(QPen(Qt::gray, 10, Qt::DotLine));
+//            if(colorArray[iLineCount]==1)
+//                painter->setPen(QPen(Qt::red, 10, Qt::DotLine));
+//            if(colorArray[iLineCount]==2)
+//                painter->setPen(QPen(Qt::black, 10, Qt::DotLine));
+
             painter->drawLines(lines,iLineCount);
+
+            painter->restore();
         }
         if (iPointCount)
         {
@@ -159,9 +169,9 @@ PaintCmds::PaintCmds()
         iIdle=2;
 }
 
-void PaintCmds::AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1)
+void PaintCmds::AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1,int color)
 {
-        Cmds[iStrategy].AddLine(x0,y0,x1,y1);
+        Cmds[iStrategy].AddLine(x0,y0,x1,y1,color);
 }
 
 void PaintCmds::AddPoint(qreal& x0,qreal& y0)

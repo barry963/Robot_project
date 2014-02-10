@@ -177,14 +177,6 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
     if (got_target)
     {
 
-        if (debug)
-        {
-            gui_debug_line(me, GDBG_TACTICS, ball, target);
-            gui_debug_line(me, GDBG_TACTICS, ball,
-                           (target - ball).rotate(angle_tolerance) + ball);
-            gui_debug_line(me, GDBG_TACTICS, ball,
-                           (target - ball).rotate(-angle_tolerance) + ball);
-        }
 
         //# We make sure the angle tolerance is always this big.
         //SHOOT_MIN_ANGLE_TOLERANCE = 0.1745 # Pi / 16
@@ -199,11 +191,23 @@ void TShoot::command(World &world, int me, Robot::RobotCommand &command,
         MyVector2d targ_ball;
         targ_ball = target - ball;
 
+        if (debug)
+        {
+            gui_debug_line(me, GDBG_TACTICS, ball, target);
+            gui_debug_line(me, GDBG_TACTICS, ball, rtarget);
+
+            gui_debug_line(me, GDBG_TACTICS, ball,
+                           (target - ball).rotate(angle_tolerance) + ball);
+            gui_debug_line(me, GDBG_TACTICS, ball,
+                           (target - ball).rotate(-angle_tolerance) + ball);
+        }
+
         world.obsLineFirst(target-targ_ball.bound(500)*0.75, target,
                            OBS_OPPONENTS /*| OBS_THEIR_DZONE*/, rtarget);
+
         command.cmd = Robot::CmdMoveBall;
-        command.ball_target = target;
-        command.target = rtarget;
+        command.ball_target = target;//ball aim point
+        command.target = rtarget;//nothing
         command.angle_tolerance = angle_tolerance;
         command.ball_shot_type = Robot::BallShotOnGoal;
 

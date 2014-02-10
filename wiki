@@ -763,3 +763,62 @@ figure the speed planning of my version
 
 study:
 void Robot::compute_motion_1d
+
+=======================================
+2014/2/10
+
+When shotting, sometimes it will stay in FaceBall state for a long time without any action.
+
+add in Robot::Trajectory Robot::goto_point_omni
+
+    if(ang_v>0.5)//lu_test
+    {
+        ang_v=0.5;
+    }
+
+
+Robot::SMState Robot::approachBall
+In one condition, it will accelerate the robot
+
+
+Debug data:
+Serial Server init 
+"port_ /dev/ttyUSB0 is open.
+" 
+Loading playbook: advanced.plb.
+vision receiver Open Successed! Address= 224.5.23.2  port_= 10002 
+Ball obvserve reset
+Robot obvserve reset
+radio sender Open Successed! Address= 224.5.25.2  port_= 10003 
+Radio Send Server Open OK!
+SMGotoBall 
+Can_drive true  candriver: false 
+Time in State:  0  s
+
+ 
+SMFaceBall 
+Time in State:  6.54638  s
+
+ 
+SMApproachBall 
+Time in State:  1.00748  s
+
+ 
+SMFaceBall 
+Time in State:  0  s
+
+ 
+SMApproachBall 
+
+
+TODO:
+optimize motion planning algorithm
+The key is to try decrease the physical problem, by using proper motion direction.
+
+Robot::Trajectory Robot::goto_point_omni(World &world, int me,
+        MyVector2d target_pos,
+        MyVector2d target_vel,
+        double target_ang,
+        GotoPointType the_type)
+
+The angle between robot and rel_pos is pi/4;

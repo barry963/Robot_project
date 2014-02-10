@@ -18,15 +18,7 @@
 //  **********************************************************************************************/
 
 
-/* LICENSE:
-
- ************************************************************************************************
-     Copyright 2013-2014 modified by Lu Chunqiu
-
-     This software is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
+/*
   =========================================================================
     CMDragons'02 RoboCup F180 Source Code Release
   -------------------------------------------------------------------------
@@ -681,13 +673,43 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 		t.bValid=false;
 		return t;
 	}
+
+    //qDebug()<<target_ang*180.0/M_PI;
 	//计算速度向量
     MyVector2d v = world.GetRobotVelocityByID(me);
 	//计算当前角度与目的角度差
 	double dangleme=world.teammate_direction(me);
-    double ang = angle_mod(dangleme - target_ang);
-	//查询当前角速度
+    double ang;
+    if(x.length()<100)
+        ang = angle_mod(dangleme - target_ang);
+    else
+    {
+        if(x.angle()<M_PI)
+            ang = angle_mod(2*M_PI-x.angle()-dangleme);
+        else
+            ang = angle_mod(x.angle()+M_PI-dangleme);
+        qDebug()<<x.angle()*180.0/M_PI<<(dangleme)*180.0/M_PI<<ang;
+        if((fabs(ang)<M_PI/4+0.1)||(fabs(ang)>M_PI/4-0.1))
+            ang = 0.0;
+
+
+    }
+
+    //查询当前角速度
 	double ang_v = world.teammate_angular_velocity(me);
+
+#ifdef LU_VERSION
+    if(ang_v>0.5)//lu_test
+    {
+        ang_v=0.5;
+    }
+    else
+        if(ang_v<-0.5)//lu_test
+    {
+        ang_v=-0.5;
+    }
+#endif
+
 	MyVector2d a;
 	double ang_a,factor_a;
 	double time_a, time;
@@ -695,7 +717,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	if (type == GotoPointMoveForw) type = GotoPointMove;
 	//XY方向加速度和时间计算
 
-    qDebug()<<"CurrentSpeed:("<<v.x<<","<<v.y<<","<<ang_v<<") AngDiff"<<ang*180/M_PI<<"\n";
+    //qDebug()<<"CurrentSpeed:("<<v.x<<","<<v.y<<","<<ang_v<<") AngDiff"<<ang*180/M_PI<<"\n";
 
 //    if(ang<0.4||ang>6.24)//lu_test angle difference
 //    {
@@ -716,8 +738,12 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 		//if(!finite(ang))
 		//{
 		//	printf("omniang:NANs!%3.2f,%3.2f,%3.2f\r\n",ang,dangleme,target_ang);
-		//}
-		compute_motion_1d(ang, ang_v, 0.0,
+        //}
+
+        //if(debugfreq>40)
+        //qDebug()<<"AnglePlanning "<<ang<<","<<ang_v;
+
+        compute_motion_1d(ang, ang_v, 0.0,
 		                  VDVAR(OMNI_MAX_ANG_ACCEL)[type]*factor_a,
 		                  VDVAR(OMNI_MAX_ANG_VEL)[type],
 		                  DVAR(OMNI_ANG_ACCEL_FACTOR),
@@ -742,7 +768,8 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	//  
 
 	Trajectory t(v.x, v.y, ang_v, max(time,time_a));
-    t.DataDisplay();
+    //if(debugfreq>40)
+        //t.DataDisplay();
 	return t;
 }
 

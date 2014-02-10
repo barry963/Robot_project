@@ -180,7 +180,7 @@ public:
         }
         void DataDisplay()//lu_test add
         {
-            qDebug()<<"TrajectorySpeed:("<<vx<<vy<<va<<") ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<" ,bchipkick:"<<bchipkick<< " ,eta:"<<eta<<"\n";
+            qDebug()<<"TrajectorySpeed:("<<vx<<vy<<va<<") ,dribble_power:"<<dribble_power<<" ,kick_power:"<<kick_power<<"\n";
         }
     };
 

@@ -30,7 +30,7 @@ class PaintCmd
 {
 public:
         PaintCmd();
-        void AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
+        void AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1,int color);
         void AddPoint(qreal& x0,qreal& y0);
         void AddText(qreal& x0,qreal& y0,QString s);
         void AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
@@ -48,6 +48,7 @@ public:
 
         QLineF		velolines[MAXLINECMDS];
         QLineF		lines[MAXLINECMDS];
+        int colorArray[MAXLINECMDS];
         QPointF		points[MAXPOINTCMDS];
         MyText    texts[MAXTEXTCMDS];
         RobotDebug robotdebug[MAXDEBUGROBOT];
@@ -60,7 +61,7 @@ public:
         void StrategySwitchCmds();
         void GuiSwitchCmds();
         void AddPoint(qreal& x0,qreal& y0);
-        void AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
+        void AddLine(qreal& x0,qreal& y0,qreal& x1,qreal& y1,int color);
         void AddText(qreal& x0,qreal& y0,QString s);
         void AddVelo(qreal& x0,qreal& y0,qreal& x1,qreal& y1);
         void AddRobot(qreal& x0,qreal& y0,qreal& z0);

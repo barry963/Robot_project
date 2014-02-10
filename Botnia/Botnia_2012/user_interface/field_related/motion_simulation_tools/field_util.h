@@ -17,6 +17,7 @@
 #include <math.h>
 #include <cstddef>
 #include <algorithm>
+#include <QDebug>
 using namespace std;
 #define rint (int)
 
@@ -144,12 +145,12 @@ real fmodt(real x,real m)
         return(x - floor(x / m)*m);
 }
 
-// Returns angle within [-PI,PI]
+// Returns angle within [-2PI,2PI]
 template <class real>
 real angle_mod(real a)
 {
-        a -= M_2PI * rint(a / M_2PI);
-        return(a);
+    a -= M_2PI * rint(a / M_2PI);
+    return(a);
 }
 
 //规整弧度a 到[-PI,PI]之间

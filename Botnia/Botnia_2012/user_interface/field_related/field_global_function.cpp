@@ -73,12 +73,12 @@ void gui_debug_point(const char robot, MyVector2d p1 )
 }
 
 void gui_debug_line(const char robot, const char level,
-                    MyVector2d p1, MyVector2d p2, char flags)
+                    MyVector2d p1, MyVector2d p2,int color)
 {
         int side_temp = world.getSide();
         p1*=side_temp;
         p2*=side_temp;
-        GuiCmd.AddLine(p1.x,p1.y,p2.x,p2.y);
+        GuiCmd.AddLine(p1.x,p1.y,p2.x,p2.y,color);
 
         //net_gdebug d = { NET_GUI_DEBUG_LINE, world.color, robot, level, world.time};
   //d.info.line.p[0].set(world.from_world(p1));
