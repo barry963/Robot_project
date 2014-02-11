@@ -399,8 +399,14 @@ public:
         {}
         Vector2d(num nx,num ny)
         {
-                x=nx;
-                y=ny;
+            x=nx;
+            y=ny;
+        }
+
+        Vector2d(num angle)
+        {
+            x=10*cos(angle);
+            y=10*sin(angle);
         }
 
         void set(num nx,num ny)

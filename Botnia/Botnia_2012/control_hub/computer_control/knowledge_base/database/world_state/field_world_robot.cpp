@@ -136,15 +136,20 @@ void Robot::updateSensors(World &world)
     s.ball_in_opp_goal = ((s.ball_pos.x > FIELD_LENGTH_H+2*BALL_RADIUS)  && (fabs(s.ball_pos.y) < GOAL_WIDTH_H) );
     //球相对机器人矢量旋转到X轴方向
     s.robot_ball = s.ball_rel.rotate(-s.r_ang);
+#ifndef LU_VERSION
     //球在机器人内部
     s.ball_in_front = (s.robot_ball.x > -20) &&
             (fabs(s.robot_ball.y) < 60);
-#ifndef LU_VERSION
+
     //球在机器人前方
     s.ball_on_front = s.ball_in_front && (s.robot_ball.x < 120);
 #endif
 
 #ifdef LU_VERSION
+    //球在机器人内部
+    s.ball_in_front = (s.robot_ball.x > -10) &&
+            (fabs(s.robot_ball.y) < 60);
+
     //球在机器人前方
     s.ball_on_front = s.ball_in_front && (s.robot_ball.x < 200);
 #endif
@@ -261,6 +266,10 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
         */
     //计算机器人与球附近目标点距离
     targ_dist = MyVector::distance(targ,s.r_pos);
+
+   gui_debug_line(0,0,s.r_pos,targ);
+   //qDebug()<<targ.x<<targ.y;
+
     if (state_changed)
     {
         last_dist_from_target = targ_dist;
@@ -274,7 +283,7 @@ Robot::SMState Robot::gotoBall(World &world,Sensors &s,RobotCommand &cmd,
     }
     bool candriver=true;
 
-#ifdef LU_VERSION
+#ifndef LU_VERSION
     //qDebug()<<"Target_ball_rel:("<<target_ball_rel.x<<","<<target_ball_rel.y<<")\n";
 
     if (target_ball_rel.x<20.0 ||
@@ -349,7 +358,7 @@ Robot::SMState Robot::faceBall(World &world,Sensors &s,RobotCommand &cmd,
     //如果角度小于0.1弧度
 
 #ifdef LU_VERSION
-    if ((fabs(da) < 0.15)||fabs(da) > 6.15)//Lu_test
+    if ((fabs(da) < 0.1)||fabs(da) > 6.18)//Lu_test
 #endif
 
 #ifndef LU_VERSION
@@ -563,9 +572,6 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
     //机器人距离球的撞击点距离
     tbdist = MyVector::distance(cmd.ball_target,s.r_pos);
 
-    qDebug()<<"Drive_to_Goal"<<dba<<s.ball_on_front
-           <<MyVector::dot(s.r_vel,s.ball_rel.norm())
-             <<fabs(dba)<<cmd.angle_tolerance;
 
     if (robot_print)
     {
@@ -613,9 +619,15 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
             // 0.5 radians is about 30 degrees
         }
     }
-    if (target_ball_rel.x<20.0 ||
-            target_ball_rel.x>250.0 ||
-            fabs(target_ball_rel.y)>90.0)
+#ifndef LU_VERSION
+        if (target_ball_rel.x<20.0 ||
+                target_ball_rel.x>250.0 ||
+                fabs(target_ball_rel.y)>90.0)
+#endif
+#ifdef LU_VERSION
+            if (fabs(target_ball_rel.x)>250.0 ||
+                    fabs(target_ball_rel.y)>90.0)
+#endif
     {
         //printf("driveToGoal %3.2f,%3.2f\r\n",target_ball_rel.x,target_ball_rel.y);
         return(SMGotoBall);
@@ -645,8 +657,17 @@ Robot::SMState Robot::driveToGoal(World &world,Sensors &s,RobotCommand &cmd,
         nav.pos   = cmd.target; // carrot_pos; // s.ball_pos; // cmd.target;
         //qDebug()<<"NAVPOS: "<<nav.pos.x<<nav.pos.y;
         nav.angle = (cmd.target - s.r_pos).angle();
+
+#ifndef LU_VERSION
         nav.vel   = ball_to_target.norm(1000);
         nav.vel_xya.set(0,bound(target_ball_rel.y,-100,100),0);
+#endif
+#ifdef LU_VERSION
+        nav.vel   = ball_to_target.norm(100);
+        //nav.vel_xya.set(0,bound(target_ball_rel.y,-100,100),0);
+#endif
+
+
         // nav.pos   = carrot_pos; // cmd.target;
         // nav.vel   = ball_to_target.norm(500);
         // nav.angle = (cmd.target - s.r_pos).angle();
@@ -946,6 +967,11 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
     target_ball_rel.set(s.ball_rel.dot(target_rel.norm()),
                         s.ball_rel.dot(target_rel.norm().perp()));
 
+//    qDebug()<<cmd.target.x<<cmd.target.y;
+//    qDebug()<<s.ball_pos.x<<s.ball_pos.y;
+//    qDebug()<<s.ball_rel.dot(target_rel.norm())<<s.ball_rel.dot(target_rel.norm().perp());
+
+
     // target_ball_rel = s.ball_rel.rotate(-(cmd.target-s.r_pos).angle());
     // execute states until no longer switching
     //循环执行,直到不再切换状态
@@ -1015,7 +1041,12 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         {
             state_start_time = world.time;
             state_changed = true;
+            qDebug()<<"RoLoc:("<<s.r_pos.x<<","<<s.r_pos.y<<")";
+            qDebug()<<"TarBall:("<<target_ball_rel.x<<","<<target_ball_rel.y<<")";
+            qDebug()<<"Ball"<<s.ball_on_front<<s.ball_in_front
+                   <<MyVector::dot(s.r_vel,s.ball_rel.norm());
             qDebug()<<"Time in State: "<<time_in_state<<" s\n\n";
+
             DisplayCurrentInfo(state);
         }
 
@@ -1027,7 +1058,7 @@ Status Robot::run(World &world,RobotCommand &cmd,Trajectory &tcmd)
         //连续发生10次状态变化，这是不正常情况
         printf("Robot::Oscillation Error! in class Robot::run\n");
         nav.direct = true;
-        nav.vel_xya.set(100,0,0);
+        nav.vel_xya.set(-100,0,0);
         if (robot_debug_die)
         {
             exit(1);

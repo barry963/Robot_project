@@ -679,24 +679,28 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
     MyVector2d v = world.GetRobotVelocityByID(me);
 	//计算当前角度与目的角度差
 	double dangleme=world.teammate_direction(me);
+
+#ifdef LU_VERSION
     double ang;
     if(x.length()<100)
         ang = angle_mod(dangleme - target_ang);
     else
     {
-        if(x.angle()<M_PI)
-            ang = angle_mod(2*M_PI-x.angle()-dangleme);
-        else
-            ang = angle_mod(x.angle()+M_PI-dangleme);
-        qDebug()<<x.angle()*180.0/M_PI<<(dangleme)*180.0/M_PI<<ang;
-        if((fabs(ang)<M_PI/4+0.1)||(fabs(ang)>M_PI/4-0.1))
+        MyVector2d temp1=MyVector2d(dangleme)*-1;
+        ang = acos(cosine(temp1,x));
+        //qDebug()<<"Cos: "<<ang;
+        if((fabs(ang)<=M_PI/4+0.05)&&(fabs(ang)>=M_PI/4-0.05))
             ang = 0.0;
-
-
     }
 
+#endif
+
+#ifndef LU_VERSION
+    double ang = angle_mod(dangleme - target_ang);
+#endif
+
     //查询当前角速度
-	double ang_v = world.teammate_angular_velocity(me);
+    double ang_v = world.teammate_angular_velocity(me);
 
 #ifdef LU_VERSION
     if(ang_v>0.5)//lu_test

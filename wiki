@@ -822,3 +822,34 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
         GotoPointType the_type)
 
 The angle between robot and rel_pos is pi/4;
+
+
+=======================================
+2014/2/11
+
+field_world_robot_goto_point.cpp
+#680
+    double ang;
+    if(x.length()<100)
+        ang = angle_mod(dangleme - target_ang);
+    else
+    {
+        MyVector2d temp1=MyVector2d(dangleme)*-1;
+        ang = acos(cosine(temp1,x));
+        //qDebug()<<"Cos: "<<ang;
+        if((fabs(ang)<=M_PI/4+0.05)&&(fabs(ang)>=M_PI/4-0.05))
+            ang = 0.0;
+    }
+
+cmd.target is the ball shooting direction point vector if it concerns ball-moving
+
+As the new robot delay is very large,
+changes the #define LATENCY_DELAY 0.025
+to 
+#define LATENCY_DELAY 0.1
+
+Original:
+OMNI_MAX_ACCEL =      3500     3500     3500    3500 # mm/s^2
+OMNI_MAX_SPEED =     1500     900      900     900  # mm/s
+OMNI_MAX_ANG_ACCEL =       18       12       12      12   # radians/s^2
+OMNI_MAX_ANG_VEL =       6        4        4       4    # radians/s
