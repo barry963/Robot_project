@@ -158,6 +158,7 @@ void StrategyThread::run()
 
     // trigger updates on the field gui
     connect(this,SIGNAL(guiRefresh()),soccerView,SLOT(tickslot()),Qt::AutoConnection);
+    connect(soccerView->scene,SIGNAL(NotifyMouseMove(double,double)),this,SLOT(Coordinate(double,double)));
 
     // initialize strategy
     strategy.init(playbook_file);

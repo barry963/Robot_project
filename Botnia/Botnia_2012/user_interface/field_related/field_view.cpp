@@ -122,6 +122,11 @@ void FieldView::ConstructField()
     //画中线
     field_painter->moveTo ( 0,-this->field_width_/2 );
     field_painter->lineTo ( 0,this->field_width_/2 );
+
+    field_painter->moveTo ( -this->field_length_/2 , 0);
+    field_painter->lineTo ( this->field_length_/2 , 0);
+
+
     //画中心圆
     field_painter->addEllipse ( -this->center_circle_radius_,-this->center_circle_radius_,\
                                 2*this->center_circle_radius_,2*this->center_circle_radius_ );

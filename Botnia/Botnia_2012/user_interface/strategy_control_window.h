@@ -129,6 +129,8 @@ private slots:
     // set referee command
     void start_referee(bool selected);
 
+    void coordinate_refresh(double x,double y);
+
 private:
     Ui::MainWindow *ui;
     status pause_status_;

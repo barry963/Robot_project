@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'strategy_thread.h'
 **
-** Created: Tue Feb 11 14:54:46 2014
+** Created: Tue Feb 11 21:36:17 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,22 +23,28 @@ static const uint qt_meta_data_StrategyThread[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       3,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       16,   15,   15,   15, 0x05,
       27,   15,   15,   15, 0x05,
+      44,   40,   15,   15, 0x05,
+
+ // slots: signature, parameters, type, tag, flags
+      79,   40,   15,   15, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_StrategyThread[] = {
     "StrategyThread\0\0explains()\0guiRefresh()\0"
+    "x,y\0Coordinate_Location(double,double)\0"
+    "Coordinate(double,double)\0"
 };
 
 void StrategyThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -49,10 +55,11 @@ void StrategyThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         switch (_id) {
         case 0: _t->explains(); break;
         case 1: _t->guiRefresh(); break;
+        case 2: _t->Coordinate_Location((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
+        case 3: _t->Coordinate((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData StrategyThread::staticMetaObjectExtraData = {
@@ -87,9 +94,9 @@ int StrategyThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }
@@ -104,5 +111,12 @@ void StrategyThread::explains()
 void StrategyThread::guiRefresh()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, 0);
+}
+
+// SIGNAL 2
+void StrategyThread::Coordinate_Location(double _t1, double _t2)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_END_MOC_NAMESPACE

@@ -199,8 +199,16 @@ void MainWindow::SetupGUIConnection()
 
     ///////////////////////////////////////////////////////////////////////////////
 
+    connect(strategy_thread_,SIGNAL(Coordinate_Location(double,double)),this,SLOT(coordinate_refresh(double,double)));
+
 
 }
+
+void MainWindow::coordinate_refresh(double x, double y)
+{
+    ui->coordinate_text->setHtml(QString::number(x)+","+QString::number(y));
+}
+
 void MainWindow::SetupWindows()
 {
     ui->setupUi(this);
@@ -209,8 +217,6 @@ void MainWindow::SetupWindows()
 }
 void MainWindow::SetupWindowsComponent()
 {
-
-
     /// UI dynamic statu settings///////////////////////////////////////////////////
     pause_status_=OFF;
     // seting the statu to be paused

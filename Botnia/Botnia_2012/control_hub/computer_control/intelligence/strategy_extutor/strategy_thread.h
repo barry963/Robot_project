@@ -55,13 +55,13 @@ extern int iJoystickRobot;
 
 struct RunStatus
 {
-    RUNSTATUSTYPE Status;		//ÔËĞĞ£¬ÔİÍ£ running status
-    STRATEGYTYPE StrategyIndex;	//²ßÂÔÀàĞÍ  strategy type
-    double dFreq;					//²ßÂÔÔËĞĞÆµÂÊ frequency
+    RUNSTATUSTYPE Status;		//è¿è¡Œï¼Œæš‚åœ running status
+    STRATEGYTYPE StrategyIndex;	//ç­–ç•¥ç±»å‹  strategy type
+    double dFreq;					//ç­–ç•¥è¿è¡Œé¢‘ç‡ frequency
     char * tactic_name_;
 };
 extern QString sTactics[5];
-extern RunStatus StatusOnGUI;	//²ßÂÔ×´Ì¬
+extern RunStatus StatusOnGUI;	//ç­–ç•¥çŠ¶æ€
 
 class StrategyThread : public QThread
 {
@@ -85,10 +85,14 @@ private:
      Joystick joystick;
 
 public slots:
-
+     void Coordinate(double x,double y)
+     {
+         emit Coordinate_Location(x,y);
+     };
 signals:
-    void explains(); //Èç¹ûÒª×Ô¶¨Òå²ÛºÍĞÅºÅ, explainsĞÅºÅÊÇ±ØĞëµÄ
-    void guiRefresh(void);//×Ô¶¨ÒåĞÅºÅ.
+    void explains(); //å¦‚æœè¦è‡ªå®šä¹‰æ§½å’Œä¿¡å·, explainsä¿¡å·æ˜¯å¿…é¡»çš„
+    void guiRefresh(void);//è‡ªå®šä¹‰ä¿¡å·.
+    void Coordinate_Location(double x, double y);
 
 public:
     StrategyThread();

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'strategy_control_window.h'
 **
-** Created: Tue Feb 11 14:54:48 2014
+** Created: Tue Feb 11 21:36:18 2014
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      39,   14, // methods
+      40,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -70,6 +70,7 @@ static const uint qt_meta_data_MainWindow[] = {
      713,   11,   11,   11, 0x08,
      733,   11,   11,   11, 0x08,
      753,  655,   11,   11, 0x08,
+     777,  773,   11,   11, 0x08,
 
        0        // eod
 };
@@ -96,6 +97,7 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "selected\0run_mode_selected(bool)\0"
     "test_mode_selected(bool)\0strategy1_clicked()\0"
     "strategy2_clicked()\0start_referee(bool)\0"
+    "x,y\0coordinate_refresh(double,double)\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -143,6 +145,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 36: _t->strategy1_clicked(); break;
         case 37: _t->strategy2_clicked(); break;
         case 38: _t->start_referee((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 39: _t->coordinate_refresh((*reinterpret_cast< double(*)>(_a[1])),(*reinterpret_cast< double(*)>(_a[2]))); break;
         default: ;
         }
     }
@@ -180,9 +183,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 39)
+        if (_id < 40)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 39;
+        _id -= 40;
     }
     return _id;
 }
