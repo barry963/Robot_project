@@ -69,7 +69,9 @@ void gui_debug_robot(MyVector2d pos,double angle)
 
 void gui_debug_point(const char robot, MyVector2d p1 )
 {
-        GuiCmd.AddPoint(p1.x,p1.y);
+        int side_temp = world.getSide();
+        MyVector2d postemp = p1*side_temp;
+        GuiCmd.AddPoint(postemp.x,postemp.y);
 }
 
 void gui_debug_line(const char robot, const char level,
@@ -160,7 +162,7 @@ void RegisterTactics()
         Tactic::registerParser("position_for_pass", TPositionForPass::parser);
         Tactic::registerParser("position_for_deflection", TPositionForDeflection::parser);
         Tactic::registerParser("position_for_loose_ball", TPositionForLooseBall::parser);
-
+        Tactic::registerParser("position", SPosition::parser);
 
         Tactic::registerParser("shoot_charge_ball", TChargeBall::parser);//lu_test->
         Tactic::registerParser("shoot_simple_shoot", TShoot::parser);
@@ -171,7 +173,6 @@ void RegisterTactics()
         Tactic::registerParser("success", TSuccess::parser);
         Tactic::registerParser("complete", TComplete::parser);
         Tactic::registerParser("dribble_to_position", SDribbleToPosition::parser);
-        Tactic::registerParser("position", SPosition::parser);
         Tactic::registerParser("stop", TStop::parser);
         Tactic::registerParser("block", TBlock::parser);
         Tactic::registerParser("goalie", TGoalie::parser);

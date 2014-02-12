@@ -131,7 +131,11 @@ void PaintCmd::ExecCmds(QPainter * painter)
         }
         if (iPointCount)
         {
+            painter->save();
+            painter->setPen(QPen(Qt::red, 10));
+
             painter->drawPoints(points,iPointCount);
+            painter->restore();
         }
 
         if(iVeloCount)
@@ -155,7 +159,7 @@ void PaintCmd::ExecCmds(QPainter * painter)
 void PaintCmd::Clear()
 {
         iLineCount=0;
-        iPointCount=0;
+        //iPointCount=0;
         iTextCount=0;
         iVeloCount=0;
         //iRobotCount = 0;

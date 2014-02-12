@@ -1,19 +1,16 @@
 PLAY TEST1
 
-APPLICABLE offense
-DONE aborted !offense
+APPLICABLE !midfield
 
 ROLE 0
-	position { { 2500 -1000 } { 0 0 }}	
-	position { { 2500 -500 } { 0 0 }}	
-	position { { 2500 0 } { 0 0 }}
-	position { { 2500 500 } { 0 0 }}
+	pass 1
+	position { { 2000 -1000 } { 0 0 }}	
+	receive_pass	
 	none
 ROLE 1
-	position { { 500 -1000 } { 0 0 }}
-	position { { 500 -500 } { 0 0 }}
-	position { { 500 0 } { 0 0 }}
-	position { { 500 500 } { 0 0 }}		
+	position { { 500 -1500 } { 0 0 }}
+	receive_pass
+	pass 0	
 	none
 ROLE 2
 	none

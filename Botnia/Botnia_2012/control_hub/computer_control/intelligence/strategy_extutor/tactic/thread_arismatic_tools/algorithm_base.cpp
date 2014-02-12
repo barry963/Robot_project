@@ -35,7 +35,7 @@ long lrand48()
 	return temp;
 }
 
-int randInt(int value)
+int randInt(int value)//[0 , value-1]
     {
     // Random number between low and high
     return qrand() % value;

@@ -846,10 +846,43 @@ cmd.target is the ball shooting direction point vector if it concerns ball-movin
 As the new robot delay is very large,
 changes the #define LATENCY_DELAY 0.025
 to 
-#define LATENCY_DELAY 0.1
+#define LATENCY_DELAY 0.05
 
 Original:
 OMNI_MAX_ACCEL =      3500     3500     3500    3500 # mm/s^2
 OMNI_MAX_SPEED =     1500     900      900     900  # mm/s
 OMNI_MAX_ANG_ACCEL =       18       12       12      12   # radians/s^2
 OMNI_MAX_ANG_VEL =       6        4        4       4    # radians/s
+
+
+=======================================
+2014/2/12
+
+
+
+First test whether it can arrive target position bySPosition
+
+Temporarily stop the test of hardware. Now study .plb
+
+
+strategy.cpp
+Play *PlayBook::select(World &w)
+
+In the fulture.Optimize the way of select play
+
+
+void PlayExecutor::checkStatus(World &world)
+
+...
+    if(completed)//lu_test
+    {
+        status = Completed;
+        return;
+    }
+...
+Change another play immediately after complement
+
+
+TODO:
+Make sure that the ball is passing to another robot.
+Complete isDone function.

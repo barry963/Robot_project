@@ -680,7 +680,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 	//计算当前角度与目的角度差
 	double dangleme=world.teammate_direction(me);
 
-#ifdef LU_VERSION
+#ifndef LU_VERSION
     double ang;
     if(x.length()<100)
         ang = angle_mod(dangleme - target_ang);
@@ -695,7 +695,7 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
 
 #endif
 
-#ifndef LU_VERSION
+#ifdef LU_VERSION
     double ang = angle_mod(dangleme - target_ang);
 #endif
 
@@ -1096,8 +1096,11 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
         // path planning return the node it should go
         //qDebug()<<"Path_planning";
         target = world.path[focused_robot_id].plan(&obstacles_instance,1,initial,goal,obs_id);
+
         gui_debug_line(0,0,initial.pos,target.pos);
+        gui_debug_point(0,target.pos);
         gui_debug_line(0,0,initial.pos,goal.pos);
+        gui_debug_point(0,goal.pos);
 
         //if(!finite(target.pos.x) || !finite(target.pos.y))
 	//{

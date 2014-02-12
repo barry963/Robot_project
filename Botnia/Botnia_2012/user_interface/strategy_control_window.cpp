@@ -149,7 +149,7 @@ void MainWindow::SetupGUIConnection()
     connect(ui->position_penalty_button,SIGNAL(clicked()),this,SLOT(select_position_strategy_type()));
     connect(ui->position_rebound_button,SIGNAL(clicked()),this,SLOT(select_position_strategy_type()));
     connect(ui->position_start_button,SIGNAL(clicked()),this,SLOT(select_position_strategy_type()));
-
+    connect(ui->position_button,SIGNAL(clicked()),this,SLOT(select_position_strategy_type()));
 
     connect(ui->move_middle_button,SIGNAL(clicked()),this,SLOT(select_move_strategy_type()));
     connect(ui->move_sin_button,SIGNAL(clicked()),this,SLOT(select_move_strategy_type()));
@@ -185,7 +185,7 @@ void MainWindow::SetupGUIConnection()
     connect(ui->spin_to_region_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
     connect(ui->receive_pass_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
     connect(ui->receive_deflection_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
-    connect(ui->position_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
+
     connect(ui->pass_and_receive_button,SIGNAL(clicked()),this,SLOT(select_page3_strategy_type()));
 
     //    connect(ui->strategy1_radio_button,SIGNAL(clicked()),this,SLOT(strategy1_clicked()));
@@ -501,6 +501,10 @@ void MainWindow::select_position_strategy_type()
         {
             StatusOnGUI.tactic_name_ = "position_for_start";
         }
+        else if(ui->position_button->isChecked())
+        {
+            StatusOnGUI.tactic_name_ = "position";
+        }
 
 }
 
@@ -649,10 +653,7 @@ void MainWindow::select_page3_strategy_type()
 //    {
 //        StatusOnGUI.tactic_name_ = "receive_deflection";
 //    }
-//    else if(ui->position_button->isChecked())
-//    {
-//        StatusOnGUI.tactic_name_ = "position";
-//    }
+
 //    else if(ui->pass_and_receive_button->isChecked())
 //    {
 //        StatusOnGUI.tactic_name_ = "pass_and_receive";

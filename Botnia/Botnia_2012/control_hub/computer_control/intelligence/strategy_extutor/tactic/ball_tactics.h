@@ -215,6 +215,8 @@ public:
 
 	virtual void command(World &world, int me, Robot::RobotCommand &command,
 	                     bool debug);
+
+
 };
 
 //Ӵս

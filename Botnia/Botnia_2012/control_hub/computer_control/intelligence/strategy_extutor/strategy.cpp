@@ -26,7 +26,6 @@
 #include "control_hub/computer_control/intelligence/world_analysor/field_analysor_configreader.h"
 #include <QString>
 
-
 #include "control_hub/computer_control/knowledge_base/database/world_state/field_world.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/base_tactic.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/skill/simple_tactics.h"
@@ -38,6 +37,7 @@
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/ball_tactics.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/goalie.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/play/play.h"
+#include "control_hub/computer_control/intelligence/strategy_extutor/tactic/thread_arismatic_tools/algorithm_base.h"
 
 static bool cr_setup = false;
 CR_DECLARE(PLAYEXEC_OPPORTUNISM);
@@ -412,6 +412,13 @@ void PlayExecutor::checkStatus(World &world)
         status = completed ? Completed : Aborted;
         return;
     }
+
+    if(completed)//lu_test this enables play changes immediately after complement
+    {
+        status = Completed;
+        return;
+    }
+
     //
     for (int i=0; i<MAX_PLAY_ROLES; i++)
     {
@@ -422,9 +429,11 @@ void PlayExecutor::checkStatus(World &world)
             Status s = tactics[i]->isDone(world, assign[i]);
             if (s != InProgress)
             {
+
                 gui_debug_printf(-1, GDBG_STRATEGY, "ACTIVE TACTIC DONE: %s\n",
                                  status_as_string(s));
             }
+
             if (s == Failed || s == Aborted)
             {
                 status = Aborted;
@@ -475,6 +484,7 @@ void PlayExecutor::run(World &world, Tactic *t[])
         {//new play first enter
             //establish tactics list
             nextInSequence(world);
+
             //establish our role assignment
             //PLAYEXEC_FIXED_ROLES =    0 # boolean
             //lu_test change from 0 to 1 for test
@@ -616,6 +626,7 @@ Play *PlayBook::select(World &w)
     }
     if (sum == 0)
     {
+        qDebug()<<"No play applicable";
         delete applicable;
         return NULL;
     }
@@ -626,7 +637,7 @@ Play *PlayBook::select(World &w)
         if (applicable[i])
         {
                     // Bin: TODO: problematic code,needs converting!
-            vision_info.sPlay = QString::fromUtf8(plays[i]->name);
+
                     //vision_info.sPlay = QString("test");
 
             //gui_debug_printf(-1, GDBG_STRATEGY,
@@ -635,19 +646,43 @@ Play *PlayBook::select(World &w)
         }
     }
     //Generate random number
-    double r = sum * (rand() / ((double) RAND_MAX + 1));
+    double r;
+
+    r = sum * (rand() / ((double) RAND_MAX + 1));
     //choose based on random number
+
+    /*
+      In the future, it should be possible to dynamically change the weights.
+    */
+    int *possiblePlayList = new int[plays.size()];
+    int possiblePlayNum=0;
+
     for (uint i=0; i<plays.size(); i++)
     {
+        possiblePlayList[i] = false;
+
         if (!applicable[i]) continue;
         r -= weight(i);
         if (r < 0)
         {
+            possiblePlayList[possiblePlayNum++]=i;
+            qDebug()<<plays[i]->name;
             gui_debug_printf(-1, GDBG_STRATEGY, "  Selected: %s\n", plays[i]->name);
+            vision_info.sPlay = QString::fromUtf8(plays[i]->name);
             delete applicable;
             return plays[i];
         }
     }
+
+//    if((plays.size()>0)&&(possiblePlayNum>0))
+//    {
+//        int playnum = randInt(possiblePlayNum);
+//        gui_debug_printf(-1, GDBG_STRATEGY, "  Selected: %s\n", plays[possiblePlayList[playnum]]->name);
+//        delete applicable;
+//        return plays[possiblePlayList[playnum]];
+//    }
+
+
     delete applicable;
     return NULL;
 }
@@ -776,6 +811,10 @@ void Strategy::playEnded(World &world, Status status)
     if (current_play)
     {
         executor.set(world, current_play);
+    }
+    else
+    {
+        qDebug()<<"NOthing Selected";
     }
 }
 

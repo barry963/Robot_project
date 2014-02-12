@@ -87,6 +87,8 @@ private:
 public slots:
      void Coordinate(double x,double y)
      {
+         x*=world.side_;
+         y*=world.side_;
          emit Coordinate_Location(x,y);
      };
 signals:

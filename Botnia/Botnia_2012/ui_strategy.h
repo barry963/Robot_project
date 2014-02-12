@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'strategy.ui'
 **
-** Created: Tue Feb 11 22:06:58 2014
+** Created: Wed Feb 12 15:51:15 2014
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -117,6 +117,7 @@ public:
     QRadioButton *position_rebound_button;
     QRadioButton *position_deflection_button;
     QRadioButton *position_loose_ball_button;
+    QRadioButton *position_button;
     QWidget *strategy_move_tab;
     QWidget *verticalLayoutWidget_14;
     QVBoxLayout *strategy_move_layout;
@@ -183,7 +184,7 @@ public:
     QRadioButton *dribble_to_shoot_button;
     QRadioButton *active_def_button;
     QRadioButton *receive_pass_button;
-    QRadioButton *position_button;
+    QRadioButton *radioButton;
     QRadioButton *pass_and_receive_button;
     QSpacerItem *strategy_spacer;
     QWidget *log_tab;
@@ -434,7 +435,7 @@ public:
         yrobot_group_box->setStyleSheet(QString::fromUtf8(""));
         verticalLayoutWidget_8 = new QWidget(yrobot_group_box);
         verticalLayoutWidget_8->setObjectName(QString::fromUtf8("verticalLayoutWidget_8"));
-        verticalLayoutWidget_8->setGeometry(QRect(10, 40, 111, 171));
+        verticalLayoutWidget_8->setGeometry(QRect(10, 40, 111, 218));
         QFont font1;
         font1.setFamily(QString::fromUtf8("cmr10"));
         verticalLayoutWidget_8->setFont(font1);
@@ -490,7 +491,7 @@ public:
         brobot_group_box->setFont(font);
         verticalLayoutWidget_7 = new QWidget(brobot_group_box);
         verticalLayoutWidget_7->setObjectName(QString::fromUtf8("verticalLayoutWidget_7"));
-        verticalLayoutWidget_7->setGeometry(QRect(10, 40, 107, 171));
+        verticalLayoutWidget_7->setGeometry(QRect(10, 40, 107, 218));
         brobot_layout = new QVBoxLayout(verticalLayoutWidget_7);
         brobot_layout->setSpacing(2);
         brobot_layout->setContentsMargins(5, 5, 5, 5);
@@ -539,7 +540,7 @@ public:
         side_selection_box->setMaximumSize(QSize(16777215, 150));
         verticalLayoutWidget_10 = new QWidget(side_selection_box);
         verticalLayoutWidget_10->setObjectName(QString::fromUtf8("verticalLayoutWidget_10"));
-        verticalLayoutWidget_10->setGeometry(QRect(10, 40, 111, 81));
+        verticalLayoutWidget_10->setGeometry(QRect(10, 40, 111, 92));
         side_selection_layout = new QVBoxLayout(verticalLayoutWidget_10);
         side_selection_layout->setSpacing(2);
         side_selection_layout->setContentsMargins(5, 5, 5, 5);
@@ -565,7 +566,7 @@ public:
         color_group_box->setLayoutDirection(Qt::LeftToRight);
         verticalLayoutWidget_6 = new QWidget(color_group_box);
         verticalLayoutWidget_6->setObjectName(QString::fromUtf8("verticalLayoutWidget_6"));
-        verticalLayoutWidget_6->setGeometry(QRect(10, 40, 101, 81));
+        verticalLayoutWidget_6->setGeometry(QRect(10, 40, 102, 92));
         color_layout = new QVBoxLayout(verticalLayoutWidget_6);
         color_layout->setSpacing(2);
         color_layout->setContentsMargins(5, 5, 5, 5);
@@ -603,7 +604,7 @@ public:
         robot_selection_group_box->setMaximumSize(QSize(16777215, 200));
         verticalLayoutWidget_4 = new QWidget(robot_selection_group_box);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(10, 40, 221, 81));
+        verticalLayoutWidget_4->setGeometry(QRect(10, 40, 221, 96));
         robot_selection_layout = new QGridLayout(verticalLayoutWidget_4);
         robot_selection_layout->setContentsMargins(5, 5, 5, 5);
         robot_selection_layout->setObjectName(QString::fromUtf8("robot_selection_layout"));
@@ -746,6 +747,11 @@ public:
         position_loose_ball_button->setObjectName(QString::fromUtf8("position_loose_ball_button"));
 
         strategy_selection_layout->addWidget(position_loose_ball_button, 5, 0, 1, 1);
+
+        position_button = new QRadioButton(verticalLayoutWidget_3);
+        position_button->setObjectName(QString::fromUtf8("position_button"));
+
+        strategy_selection_layout->addWidget(position_button, 5, 1, 1, 1);
 
 
         strategy_position_layout->addWidget(strategy_position_box);
@@ -1067,10 +1073,10 @@ public:
 
         strategy_selection_layout_9->addWidget(receive_pass_button, 4, 0, 1, 1);
 
-        position_button = new QRadioButton(verticalLayoutWidget_29);
-        position_button->setObjectName(QString::fromUtf8("position_button"));
+        radioButton = new QRadioButton(verticalLayoutWidget_29);
+        radioButton->setObjectName(QString::fromUtf8("radioButton"));
 
-        strategy_selection_layout_9->addWidget(position_button, 5, 0, 1, 1);
+        strategy_selection_layout_9->addWidget(radioButton, 5, 0, 1, 1);
 
         pass_and_receive_button = new QRadioButton(verticalLayoutWidget_29);
         pass_and_receive_button->setObjectName(QString::fromUtf8("pass_and_receive_button"));
@@ -1304,7 +1310,7 @@ public:
         source_group_box->setGeometry(QRect(140, 0, 131, 191));
         verticalLayoutWidget = new QWidget(source_group_box);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(10, 33, 111, 131));
+        verticalLayoutWidget->setGeometry(QRect(10, 33, 120, 134));
         control_source_layout = new QVBoxLayout(verticalLayoutWidget);
         control_source_layout->setSpacing(2);
         control_source_layout->setContentsMargins(5, 5, 5, 5);
@@ -1387,8 +1393,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        control_panel->setCurrentIndex(0);
-        strategy_type_tab->setCurrentIndex(4);
+        control_panel->setCurrentIndex(2);
+        strategy_type_tab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1449,6 +1455,7 @@ public:
         position_rebound_button->setText(QApplication::translate("MainWindow", "position_for_rebound", 0, QApplication::UnicodeUTF8));
         position_deflection_button->setText(QApplication::translate("MainWindow", "position_for_deflection", 0, QApplication::UnicodeUTF8));
         position_loose_ball_button->setText(QApplication::translate("MainWindow", "position_for_loose_ball", 0, QApplication::UnicodeUTF8));
+        position_button->setText(QApplication::translate("MainWindow", "position", 0, QApplication::UnicodeUTF8));
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(strategy_position_tab), QApplication::translate("MainWindow", "Position", 0, QApplication::UnicodeUTF8));
         strategy_move_box->setTitle(QString());
         move_middle_button->setText(QApplication::translate("MainWindow", "move_to_middle", 0, QApplication::UnicodeUTF8));
@@ -1495,7 +1502,7 @@ public:
         dribble_to_shoot_button->setText(QString());
         active_def_button->setText(QString());
         receive_pass_button->setText(QString());
-        position_button->setText(QString());
+        radioButton->setText(QString());
         pass_and_receive_button->setText(QApplication::translate("MainWindow", "pass_and_receive", 0, QApplication::UnicodeUTF8));
         strategy_type_tab->setTabText(strategy_type_tab->indexOf(test3), QApplication::translate("MainWindow", "Page", 0, QApplication::UnicodeUTF8));
         control_panel->setTabText(control_panel->indexOf(strategy_tab), QApplication::translate("MainWindow", "Computer", 0, QApplication::UnicodeUTF8));

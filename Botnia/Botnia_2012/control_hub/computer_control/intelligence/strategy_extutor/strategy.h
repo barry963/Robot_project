@@ -145,8 +145,10 @@ private:
 
 		void gui_print()
 		{
-			gui_debug_printf(-1, GDBG_STRATEGY, "F:%d A:%d I:%d C:%d S:%d\n",
-			                 counts[0], counts[1], counts[2], counts[3], counts[4]);
+            //gui_debug_printf(-1, GDBG_STRATEGY, "F:%d A:%d I:%d C:%d S:%d\n",
+            //                 counts[0], counts[1], counts[2], counts[3], counts[4]);
+
+            qDebug()<<"RESULTS:"<<counts[0]<<counts[1]<<counts[2]<<counts[3]<<counts[4];
 		}
 	};
 

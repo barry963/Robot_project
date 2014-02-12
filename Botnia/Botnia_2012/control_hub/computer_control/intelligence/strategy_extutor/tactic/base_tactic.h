@@ -297,6 +297,7 @@ public:
 
 extern bool positionflag;//lu_test add temporarily, just for demo
 
+
 class RobotTactic : public Tactic
 {
 protected:
@@ -347,8 +348,48 @@ public:
     virtual Status isDone(World &world, int me)
     {
         //printf("isDone tactic cmd: %d, status: %d\n",the_commandtemp.cmd,the_status);
-        qDebug()<<"isDone tactic cmd"<<the_commandtemp.cmd<<", status: "<<the_status<<"\n";
+        //qDebug()<<"isDone tactic cmd"<<the_commandtemp.cmd<<", status: "<<DisplayStatus(the_status)<<"\n";
+
         return the_status;
+    }
+
+    QString DisplayStatus(int statusnum)
+    {
+        QString StatusString;
+        if(statusnum==0)
+        {
+            StatusString = "Failed";
+        }
+        else
+            if(statusnum==1)
+        {
+            StatusString = "Aborted";
+        }
+        else
+            if(statusnum==2)
+        {
+            StatusString = "InProgress";
+        }
+        else
+            if(statusnum==3)
+        {
+            StatusString = "Completed";
+        }
+        else
+            if(statusnum==4)
+        {
+            StatusString = "Succeeded";
+        }
+            else
+                if(statusnum==5)
+            {
+                StatusString = "Busy";
+            }
+                else
+                {
+                    StatusString = "Invalid Status";
+                }
+        return StatusString;
     }
 
     // run

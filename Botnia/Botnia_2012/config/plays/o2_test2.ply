@@ -1,17 +1,15 @@
 PLAY TEST2
 
-APPLICABLE offense
-DONE aborted !offense
+APPLICABLE !loose_ball
+DONE aborted loose_ball
 
 ROLE 0
-	position { { 2500 -500 } { 0 0 }}	
-	position { { 2500 0 } { 0 0 }}
-	position { { 2500 500 } { 0 0 }}
+	position_for_pass { R { 2000 0 } { 1800 0 } 200 }
+	receive_pass
 	none
 ROLE 1
-	position { { 500 -500 } { 0 0 }}
-	position { { 500 0 } { 0 0 }}
-	position { { 500 500 } { 0 0 }}		
+	pass 1	
+	mark 1 from_shot	
 	none
 ROLE 2
 	none

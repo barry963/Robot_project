@@ -434,9 +434,8 @@ void StrategyThread::DoTactics()
         case STRATEGY_RUN:
             if (tactics[i])
             {
-                qDebug()<<"Tactics# "<<i<<" :"<<tactics[i]->name();
+                qDebug()<<"Tactics #"<<i<<" :"<<tactics[i]->name();
                 tactics[i]->run(world, i);
-
             }
             break;
         }

@@ -205,7 +205,7 @@ QHeaderView::section {
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <property name="movable">
       <bool>false</bool>
@@ -255,7 +255,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>111</width>
-             <height>171</height>
+             <height>218</height>
             </rect>
            </property>
            <property name="font">
@@ -375,7 +375,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>107</width>
-             <height>171</height>
+             <height>218</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="brobot_layout">
@@ -481,7 +481,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>111</width>
-             <height>81</height>
+             <height>92</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="side_selection_layout">
@@ -534,8 +534,8 @@ QHeaderView::section {
             <rect>
              <x>10</x>
              <y>40</y>
-             <width>101</width>
-             <height>81</height>
+             <width>102</width>
+             <height>92</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="color_layout">
@@ -615,7 +615,7 @@ QHeaderView::section {
              <x>10</x>
              <y>40</y>
              <width>221</width>
-             <height>81</height>
+             <height>96</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="robot_selection_layout">
@@ -773,7 +773,7 @@ QHeaderView::section {
            </size>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <property name="movable">
            <bool>true</bool>
@@ -883,6 +883,13 @@ QHeaderView::section {
                   <widget class="QRadioButton" name="position_loose_ball_button">
                    <property name="text">
                     <string>position_for_loose_ball</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QRadioButton" name="position_button">
+                   <property name="text">
+                    <string>position</string>
                    </property>
                   </widget>
                  </item>
@@ -1469,7 +1476,7 @@ QHeaderView::section {
                   </widget>
                  </item>
                  <item row="5" column="0">
-                  <widget class="QRadioButton" name="position_button">
+                  <widget class="QRadioButton" name="radioButton">
                    <property name="text">
                     <string/>
                    </property>
@@ -1962,8 +1969,8 @@ QHeaderView::section {
        <rect>
         <x>10</x>
         <y>33</y>
-        <width>111</width>
-        <height>131</height>
+        <width>120</width>
+        <height>134</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="control_source_layout">

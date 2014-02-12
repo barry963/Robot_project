@@ -87,6 +87,8 @@ public:
     */
     SPosition(BCoordinate _position, BCoordinate _faceto) : RobotTactic(false)
     {
+        active = true;
+
         position = _position;
         //position=BCoordinate(2500,1000);
         faceto = _faceto;
@@ -95,6 +97,8 @@ public:
     }
     SPosition(BCoordinate _position=BCoordinate(1000,1000), double angle=90.0) : RobotTactic(false)
     {
+        active = true;
+
         position = _position;
         faceto = MyVector2d(1, 0).rotate(angle);
         use_obsflags = false;
@@ -102,6 +106,8 @@ public:
 
     SPosition(BCoordinate _position=BCoordinate(1000,1000), int _obs=0) : RobotTactic(false)
     {
+        active = true;
+
         position = _position;
         faceto = MyVector2d(1, 0);
         obs = _obs;
