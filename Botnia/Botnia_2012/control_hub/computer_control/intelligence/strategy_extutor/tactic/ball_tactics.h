@@ -27,7 +27,7 @@
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/base_tactic.h"
 #include "control_hub/computer_control/intelligence/strategy_extutor/evaluation.h"
 
-//ս
+//
 class TShoot : public RobotTactic
 {
 public:
@@ -98,7 +98,7 @@ public:
 	double successProb(World &world);
 };
 
-//͵ս
+//
 class TSteal : public RobotTactic
 {
 public:
@@ -132,7 +132,7 @@ public:
 	                     bool debug);
 };
 
-//ս
+//
 class TClear : public RobotTactic
 {
 public:
@@ -192,7 +192,7 @@ public:
 	                     bool debug);
 };
 
-//ս
+//
 class TPass : public RobotTactic
 {
 public:

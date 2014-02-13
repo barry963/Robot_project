@@ -219,7 +219,7 @@ public:
         // it seems it defines what to observe
         int observation_type; // obstacle flags
 
-        // stores the infomaion of the posiotion that we want to go and the infomation of
+        // stores the infomaion of the position that we want to go and the infomation of
         // velocity of going there?
         MyVector2d target,velocity;
         // the position the ball would like to go ?

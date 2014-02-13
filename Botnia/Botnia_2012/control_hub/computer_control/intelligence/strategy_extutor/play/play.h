@@ -176,7 +176,7 @@ private:
 	void printErrorLine(const char *string, int n);
 
 	//
-	// Predicates	ν
+    // Predicates
 	//
 
     //offense
@@ -205,30 +205,30 @@ private:
 		return w.possession == World::LooseBall;
 	}
 
-    //our control
+    //in their side
 	static bool pred_their_side(World &w, double a)
 	{
 		return w.fieldPosition == World::TheirSide;
 	}
-	//ڼ볡
+    //in our side
 	static bool pred_our_side(World &w, double a)
 	{
 		return w.fieldPosition == World::OurSide;
 	}
-	//г
+    //midfield
 	static bool pred_midfield(World &w, double a)
 	{
 		return w.fieldPosition == World::Midfield;
 	}
 
-	//ڼ
+    //
 	static bool pred_in_our_corner(World &w, double a)
 	{
 		return (w.ballXThreshold < (-FIELD_LENGTH_H +
 		                            DEFENSE_DEPTH + ROBOT_DEF_WIDTH_H) &&
 		        fabs(w.ballYThreshold) > DEFENSE_WIDTH_H);
 	}
-	//ڶԷ
+    //
 	static bool pred_in_their_corner(World &w, double a)
 	{
 		return (w.ballXThreshold > (FIELD_LENGTH_H -
@@ -242,7 +242,7 @@ private:
 		return (w.color_ == TEAM_BLUE && w.game_state == 'K') ||
 		       (w.color_ == TEAM_YELLOW && w.game_state == 'k');
 	}
-	//Է
+    //
 	static bool pred_their_kickoff(World &w, double a)
 	{
 		return (w.color_ == TEAM_BLUE && w.game_state == 'k') ||
@@ -254,7 +254,7 @@ private:
 		return (w.color_ == TEAM_BLUE && w.game_state == 'F') ||
 		       (w.color_ == TEAM_YELLOW && w.game_state == 'f');
 	}
-	//Էֱ
+    //Է
 	static bool pred_their_freekick(World &w, double a)
 	{
 		return (w.color_ == TEAM_BLUE && w.game_state == 'f') ||
@@ -313,17 +313,17 @@ private:
 	// Opponent Roles
 	//
 
-	//ȷŶԱ;
+    //
 	static int orole_best_shot(World &world, bool candidates[]);
-	//ȷڶԷ볡ǰ(ӽг)Ա;
+    //
 	static int orole_most_downfield(World &world, bool candidates[]);
-	//ȷҷ볡ǰԱ;
+    //
 	static int orole_most_upfield(World &world, bool candidates[]);
 
 	static int orole_goalie(World &world, bool candidates[]);
-	//ȷԷĶԱ;
+    //
 	static int orole_closest_to_ball(World &world, bool candidates[]);
-	//ȷԷλĶԱ;
+    //
 	static int orole_closest_to_shot(World &world, bool candidates[]);
 	static int orole_best_pass(World &world, bool candidates[]);
 
@@ -338,13 +338,13 @@ public:
 	PlayAscii(const char *string, int &n, bool &error);
 	PlayAscii(const char *filename, bool &error);
 
-	//ù̶ɫ
+    //get fixed ID
 	virtual int getRoleFixedID(int fixed)
 	{
 		return fixed_roles[fixed];
 	}
 
-	//playǷһͿ
+    //evaluate play satisfies start requirement
 	virtual bool isApplicable(World &w)
 	{
 		for (uint i=0; i<applicable.size(); i++)
@@ -357,7 +357,7 @@ public:
 		return false;
 	}
 
-	//playжϣֻҪһ㣬
+    //evaluate the complement requirement of play
 	virtual Status isDone(World &w)
 	{
 		for (uint i=0; i<done.size(); i++)
@@ -370,13 +370,13 @@ public:
 		return InProgress;
 	}
 
-	//ȡʱʱ
+    //
 	virtual double timeout()
 	{
 		return play_timeout;
 	}
 
-	//¶Էͼ
+    //renew opponent map
 	virtual void updateOpponentMap(World &w, TRoleMap *m)
 	{
 		bool candidates[MAX_TEAM_ROBOTS];
@@ -385,11 +385,11 @@ public:
 			candidates[i] = true;
 		}
 		m->clear();
-		//ֽɫ
+        //
 		for (uint i=0; i<opponent_roles.size(); i++)
 		{
-			//ݽűҪ֪ĶֽɫҪȷ־ָ߱ɫĻ
-			//磬closest_to_ball »
+            //
+            //closest_to_ball the robot clocest to the ball
 			//closest_to_shot  
 			int id = (opponent_roles[i])(w, candidates);
 			if (id >= 0)

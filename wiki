@@ -858,8 +858,6 @@ OMNI_MAX_ANG_VEL =       6        4        4       4    # radians/s
 =======================================
 2014/2/12
 
-
-
 First test whether it can arrive target position bySPosition
 
 Temporarily stop the test of hardware. Now study .plb
@@ -886,3 +884,18 @@ Change another play immediately after complement
 TODO:
 Make sure that the ball is passing to another robot.
 Complete isDone function.
+
+
+=======================================
+2014/2/13
+
+strategy.cfg
+change
+PLAYEXEC_OPPORTUNISM =    1 # boolean
+to
+PLAYEXEC_OPPORTUNISM =    0 # boolean
+
+For test
+
+TODO:
+Try to understand the structure of Strategy, Play
