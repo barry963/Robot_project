@@ -4,11 +4,11 @@ APPLICABLE !midfield
 
 ROLE 0
 	pass 1
-	receive_pass	
+	receive_pass
 	none
 ROLE 1
 	receive_pass	
-	pass 0	
+	pass 0
 	none
 ROLE 2
 	none

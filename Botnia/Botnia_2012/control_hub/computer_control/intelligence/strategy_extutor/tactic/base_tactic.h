@@ -349,10 +349,12 @@ public:
     {
         //printf("isDone tactic cmd: %d, status: %d\n",the_commandtemp.cmd,the_status);
         //qDebug()<<"isDone tactic cmd"<<the_commandtemp.cmd<<", status: "<<DisplayStatus(the_status)<<"\n";
-
         return the_status;
     }
 
+    //replace it with inline const char *status_as_string(Status s)
+    //in field_global_function.h
+    /*
     QString DisplayStatus(int statusnum)
     {
         QString StatusString;
@@ -391,6 +393,7 @@ public:
                 }
         return StatusString;
     }
+    */
 
     // run
     virtual void run(World &world, int me)

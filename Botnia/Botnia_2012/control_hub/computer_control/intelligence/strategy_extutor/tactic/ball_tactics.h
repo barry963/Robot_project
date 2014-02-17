@@ -222,9 +222,9 @@ public:
         //the vector from kick direction point to ball position
         MyVector2d ball_to_target = world.GetRobotPositionByID(target)-world.ball_position();
         double dba = angle_mod(ball_to_target.angle() - world.teammate_direction(target));
-        qDebug()<<"ANgle"<<dba;
+        //qDebug()<<"ANgle"<<dba;
         double lengthtemp=(world.GetRobotPositionByID(target)-world.ball_position()).length();
-        qDebug()<<lengthtemp;
+        //qDebug()<<lengthtemp;
         if(lengthtemp<200)
             return Completed;
 
@@ -262,9 +262,9 @@ public:
         //the vector from kick direction point to ball position
         MyVector2d ball_to_target = world.GetRobotPositionByID(me)-world.ball_position();
         double dba = angle_mod(ball_to_target.angle() - world.teammate_direction(me));
-        qDebug()<<"ANgle"<<dba;
+        //qDebug()<<"ANgle"<<dba;
         double lengthtemp=(world.GetRobotPositionByID(me)-world.ball_position()).length();
-        qDebug()<<lengthtemp;
+        //qDebug()<<lengthtemp;
         if(lengthtemp<200)
             return Completed;
 

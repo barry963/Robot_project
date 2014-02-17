@@ -51,6 +51,8 @@ CR_DECLARE(PLAYBOOK_ADAPT_WEIGHTS);
 CR_DECLARE(PLAYBOOK);
 
 
+#define LU_VERSION
+
 //角色执行者状态初始化，清空策略队列，检查赛场状态;
 PlayExecutor::PlayExecutor()
 {
@@ -421,9 +423,9 @@ void PlayExecutor::checkStatus(World &world)
         return;
     }
 
+#ifdef LU_VERSION
     bool completeFlag=true;
 
-    //
     for (int i=0; i<MAX_PLAY_ROLES; i++)
     {
         //evluate whether the tactic is finished to judge
@@ -431,9 +433,9 @@ void PlayExecutor::checkStatus(World &world)
 
         if (tactics[i] && tactics[i]->active)
         {
-            qDebug()<<"TACTICS#"<<i<<tactics[i]->name();
+            //qDebug()<<"TACTICS#"<<i<<tactics[i]->name();
             Status s = tactics[i]->isDone(world, assign[i]);
-            qDebug()<<s;
+            //qDebug()<<s;
 
             if(s==InProgress)
             {
@@ -477,6 +479,57 @@ void PlayExecutor::checkStatus(World &world)
 
         }
     }
+#endif
+
+#ifndef LU_VERSION
+
+    for (int i=0; i<MAX_PLAY_ROLES; i++)
+    {
+        //evluate whether the tactic is finished to judge
+        //whether the play is finished
+
+        if (tactics[i] && tactics[i]->active)
+        {
+            //qDebug()<<"TACTICS#"<<i<<tactics[i]->name();
+            Status s = tactics[i]->isDone(world, assign[i]);
+            //qDebug()<<s;
+
+            if (s != InProgress)
+            {
+
+                gui_debug_printf(-1, GDBG_STRATEGY, "ACTIVE TACTIC DONE: %s\n",
+                                 status_as_string(s));
+            }
+
+            if (s == Failed || s == Aborted)
+            {
+                status = Aborted;
+                return;
+            }
+            else if (s == Succeeded || s == Completed)
+            {
+                //if one tactics finished, then start next tactic
+                status = nextInSequence(world);
+                if (status == InProgress)
+                {
+                    gui_debug_printf(-1, GDBG_STRATEGY, "NEXT IN SEQUENCE.\n");
+                }
+                else if (status == Completed)
+                {
+                    if (!completed)
+                    {
+                        gui_debug_printf(-1, GDBG_STRATEGY, "SEQUENCE COMPLETED.\n");
+                    }
+                    completed = true;
+                    status = InProgress;
+                }
+                return;
+            }
+
+        }
+    }
+#endif
+
 }
 
 //run tactic
