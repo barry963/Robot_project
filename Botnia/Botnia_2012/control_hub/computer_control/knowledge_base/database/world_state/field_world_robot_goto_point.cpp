@@ -70,7 +70,7 @@ CR_DECLARE(NAV_THEIR_GOALIE_OBSTACLE_RADIUS);
 
 int debugfreq=0;//lu_test just for test
 
-#define LU_VERSION //lu_test for new speed planning
+//#define LU_VERSION //lu_test for new speed planning
 
 //按照梯形速度曲线，计算运动消耗时间
 float Robot::motion_time_1d(float dx,float vel0,float vel1,
@@ -679,8 +679,8 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
     MyVector2d v = world.GetRobotVelocityByID(me);
 	//计算当前角度与目的角度差
 	double dangleme=world.teammate_direction(me);
-
-#ifndef LU_VERSION
+/*
+#ifdef LU_VERSION
     double ang;
     if(x.length()<100)
         ang = angle_mod(dangleme - target_ang);
@@ -694,8 +694,9 @@ Robot::Trajectory Robot::goto_point_omni(World &world, int me,
     }
 
 #endif
+*/
 
-#ifdef LU_VERSION
+#ifndef LU_VERSION
     double ang = angle_mod(dangleme - target_ang);
 #endif
 
@@ -947,6 +948,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
                 obstacles_instance.add_half_plane( 0,-FIELD_WIDTH_H, 0, 1,1);
                 obstacles_instance.add_half_plane( 0, FIELD_WIDTH_H, 0,-1,1);
 		//
+/*
 #ifndef LU_VERSION //comment by Lu_test, for the sake of convinience, comment the whole part
                 obstacles_instance.add_rectangle(-FIELD_LENGTH_H-GOAL_DEPTH,
 		                  (FIELD_WIDTH_H+GOAL_WIDTH_H)/2,
@@ -961,6 +963,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 		                   -(FIELD_WIDTH_H+GOAL_WIDTH_H)/2,
 		                   GOAL_DEPTH,FIELD_WIDTH_H-GOAL_WIDTH_H,1);
 #endif
+*/
 	}
         /// set up teammates as obstacles
 	for (i=0; i<world.n_teammates; i++)
@@ -1025,7 +1028,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 			}
 		}
 	}
-
+/*
 #ifndef LU_VERSION //comment by Lu_test, for the sake of convinience, comment the whole part
         // if needed, set our defense zone as obstacle
 	if (obs_flags & OBS_OUR_DZONE)
@@ -1056,6 +1059,7 @@ Robot::Trajectory Robot::nav_to_point(World &world, int focused_robot_id,
 		                   DEFENSE_DEPTH*4,DEFENSE_WIDTH,1);
 	}
 #endif
+*/
 
         // if needed, set ball as obstacle
         // bug here lu_test

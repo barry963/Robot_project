@@ -49,7 +49,7 @@ const bool robot_sub_state = false;
 const bool robot_debug_die = false;
 bool state_start_flag=true;
 
-#define LU_VERSION
+//#define LU_VERSION
 
 //封装了整个队伍的行为，体现了就近的机器人优先采取行动的原则，描述了机器人作为不同角色球员时的行为和反应过程。
 const char *state_name[] =

@@ -33,7 +33,7 @@
 #include "control_hub/computer_control/intelligence/strategy_extutor/tactic/ball_tactics.h"
 #include <stdarg.h>
 
-//ÅĞ¶Ï·ÖÎö¶ÔÊÖµÄÖ÷ÒªĞÅÏ¢¡£
+//åˆ¤æ–­åˆ†æå¯¹æ‰‹çš„ä¸»è¦ä¿¡æ¯ã€‚
 PlayRole::PlayRole(Tactic *t, ...)
 {
 	va_list ap;
@@ -54,7 +54,7 @@ PlayRole::PlayRole(const char *string, int &n, bool &error)
 	}
 	tactics.clear();
 	// Find ROLE keyword.
-	//½âÎöROLE¹Ø¼ü×Ö
+	//è§£æROLEå…³é”®å­—
 	static char w[5];
 	n += Parse::pWord(string + n, w, 4);
 	if (strcmp(w, "ROLE") != 0)
@@ -64,7 +64,7 @@ PlayRole::PlayRole(const char *string, int &n, bool &error)
 		return;
 	}
 	n += Parse::skipLine(string + n);
-	//½âÎöROLEÏà¹Øtactics
+	//è§£æROLEç›¸å…³tactics
 	// Read tactics making up role.
 	while (1)
 	{
@@ -83,6 +83,7 @@ PlayRole::PlayRole(const char *string, int &n, bool &error)
 		}
 		delete [] word;
 		Tactic *t = Tactic::parse(string + n);
+
 		n += Parse::skipLine(string + n);
 		//    if (!t) break;
 		if (t)
@@ -92,7 +93,7 @@ PlayRole::PlayRole(const char *string, int &n, bool &error)
 	}
 }
 
-//Çótactics×î´ó³¤¶È
+//æ±‚tacticsæœ€å¤§é•¿åº¦
 uint Play::length()
 {
 	uint l = 0;
@@ -107,7 +108,7 @@ uint Play::length()
 	return l;
 }
 
-//PlayAscIIÓÃÓÚ½âÎö½Å±¾
+//PlayAscIIç”¨äºè§£æè„šæœ¬
 //---------------------------------------------------------------------------------------------------------
 PlayAscii::PlayAscii(const char *filename, bool &error)
 {
@@ -178,7 +179,7 @@ bool PlayAscii::parse(const char *string, int &n)
 		fixed_roles.push_back(i);
 	}
 	// Initialize timeout
-	//Ä¬ÈÏÃ¿¸ötactics×î¶àÎ¬³Ö25Ãë
+	//é»˜è®¤æ¯ä¸ªtacticsæœ€å¤šç»´æŒ25ç§’
 	play_timeout = 25.0;
 	// Find PLAY keyword.
 	static char w[5];
@@ -199,13 +200,13 @@ bool PlayAscii::parse(const char *string, int &n)
 		n += Parse::pWord(string + n, &word);
 		if (strcmp(word, "APPLICABLE") == 0)
 		{
-			//½âÎö¹æÔòÆô¶¯Ìõ¼ş
+			//è§£æè§„åˆ™å¯åŠ¨æ¡ä»¶
 			applicable.push_back(parsePredicate(string, n));
 			n += Parse::skipLine(string + n);
 		}
 		else if (strcmp(word, "DONE") == 0)
 		{
-			//½âÎö¹æÔòÖÕÖ¹Ìõ¼ş£¨¿ÉÄÜÊÇ¶à¸ö£©
+			//è§£æè§„åˆ™ç»ˆæ­¢æ¡ä»¶ï¼ˆå¯èƒ½æ˜¯å¤šä¸ªï¼‰
 			static char rv[16];
 			n += Parse::pWord(string + n, rv, 16);
 			if (strcmp(rv, "succeeded") == 0) done_status.push_back(Succeeded);
@@ -222,7 +223,7 @@ bool PlayAscii::parse(const char *string, int &n)
 		}
 		else if (strcmp(word, "FIXEDROLES") == 0)
 		{
-			//¹Ì¶¨½ÇÉ«
+			//å›ºå®šè§’è‰²
 			for (int i=0; i<MAX_PLAY_ROLES; i++)
 			{
 				n += Parse::pInt(string + n, fixed_roles[i]);
@@ -231,19 +232,19 @@ bool PlayAscii::parse(const char *string, int &n)
 		}
 		else if (strcmp(word, "TIMEOUT") == 0)
 		{
-			//³¬Ê±
+			//è¶…æ—¶
 			n += Parse::pDouble(string + n, play_timeout);
 		}
 		else if (strcmp(word, "OROLE") == 0)
 		{
-			//ÓÃÓÚ¸æÖªÏµÍ³£¬±¾play¹ØĞÄÄÄĞ©¶ÔÊÖ½ÇÉ«
-			//¶Ô·½½ÇÉ«
+			//ç”¨äºå‘ŠçŸ¥ç³»ç»Ÿï¼Œæœ¬playå…³å¿ƒå“ªäº›å¯¹æ‰‹è§’è‰²
+			//å¯¹æ–¹è§’è‰²
 			OpponentRole o = parseORole(string, n);
 			if (o) opponent_roles.push_back(o);
 		}
 		else if (strcmp(word, "ROLE") == 0)
 		{
-			//¼º·½½ÇÉ«
+			//å·±æ–¹è§’è‰²
 			n -= 4;
 			delete [] word;
 			break;
@@ -271,7 +272,7 @@ bool PlayAscii::parse(const char *string, int &n)
 	return true;
 }
 
-//Ñ°ÕÒ¶Ô·½»úÆ÷ÈËÖĞ×îÓĞÍşĞ²µÄÉäÊÖ
+//å¯»æ‰¾å¯¹æ–¹æœºå™¨äººä¸­æœ€æœ‰å¨èƒçš„å°„æ‰‹
 int PlayAscii::orole_best_shot(World &world, bool candidates[])
 {
 	int best_id = -1;
@@ -283,7 +284,7 @@ int PlayAscii::orole_best_shot(World &world, bool candidates[])
 		MyVector2d target;
 		double target_tolerance;
 		int obs_flags = 0;
-		//Èç¹û´æÔÚ¼º·½ÊØÃÅÔ±
+		//å¦‚æœå­˜åœ¨å·±æ–¹å®ˆé—¨å‘˜
 		if (world.trole_goalie >= 0)
 		{
 			obs_flags |= OBS_TEAMMATE(world.trole_goalie);
@@ -300,12 +301,12 @@ int PlayAscii::orole_best_shot(World &world, bool candidates[])
 	return best_id;
 }
 
-//Ñ°ÕÒÀë¶Ô·½ÃÅ×î½üµÄ¶Ô·½»úÆ÷ÈË£¬ÅÅ³ı¶Ô·½ÊØÃÅÔ±
+//å¯»æ‰¾ç¦»å¯¹æ–¹é—¨æœ€è¿‘çš„å¯¹æ–¹æœºå™¨äººï¼Œæ’é™¤å¯¹æ–¹å®ˆé—¨å‘˜
 int PlayAscii::orole_most_downfield(World &world, bool candidates[])
 {
 	int best_id = -1;
 	double best = 0.0;
-	//ÅÅ³ı¶Ô·½ÊØÃÅÔ±
+	//æ’é™¤å¯¹æ–¹å®ˆé—¨å‘˜
 	if (world.orole_goalie >= 0)
 	{
 		candidates[world.orole_goalie] = false;
@@ -322,13 +323,13 @@ int PlayAscii::orole_most_downfield(World &world, bool candidates[])
 	return best_id;
 }
 
-//½Å±¾½âÎöÓÃ
-//Ñ°ÕÒÀë¼º·½ÃÅ×î½üµÄ¶Ô·½»úÆ÷ÈË£¬ÅÅ³ı¼º·½ÊØÃÅÔ±
+//è„šæœ¬è§£æç”¨
+//å¯»æ‰¾ç¦»å·±æ–¹é—¨æœ€è¿‘çš„å¯¹æ–¹æœºå™¨äººï¼Œæ’é™¤å·±æ–¹å®ˆé—¨å‘˜
 int PlayAscii::orole_most_upfield(World &world, bool candidates[])
 {
 	int best_id = -1;
 	double best = 0.0;
-	//orole_goalie ¼º·½ÊØÃÅÔ±
+	//orole_goalie å·±æ–¹å®ˆé—¨å‘˜
 	if (world.orole_goalie >= 0)
 	{
 		candidates[world.orole_goalie] = false;
@@ -345,7 +346,7 @@ int PlayAscii::orole_most_upfield(World &world, bool candidates[])
 	return best_id;
 }
 
-//·µ»Ø¶Ô·½ÊØÃÅÔ±±àºÅ
+//è¿”å›å¯¹æ–¹å®ˆé—¨å‘˜ç¼–å·
 int PlayAscii::orole_goalie(World &world, bool candidates[])
 {
 	if (world.orole_goalie >= 0 && candidates[world.orole_goalie])
@@ -355,12 +356,12 @@ int PlayAscii::orole_goalie(World &world, bool candidates[])
 	return orole_most_upfield(world, candidates);
 }
 
-//Ñ°ÕÒ¶Ô·½ÀëÇò×î½üµÄ»úÆ÷ÈË,ÅÅ³ıÊØÃÅÔ±
+//å¯»æ‰¾å¯¹æ–¹ç¦»çƒæœ€è¿‘çš„æœºå™¨äºº,æ’é™¤å®ˆé—¨å‘˜
 int PlayAscii::orole_closest_to_ball(World &world, bool candidates[])
 {
 	int best_id = -1;
 	double best = 0.0;
-	//ÅÅ³ıÊØÃÅÔ±
+	//æ’é™¤å®ˆé—¨å‘˜
 	if (world.orole_goalie >= 0)
 	{
 		candidates[world.orole_goalie] = false;
@@ -378,7 +379,7 @@ int PlayAscii::orole_closest_to_ball(World &world, bool candidates[])
 	return best_id;
 }
 
-//ÔÚ¶Ô·½»úÆ÷ÈËÖĞÑ°ÕÒÄÜ×î¿ì½Ø¶ÏÉäÇòµÄ
+//åœ¨å¯¹æ–¹æœºå™¨äººä¸­å¯»æ‰¾èƒ½æœ€å¿«æˆªæ–­å°„çƒçš„
 int PlayAscii::orole_closest_to_shot(World &world, bool candidates[])
 {
 	int best_id = -1;
@@ -389,7 +390,7 @@ int PlayAscii::orole_closest_to_shot(World &world, bool candidates[])
 	for (int i=0; i<world.n_opponents; i++)
 	{
 		if (!candidates[i]) continue;
-		//ÇóÁ½Ö±Ïß¶Î¾àÀë
+		//æ±‚ä¸¤ç›´çº¿æ®µè·ç¦»
 		double d = distance_seg_to_seg(ball, goal,
 		                               world.opponent_position(i),
 		                               world.opponent_position(i));
@@ -402,7 +403,7 @@ int PlayAscii::orole_closest_to_shot(World &world, bool candidates[])
 	return best_id;
 }
 
-//Ñ°ÕÒ¶ÔÊÖÖĞ×îºÃµÄ´«ÇòÊÖ
+//å¯»æ‰¾å¯¹æ‰‹ä¸­æœ€å¥½çš„ä¼ çƒæ‰‹
 int PlayAscii::orole_best_pass(World &world, bool candidates[])
 {
 	int best_id = -1;
@@ -414,7 +415,7 @@ int PlayAscii::orole_best_pass(World &world, bool candidates[])
 		MyVector2d target;
 		double target_tolerance;
 		int obs_flags = 0;
-		//Èç¹û´æÔÚ¼º·½ÊØÃÅÔ±
+		//å¦‚æœå­˜åœ¨å·±æ–¹å®ˆé—¨å‘˜
 		if (world.trole_goalie >= 0)
 		{
 			obs_flags |= OBS_TEAMMATE(world.trole_goalie);
@@ -422,10 +423,10 @@ int PlayAscii::orole_best_pass(World &world, bool candidates[])
 		evaluation.aim(world, world.now, world.opponent_position(i),
 		               world.our_goal_r, world.our_goal_l,
 		               obs_flags, target, target_tolerance);
-		//»¡¶È=0.2442,Ïàµ±ÓÚ½Ç¶È=14¶È
-		//Èç¹û½Ç¶ÈÌ«Ğ¡,¾ÍºöÂÔ
+		//å¼§åº¦=0.2442,ç›¸å½“äºè§’åº¦=14åº¦
+		//å¦‚æœè§’åº¦å¤ªå°,å°±å¿½ç•¥
 		if (target_tolerance < 0.2442) continue;
-		//Ñ°ÕÒÀëÇò×î½üµÄ
+		//å¯»æ‰¾ç¦»çƒæœ€è¿‘çš„
 		double d = (world.opponent_position(i) - world.ball_position()).length();
 		if (best_id < 0 || d < best)
 		{
@@ -436,7 +437,7 @@ int PlayAscii::orole_best_pass(World &world, bool candidates[])
 	return best_id;
 }
 
-//Ìõ¼ş½âÎö
+//æ¡ä»¶è§£æ
 WorldPredicateConjunct &PlayAscii::parsePredicate(const char *string, int &n)
 {
 	static WorldPredicateConjunct pred;
@@ -518,7 +519,7 @@ OpponentRole PlayAscii::parseORole(const char *string, int &n)
 	n += Parse::skipWS(string + n, " \t");
 	n += Parse::pInt(string + n, id); // Ignored, but syntactically pretty.
 	n += Parse::pWord(string + n, &word);
-	if (strcmp(word, "best_shot") == 0) o = &orole_best_shot;//Ñ°ÕÒ¶Ô·½»úÆ÷ÈËÖĞ×îÓĞÍşĞ²µÄÉäÊÖ
+	if (strcmp(word, "best_shot") == 0) o = &orole_best_shot;//å¯»æ‰¾å¯¹æ–¹æœºå™¨äººä¸­æœ€æœ‰å¨èƒçš„å°„æ‰‹
 	else if (strcmp(word, "most_downfield") == 0) o = &orole_most_downfield;
 	else if (strcmp(word, "most_upfield") == 0) o = &orole_most_upfield;
 	else if (strcmp(word, "closest_to_ball") == 0) o = &orole_closest_to_ball;

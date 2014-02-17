@@ -317,6 +317,7 @@ Status PlayExecutor::nextInSequence(World &world)
     sequence_index++;
     for (int i=0; i<MAX_PLAY_ROLES; i++)
     {
+        //qDebug()<<i;
         PlayRole &r = play->getRole(i);
         Tactic *t = r[sequence_index];
         if (t)
@@ -330,6 +331,7 @@ Status PlayExecutor::nextInSequence(World &world)
             tactics[i]->setTeammateMap(&teammate_map);
             tactics[i]->setOpponentMap(&opponent_map);
             tactics[i]->setPriority(i);
+            //qDebug()<<"Tactic"<<tactics[i]->name();
         }
     }
     return InProgress;
@@ -419,14 +421,27 @@ void PlayExecutor::checkStatus(World &world)
         return;
     }
 
+    bool completeFlag=true;
+
     //
     for (int i=0; i<MAX_PLAY_ROLES; i++)
     {
         //evluate whether the tactic is finished to judge
         //whether the play is finished
+
         if (tactics[i] && tactics[i]->active)
         {
+            qDebug()<<"TACTICS#"<<i<<tactics[i]->name();
             Status s = tactics[i]->isDone(world, assign[i]);
+            qDebug()<<s;
+
+            if(s==InProgress)
+            {
+                completeFlag=false;
+            }
+
+            if((i==1)&&(completeFlag))
+            {
             if (s != InProgress)
             {
 
@@ -458,6 +473,8 @@ void PlayExecutor::checkStatus(World &world)
                 }
                 return;
             }
+            }
+
         }
     }
 }
@@ -666,7 +683,7 @@ Play *PlayBook::select(World &w)
         if (r < 0)
         {
             possiblePlayList[possiblePlayNum++]=i;
-            qDebug()<<plays[i]->name;
+            //qDebug()<<plays[i]->name;
             gui_debug_printf(-1, GDBG_STRATEGY, "  Selected: %s\n", plays[i]->name);
             vision_info.sPlay = QString::fromUtf8(plays[i]->name);
             delete applicable;

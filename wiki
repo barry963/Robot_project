@@ -899,3 +899,36 @@ For test
 
 TODO:
 Try to understand the structure of Strategy, Play
+
+
+
+=======================================
+2014/2/17
+Try to understand the structure of Strategy, Play
+
+PlayAscii and PlayRole calls their parse function at the constructor, so
+it is auto parse.
+
+tactics[i]->active;//defined in Tactic of base_tactic.h
+                   //so remeber to set the value
+
+
+TPass::TPass(int _target)
+{
+    active = true;//lu_test add here
+    cr_do_setup();
+    target = _target;
+}
+
+
+The success of one tactic of one robot will let all robot
+to change to the next tactics.
+Modify checkStatus of strategy.cpp so that every robot will
+wait until all current tactics finish.
+
+
+comment LU_VERSION so that the motion planning is original except
+obstacles setting.
+
+Implement isDone Function of TPass and TReceivePass
+

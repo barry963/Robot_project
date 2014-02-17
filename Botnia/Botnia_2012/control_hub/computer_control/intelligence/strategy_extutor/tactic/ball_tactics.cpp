@@ -428,6 +428,7 @@ void TActiveDef::command(World &world, int me, Robot::RobotCommand &command,
 
 TPass::TPass(int _target)
 {
+    active = true;//lu_test add here
     cr_do_setup();
     target = _target;
 }

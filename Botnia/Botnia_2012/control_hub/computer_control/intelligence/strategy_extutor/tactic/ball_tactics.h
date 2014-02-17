@@ -216,7 +216,21 @@ public:
 	virtual void command(World &world, int me, Robot::RobotCommand &command,
 	                     bool debug);
 
+    Status isDone(World &world, int me)
+    {
+        //球撞击点相对球的位置差矢量
+        //the vector from kick direction point to ball position
+        MyVector2d ball_to_target = world.GetRobotPositionByID(target)-world.ball_position();
+        double dba = angle_mod(ball_to_target.angle() - world.teammate_direction(target));
+        qDebug()<<"ANgle"<<dba;
+        double lengthtemp=(world.GetRobotPositionByID(target)-world.ball_position()).length();
+        qDebug()<<lengthtemp;
+        if(lengthtemp<200)
+            return Completed;
 
+
+        return InProgress;
+    }
 };
 
 //Ӵս
@@ -242,6 +256,22 @@ public:
 
 	virtual void command(World &world, int me, Robot::RobotCommand &command,
 	                     bool debug);
+    Status isDone(World &world, int me)
+    {
+        //球撞击点相对球的位置差矢量
+        //the vector from kick direction point to ball position
+        MyVector2d ball_to_target = world.GetRobotPositionByID(me)-world.ball_position();
+        double dba = angle_mod(ball_to_target.angle() - world.teammate_direction(me));
+        qDebug()<<"ANgle"<<dba;
+        double lengthtemp=(world.GetRobotPositionByID(me)-world.ball_position()).length();
+        qDebug()<<lengthtemp;
+        if(lengthtemp<200)
+            return Completed;
+
+
+        return InProgress;
+    }
+
 };
 
 //ս

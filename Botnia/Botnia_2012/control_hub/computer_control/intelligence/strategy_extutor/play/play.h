@@ -32,7 +32,7 @@
 
 #define MAX_PLAY_ROLES 4
 
-//жϷֵҪϢ
+//analyze player info
 
 //
 // PlayRole
@@ -45,7 +45,7 @@ public:
 
 	// Constructors
 	PlayRole(Tactic *t, ...);
-	//ӲԿȡɫϢ;
+    //get the role assignment info from strategy database
 	PlayRole(const char *string, int &n, bool &error);
 
 	Tactic *operator [](uint index) const
@@ -273,29 +273,29 @@ private:
 		return (w.color_ == TEAM_BLUE && w.game_state == COMM_PENALTY_BLUE) ||
 		       (w.color_ == TEAM_YELLOW && w.game_state == COMM_PENALTY_YELLOW);
 	}
-	//Xָ
+    //x coordinate of ball greater than a
 	static bool pred_ball_x_gt(World &w, double a)
 	{
 		return (a < w.ballXThreshold);
 	}
-	//XСָ
+    //x less than a
 	static bool pred_ball_x_lt(World &w, double a)
 	{
 		return (a > w.ballXThreshold);
 	}
 
-	//Yֵֵָ
+    //absolute value of y greater than a
 	static bool pred_ball_absy_gt(World &w, double a)
 	{
 		return (a < fabs(w.ballYThreshold));
 	}
-	//YֵСֵָ
+    //absolute value of y less than a
 	static bool pred_ball_absy_lt(World &w, double a)
 	{
 		return (a > fabs(w.ballYThreshold));
 	}
 
-	//жϼԷڼ볡
+    //judge whether the number of opponent is greater than a
 	static bool pred_nopponents_our_side(World &w, double a)
 	{
 		int n = 0;
@@ -385,7 +385,7 @@ public:
 			candidates[i] = true;
 		}
 		m->clear();
-        //
+
 		for (uint i=0; i<opponent_roles.size(); i++)
 		{
             //
