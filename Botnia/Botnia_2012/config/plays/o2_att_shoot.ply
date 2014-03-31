@@ -1,0 +1,24 @@
+PLAY Two Attackers, Pass
+
+APPLICABLE offense
+DONE aborted !offense
+OROLE 0 closest_to_ball
+
+ROLE 1
+pass 3
+mark 0 from_shot
+none
+
+ROLE 2
+block 320 900 -1
+none
+
+ROLE 3
+position_for_pass { R { 1000 0 } { 700 0 } 500 }
+receive_pass
+shoot A
+none
+
+ROLE 4
+defend_line { -1400 1150} {-1400 -1150} 1000 1400
+none

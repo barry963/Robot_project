@@ -934,3 +934,10 @@ Implement isDone Function of TPass and TReceivePass
 
 
 Pay attention to the status: Busy
+
+
+=======================================
+2014/3/31
+restore the parameter in strategy.cfg
+
+Add several .ply.
